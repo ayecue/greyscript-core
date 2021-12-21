@@ -22,7 +22,7 @@ export interface Token {
 }
 
 export function createToken (
-	type: TokenType,
+	type: string,
 	value: any,
 	line: number,
 	lineStart: number,

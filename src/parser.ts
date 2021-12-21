@@ -51,6 +51,7 @@ import { Operator } from './types/operators';
 export interface ParserOptions {
 	validator?: Validator;
 	astProvider?: ASTProvider;
+	lexer?: Lexer;
 }
 
 export default class Parser {
@@ -70,7 +71,7 @@ export default class Parser {
 		const me = this;
 
 		me.content = content;
-		me.lexer = new Lexer(content);
+		me.lexer = options.lexer || new Lexer(content);
 		me.history = [];
 		me.prefetchedTokens = [];
 		me.token = null;
@@ -398,7 +399,7 @@ export default class Parser {
 		const floatValue = [baseValue || '', me.token.value].join('.');
 		me.next();
 
-		const base = me.astProvider.literal(ASTType.NumericLiteral, floatValue, floatValue, mainStatementLine);
+		const base = me.astProvider.literal(TokenType.NumericLiteral, floatValue, floatValue, mainStatementLine);
 		me.literals.push(base);
 
 		return base;
@@ -412,7 +413,7 @@ export default class Parser {
 
 		if (me.validator.isLiteral(type)) {
 			const raw = me.content.slice(me.token.range[0], me.token.range[1]);
-			let base: ASTBase = me.astProvider.literal(<ASTType><unknown>type, value, raw, mainStatementLine);
+			let base: ASTBase = me.astProvider.literal(<TokenType.StringLiteral | TokenType.NumericLiteral | TokenType.BooleanLiteral | TokenType.NilLiteral>type, value, raw, mainStatementLine);
 
 			me.literals.push(<ASTLiteral>base);
 

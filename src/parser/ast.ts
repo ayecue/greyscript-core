@@ -1,51 +1,52 @@
 import { Operator } from '../types/operators';
+import { TokenType } from '../lexer/token';
 
 export enum ASTType {
-	BreakStatement,
-	ContinueStatement,
-	ReturnStatement,
-	IfShortcutStatement,
-	IfShortcutClause,
-	ElseifShortcutClause,
-	ElseShortcutClause,
-	IfStatement,
-	IfClause,
-	ElseifClause,
-	ElseClause,
-	WhileStatement,
-	AssignmentStatement,
-	CallStatement,
-	FunctionDeclaration,
-	ForGenericStatement,
-	Chunk,
-	Identifier,
-	StringLiteral,
-	NumericLiteral,
-	BooleanLiteral,
-	NilLiteral,
-	MemberExpression,
-	CallExpression,
-	Comment,
-	NegationExpression,
-	BinaryNegatedExpression,
-	UnaryExpression,
-	MapKeyString,
-	MapValue,
-	MapConstructorExpression,
-	MapCallExpression,
-	ListValue,
-	ListConstructorExpression,
-	ListCallExpression,
-	EmptyExpression,
-	IndexExpression,
-	BinaryExpression,
-	LogicalExpression,
-	SliceExpression,
-	ImportCodeExpression
+	BreakStatement = 'BreakStatement',
+	ContinueStatement = 'ContinueStatement',
+	ReturnStatement = 'ReturnStatement',
+	IfShortcutStatement = 'IfShortcutStatement',
+	IfShortcutClause = 'IfShortcutClause',
+	ElseifShortcutClause = 'ElseifShortcutClause',
+	ElseShortcutClause = 'ElseShortcutClause',
+	IfStatement = 'IfStatement',
+	IfClause = 'IfClause',
+	ElseifClause = 'ElseifClause',
+	ElseClause = 'ElseClause',
+	WhileStatement = 'WhileStatement',
+	AssignmentStatement = 'AssignmentStatement',
+	CallStatement = 'CallStatement',
+	FunctionDeclaration = 'FunctionDeclaration',
+	ForGenericStatement = 'ForGenericStatement',
+	Chunk = 'Chunk',
+	Identifier = 'Identifier',
+	StringLiteral = 'StringLiteral',
+	NumericLiteral = 'NumericLiteral',
+	BooleanLiteral = 'BooleanLiteral',
+	NilLiteral = 'NilLiteral',
+	MemberExpression = 'MemberExpression',
+	CallExpression = 'CallExpression',
+	Comment = 'Comment',
+	NegationExpression = 'NegationExpression',
+	BinaryNegatedExpression = 'BinaryNegatedExpression',
+	UnaryExpression = 'UnaryExpression',
+	MapKeyString = 'MapKeyString',
+	MapValue = 'MapValue',
+	MapConstructorExpression = 'MapConstructorExpression',
+	MapCallExpression = 'MapCallExpression',
+	ListValue = 'ListValue',
+	ListConstructorExpression = 'ListConstructorExpression',
+	ListCallExpression = 'ListCallExpression',
+	EmptyExpression = 'EmptyExpression',
+	IndexExpression = 'IndexExpression',
+	BinaryExpression = 'BinaryExpression',
+	LogicalExpression = 'LogicalExpression',
+	SliceExpression = 'SliceExpression',
+	ImportCodeExpression = 'ImportCodeExpression'
 }
 
 export interface ASTBase {
-	type: ASTType;
+	type: string;
 	line: number;
 }
 
@@ -345,7 +346,7 @@ export class ASTProvider {
 	}
 
 	literal(
-		type: ASTType,
+		type: TokenType.StringLiteral | TokenType.NumericLiteral | TokenType.BooleanLiteral | TokenType.NilLiteral,
 		value: string | number | boolean,
 		raw: string | number | boolean,
 		line: number
@@ -419,7 +420,7 @@ export class ASTProvider {
 		};
 	}
 
-	mapConstructorExpression(fields: ASTBase[], line: number): ASTMapConstructorExpression {
+	mapConstructorExpression(fields: ASTMapKeyString[], line: number): ASTMapConstructorExpression {
 		return {
 			type: ASTType.MapConstructorExpression,
 			fields,
@@ -435,7 +436,7 @@ export class ASTProvider {
 		};
 	}
 
-	listConstructorExpression(fields: ASTBase[], line: number): ASTListConstructorExpression {
+	listConstructorExpression(fields: ASTListValue[], line: number): ASTListConstructorExpression {
 		return {
 			type: ASTType.ListConstructorExpression,
 			fields,
