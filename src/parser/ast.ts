@@ -141,7 +141,7 @@ export interface ASTComment extends ASTBase {
 export interface ASTUnaryExpression extends ASTBase {
 	type: ASTType.NegationExpression | ASTType.BinaryNegatedExpression | ASTType.UnaryExpression;
 	argument: ASTBase;
-	operator?: Operator;
+	operator?: string;
 }
 
 export interface ASTMapKeyString extends ASTBase {
