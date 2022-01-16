@@ -52,6 +52,7 @@ export interface ParserOptions {
 	validator?: Validator;
 	astProvider?: ASTProvider;
 	lexer?: Lexer;
+	unsafe?: boolean;
 }
 
 export default class Parser {
@@ -66,6 +67,8 @@ export default class Parser {
 	literals: ASTBase[];
 	validator: Validator;
 	astProvider: ASTProvider;
+	unsafe: boolean;
+	errors: Error[];
 
 	constructor(content: string, options: ParserOptions = {}) {
 		const me = this;
@@ -81,6 +84,8 @@ export default class Parser {
 		me.literals = [];
 		me.validator = options.validator || new Validator();
 		me.astProvider = options.astProvider || new ASTProvider();
+		me.unsafe = options.unsafe || false;
+		me.errors = [];
 	}
 
 	next(): Parser {
@@ -155,7 +160,7 @@ export default class Parser {
 		if (value === me.token.value && TokenType.StringLiteral !== me.token.type) {
 			me.next();
 		} else {
-			throw new UnexpectedValue(me.token, value);
+			me.raise(new UnexpectedValue(me.token, value));
 		}
 	}
 
@@ -165,7 +170,7 @@ export default class Parser {
 		if (values.indexOf(me.token.value) != -1 && TokenType.StringLiteral !== me.token.type) {
 			me.next();
 		} else {
-			throw new UnexpectedValues(me.token, values);
+			me.raise(new UnexpectedValues(me.token, values));
 		}
 	}
 
@@ -183,13 +188,13 @@ export default class Parser {
 		}
 	}
 
-	parseIdentifier(): ASTIdentifier {
+	parseIdentifier(): ASTIdentifier | ASTBase {
 		const me = this;
 		const mainStatementLine = me.token.line;
 		const identifier = me.token.value;
 
 		if (TokenType.Identifier !== me.token.type) {
-			throw new UnexpectedIdentifier(me.token);
+			return me.raise(new UnexpectedIdentifier(me.token));
 		}
 
 		me.namespaces.add(identifier);
@@ -222,7 +227,11 @@ export default class Parser {
 
 		me.expect('}');
 
-		return me.astProvider.mapConstructorExpression(fields, mainStatementLine);
+		return me.astProvider.mapConstructorExpression(
+			fields,
+			mainStatementLine,
+			me.token.line
+		);
 	}
 
 	parseListConstructor(): ASTListConstructorExpression {
@@ -245,15 +254,24 @@ export default class Parser {
 
 		me.expect(']');
 
-		return me.astProvider.listConstructorExpression(fields, mainStatementLine);
+		return me.astProvider.listConstructorExpression(
+			fields,
+			mainStatementLine,
+			me.token.line
+		);
 	}
 
 	parseRighthandExpressionGreedy(base: ASTBase): ASTBase {
 		const me = this;
 
 		while (true) {
+			console.log('>>', base);
 			const newBase = me.parseRighthandExpressionPart(base);
-			if (newBase === null) break;
+
+			if (newBase === null) {
+				break;
+			}
+
 			base = newBase;
 		}
 
@@ -283,9 +301,18 @@ export default class Parser {
 		const mainStatementLine = me.token.line;
 		const operator = <Operator>me.previousToken.value.charAt(0);
 		const value = me.parseSubExpression();
-		const expression = me.astProvider.binaryExpression(operator, base, value, mainStatementLine);
+		const expression = me.astProvider.binaryExpression(
+			operator,
+			base,
+			value,
+			mainStatementLine
+		);
 
-		return me.astProvider.assignmentStatement(base, expression, mainStatementLine);
+		return me.astProvider.assignmentStatement(
+			base,
+			expression,
+			mainStatementLine
+		);
 	}
 
 	parseIndexExpression(base: ASTBase): ASTIndexExpression {
@@ -314,9 +341,17 @@ export default class Parser {
 					right = me.astProvider.emptyExpression(mainStatementLine);
 				}
 
-				const sliceExpression = me.astProvider.sliceExpression(left, right, mainStatementLine);
+				const sliceExpression = me.astProvider.sliceExpression(
+					left,
+					right,
+					mainStatementLine
+				);
 
-				return  me.astProvider.indexExpression(base, sliceExpression, mainStatementLine);
+				return  me.astProvider.indexExpression(
+					base,
+					sliceExpression,
+					mainStatementLine
+				);
 			}
 
 			token = me.prefetch(offset);
@@ -353,7 +388,12 @@ export default class Parser {
 			} else if ('.' === value) {
 				me.next();
 				identifier = me.parseIdentifier();
-				return me.astProvider.memberExpression(base, '.', identifier, mainStatementLine);
+				return me.astProvider.memberExpression(
+					base,
+					'.',
+					identifier,
+					mainStatementLine
+				);
 			} else if ('(' === value) {
 				return me.parseCallExpression(base);
 			}
@@ -362,17 +402,17 @@ export default class Parser {
 		return null;
 	}
 
-	parseCallExpression(base: ASTBase): ASTCallExpression {
+	parseCallExpression(base: ASTBase): ASTCallExpression | ASTBase {
 		const me = this;
 		const mainStatementLine = me.token.line;
 		const value = me.token.value;
 
 		if (TokenType.Punctuator !== me.token.type || '(' !== value) {
-			throw new UnexpectedArguments(me.token, base);
+			return me.raise(new UnexpectedArguments(me.token, base));
 		}
 
 		if (me.token.line !== me.previousToken.line) {
-			throw new CallExpressionEOL(me.token, me.previousToken);
+			return me.raise(new CallExpressionEOL(me.token, me.previousToken));
 		}
 
 		me.next();
@@ -387,7 +427,11 @@ export default class Parser {
 		}
 
 		me.expect(')');
-		return me.astProvider.callExpression(base, expressions, mainStatementLine);
+		return me.astProvider.callExpression(
+			base,
+			expressions,
+			mainStatementLine
+		);
 	}
 
 	parseFloatExpression(baseValue?: number): ASTLiteral {
@@ -399,7 +443,13 @@ export default class Parser {
 		const floatValue = [baseValue || '', me.token.value].join('.');
 		me.next();
 
-		const base = me.astProvider.literal(TokenType.NumericLiteral, floatValue, floatValue, mainStatementLine);
+		const base = me.astProvider.literal(
+			TokenType.NumericLiteral,
+			floatValue,
+			floatValue,
+			mainStatementLine
+		);
+
 		me.literals.push(base);
 
 		return base;
@@ -475,7 +525,12 @@ export default class Parser {
 				right = me.astProvider.emptyExpression(mainStatementLine);
 			}
 
-			expression = me.astProvider.binaryExpression(operator, expression, right, mainStatementLine);
+			expression = me.astProvider.binaryExpression(
+				operator,
+				expression,
+				right,
+				mainStatementLine
+			);
 		}
 
 		return expression;
@@ -493,7 +548,11 @@ export default class Parser {
 			if (null == argument) {
 				argument = me.parseRighthandExpression();
 			}
-			expression = me.astProvider.unaryExpression(<Operator>operator, argument, mainStatementLine);
+			expression = me.astProvider.unaryExpression(
+				<Operator>operator,
+				argument,
+				mainStatementLine
+			);
 		}
 		if (null == expression) {
 			expression = me.parsePrimaryExpression();
@@ -508,7 +567,7 @@ export default class Parser {
 		return expression;
 	}
 
-	parseNativeImportCodeStatement(): ASTImportCodeExpression {
+	parseNativeImportCodeStatement(): ASTImportCodeExpression | ASTBase {
 		const me = this;
 		const mainStatementLine = me.token.line;
 
@@ -520,7 +579,7 @@ export default class Parser {
 		if (TokenType.StringLiteral === me.token.type) {
 			gameDirectory = me.parsePrimaryExpression();
 		} else {
-			throw new UnexpectedNonStringLiteralInImportCode(me.token);
+			return me.raise(new UnexpectedNonStringLiteralInImportCode(me.token));
 		}
 
 		if (me.consume(':')) {
@@ -531,7 +590,11 @@ export default class Parser {
 		me.expect(')');
 		me.expect(';');
 
-		const base = me.astProvider.importCodeExpression(gameDirectory, fileSystemDirectory, mainStatementLine);
+		const base = me.astProvider.importCodeExpression(
+			gameDirectory,
+			fileSystemDirectory,
+			mainStatementLine
+		);
 
 		return base;
 	}
@@ -551,7 +614,12 @@ export default class Parser {
 			me.expectMany(['end while', ';', '<eof>']);
 		}
 
-		return me.astProvider.whileStatement(condition, body, mainStatementLine);
+		return me.astProvider.whileStatement(
+			condition,
+			body,
+			mainStatementLine,
+			me.token.line
+		);
 	}
 
 	parseExpression(): ASTBase {
@@ -565,7 +633,7 @@ export default class Parser {
 		const expression = me.parseExpression();
 
 		if (expression == null) {
-			throw new UnexpectedExpression(me.token);
+			return me.raise(new UnexpectedExpression(me.token));
 		}
 
 		return expression;
@@ -583,9 +651,17 @@ export default class Parser {
 		const isActuallyShortcut = body.length === 1;
 
 		if (isActuallyShortcut) {
-			clauses.push(me.astProvider.ifShortcutClause(condition, body, statementLine));
+			clauses.push(me.astProvider.ifShortcutClause(
+				condition,
+				body,
+				statementLine
+			));
 		} else {
-			clauses.push(me.astProvider.ifClause(condition, body, statementLine));
+			clauses.push(me.astProvider.ifClause(
+				condition,
+				body,
+				statementLine
+			));
 		}
 
 		while (me.consume('else if')) {
@@ -595,9 +671,17 @@ export default class Parser {
 			body = me.parseBlockShortcut();
 
 			if (isActuallyShortcut) {
-				clauses.push(me.astProvider.elseifShortcutClause(condition, body, statementLine));
+				clauses.push(me.astProvider.elseifShortcutClause(
+					condition,
+					body,
+					statementLine
+				));
 			} else {
-				clauses.push(me.astProvider.elseifClause(condition, body, statementLine));
+				clauses.push(me.astProvider.elseifClause(
+					condition,
+					body,
+					statementLine
+				));
 			}
 		}
 
@@ -606,19 +690,33 @@ export default class Parser {
 			body = me.parseBlockShortcut();
 
 			if (isActuallyShortcut) {
-				clauses.push(me.astProvider.elseShortcutClause(body, statementLine));
+				clauses.push(me.astProvider.elseShortcutClause(
+					body,
+					statementLine
+				));
 			} else {
-				clauses.push(me.astProvider.elseClause(body, statementLine));
+				clauses.push(me.astProvider.elseClause(
+					body,
+					statementLine
+				));
 			}
 		}
 
 		me.consumeMany(['end if', ';', '<eof>']);
 
 		if (isActuallyShortcut) {
-			return me.astProvider.ifShortcutStatement(clauses, mainStatementLine);
+			return me.astProvider.ifShortcutStatement(
+				clauses,
+				mainStatementLine,
+				me.token.line
+			);
 		}
 
-		return me.astProvider.ifStatement(clauses, mainStatementLine);
+		return me.astProvider.ifStatement(
+			clauses,
+			mainStatementLine,
+			me.token.line
+		);
 	}
 
 	parseIfStatement(): ASTIfStatement {
@@ -653,7 +751,11 @@ export default class Parser {
 
 		me.expect('end if');
 
-		return me.astProvider.ifStatement(clauses, mainStatementLine);
+		return me.astProvider.ifStatement(
+			clauses,
+			mainStatementLine,
+			me.token.line
+		);
 	}
 
 	parseReturnStatement(isShortcutStatement: boolean = false): ASTReturnStatement {
@@ -663,7 +765,10 @@ export default class Parser {
 
 		if (!isShortcutStatement) me.consume(';');
 
-		return me.astProvider.returnStatement(expression, mainStatementLine);
+		return me.astProvider.returnStatement(
+			expression,
+			mainStatementLine
+		);
 	}
 
 	parseFunctionName(): ASTBase {
@@ -700,14 +805,20 @@ export default class Parser {
 		} else if ('[' === me.token.value || '{' === last.value) {
 			base = me.parseExpectedExpression();
 		} else {
-			throw new UnexpectedAssignmentOrCall(me.token);
+			return me.raise(new UnexpectedAssignmentOrCall(me.token));
 		}
 
 		if (me.validator.isExpressionOperator(<Operator>me.token.value)) {
 			return me.parseBinaryExpression(base);
 		}
 
-		while (TokenType.Punctuator === me.token.type && '=' !== me.token.value && ';' !== me.token.value && '<eof>' !== me.token.value) {
+		while (
+			TokenType.Punctuator === me.token.type &&
+			'=' !== me.token.value &&
+			';' !== me.token.value &&
+			')' !== me.token.value &&
+			'<eof>' !== me.token.value
+		) {
 			last = me.token;
 			base = me.parseRighthandExpressionGreedy(base);
 		}
@@ -724,7 +835,11 @@ export default class Parser {
 
 		const value = me.parseExpectedExpression();
 
-		return me.astProvider.assignmentStatement(base, value, mainStatementLine);
+		return me.astProvider.assignmentStatement(
+			base,
+			value,
+			mainStatementLine
+		);
 	}
 
 	parseForStatement(): ASTForGenericStatement {
@@ -751,10 +866,16 @@ export default class Parser {
 			me.expectMany(['end for', ';', '<eof>']);
 		}
 
-		return me.astProvider.forGenericStatement(variable, iterator, body, mainStatementLine);
+		return me.astProvider.forGenericStatement(
+			variable,
+			iterator,
+			body,
+			mainStatementLine,
+			me.token.line
+		);
 	}
 
-	parseFunctionDeclaration(): ASTFunctionStatement {
+	parseFunctionDeclaration(): ASTFunctionStatement | ASTBase {
 		const me = this;
 		const mainStatementLine = me.token.line;
 		const parameters = [];
@@ -774,7 +895,7 @@ export default class Parser {
 					parameters.push(parameter);
 					if (me.consume(',')) continue;
 				} else {
-					throw new UnexpectedParameterInFunction(me.token);
+					return me.raise(new UnexpectedParameterInFunction(me.token));
 				}
 
 				me.expect(')');
@@ -792,10 +913,15 @@ export default class Parser {
 			me.expectMany(['end function', ';', '<eof>']);
 		}
 
-		return me.astProvider.functionStatement(parameters, body, mainStatementLine);
+		return me.astProvider.functionStatement(
+			parameters,
+			body,
+			mainStatementLine,
+			me.token.line
+		);
 	};
 
-	parseStatement(isShortcutStatement: boolean = false): ASTBase | null {
+	parseStatement(isShortcutStatement: boolean = false): ASTBase {
 		const me = this;
 
 		if (TokenType.Keyword === me.token.type) {
@@ -875,7 +1001,7 @@ export default class Parser {
 		return block;
 	};
 
-	parseChunk(): ASTChunk {
+	parseChunk(): ASTChunk | ASTBase {
 		const me = this;
 
 		me.next();
@@ -884,9 +1010,30 @@ export default class Parser {
 		const body = me.parseBlock();
 
 		if (TokenType.EOF !== me.token.type) {
-			throw new UnexpectedEOF(me.token);
+			return me.raise(new UnexpectedEOF(me.token));
 		}
 
-		return me.astProvider.chunk(body, me.nativeImports, me.namespaces, me.literals, mainStatementLine);
+		return me.astProvider.chunk(
+			body,
+			me.nativeImports,
+			me.namespaces,
+			me.literals,
+			mainStatementLine,
+			me.token.line
+		);
 	};
+
+	raise(err: Error): ASTBase {
+		const me = this;
+
+		me.errors.push(err);
+
+		if (me.unsafe) {
+			const base = me.astProvider.invalidCodeExpression(me.token.line);
+			me.next();
+			return base;
+		}
+
+		throw err;
+	}
 }

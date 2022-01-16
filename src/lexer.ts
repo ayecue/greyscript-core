@@ -11,7 +11,8 @@ import {
 } from './utils/errors';
 
 export interface LexerOptions {
-	validator?: Validator
+	validator?: Validator;
+	unsafe?: boolean;
 }
 
 export default class Lexer {
@@ -22,6 +23,8 @@ export default class Lexer {
 	line: number;
 	lineStart: number;
 	validator: Validator;
+	unsafe: boolean;
+	errors: Error[];
 
 	constructor(content: string, options: LexerOptions = {}) {
 		const me = this;
@@ -33,6 +36,8 @@ export default class Lexer {
 		me.line = 1;
 		me.lineStart = 0;
 		me.validator = options.validator || new Validator();
+		me.unsafe = options.unsafe;
+		me.errors = [];
 	}
 
 	scan(code: CharacterCode, nextCode?: CharacterCode, lastCode?: CharacterCode): Token | null {
@@ -151,7 +156,7 @@ export default class Lexer {
 				}
 			}
 			if (!me.isNotEOF()) {
-				throw new UnexpectedStringEOL(beginLine);
+				return me.raise(new UnexpectedStringEOL(beginLine));
 			}
 		}
 
@@ -362,6 +367,19 @@ export default class Lexer {
 
 		if (item) return item;
 
-		throw new InvalidCharacter(code, me.line);
-	};
+		return me.raise(new InvalidCharacter(code, me.line));
+	}
+
+	raise(err: Error): Token {
+		const me = this;
+
+		me.errors.push(err);
+
+		if (me.unsafe) {
+			me.nextLine();
+			return me.next();
+		}
+
+		throw err;
+	}
 }

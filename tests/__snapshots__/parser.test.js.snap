@@ -5,6 +5,7 @@ Object {
   "body": Array [
     Object {
       "init": Object {
+        "endLine": 1,
         "fields": Array [],
         "line": 1,
         "type": "MapConstructorExpression",
@@ -19,6 +20,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 3,
         "fields": Array [],
         "line": 3,
         "type": "MapConstructorExpression",
@@ -33,6 +35,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 5,
         "fields": Array [
           Object {
             "line": 5,
@@ -88,6 +91,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 6,
         "fields": Array [
           Object {
             "line": 6,
@@ -143,6 +147,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 7,
         "fields": Array [
           Object {
             "line": 7,
@@ -198,6 +203,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 8,
         "fields": Array [
           Object {
             "line": 8,
@@ -253,6 +259,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 9,
         "fields": Array [
           Object {
             "line": 9,
@@ -308,6 +315,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 10,
         "fields": Array [
           Object {
             "line": 10,
@@ -363,6 +371,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 11,
         "fields": Array [
           Object {
             "line": 11,
@@ -418,6 +427,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 12,
         "fields": Array [
           Object {
             "line": 12,
@@ -473,6 +483,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 13,
         "fields": Array [
           Object {
             "line": 13,
@@ -528,6 +539,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 14,
         "fields": Array [
           Object {
             "line": 14,
@@ -583,6 +595,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 15,
         "fields": Array [
           Object {
             "line": 15,
@@ -638,6 +651,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 16,
         "fields": Array [
           Object {
             "line": 16,
@@ -693,6 +707,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 17,
         "fields": Array [
           Object {
             "line": 17,
@@ -748,6 +763,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 18,
         "fields": Array [
           Object {
             "line": 18,
@@ -803,6 +819,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 19,
         "fields": Array [
           Object {
             "line": 19,
@@ -858,6 +875,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 20,
         "fields": Array [
           Object {
             "line": 20,
@@ -913,6 +931,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 21,
         "fields": Array [
           Object {
             "line": 21,
@@ -968,6 +987,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 22,
         "fields": Array [
           Object {
             "line": 22,
@@ -1023,6 +1043,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 23,
         "fields": Array [
           Object {
             "line": 23,
@@ -1078,6 +1099,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 24,
         "fields": Array [
           Object {
             "line": 24,
@@ -1133,6 +1155,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 25,
         "fields": Array [
           Object {
             "line": 25,
@@ -1188,6 +1211,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 26,
         "fields": Array [
           Object {
             "line": 26,
@@ -1243,6 +1267,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 27,
         "fields": Array [
           Object {
             "line": 27,
@@ -1298,6 +1323,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 28,
         "fields": Array [
           Object {
             "line": 28,
@@ -1353,6 +1379,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 29,
         "fields": Array [
           Object {
             "line": 29,
@@ -1408,6 +1435,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 30,
         "fields": Array [
           Object {
             "line": 30,
@@ -1463,6 +1491,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 31,
         "fields": Array [
           Object {
             "line": 31,
@@ -1518,6 +1547,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 32,
         "fields": Array [
           Object {
             "line": 32,
@@ -1573,6 +1603,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 33,
         "fields": Array [
           Object {
             "line": 33,
@@ -1628,6 +1659,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 34,
         "fields": Array [
           Object {
             "line": 34,
@@ -1683,6 +1715,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 35,
         "fields": Array [
           Object {
             "line": 35,
@@ -1738,6 +1771,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 36,
         "fields": Array [
           Object {
             "line": 36,
@@ -1793,6 +1827,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 37,
         "fields": Array [
           Object {
             "line": 37,
@@ -1848,6 +1883,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 38,
         "fields": Array [
           Object {
             "line": 38,
@@ -1903,6 +1939,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 39,
         "fields": Array [
           Object {
             "line": 39,
@@ -1958,6 +1995,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 40,
         "fields": Array [
           Object {
             "line": 40,
@@ -2013,6 +2051,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 41,
         "fields": Array [
           Object {
             "line": 41,
@@ -2095,11 +2134,13 @@ Object {
         "body": Array [
           Object {
             "init": Object {
+              "endLine": 46,
               "fields": Array [
                 Object {
                   "line": 46,
                   "type": "ListValue",
                   "value": Object {
+                    "endLine": 46,
                     "fields": Array [],
                     "line": 46,
                     "type": "ListConstructorExpression",
@@ -2109,6 +2150,7 @@ Object {
                   "line": 46,
                   "type": "ListValue",
                   "value": Object {
+                    "endLine": 46,
                     "fields": Array [],
                     "line": 46,
                     "type": "ListConstructorExpression",
@@ -2118,6 +2160,7 @@ Object {
                   "line": 46,
                   "type": "ListValue",
                   "value": Object {
+                    "endLine": 46,
                     "fields": Array [],
                     "line": 46,
                     "type": "ListConstructorExpression",
@@ -2397,10 +2440,12 @@ Object {
                     "type": "IfClause",
                   },
                 ],
+                "endLine": 55,
                 "line": 51,
                 "type": "IfStatement",
               },
             ],
+            "endLine": 56,
             "iterator": Object {
               "line": 49,
               "name": "str",
@@ -2422,6 +2467,7 @@ Object {
                     "init": Object {
                       "left": Object {
                         "left": Object {
+                          "endLine": 59,
                           "fields": Array [
                             Object {
                               "line": 59,
@@ -2480,6 +2526,7 @@ Object {
                       "line": 59,
                       "operator": "+",
                       "right": Object {
+                        "endLine": 59,
                         "fields": Array [
                           Object {
                             "line": 59,
@@ -2519,6 +2566,7 @@ Object {
                     "init": Object {
                       "left": Object {
                         "left": Object {
+                          "endLine": 60,
                           "fields": Array [
                             Object {
                               "line": 60,
@@ -2577,6 +2625,7 @@ Object {
                       "line": 60,
                       "operator": "+",
                       "right": Object {
+                        "endLine": 60,
                         "fields": Array [
                           Object {
                             "line": 60,
@@ -2616,6 +2665,7 @@ Object {
                     "init": Object {
                       "left": Object {
                         "left": Object {
+                          "endLine": 61,
                           "fields": Array [
                             Object {
                               "line": 61,
@@ -2674,6 +2724,7 @@ Object {
                       "line": 61,
                       "operator": "+",
                       "right": Object {
+                        "endLine": 61,
                         "fields": Array [
                           Object {
                             "line": 61,
@@ -2746,6 +2797,7 @@ Object {
                     "init": Object {
                       "left": Object {
                         "left": Object {
+                          "endLine": 63,
                           "fields": Array [
                             Object {
                               "line": 63,
@@ -2814,6 +2866,7 @@ Object {
                       "line": 63,
                       "operator": "+",
                       "right": Object {
+                        "endLine": 63,
                         "fields": Array [
                           Object {
                             "line": 63,
@@ -2853,6 +2906,7 @@ Object {
                     "init": Object {
                       "left": Object {
                         "left": Object {
+                          "endLine": 64,
                           "fields": Array [
                             Object {
                               "line": 64,
@@ -2921,6 +2975,7 @@ Object {
                       "line": 64,
                       "operator": "+",
                       "right": Object {
+                        "endLine": 64,
                         "fields": Array [
                           Object {
                             "line": 64,
@@ -2960,6 +3015,7 @@ Object {
                     "init": Object {
                       "left": Object {
                         "left": Object {
+                          "endLine": 65,
                           "fields": Array [
                             Object {
                               "line": 65,
@@ -3028,6 +3084,7 @@ Object {
                       "line": 65,
                       "operator": "+",
                       "right": Object {
+                        "endLine": 65,
                         "fields": Array [
                           Object {
                             "line": 65,
@@ -3095,6 +3152,7 @@ Object {
                 "type": "ElseifClause",
               },
             ],
+            "endLine": 66,
             "line": 58,
             "type": "IfStatement",
           },
@@ -3110,6 +3168,7 @@ Object {
               ],
               "base": Object {
                 "base": Object {
+                  "endLine": 68,
                   "fields": Array [
                     Object {
                       "line": 68,
@@ -3254,6 +3313,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 69,
         "line": 45,
         "parameters": Array [
           Object {
@@ -3330,6 +3390,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 71,
   "line": 1,
   "literals": Array [
     Object {
@@ -4672,6 +4733,7 @@ Object {
       "type": "LogicalExpression",
     },
   ],
+  "endLine": 12,
   "line": 1,
   "literals": Array [],
   "namespaces": Set {
@@ -4683,6 +4745,18 @@ Object {
   "nativeImports": Array [],
   "type": "Chunk",
 }
+`;
+
+exports[`parse default scripts invalid code 1`] = `Array []`;
+
+exports[`parse default scripts invalid code 2`] = `
+Array [
+  [Error: Unexpected value ; at line 2. Expected: )],
+  [Error: Unexpected value ) at line 4. Expected: =],
+  [Error: Unexpected expression at line 4.],
+  [Error: Unexpected assignment or call at line 8.],
+  [Error: Unexpected end of file at line 9.],
+]
 `;
 
 exports[`parse default scripts negation.src 1`] = `
@@ -4753,6 +4827,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 2,
         "fields": Array [
           Object {
             "line": 2,
@@ -4895,6 +4970,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 5,
   "line": 1,
   "literals": Array [
     Object {
@@ -4988,6 +5064,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 9,
         "fields": Array [
           Object {
             "key": Object {
@@ -4999,6 +5076,7 @@ Object {
             "line": 4,
             "type": "MapKeyString",
             "value": Object {
+              "endLine": 6,
               "fields": Array [
                 Object {
                   "key": Object {
@@ -5068,6 +5146,7 @@ Object {
       "expression": Object {
         "arguments": Array [
           Object {
+            "endLine": 11,
             "fields": Array [
               Object {
                 "line": 11,
@@ -5154,11 +5233,13 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 19,
         "fields": Array [
           Object {
             "line": 14,
             "type": "ListValue",
             "value": Object {
+              "endLine": 16,
               "fields": Array [
                 Object {
                   "key": Object {
@@ -5233,6 +5314,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 21,
   "line": 1,
   "literals": Array [
     Object {
@@ -5316,6 +5398,7 @@ Object {
   "body": Array [
     Object {
       "init": Object {
+        "endLine": 1,
         "fields": Array [],
         "line": 1,
         "type": "MapConstructorExpression",
@@ -5506,6 +5589,7 @@ Object {
           },
           Object {
             "init": Object {
+              "endLine": 10,
               "fields": Array [
                 Object {
                   "line": 10,
@@ -5583,6 +5667,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 13,
         "line": 8,
         "parameters": Array [],
         "type": "FunctionDeclaration",
@@ -5740,6 +5825,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 20,
             "line": 19,
             "type": "IfShortcutStatement",
           },
@@ -5945,6 +6031,7 @@ Object {
                         "type": "ElseClause",
                       },
                     ],
+                    "endLine": 29,
                     "line": 25,
                     "type": "IfStatement",
                   },
@@ -5968,10 +6055,12 @@ Object {
                 "type": "IfClause",
               },
             ],
+            "endLine": 30,
             "line": 23,
             "type": "IfStatement",
           },
         ],
+        "endLine": 31,
         "line": 15,
         "parameters": Array [
           Object {
@@ -6222,6 +6311,7 @@ Object {
                     "type": "IfShortcutClause",
                   },
                 ],
+                "endLine": 44,
                 "line": 43,
                 "type": "IfShortcutStatement",
               },
@@ -6276,6 +6366,7 @@ Object {
               },
               "type": "BinaryExpression",
             },
+            "endLine": 45,
             "line": 40,
             "type": "WhileStatement",
           },
@@ -6333,6 +6424,7 @@ Object {
                 "type": "IfClause",
               },
             ],
+            "endLine": 49,
             "line": 47,
             "type": "IfStatement",
           },
@@ -6346,6 +6438,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 52,
         "line": 33,
         "parameters": Array [],
         "type": "FunctionDeclaration",
@@ -6434,6 +6527,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 58,
         "fields": Array [],
         "line": 58,
         "type": "ListConstructorExpression",
@@ -6534,6 +6628,7 @@ Object {
         },
         "type": "BinaryExpression",
       },
+      "endLine": 63,
       "line": 60,
       "type": "WhileStatement",
     },
@@ -6558,6 +6653,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 65,
   "line": 1,
   "literals": Array [
     Object {
@@ -6714,6 +6810,7 @@ Object {
   "body": Array [
     Object {
       "init": Object {
+        "endLine": 1,
         "fields": Array [],
         "line": 1,
         "type": "MapConstructorExpression",
@@ -6763,6 +6860,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 6,
         "line": 3,
         "parameters": Array [
           Object {
@@ -6960,6 +7058,7 @@ Object {
               },
               "type": "BinaryExpression",
             },
+            "endLine": 16,
             "line": 13,
             "type": "WhileStatement",
           },
@@ -6999,6 +7098,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 19,
         "line": 8,
         "parameters": Array [
           Object {
@@ -7082,6 +7182,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 23,
         "line": 21,
         "parameters": Array [
           Object {
@@ -7180,6 +7281,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 27,
         "line": 25,
         "parameters": Array [
           Object {
@@ -7257,6 +7359,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 31,
         "line": 29,
         "parameters": Array [
           Object {
@@ -7360,6 +7463,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 35,
         "line": 33,
         "parameters": Array [
           Object {
@@ -7463,6 +7567,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 39,
         "line": 37,
         "parameters": Array [
           Object {
@@ -7514,6 +7619,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 43,
         "line": 41,
         "parameters": Array [],
         "type": "FunctionDeclaration",
@@ -7569,6 +7675,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 47,
         "line": 45,
         "parameters": Array [],
         "type": "FunctionDeclaration",
@@ -7635,6 +7742,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 51,
         "line": 49,
         "parameters": Array [
           Object {
@@ -7727,6 +7835,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 55,
         "line": 53,
         "parameters": Array [
           Object {
@@ -7757,6 +7866,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 57,
         "fields": Array [],
         "line": 57,
         "type": "MapConstructorExpression",
@@ -7955,6 +8065,7 @@ Object {
                 "type": "IfClause",
               },
             ],
+            "endLine": 66,
             "line": 64,
             "type": "IfStatement",
           },
@@ -7968,6 +8079,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 68,
         "line": 61,
         "parameters": Array [
           Object {
@@ -8057,6 +8169,7 @@ Object {
             "type": "CallStatement",
           },
         ],
+        "endLine": 72,
         "line": 70,
         "parameters": Array [],
         "type": "FunctionDeclaration",
@@ -8081,6 +8194,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 74,
         "fields": Array [],
         "line": 74,
         "type": "MapConstructorExpression",
@@ -8345,6 +8459,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 87,
             "line": 86,
             "type": "IfShortcutStatement",
           },
@@ -8407,6 +8522,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 88,
             "line": 87,
             "type": "IfShortcutStatement",
           },
@@ -8427,6 +8543,7 @@ Object {
                               "value": "Invalid charset $0...",
                             },
                             Object {
+                              "endLine": 88,
                               "fields": Array [
                                 Object {
                                   "line": 88,
@@ -8541,6 +8658,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 89,
             "line": 88,
             "type": "IfShortcutStatement",
           },
@@ -8554,6 +8672,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 90,
         "line": 81,
         "parameters": Array [
           Object {
@@ -8611,6 +8730,7 @@ Object {
           },
           Object {
             "init": Object {
+              "endLine": 94,
               "fields": Array [],
               "line": 94,
               "type": "ListConstructorExpression",
@@ -8701,6 +8821,7 @@ Object {
                 "type": "CallStatement",
               },
             ],
+            "endLine": 98,
             "iterator": Object {
               "line": 96,
               "name": "x",
@@ -8743,6 +8864,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 101,
         "line": 92,
         "parameters": Array [
           Object {
@@ -8837,6 +8959,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 106,
             "line": 105,
             "type": "IfShortcutStatement",
           },
@@ -8892,6 +9015,7 @@ Object {
           },
           Object {
             "init": Object {
+              "endLine": 108,
               "fields": Array [],
               "line": 108,
               "type": "ListConstructorExpression",
@@ -9008,6 +9132,7 @@ Object {
                                     "value": "Invalid index $0...",
                                   },
                                   Object {
+                                    "endLine": 114,
                                     "fields": Array [
                                       Object {
                                         "line": 114,
@@ -9116,6 +9241,7 @@ Object {
                       "type": "IfClause",
                     },
                   ],
+                  "endLine": 115,
                   "line": 113,
                   "type": "IfStatement",
                 },
@@ -9148,6 +9274,7 @@ Object {
                   "type": "ReturnStatement",
                 },
               ],
+              "endLine": 117,
               "line": 112,
               "parameters": Array [
                 Object {
@@ -9201,6 +9328,7 @@ Object {
                   "type": "ReturnStatement",
                 },
               ],
+              "endLine": 120,
               "line": 118,
               "parameters": Array [
                 Object {
@@ -9259,6 +9387,7 @@ Object {
                   "type": "ReturnStatement",
                 },
               ],
+              "endLine": 123,
               "line": 121,
               "parameters": Array [
                 Object {
@@ -9317,6 +9446,7 @@ Object {
                   "type": "ReturnStatement",
                 },
               ],
+              "endLine": 126,
               "line": 124,
               "parameters": Array [
                 Object {
@@ -9939,6 +10069,7 @@ Object {
               },
               "type": "BinaryExpression",
             },
+            "endLine": 138,
             "line": 127,
             "type": "WhileStatement",
           },
@@ -10681,6 +10812,7 @@ Object {
                 "type": "ElseifClause",
               },
             ],
+            "endLine": 154,
             "line": 139,
             "type": "IfStatement",
           },
@@ -10716,6 +10848,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 156,
         "line": 103,
         "parameters": Array [
           Object {
@@ -10815,6 +10948,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 161,
             "line": 160,
             "type": "IfShortcutStatement",
           },
@@ -10894,6 +11028,7 @@ Object {
           },
           Object {
             "init": Object {
+              "endLine": 164,
               "fields": Array [],
               "line": 164,
               "type": "ListConstructorExpression",
@@ -11025,6 +11160,7 @@ Object {
                   "type": "ReturnStatement",
                 },
               ],
+              "endLine": 172,
               "line": 170,
               "parameters": Array [
                 Object {
@@ -11083,6 +11219,7 @@ Object {
                   "type": "ReturnStatement",
                 },
               ],
+              "endLine": 175,
               "line": 173,
               "parameters": Array [
                 Object {
@@ -11281,6 +11418,7 @@ Object {
                     "type": "ElseClause",
                   },
                 ],
+                "endLine": 184,
                 "line": 180,
                 "type": "IfStatement",
               },
@@ -11399,6 +11537,7 @@ Object {
                             "type": "IfShortcutClause",
                           },
                         ],
+                        "endLine": 188,
                         "line": 187,
                         "type": "IfShortcutStatement",
                       },
@@ -11599,6 +11738,7 @@ Object {
                                     "type": "IfShortcutClause",
                                   },
                                 ],
+                                "endLine": 195,
                                 "line": 194,
                                 "type": "IfShortcutStatement",
                               },
@@ -11664,6 +11804,7 @@ Object {
                             "type": "IfClause",
                           },
                         ],
+                        "endLine": 196,
                         "line": 192,
                         "type": "IfStatement",
                       },
@@ -11713,6 +11854,7 @@ Object {
                     "type": "IfClause",
                   },
                 ],
+                "endLine": 198,
                 "line": 185,
                 "type": "IfStatement",
               },
@@ -11757,6 +11899,7 @@ Object {
               },
               "type": "BinaryExpression",
             },
+            "endLine": 200,
             "line": 176,
             "type": "WhileStatement",
           },
@@ -11792,6 +11935,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 202,
         "line": 158,
         "parameters": Array [
           Object {
@@ -11992,6 +12136,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 213,
   "line": 1,
   "literals": Array [
     Object {
@@ -12541,6 +12686,7 @@ Object {
   "body": Array [
     Object {
       "init": Object {
+        "endLine": 1,
         "fields": Array [],
         "line": 1,
         "type": "MapConstructorExpression",
@@ -12555,6 +12701,7 @@ Object {
     },
     Object {
       "init": Object {
+        "endLine": 3,
         "fields": Array [],
         "line": 3,
         "type": "MapConstructorExpression",
@@ -12607,6 +12754,7 @@ Object {
         "body": Array [
           Object {
             "argument": Object {
+              "endLine": 7,
               "fields": Array [
                 Object {
                   "key": Object {
@@ -12662,6 +12810,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 8,
         "line": 6,
         "parameters": Array [
           Object {
@@ -12809,6 +12958,7 @@ Object {
                 },
               },
             ],
+            "endLine": 17,
             "iterator": Object {
               "line": 14,
               "name": "seed",
@@ -12832,6 +12982,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 20,
         "line": 10,
         "parameters": Array [
           Object {
@@ -12941,6 +13092,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 26,
             "line": 25,
             "type": "IfShortcutStatement",
           },
@@ -12993,6 +13145,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 27,
             "line": 26,
             "type": "IfShortcutStatement",
           },
@@ -13060,6 +13213,7 @@ Object {
                         "type": "IfShortcutClause",
                       },
                     ],
+                    "endLine": 30,
                     "line": 29,
                     "type": "IfShortcutStatement",
                   },
@@ -13268,6 +13422,7 @@ Object {
                 "type": "IfClause",
               },
             ],
+            "endLine": 34,
             "line": 27,
             "type": "IfStatement",
           },
@@ -13431,6 +13586,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 42,
         "line": 22,
         "parameters": Array [
           Object {
@@ -13508,6 +13664,7 @@ Object {
           },
           Object {
             "init": Object {
+              "endLine": 47,
               "fields": Array [],
               "line": 47,
               "type": "ListConstructorExpression",
@@ -13638,6 +13795,7 @@ Object {
               },
               "type": "BinaryExpression",
             },
+            "endLine": 52,
             "line": 48,
             "type": "WhileStatement",
           },
@@ -13706,6 +13864,7 @@ Object {
                 "type": "IfShortcutClause",
               },
             ],
+            "endLine": 54,
             "line": 53,
             "type": "IfShortcutStatement",
           },
@@ -13719,6 +13878,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 55,
         "line": 44,
         "parameters": Array [
           Object {
@@ -13806,6 +13966,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 59,
         "line": 57,
         "parameters": Array [
           Object {
@@ -13948,6 +14109,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 62,
   "line": 1,
   "literals": Array [
     Object {
@@ -14117,6 +14279,7 @@ Object {
   "body": Array [
     Object {
       "init": Object {
+        "endLine": 1,
         "fields": Array [],
         "line": 1,
         "type": "MapConstructorExpression",
@@ -14188,6 +14351,7 @@ Object {
             "type": "CallStatement",
           },
         ],
+        "endLine": 7,
         "line": 5,
         "parameters": Array [],
         "type": "FunctionDeclaration",
@@ -14246,6 +14410,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 9,
   "line": 1,
   "literals": Array [
     Object {
@@ -14314,6 +14479,7 @@ Object {
           },
           Object {
             "init": Object {
+              "endLine": 4,
               "fields": Array [],
               "line": 4,
               "type": "ListConstructorExpression",
@@ -14430,6 +14596,7 @@ Object {
               },
               "type": "BinaryExpression",
             },
+            "endLine": 10,
             "line": 6,
             "type": "WhileStatement",
           },
@@ -14443,6 +14610,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 13,
         "line": 1,
         "parameters": Array [
           Object {
@@ -14505,6 +14673,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 15,
   "line": 1,
   "literals": Array [
     Object {
@@ -14560,6 +14729,7 @@ Object {
             "type": "ReturnStatement",
           },
         ],
+        "endLine": 3,
         "line": 1,
         "parameters": Array [],
         "type": "FunctionDeclaration",
@@ -14893,6 +15063,7 @@ Object {
       "type": "CallStatement",
     },
   ],
+  "endLine": 11,
   "line": 1,
   "literals": Array [
     Object {

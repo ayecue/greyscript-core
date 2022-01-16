@@ -1,4 +1,4 @@
-const { Parser } = require('../dist');
+const { Parser, Lexer } = require('../dist');
 const fs = require('fs');
 const path = require('path');
 const testFolder = path.resolve(__dirname, 'scripts');
@@ -17,5 +17,30 @@ describe('parse', function() {
 					expect(parser.parseChunk()).toMatchSnapshot();
 				});
 			});
+
+		test('invalid code', () => {
+			const content = `
+				print(" ad"
+
+				print())
+
+				print("was")
+
+				function () .
+				end func
+
+				print("wo")
+			`;
+			const lexer = new Lexer(content, { unsafe: true });
+			const parser = new Parser(content, {
+				unsafe: true,
+				lexer
+			});
+
+			parser.parseChunk();
+
+			expect(lexer.errors).toMatchSnapshot();
+			expect(parser.errors).toMatchSnapshot();
+		});
 	});
 });
