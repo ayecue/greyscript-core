@@ -265,7 +265,6 @@ export default class Parser {
 		const me = this;
 
 		while (true) {
-			console.log('>>', base);
 			const newBase = me.parseRighthandExpressionPart(base);
 
 			if (newBase === null) {
