@@ -920,7 +920,7 @@ export default class Parser {
 		);
 	};
 
-	parseStatement(isShortcutStatement: boolean = false): ASTBase {
+	parseStatement(isShortcutStatement: boolean = false): ASTBase | null {
 		const me = this;
 
 		if (TokenType.Keyword === me.token.type) {
