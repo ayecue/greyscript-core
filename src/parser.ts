@@ -663,8 +663,8 @@ export default class Parser {
 	parseNativeImportCodeStatement(): ASTImportCodeExpression | ASTBase {
 		const me = this;
 		const start = {
-			line: me.token.line,
-			character: me.token.lineRange[0]
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[0]
 		};
 
 		me.expect('(');
@@ -702,8 +702,8 @@ export default class Parser {
 	parseWhileStatement(): ASTWhileStatement {
 		const me = this;
 		const start = {
-			line: me.token.line,
-			character: me.token.lineRange[0]
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[0]
 		};
 		const condition = me.parseExpectedExpression();
 
@@ -868,8 +868,8 @@ export default class Parser {
 		const me = this;
 		const clauses = [];
 		const start = {
-			line: me.token.line,
-			character: me.token.lineRange[0]
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[0]
 		};
 		let statementStart = start;
 		let condition;
@@ -927,8 +927,8 @@ export default class Parser {
 	parseReturnStatement(isShortcutStatement: boolean = false): ASTReturnStatement {
 		const me = this;
 		const start = {
-			line: me.token.line,
-			character: me.token.lineRange[0]
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[0]
 		};
 		const expression = me.parseExpression();
 
@@ -1040,8 +1040,8 @@ export default class Parser {
 	parseForStatement(): ASTForGenericStatement {
 		const me = this;
 		const start = {
-			line: me.token.line,
-			character: me.token.lineRange[0]
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[0]
 		};
 
 		me.consume('(');
@@ -1079,8 +1079,8 @@ export default class Parser {
 	parseFunctionDeclaration(): ASTFunctionStatement | ASTBase {
 		const me = this;
 		const start = {
-			line: me.token.line,
-			character: me.token.lineRange[0]
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[0]
 		};
 		const parameters = [];
 
@@ -1162,20 +1162,20 @@ export default class Parser {
 				case 'continue':
 					me.next();
 					return me.astProvider.continueStatement({
-						line: me.token.line,
-						character: me.token.lineRange[0]
+						line: me.previousToken.line,
+						character: me.previousToken.lineRange[0]
 					}, {
-						line: me.token.line,
-						character: me.token.lineRange[1]
+						line: me.previousToken.line,
+						character: me.previousToken.lineRange[1]
 					});
 				case 'break':
 					me.next();
 					return me.astProvider.breakStatement({
-						line: me.token.line,
-						character: me.token.lineRange[0]
+						line: me.previousToken.line,
+						character: me.previousToken.lineRange[0]
 					}, {
-						line: me.token.line,
-						character: me.token.lineRange[1]
+						line: me.previousToken.line,
+						character: me.previousToken.lineRange[1]
 					});
 				case 'import_code':
 					me.next();
