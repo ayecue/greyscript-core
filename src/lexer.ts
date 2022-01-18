@@ -13,6 +13,7 @@ import {
 export interface LexerOptions {
 	validator?: Validator;
 	unsafe?: boolean;
+	tabWidth?: number;
 }
 
 export default class Lexer {
@@ -22,6 +23,9 @@ export default class Lexer {
 	tokenStart: number | null;
 	line: number;
 	lineStart: number;
+	offset: number;
+	tabWidth: number;
+
 	validator: Validator;
 	unsafe: boolean;
 	errors: Error[];
@@ -33,8 +37,10 @@ export default class Lexer {
 		me.length = content.length;
 		me.index = 0;
 		me.tokenStart = null;
+		me.tabWidth = options.tabWidth || 1;
 		me.line = 1;
 		me.lineStart = 0;
+		me.offset = 0;
 		me.validator = options.validator || new Validator();
 		me.unsafe = options.unsafe;
 		me.errors = [];
@@ -168,7 +174,11 @@ export default class Lexer {
 			string,
 			beginLine,
 			beginLineStart,
-			[me.tokenStart, me.index],
+			[
+				me.tokenStart,
+				me.index
+			],
+			me.offset,
 			me.line,
 			me.lineStart
 		);
@@ -213,7 +223,11 @@ export default class Lexer {
 			literal.value,
 			me.line,
 			me.lineStart,
-			[me.tokenStart, me.index]
+			[
+				me.tokenStart,
+				me.index
+			],
+			me.offset
 	    );
 	}
 
@@ -227,7 +241,11 @@ export default class Lexer {
 			value,
 			me.line,
 			me.lineStart,
-			[me.tokenStart, me.index]
+			[
+				me.tokenStart,
+				me.index
+			],
+			me.offset
 	    );
 	}
 
@@ -241,7 +259,11 @@ export default class Lexer {
 			':',
 			me.line,
 			me.lineStart,
-			[me.tokenStart, me.index]
+			[
+				me.tokenStart,
+				me.index
+			],
+			me.offset
 		);
 	}
 
@@ -250,7 +272,10 @@ export default class Lexer {
 
 		while (me.isNotEOF()) {
 			const code = me.codeAt();
-			if (code === CharacterCode.WHITESPACE || code === CharacterCode.TAB) {
+			if (code === CharacterCode.WHITESPACE) {
+				me.nextIndex();
+			} else if (code === CharacterCode.TAB) {
+				me.offset -= me.tabWidth - 1;
 				me.nextIndex();
 			} else {
 				break;
@@ -303,7 +328,11 @@ export default class Lexer {
 			value,
 			me.line,
 			me.lineStart,
-			[me.tokenStart, me.index]
+			[
+				me.tokenStart,
+				me.index
+			],
+			me.offset
 		);
 	};
 
@@ -327,13 +356,18 @@ export default class Lexer {
 			me.tokenStart = me.index;
 			me.scanComment();
 		}
+
 		if (!me.isNotEOF()) {
 			return createToken(
 				TokenType.EOF,
 				'<eof>',
 				me.line,
 				me.lineStart,
-				[me.index, me.index]
+				[
+					me.index,
+					me.index
+				],
+				me.offset
 			);
 		}
 
@@ -352,10 +386,15 @@ export default class Lexer {
 				';',
 				me.line,
 				me.lineStart,
-				[me.tokenStart, me.index]
+				[
+					me.tokenStart,
+					me.index
+				],
+				me.offset
 			);
 
 			me.nextLine();
+			me.offset = me.index + 1;
 			me.lineStart = me.nextIndex();
 
 			return token;
@@ -376,7 +415,16 @@ export default class Lexer {
 		me.errors.push(err);
 
 		if (me.unsafe) {
+			let code = me.codeAt();
+
+			while (me.validator.isEndOfLine(code)) {
+				me.nextIndex();
+				code = me.codeAt();
+			}
+
 			me.nextLine();
+			me.offset = me.index;
+
 			return me.next();
 		}
 

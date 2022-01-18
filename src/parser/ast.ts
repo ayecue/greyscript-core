@@ -36,7 +36,6 @@ export enum ASTType {
 	MapCallExpression = 'MapCallExpression',
 	ListValue = 'ListValue',
 	ListConstructorExpression = 'ListConstructorExpression',
-	ListCallExpression = 'ListCallExpression',
 	EmptyExpression = 'EmptyExpression',
 	IndexExpression = 'IndexExpression',
 	BinaryExpression = 'BinaryExpression',
@@ -46,13 +45,15 @@ export enum ASTType {
 	InvalidCodeExpression = 'InvalidCodeExpression'
 }
 
-export interface ASTBase {
-	type: string;
+export interface ASTPosition {
 	line: number;
+	character: number;
 }
 
-export interface ASTBlockBase extends ASTBase {
-	endLine: number;
+export interface ASTBase {
+	type: string;
+	start: ASTPosition;
+	end: ASTPosition;
 }
 
 export interface ASTReturnStatement extends ASTBase {
@@ -60,7 +61,7 @@ export interface ASTReturnStatement extends ASTBase {
 	argument?: ASTBase;
 }
 
-export interface ASTIfStatement extends ASTBlockBase {
+export interface ASTIfStatement extends ASTBase {
 	type: ASTType.IfShortcutStatement | ASTType.IfStatement;
 	clauses: ASTBase[];
 }
@@ -76,7 +77,7 @@ export interface ASTElseClause extends ASTBase {
 	body: ASTBase[];
 }
 
-export interface ASTWhileStatement extends ASTBlockBase {
+export interface ASTWhileStatement extends ASTBase {
 	type: ASTType.WhileStatement;
 	condition: ASTBase;
 	body: ASTBase[];
@@ -93,20 +94,20 @@ export interface ASTCallStatement extends ASTBase {
 	expression: ASTBase;
 }
 
-export interface ASTFunctionStatement extends ASTBlockBase {
+export interface ASTFunctionStatement extends ASTBase {
 	type: ASTType.FunctionDeclaration;
 	parameters: ASTBase[];
 	body: ASTBase[];
 }
 
-export interface ASTForGenericStatement extends ASTBlockBase {
+export interface ASTForGenericStatement extends ASTBase {
 	type: ASTType.ForGenericStatement;
 	variable: ASTBase;
 	iterator: ASTBase;
 	body: ASTBase[];
 }
 
-export interface ASTChunk extends ASTBlockBase {
+export interface ASTChunk extends ASTBase {
 	type: ASTType.Chunk;
 	body: ASTBase[];
 	nativeImports: string[];
@@ -155,7 +156,7 @@ export interface ASTMapKeyString extends ASTBase {
 	value: ASTBase;
 }
 
-export interface ASTMapConstructorExpression extends ASTBlockBase {
+export interface ASTMapConstructorExpression extends ASTBase {
 	type: ASTType.MapConstructorExpression;
 	fields: ASTBase[];
 }
@@ -165,7 +166,7 @@ export interface ASTListValue extends ASTBase {
 	value: ASTBase;
 }
 
-export interface ASTListConstructorExpression extends ASTBlockBase {
+export interface ASTListConstructorExpression extends ASTBase {
 	type: ASTType.ListConstructorExpression;
 	fields: ASTBase[];
 }
@@ -196,163 +197,175 @@ export interface ASTImportCodeExpression extends ASTBase {
 }
 
 export class ASTProvider {
-	breakStatement(line: number): ASTBase {
+	breakStatement(start: ASTPosition, end: ASTPosition): ASTBase {
 		return {
 			type: ASTType.BreakStatement,
-			line
+			start,
+			end
 		};
 	}
 
-	continueStatement(line: number): ASTBase {
+	continueStatement(start: ASTPosition, end: ASTPosition): ASTBase {
 		return {
 			type: ASTType.ContinueStatement,
-			line
+			start,
+			end
 		};
 	}
 
-	returnStatement(arg: ASTBase, line: number): ASTReturnStatement {
+	returnStatement(arg: ASTBase, start: ASTPosition, end: ASTPosition): ASTReturnStatement {
 		return {
 			type: ASTType.ReturnStatement,
 			argument: arg,
-			line: line
+			start,
+			end
 		};
 	}
 
-	ifShortcutStatement(clauses: ASTBase[], line: number, endLine: number): ASTIfStatement {
+	ifShortcutStatement(clauses: ASTBase[], start: ASTPosition, end: ASTPosition): ASTIfStatement {
 		return {
 			type: ASTType.IfShortcutStatement,
 			clauses,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	ifShortcutClause(condition: ASTBase, body: ASTBase[], line: number): ASTIfClause {
+	ifShortcutClause(condition: ASTBase, body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTIfClause {
 		return {
 			type: ASTType.IfShortcutClause,
 			condition,
 			body,
-			line
+			start,
+			end
 		};
 	}
 
-	elseifShortcutClause(condition: ASTBase, body: ASTBase[], line: number): ASTIfClause {
+	elseifShortcutClause(condition: ASTBase, body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTIfClause {
 		return {
 			type: ASTType.ElseifShortcutClause,
 			condition,
 			body,
-			line
+			start,
+			end
 		};
 	}
 
-	elseShortcutClause(body: ASTBase[], line: number): ASTElseClause {
+	elseShortcutClause(body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTElseClause {
 		return {
 			type: ASTType.ElseShortcutClause,
 			body,
-			line
+			start,
+			end
 		};
 	}
 
-	ifStatement(clauses: ASTBase[], line: number, endLine: number): ASTIfStatement {
+	ifStatement(clauses: ASTBase[], start: ASTPosition, end: ASTPosition): ASTIfStatement {
 		return {
 			type: ASTType.IfStatement,
 			clauses,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	ifClause(condition: ASTBase, body: ASTBase[], line: number): ASTIfClause {
+	ifClause(condition: ASTBase, body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTIfClause {
 		return {
 			type: ASTType.IfClause,
 			condition,
 			body,
-			line
+			start,
+			end
 		};
 	}
 
-	elseifClause(condition: ASTBase, body: ASTBase[], line: number): ASTIfClause {
+	elseifClause(condition: ASTBase, body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTIfClause {
 		return {
 			type: ASTType.ElseifClause,
 			condition,
 			body,
-			line
+			start,
+			end
 		};
 	}
 
-	elseClause(body: ASTBase[], line: number): ASTElseClause {
+	elseClause(body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTElseClause {
 		return {
 			type: ASTType.ElseClause,
 			body,
-			line
+			start,
+			end
 		};
 	}
 
-	whileStatement(condition: ASTBase, body: ASTBase[], line: number, endLine: number): ASTWhileStatement {
+	whileStatement(condition: ASTBase, body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTWhileStatement {
 		return {
 			type: ASTType.WhileStatement,
 			condition,
 			body,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	assignmentStatement(variable: ASTBase, init: ASTBase, line: number): ASTAssignmentStatement {
+	assignmentStatement(variable: ASTBase, init: ASTBase, start: ASTPosition, end: ASTPosition): ASTAssignmentStatement {
 		return {
 			type: ASTType.AssignmentStatement,
 			variable,
 			init,
-			line
+			start,
+			end
 		};
 	}
 
-	callStatement(expression: ASTBase, line: number): ASTCallStatement {
+	callStatement(expression: ASTBase, start: ASTPosition, end: ASTPosition): ASTCallStatement {
 		return {
 			type: ASTType.CallStatement,
 			expression,
-			line
+			start,
+			end
 		};
 	}
 
-	functionStatement(parameters: ASTBase[], body: ASTBase[], line: number, endLine: number): ASTFunctionStatement {
+	functionStatement(parameters: ASTBase[], body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTFunctionStatement {
 		return {
 			type: ASTType.FunctionDeclaration,
 			parameters,
 			body,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	forGenericStatement(variable: ASTBase, iterator: ASTBase, body: ASTBase[], line: number, endLine: number): ASTForGenericStatement {
+	forGenericStatement(variable: ASTBase, iterator: ASTBase, body: ASTBase[], start: ASTPosition, end: ASTPosition): ASTForGenericStatement {
 		return {
 			type: ASTType.ForGenericStatement,
 			variable,
 			iterator,
 			body,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	chunk(body: ASTBase[], nativeImports: string[], namespaces: Set<string>, literals: ASTBase[], line: number, endLine: number): ASTChunk {
+	chunk(body: ASTBase[], nativeImports: string[], namespaces: Set<string>, literals: ASTBase[], start: ASTPosition, end: ASTPosition): ASTChunk {
 		return {
 			type: ASTType.Chunk,
 			body,
 			nativeImports,
 			namespaces,
 			literals,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	identifier(name: string, line: number): ASTIdentifier {
+	identifier(name: string, start: ASTPosition, end: ASTPosition): ASTIdentifier {
 		return {
 			type: ASTType.Identifier,
 			name,
-			line
+			start,
+			end
 		};
 	}
 
@@ -360,57 +373,64 @@ export class ASTProvider {
 		type: TokenType.StringLiteral | TokenType.NumericLiteral | TokenType.BooleanLiteral | TokenType.NilLiteral,
 		value: string | number | boolean,
 		raw: string | number | boolean,
-		line: number
+		start: ASTPosition,
+		end: ASTPosition
 	): ASTLiteral {
 		return {
 			type,
 			value,
 			raw,
-			line
+			start,
+			end
 		};
 	}
 
-	memberExpression(base: ASTBase, indexer: string, identifier: ASTBase, line: number): ASTMemberExpression {
+	memberExpression(base: ASTBase, indexer: string, identifier: ASTBase, start: ASTPosition, end: ASTPosition): ASTMemberExpression {
 		return {
 			type: ASTType.MemberExpression,
 			indexer,
 			identifier,
 			base,
-			line
+			start,
+			end
 		};
 	}
 
-	callExpression(base: ASTBase, args: ASTBase[], line: number): ASTCallExpression {
+	callExpression(base: ASTBase, args: ASTBase[], start: ASTPosition, end: ASTPosition): ASTCallExpression {
 		return {
 			type: ASTType.CallExpression,
 			base,
 			'arguments': args,
-			line
+			start,
+			end
 		};
 	}
 
-	comment(value: string, raw: string, line: number): ASTComment {
+	comment(value: string, raw: string, start: ASTPosition, end: ASTPosition): ASTComment {
 		return {
 			type: ASTType.Comment,
 			value,
 			raw,
-			line
+			start,
+			end
 		};
 	}
 
-	unaryExpression(operator: Operator, arg: ASTBase, line: number): ASTUnaryExpression {
+	unaryExpression(operator: Operator, arg: ASTBase, start: ASTPosition, end: ASTPosition): ASTUnaryExpression {
 		if (operator === Operator.Not) {
 			return {
 				type: ASTType.NegationExpression,
 				argument: arg,
-				line
+				start,
+				end
 			};
 		} else if (operator === Operator.Plus || operator === Operator.Minus) {
 			return {
 				type: ASTType.BinaryNegatedExpression,
 				argument: arg,
 				operator,
-				line
+				start,
+				end
 			};
 		}
 
@@ -418,69 +438,75 @@ export class ASTProvider {
 			type: ASTType.UnaryExpression,
 			operator,
 			argument: arg,
-			line
+			start,
+			end
 		};
 	}
 
-	mapKeyString(key: ASTBase, value: ASTBase, line: number): ASTMapKeyString {
+	mapKeyString(key: ASTBase, value: ASTBase, start: ASTPosition, end: ASTPosition): ASTMapKeyString {
 		return {
 			type: ASTType.MapKeyString,
 			key,
 			value,
-			line
+			start,
+			end
 		};
 	}
 
-	mapConstructorExpression(fields: ASTMapKeyString[], line: number, endLine: number): ASTMapConstructorExpression {
+	mapConstructorExpression(fields: ASTMapKeyString[], start: ASTPosition, end: ASTPosition): ASTMapConstructorExpression {
 		return {
 			type: ASTType.MapConstructorExpression,
 			fields,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	listValue(value: ASTBase, line: number): ASTListValue {
+	listValue(value: ASTBase, start: ASTPosition, end: ASTPosition): ASTListValue {
 		return {
 			type: ASTType.ListValue,
 			value,
-			line
+			start,
+			end
 		};
 	}
 
-	listConstructorExpression(fields: ASTListValue[], line: number, endLine: number): ASTListConstructorExpression {
+	listConstructorExpression(fields: ASTListValue[], start: ASTPosition, end: ASTPosition): ASTListConstructorExpression {
 		return {
 			type: ASTType.ListConstructorExpression,
 			fields,
-			line,
-			endLine
+			start,
+			end
 		};
 	}
 
-	emptyExpression(line: number): ASTBase {
+	emptyExpression(start: ASTPosition, end: ASTPosition): ASTBase {
 		return {
 			type: ASTType.EmptyExpression,
-			line
+			start,
+			end
 		};
 	}
 
-	invalidCodeExpression(line: number): ASTBase {
+	invalidCodeExpression(start: ASTPosition, end: ASTPosition): ASTBase {
 		return {
 			type: ASTType.InvalidCodeExpression,
-			line
+			start,
+			end
 		};
 	}
 
-	indexExpression(base: ASTBase, index: ASTBase, line: number): ASTIndexExpression {
+	indexExpression(base: ASTBase, index: ASTBase, start: ASTPosition, end: ASTPosition): ASTIndexExpression {
 		return {
 			type: ASTType.IndexExpression,
 			base,
 			index,
-			line
+			start,
+			end
 		};
 	}
 
-	binaryExpression(operator: Operator, left: ASTBase, right: ASTBase, line: number): ASTEvaluationExpression {
+	binaryExpression(operator: Operator, left: ASTBase, right: ASTBase, start: ASTPosition, end: ASTPosition): ASTEvaluationExpression {
 		let type = ASTType.BinaryExpression;
 		if (Operator.And === operator || Operator.Or === operator) type = ASTType.LogicalExpression;
 
@@ -489,25 +515,28 @@ export class ASTProvider {
 			operator,
 			left,
 			right,
-			line
+			start,
+			end
 		};
 	}
 	
-	sliceExpression(left: ASTBase, right: ASTBase, line: number): ASTSliceExpression {
+	sliceExpression(left: ASTBase, right: ASTBase, start: ASTPosition, end: ASTPosition): ASTSliceExpression {
 		return {
 			type: ASTType.SliceExpression,
 			left,
 			right,
-			line
+			start,
+			end
 		};
 	}
 
-	importCodeExpression(gameDirectory: ASTBase, fileSystemDirectory: ASTBase | null, line: number): ASTImportCodeExpression {
+	importCodeExpression(gameDirectory: ASTBase, fileSystemDirectory: ASTBase | null, start: ASTPosition, end: ASTPosition): ASTImportCodeExpression {
 		return {
 			type: ASTType.ImportCodeExpression,
 			gameDirectory,
 			fileSystemDirectory,
-			line
+			start,
+			end
 		};
 	}
 }
