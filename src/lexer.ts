@@ -417,7 +417,7 @@ export default class Lexer {
 		if (me.unsafe) {
 			let code = me.codeAt();
 
-			while (me.validator.isEndOfLine(code)) {
+			while (!me.validator.isEndOfLine(code) && !me.isNotEOF()) {
 				me.nextIndex();
 				code = me.codeAt();
 			}
