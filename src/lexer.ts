@@ -96,7 +96,6 @@ export default class Lexer {
 			case CharacterCode.SQUARE_BRACKETS_RIGHT:
 			case CharacterCode.PARENTHESIS_LEFT:
 			case CharacterCode.PARENTHESIS_RIGHT:
-			case CharacterCode.SEMICOLON:
 			case CharacterCode.AT_SIGN:
 			case CharacterCode.AMPERSAND:
 			case CharacterCode.VERTICAL_LINE:
@@ -112,6 +111,9 @@ export default class Lexer {
 			case CharacterCode.NUMBER_8:
 			case CharacterCode.NUMBER_9:
 				return me.scanNumericLiteral();
+			case CharacterCode.SEMICOLON:
+				me.nextIndex();
+				return me.createEOL();
 			default:
 				return null;
 		}
@@ -141,6 +143,22 @@ export default class Lexer {
 
 	isStringEscaped(): boolean {
 		return CharacterCode.QUOTE === this.codeAt(1);
+	}
+
+	createEOL(): Token {
+		const me = this;
+
+		return createToken(
+			TokenType.EOL,
+			';',
+			me.line,
+			me.lineStart,
+			[
+				me.tokenStart,
+				me.index
+			],
+			me.offset
+		);
 	}
 
 	scanStringLiteral(): Token {
@@ -381,17 +399,7 @@ export default class Lexer {
 			if (CharacterCode.NEW_LINE === code && CharacterCode.RETURN_LINE === nextCode) me.nextIndex();
 			if (CharacterCode.RETURN_LINE === code && CharacterCode.NEW_LINE === nextCode) me.nextIndex();
 
-			const token = createToken(
-				TokenType.EOL,
-				';',
-				me.line,
-				me.lineStart,
-				[
-					me.tokenStart,
-					me.index
-				],
-				me.offset
-			);
+			const token = me.createEOL();
 
 			me.nextLine();
 			me.offset = me.index + 1;

@@ -10901,6 +10901,418 @@ Object {
 }
 `;
 
+exports[`parse default scripts eol.src 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "clauses": Array [
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 18,
+                "line": 2,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 17,
+                      "line": 2,
+                    },
+                    "raw": "\\"true\\"",
+                    "start": Object {
+                      "character": 11,
+                      "line": 2,
+                    },
+                    "type": "StringLiteral",
+                    "value": "true",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 10,
+                    "line": 2,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 5,
+                    "line": 2,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 18,
+                  "line": 2,
+                },
+                "start": Object {
+                  "character": 10,
+                  "line": 2,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 5,
+                "line": 2,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "condition": Object {
+            "end": Object {
+              "character": 9,
+              "line": 1,
+            },
+            "raw": "true",
+            "start": Object {
+              "character": 5,
+              "line": 1,
+            },
+            "type": "BooleanLiteral",
+            "value": true,
+          },
+          "end": Object {
+            "character": 5,
+            "line": 3,
+          },
+          "start": Object {
+            "character": 1,
+            "line": 1,
+          },
+          "type": "IfClause",
+        },
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 19,
+                "line": 4,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 18,
+                      "line": 4,
+                    },
+                    "raw": "\\"false\\"",
+                    "start": Object {
+                      "character": 11,
+                      "line": 4,
+                    },
+                    "type": "StringLiteral",
+                    "value": "false",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 10,
+                    "line": 4,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 5,
+                    "line": 4,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 19,
+                  "line": 4,
+                },
+                "start": Object {
+                  "character": 10,
+                  "line": 4,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 5,
+                "line": 4,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "end": Object {
+            "character": 7,
+            "line": 5,
+          },
+          "start": Object {
+            "character": 5,
+            "line": 3,
+          },
+          "type": "ElseClause",
+        },
+      ],
+      "end": Object {
+        "character": 8,
+        "line": 5,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 1,
+      },
+      "type": "IfStatement",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 17,
+            "line": 8,
+          },
+          "expression": Object {
+            "arguments": Array [
+              Object {
+                "end": Object {
+                  "character": 16,
+                  "line": 8,
+                },
+                "raw": "\\"foo\\"",
+                "start": Object {
+                  "character": 11,
+                  "line": 8,
+                },
+                "type": "StringLiteral",
+                "value": "foo",
+              },
+            ],
+            "base": Object {
+              "end": Object {
+                "character": 10,
+                "line": 8,
+              },
+              "name": "print",
+              "start": Object {
+                "character": 5,
+                "line": 8,
+              },
+              "type": "Identifier",
+            },
+            "end": Object {
+              "character": 17,
+              "line": 8,
+            },
+            "start": Object {
+              "character": 10,
+              "line": 8,
+            },
+            "type": "CallExpression",
+          },
+          "start": Object {
+            "character": 5,
+            "line": 8,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "condition": Object {
+        "end": Object {
+          "character": 13,
+          "line": 7,
+        },
+        "raw": "false",
+        "start": Object {
+          "character": 8,
+          "line": 7,
+        },
+        "type": "BooleanLiteral",
+        "value": false,
+      },
+      "end": Object {
+        "character": 11,
+        "line": 9,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 7,
+      },
+      "type": "WhileStatement",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 17,
+            "line": 12,
+          },
+          "expression": Object {
+            "arguments": Array [
+              Object {
+                "end": Object {
+                  "character": 16,
+                  "line": 12,
+                },
+                "raw": "\\"foo\\"",
+                "start": Object {
+                  "character": 11,
+                  "line": 12,
+                },
+                "type": "StringLiteral",
+                "value": "foo",
+              },
+            ],
+            "base": Object {
+              "end": Object {
+                "character": 10,
+                "line": 12,
+              },
+              "name": "print",
+              "start": Object {
+                "character": 5,
+                "line": 12,
+              },
+              "type": "Identifier",
+            },
+            "end": Object {
+              "character": 17,
+              "line": 12,
+            },
+            "start": Object {
+              "character": 10,
+              "line": 12,
+            },
+            "type": "CallExpression",
+          },
+          "start": Object {
+            "character": 5,
+            "line": 12,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "end": Object {
+        "character": 9,
+        "line": 13,
+      },
+      "iterator": Object {
+        "end": Object {
+          "character": 15,
+          "line": 11,
+        },
+        "fields": Array [],
+        "start": Object {
+          "character": 13,
+          "line": 11,
+        },
+        "type": "ListConstructorExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 11,
+      },
+      "type": "ForGenericStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 9,
+          "line": 11,
+        },
+        "name": "foo",
+        "start": Object {
+          "character": 6,
+          "line": 11,
+        },
+        "type": "Identifier",
+      },
+    },
+  ],
+  "end": Object {
+    "character": 9,
+    "line": 13,
+  },
+  "literals": Array [
+    Object {
+      "end": Object {
+        "character": 9,
+        "line": 1,
+      },
+      "raw": "true",
+      "start": Object {
+        "character": 5,
+        "line": 1,
+      },
+      "type": "BooleanLiteral",
+      "value": true,
+    },
+    Object {
+      "end": Object {
+        "character": 17,
+        "line": 2,
+      },
+      "raw": "\\"true\\"",
+      "start": Object {
+        "character": 11,
+        "line": 2,
+      },
+      "type": "StringLiteral",
+      "value": "true",
+    },
+    Object {
+      "end": Object {
+        "character": 18,
+        "line": 4,
+      },
+      "raw": "\\"false\\"",
+      "start": Object {
+        "character": 11,
+        "line": 4,
+      },
+      "type": "StringLiteral",
+      "value": "false",
+    },
+    Object {
+      "end": Object {
+        "character": 13,
+        "line": 7,
+      },
+      "raw": "false",
+      "start": Object {
+        "character": 8,
+        "line": 7,
+      },
+      "type": "BooleanLiteral",
+      "value": false,
+    },
+    Object {
+      "end": Object {
+        "character": 16,
+        "line": 8,
+      },
+      "raw": "\\"foo\\"",
+      "start": Object {
+        "character": 11,
+        "line": 8,
+      },
+      "type": "StringLiteral",
+      "value": "foo",
+    },
+    Object {
+      "end": Object {
+        "character": 16,
+        "line": 12,
+      },
+      "raw": "\\"foo\\"",
+      "start": Object {
+        "character": 11,
+        "line": 12,
+      },
+      "type": "StringLiteral",
+      "value": "foo",
+    },
+  ],
+  "namespaces": Set {
+    "print",
+    "foo",
+  },
+  "nativeImports": Array [],
+  "start": Object {
+    "character": 1,
+    "line": 1,
+  },
+  "type": "Chunk",
+}
+`;
+
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts invalid code 2`] = `

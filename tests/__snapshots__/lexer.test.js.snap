@@ -16188,6 +16188,1051 @@ Object {
 }
 `;
 
+exports[`parse default scripts eol.src 1`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    0,
+    2,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts eol.src 2`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    3,
+    4,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts eol.src 3`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    5,
+    9,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    4,
+    8,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts eol.src 4`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    8,
+    9,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts eol.src 5`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    11,
+    15,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    10,
+    14,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts eol.src 6`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    15,
+    16,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    14,
+    15,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 7`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    16,
+    16,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    15,
+    15,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 8`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    5,
+    10,
+  ],
+  "lineStart": 16,
+  "range": Array [
+    17,
+    22,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts eol.src 9`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 16,
+  "range": Array [
+    22,
+    23,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts eol.src 10`] = `
+Object {
+  "lastLine": 2,
+  "lastLineStart": 16,
+  "line": 2,
+  "lineRange": Array [
+    11,
+    17,
+  ],
+  "lineStart": 16,
+  "range": Array [
+    23,
+    29,
+  ],
+  "type": "StringLiteral",
+  "value": "true",
+}
+`;
+
+exports[`parse default scripts eol.src 11`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    17,
+    18,
+  ],
+  "lineStart": 16,
+  "range": Array [
+    29,
+    30,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts eol.src 12`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    18,
+    18,
+  ],
+  "lineStart": 16,
+  "range": Array [
+    30,
+    30,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 13`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 31,
+  "range": Array [
+    31,
+    35,
+  ],
+  "type": "Keyword",
+  "value": "else",
+}
+`;
+
+exports[`parse default scripts eol.src 14`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 31,
+  "range": Array [
+    35,
+    36,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 15`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    6,
+    6,
+  ],
+  "lineStart": 31,
+  "range": Array [
+    36,
+    36,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 16`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    5,
+    10,
+  ],
+  "lineStart": 37,
+  "range": Array [
+    38,
+    43,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts eol.src 17`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 37,
+  "range": Array [
+    43,
+    44,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts eol.src 18`] = `
+Object {
+  "lastLine": 4,
+  "lastLineStart": 37,
+  "line": 4,
+  "lineRange": Array [
+    11,
+    18,
+  ],
+  "lineStart": 37,
+  "range": Array [
+    44,
+    51,
+  ],
+  "type": "StringLiteral",
+  "value": "false",
+}
+`;
+
+exports[`parse default scripts eol.src 19`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    18,
+    19,
+  ],
+  "lineStart": 37,
+  "range": Array [
+    51,
+    52,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts eol.src 20`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    19,
+    19,
+  ],
+  "lineStart": 37,
+  "range": Array [
+    52,
+    52,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 21`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 53,
+  "range": Array [
+    53,
+    59,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
+exports[`parse default scripts eol.src 22`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 53,
+  "range": Array [
+    59,
+    60,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 23`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    8,
+    8,
+  ],
+  "lineStart": 53,
+  "range": Array [
+    60,
+    60,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 24`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 61,
+  "range": Array [
+    61,
+    61,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 25`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    1,
+    6,
+  ],
+  "lineStart": 62,
+  "range": Array [
+    62,
+    67,
+  ],
+  "type": "Keyword",
+  "value": "while",
+}
+`;
+
+exports[`parse default scripts eol.src 26`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 62,
+  "range": Array [
+    68,
+    69,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts eol.src 27`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    8,
+    13,
+  ],
+  "lineStart": 62,
+  "range": Array [
+    69,
+    74,
+  ],
+  "type": "BooleanLiteral",
+  "value": false,
+}
+`;
+
+exports[`parse default scripts eol.src 28`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    13,
+    14,
+  ],
+  "lineStart": 62,
+  "range": Array [
+    74,
+    75,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts eol.src 29`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 62,
+  "range": Array [
+    75,
+    76,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 30`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    15,
+    15,
+  ],
+  "lineStart": 62,
+  "range": Array [
+    76,
+    76,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 31`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 8,
+  "lineRange": Array [
+    5,
+    10,
+  ],
+  "lineStart": 77,
+  "range": Array [
+    78,
+    83,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts eol.src 32`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 8,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 77,
+  "range": Array [
+    83,
+    84,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts eol.src 33`] = `
+Object {
+  "lastLine": 8,
+  "lastLineStart": 77,
+  "line": 8,
+  "lineRange": Array [
+    11,
+    16,
+  ],
+  "lineStart": 77,
+  "range": Array [
+    84,
+    89,
+  ],
+  "type": "StringLiteral",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts eol.src 34`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 8,
+  "lineRange": Array [
+    16,
+    17,
+  ],
+  "lineStart": 77,
+  "range": Array [
+    89,
+    90,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts eol.src 35`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 8,
+  "lineRange": Array [
+    17,
+    17,
+  ],
+  "lineStart": 77,
+  "range": Array [
+    90,
+    90,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 36`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    1,
+    10,
+  ],
+  "lineStart": 91,
+  "range": Array [
+    91,
+    100,
+  ],
+  "type": "Keyword",
+  "value": "end while",
+}
+`;
+
+exports[`parse default scripts eol.src 37`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 91,
+  "range": Array [
+    100,
+    101,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 38`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    11,
+    11,
+  ],
+  "lineStart": 91,
+  "range": Array [
+    101,
+    101,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 39`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 102,
+  "range": Array [
+    102,
+    102,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 40`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    1,
+    4,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    103,
+    106,
+  ],
+  "type": "Keyword",
+  "value": "for",
+}
+`;
+
+exports[`parse default scripts eol.src 41`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    107,
+    108,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts eol.src 42`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    6,
+    9,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    108,
+    111,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts eol.src 43`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    10,
+    12,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    112,
+    114,
+  ],
+  "type": "Keyword",
+  "value": "in",
+}
+`;
+
+exports[`parse default scripts eol.src 44`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    13,
+    14,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    115,
+    116,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts eol.src 45`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    116,
+    117,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts eol.src 46`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    15,
+    16,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    117,
+    118,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts eol.src 47`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    16,
+    17,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    118,
+    119,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 48`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    17,
+    17,
+  ],
+  "lineStart": 103,
+  "range": Array [
+    119,
+    119,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 49`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 12,
+  "lineRange": Array [
+    5,
+    10,
+  ],
+  "lineStart": 120,
+  "range": Array [
+    121,
+    126,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts eol.src 50`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 12,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 120,
+  "range": Array [
+    126,
+    127,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts eol.src 51`] = `
+Object {
+  "lastLine": 12,
+  "lastLineStart": 120,
+  "line": 12,
+  "lineRange": Array [
+    11,
+    16,
+  ],
+  "lineStart": 120,
+  "range": Array [
+    127,
+    132,
+  ],
+  "type": "StringLiteral",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts eol.src 52`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 12,
+  "lineRange": Array [
+    16,
+    17,
+  ],
+  "lineStart": 120,
+  "range": Array [
+    132,
+    133,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts eol.src 53`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 12,
+  "lineRange": Array [
+    17,
+    17,
+  ],
+  "lineStart": 120,
+  "range": Array [
+    133,
+    133,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts eol.src 54`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 13,
+  "lineRange": Array [
+    1,
+    8,
+  ],
+  "lineStart": 134,
+  "range": Array [
+    134,
+    141,
+  ],
+  "type": "Keyword",
+  "value": "end for",
+}
+`;
+
+exports[`parse default scripts eol.src 55`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 13,
+  "lineRange": Array [
+    8,
+    9,
+  ],
+  "lineStart": 134,
+  "range": Array [
+    141,
+    142,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts negation.src 1`] = `
