@@ -13,7 +13,8 @@ describe('parse', function() {
 				test(path.basename(filepath), () => {
 					const content = fs.readFileSync(filepath, 'utf-8');
 					const lexer = new Lexer(content, {
-						tabWidth: 4
+						tabWidth: 4,
+						unsafe: true
 					});
 					let token = lexer.next();
 

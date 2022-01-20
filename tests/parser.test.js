@@ -20,6 +20,22 @@ describe('parse', function() {
 				});
 			});
 
+		fs
+			.readdirSync(testFolder)
+			.forEach(file => {
+				const filepath = path.resolve(testFolder, file);
+
+				test(path.basename(filepath) + ' unsafe', () => {
+					const content = fs.readFileSync(filepath, 'utf-8');
+					const parser = new Parser(content, {
+						tabWidth: 4,
+						unsafe: true
+					});
+
+					expect(parser.parseChunk()).toMatchSnapshot();
+				});
+			});
+		
 		test('invalid code', () => {
 			const content = `
 				print(" ad"

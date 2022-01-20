@@ -285,6 +285,21 @@ export default class Lexer {
 		);
 	}
 
+	skipToNextLine() {
+		const me = this;
+		let code = me.codeAt();
+
+		while (!me.validator.isEndOfLine(code) && !me.isNotEOF()) {
+			me.nextIndex();
+			code = me.codeAt();
+		}
+
+		me.nextLine();
+		me.offset = me.index;
+
+		return me.next();
+	}
+
 	skipWhiteSpace() {
 		const me = this;
 
@@ -352,7 +367,7 @@ export default class Lexer {
 			],
 			me.offset
 		);
-	};
+	}
 
 	scanComment() {
 		const me = this;
@@ -362,7 +377,7 @@ export default class Lexer {
 			if (validator.isEndOfLine(me.codeAt())) break;
 			me.nextIndex();
 		}
-	};
+	}
 
 	next(): Token {
 		const me = this;
@@ -423,16 +438,7 @@ export default class Lexer {
 		me.errors.push(err);
 
 		if (me.unsafe) {
-			let code = me.codeAt();
-
-			while (!me.validator.isEndOfLine(code) && !me.isNotEOF()) {
-				me.nextIndex();
-				code = me.codeAt();
-			}
-
-			me.nextLine();
-			me.offset = me.index;
-
+			me.skipToNextLine();
 			return me.next();
 		}
 

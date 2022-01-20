@@ -220,25 +220,35 @@ export default class Parser {
 			line: me.previousToken.line,
 			character: me.previousToken.lineRange[0]
 		};
-		const fields = []
-		let key;
-		let value;
+		const fields = [];
 
 		while (true) {
-			if (TokenType.StringLiteral === me.token.type && ':' === me.prefetch(1).value) {
-				key = me.parsePrimaryExpression();
-				me.next();
-				value = me.parseExpectedExpression();
-				fields.push(me.astProvider.mapKeyString(key, value, key.start, value.end));
-			}
-			if (',;'.indexOf(me.token.value) >= 0) {
-				me.next();
-				continue;
-			}
-			break;
-		}
+			if (me.token.type === TokenType.StringLiteral) {
+				const key = me.token.value;
+				const startKey = {
+					line: me.token.line,
+					character: me.token.lineRange[0]
+				};
 
-		me.expect('}');
+				me.next();
+				me.expect(':');
+
+				const value = me.parseExpectedExpression();
+
+				fields.push(me.astProvider.mapKeyString(
+					key,
+					value,
+					startKey,
+					value.end
+				));
+			}
+
+			if (me.consumeMany(['}', '<eof>'])) {
+				break;
+			}
+
+			me.next();
+		}
 
 		return me.astProvider.mapConstructorExpression(fields, start, {
 			line: me.token.line,
@@ -619,7 +629,7 @@ export default class Parser {
 		return expression;
 	}
 
-	parseSubExpression (minPrecedence?: number) {
+	parseSubExpression(minPrecedence?: number) {
 		const me = this;
 		const start = {
 			line: me.token.line,
@@ -673,14 +683,21 @@ export default class Parser {
 		let fileSystemDirectory = null;
 
 		if (TokenType.StringLiteral === me.token.type) {
-			gameDirectory = me.parsePrimaryExpression();
+			gameDirectory = me.token.value;
+			me.next();
 		} else {
 			return me.raise(new UnexpectedNonStringLiteralInImportCode(me.token));
 		}
 
 		if (me.consume(':')) {
-			fileSystemDirectory = me.parsePrimaryExpression();
-			me.nativeImports.push((fileSystemDirectory as ASTLiteral).value.toString());
+			if (TokenType.StringLiteral !== me.token.type) {
+				return me.raise(new UnexpectedNonStringLiteralInImportCode(me.token));
+			}
+
+			fileSystemDirectory = me.token.value;
+
+			me.next();
+			me.nativeImports.push(fileSystemDirectory);
 		}
 
 		me.expect(')');
@@ -1274,6 +1291,10 @@ export default class Parser {
 			const base = me.astProvider.invalidCodeExpression(start, end);
 
 			me.next();
+
+			while (!me.consumeMany([';', '<eof>'])) {
+				me.next();
+			}
 
 			return base;
 		}

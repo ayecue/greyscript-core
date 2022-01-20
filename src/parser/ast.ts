@@ -152,7 +152,7 @@ export interface ASTUnaryExpression extends ASTBase {
 
 export interface ASTMapKeyString extends ASTBase {
 	type: ASTType.MapKeyString;
-	key: ASTBase;
+	key: string;
 	value: ASTBase;
 }
 
@@ -192,8 +192,8 @@ export interface ASTSliceExpression extends ASTBase {
 
 export interface ASTImportCodeExpression extends ASTBase {
 	type: ASTType.ImportCodeExpression;
-	gameDirectory: ASTBase;
-	fileSystemDirectory: ASTBase;
+	gameDirectory: string;
+	fileSystemDirectory: string;
 }
 
 export class ASTProvider {
@@ -443,7 +443,7 @@ export class ASTProvider {
 		};
 	}
 
-	mapKeyString(key: ASTBase, value: ASTBase, start: ASTPosition, end: ASTPosition): ASTMapKeyString {
+	mapKeyString(key: string, value: ASTBase, start: ASTPosition, end: ASTPosition): ASTMapKeyString {
 		return {
 			type: ASTType.MapKeyString,
 			key,
@@ -530,7 +530,7 @@ export class ASTProvider {
 		};
 	}
 
-	importCodeExpression(gameDirectory: ASTBase, fileSystemDirectory: ASTBase | null, start: ASTPosition, end: ASTPosition): ASTImportCodeExpression {
+	importCodeExpression(gameDirectory: string, fileSystemDirectory: string | null, start: ASTPosition, end: ASTPosition): ASTImportCodeExpression {
 		return {
 			type: ASTType.ImportCodeExpression,
 			gameDirectory,
