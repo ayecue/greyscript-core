@@ -1028,14 +1028,14 @@ export default class Parser {
 			base = me.parseRighthandExpressionGreedy(base);
 		}
 
-		if (';' === me.token.value || '<eof>' === me.token.value) {
+		if (me.consumeMany([';', '<eof>'])) {
 			if (me.validator.isLiteral(<TokenType>last.type)) {
 				return base;
 			}
 
 			return me.astProvider.callStatement(base, start, {
-				line: me.token.line,
-				character: me.token.lineRange[1]
+				line: me.previousToken.line,
+				character: me.previousToken.lineRange[1]
 			});
 		}
 
@@ -1292,7 +1292,10 @@ export default class Parser {
 
 			me.next();
 
-			while (!me.consumeMany([';', '<eof>'])) {
+			while (
+				me.token.type !== TokenType.EOL &&
+				me.token.type !== TokenType.EOF
+			) {
 				me.next();
 			}
 

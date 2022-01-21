@@ -22631,10 +22631,10 @@ exports[`parse default scripts invalid code 1`] = `Array []`;
 exports[`parse default scripts invalid code 2`] = `
 Array [
   [Error: Unexpected value ; at line 2. Expected: )],
-  [Error: Unexpected value print at line 4. Expected: =],
-  [Error: Unexpected expression at line 5.],
+  [Error: Unexpected value ) at line 4. Expected: =],
+  [Error: Unexpected expression at line 4.],
   [Error: Unexpected assignment or call at line 8.],
-  [Error: Unexpected assignment or call at line 9.],
+  [Error: Unexpected end of file at line 9.],
 ]
 `;
 
@@ -27321,6 +27321,66 @@ Object {
                         },
                         "type": "CallStatement",
                       },
+                      Object {
+                        "end": Object {
+                          "character": 26,
+                          "line": 44,
+                        },
+                        "init": Object {
+                          "end": Object {
+                            "character": 26,
+                            "line": 44,
+                          },
+                          "left": Object {
+                            "end": Object {
+                              "character": 22,
+                              "line": 44,
+                            },
+                            "name": "index",
+                            "start": Object {
+                              "character": 17,
+                              "line": 44,
+                            },
+                            "type": "Identifier",
+                          },
+                          "operator": "+",
+                          "right": Object {
+                            "end": Object {
+                              "character": 26,
+                              "line": 44,
+                            },
+                            "raw": "1",
+                            "start": Object {
+                              "character": 25,
+                              "line": 44,
+                            },
+                            "type": "NumericLiteral",
+                            "value": 1,
+                          },
+                          "start": Object {
+                            "character": 23,
+                            "line": 44,
+                          },
+                          "type": "BinaryExpression",
+                        },
+                        "start": Object {
+                          "character": 9,
+                          "line": 44,
+                        },
+                        "type": "AssignmentStatement",
+                        "variable": Object {
+                          "end": Object {
+                            "character": 14,
+                            "line": 44,
+                          },
+                          "name": "index",
+                          "start": Object {
+                            "character": 9,
+                            "line": 44,
+                          },
+                          "type": "Identifier",
+                        },
+                      },
                     ],
                     "condition": Object {
                       "end": Object {
@@ -27408,85 +27468,25 @@ Object {
                       "type": "BinaryExpression",
                     },
                     "end": Object {
-                      "character": 75,
-                      "line": 43,
+                      "character": 26,
+                      "line": 44,
                     },
                     "start": Object {
                       "character": 54,
                       "line": 43,
                     },
-                    "type": "IfShortcutClause",
+                    "type": "IfClause",
                   },
                 ],
                 "end": Object {
                   "character": 14,
-                  "line": 44,
+                  "line": 45,
                 },
                 "start": Object {
                   "character": 54,
                   "line": 43,
                 },
-                "type": "IfShortcutStatement",
-              },
-              Object {
-                "end": Object {
-                  "character": 26,
-                  "line": 44,
-                },
-                "init": Object {
-                  "end": Object {
-                    "character": 26,
-                    "line": 44,
-                  },
-                  "left": Object {
-                    "end": Object {
-                      "character": 22,
-                      "line": 44,
-                    },
-                    "name": "index",
-                    "start": Object {
-                      "character": 17,
-                      "line": 44,
-                    },
-                    "type": "Identifier",
-                  },
-                  "operator": "+",
-                  "right": Object {
-                    "end": Object {
-                      "character": 26,
-                      "line": 44,
-                    },
-                    "raw": "1",
-                    "start": Object {
-                      "character": 25,
-                      "line": 44,
-                    },
-                    "type": "NumericLiteral",
-                    "value": 1,
-                  },
-                  "start": Object {
-                    "character": 23,
-                    "line": 44,
-                  },
-                  "type": "BinaryExpression",
-                },
-                "start": Object {
-                  "character": 9,
-                  "line": 44,
-                },
-                "type": "AssignmentStatement",
-                "variable": Object {
-                  "end": Object {
-                    "character": 14,
-                    "line": 44,
-                  },
-                  "name": "index",
-                  "start": Object {
-                    "character": 9,
-                    "line": 44,
-                  },
-                  "type": "Identifier",
-                },
+                "type": "IfStatement",
               },
             ],
             "condition": Object {
@@ -30602,6 +30602,66 @@ Object {
                         },
                         "type": "CallStatement",
                       },
+                      Object {
+                        "end": Object {
+                          "character": 26,
+                          "line": 44,
+                        },
+                        "init": Object {
+                          "end": Object {
+                            "character": 26,
+                            "line": 44,
+                          },
+                          "left": Object {
+                            "end": Object {
+                              "character": 22,
+                              "line": 44,
+                            },
+                            "name": "index",
+                            "start": Object {
+                              "character": 17,
+                              "line": 44,
+                            },
+                            "type": "Identifier",
+                          },
+                          "operator": "+",
+                          "right": Object {
+                            "end": Object {
+                              "character": 26,
+                              "line": 44,
+                            },
+                            "raw": "1",
+                            "start": Object {
+                              "character": 25,
+                              "line": 44,
+                            },
+                            "type": "NumericLiteral",
+                            "value": 1,
+                          },
+                          "start": Object {
+                            "character": 23,
+                            "line": 44,
+                          },
+                          "type": "BinaryExpression",
+                        },
+                        "start": Object {
+                          "character": 9,
+                          "line": 44,
+                        },
+                        "type": "AssignmentStatement",
+                        "variable": Object {
+                          "end": Object {
+                            "character": 14,
+                            "line": 44,
+                          },
+                          "name": "index",
+                          "start": Object {
+                            "character": 9,
+                            "line": 44,
+                          },
+                          "type": "Identifier",
+                        },
+                      },
                     ],
                     "condition": Object {
                       "end": Object {
@@ -30689,85 +30749,25 @@ Object {
                       "type": "BinaryExpression",
                     },
                     "end": Object {
-                      "character": 75,
-                      "line": 43,
+                      "character": 26,
+                      "line": 44,
                     },
                     "start": Object {
                       "character": 54,
                       "line": 43,
                     },
-                    "type": "IfShortcutClause",
+                    "type": "IfClause",
                   },
                 ],
                 "end": Object {
                   "character": 14,
-                  "line": 44,
+                  "line": 45,
                 },
                 "start": Object {
                   "character": 54,
                   "line": 43,
                 },
-                "type": "IfShortcutStatement",
-              },
-              Object {
-                "end": Object {
-                  "character": 26,
-                  "line": 44,
-                },
-                "init": Object {
-                  "end": Object {
-                    "character": 26,
-                    "line": 44,
-                  },
-                  "left": Object {
-                    "end": Object {
-                      "character": 22,
-                      "line": 44,
-                    },
-                    "name": "index",
-                    "start": Object {
-                      "character": 17,
-                      "line": 44,
-                    },
-                    "type": "Identifier",
-                  },
-                  "operator": "+",
-                  "right": Object {
-                    "end": Object {
-                      "character": 26,
-                      "line": 44,
-                    },
-                    "raw": "1",
-                    "start": Object {
-                      "character": 25,
-                      "line": 44,
-                    },
-                    "type": "NumericLiteral",
-                    "value": 1,
-                  },
-                  "start": Object {
-                    "character": 23,
-                    "line": 44,
-                  },
-                  "type": "BinaryExpression",
-                },
-                "start": Object {
-                  "character": 9,
-                  "line": 44,
-                },
-                "type": "AssignmentStatement",
-                "variable": Object {
-                  "end": Object {
-                    "character": 14,
-                    "line": 44,
-                  },
-                  "name": "index",
-                  "start": Object {
-                    "character": 9,
-                    "line": 44,
-                  },
-                  "type": "Identifier",
-                },
+                "type": "IfStatement",
               },
             ],
             "condition": Object {
@@ -36057,6 +36057,29 @@ Object {
                     },
                     "type": "CallStatement",
                   },
+                  Object {
+                    "argument": Object {
+                      "end": Object {
+                        "character": 14,
+                        "line": 89,
+                      },
+                      "name": "me",
+                      "start": Object {
+                        "character": 12,
+                        "line": 89,
+                      },
+                      "type": "Identifier",
+                    },
+                    "end": Object {
+                      "character": 14,
+                      "line": 89,
+                    },
+                    "start": Object {
+                      "character": 5,
+                      "line": 89,
+                    },
+                    "type": "ReturnStatement",
+                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -36144,48 +36167,25 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 103,
-                  "line": 88,
+                  "character": 14,
+                  "line": 89,
                 },
                 "start": Object {
                   "character": 32,
                   "line": 88,
                 },
-                "type": "IfShortcutClause",
+                "type": "IfClause",
               },
             ],
-            "end": Object {
-              "character": 11,
-              "line": 89,
-            },
-            "start": Object {
-              "character": 32,
-              "line": 88,
-            },
-            "type": "IfShortcutStatement",
-          },
-          Object {
-            "argument": Object {
-              "end": Object {
-                "character": 14,
-                "line": 89,
-              },
-              "name": "me",
-              "start": Object {
-                "character": 12,
-                "line": 89,
-              },
-              "type": "Identifier",
-            },
             "end": Object {
               "character": 13,
               "line": 90,
             },
             "start": Object {
-              "character": 5,
-              "line": 89,
+              "character": 32,
+              "line": 88,
             },
-            "type": "ReturnStatement",
+            "type": "IfStatement",
           },
         ],
         "end": Object {
@@ -49675,6 +49675,29 @@ Object {
                     },
                     "type": "CallStatement",
                   },
+                  Object {
+                    "argument": Object {
+                      "end": Object {
+                        "character": 14,
+                        "line": 89,
+                      },
+                      "name": "me",
+                      "start": Object {
+                        "character": 12,
+                        "line": 89,
+                      },
+                      "type": "Identifier",
+                    },
+                    "end": Object {
+                      "character": 14,
+                      "line": 89,
+                    },
+                    "start": Object {
+                      "character": 5,
+                      "line": 89,
+                    },
+                    "type": "ReturnStatement",
+                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -49762,48 +49785,25 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 103,
-                  "line": 88,
+                  "character": 14,
+                  "line": 89,
                 },
                 "start": Object {
                   "character": 32,
                   "line": 88,
                 },
-                "type": "IfShortcutClause",
+                "type": "IfClause",
               },
             ],
-            "end": Object {
-              "character": 11,
-              "line": 89,
-            },
-            "start": Object {
-              "character": 32,
-              "line": 88,
-            },
-            "type": "IfShortcutStatement",
-          },
-          Object {
-            "argument": Object {
-              "end": Object {
-                "character": 14,
-                "line": 89,
-              },
-              "name": "me",
-              "start": Object {
-                "character": 12,
-                "line": 89,
-              },
-              "type": "Identifier",
-            },
             "end": Object {
               "character": 13,
               "line": 90,
             },
             "start": Object {
-              "character": 5,
-              "line": 89,
+              "character": 32,
+              "line": 88,
             },
-            "type": "ReturnStatement",
+            "type": "IfStatement",
           },
         ],
         "end": Object {
@@ -61740,6 +61740,29 @@ Object {
                     },
                     "type": "CallStatement",
                   },
+                  Object {
+                    "argument": Object {
+                      "end": Object {
+                        "character": 18,
+                        "line": 54,
+                      },
+                      "name": "result",
+                      "start": Object {
+                        "character": 12,
+                        "line": 54,
+                      },
+                      "type": "Identifier",
+                    },
+                    "end": Object {
+                      "character": 18,
+                      "line": 54,
+                    },
+                    "start": Object {
+                      "character": 5,
+                      "line": 54,
+                    },
+                    "type": "ReturnStatement",
+                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -61779,48 +61802,25 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 52,
-                  "line": 53,
+                  "character": 18,
+                  "line": 54,
                 },
                 "start": Object {
                   "character": 32,
                   "line": 53,
                 },
-                "type": "IfShortcutClause",
+                "type": "IfClause",
               },
             ],
-            "end": Object {
-              "character": 11,
-              "line": 54,
-            },
-            "start": Object {
-              "character": 32,
-              "line": 53,
-            },
-            "type": "IfShortcutStatement",
-          },
-          Object {
-            "argument": Object {
-              "end": Object {
-                "character": 18,
-                "line": 54,
-              },
-              "name": "result",
-              "start": Object {
-                "character": 12,
-                "line": 54,
-              },
-              "type": "Identifier",
-            },
             "end": Object {
               "character": 13,
               "line": 55,
             },
             "start": Object {
-              "character": 5,
-              "line": 54,
+              "character": 32,
+              "line": 53,
             },
-            "type": "ReturnStatement",
+            "type": "IfStatement",
           },
         ],
         "end": Object {
@@ -65334,6 +65334,29 @@ Object {
                     },
                     "type": "CallStatement",
                   },
+                  Object {
+                    "argument": Object {
+                      "end": Object {
+                        "character": 18,
+                        "line": 54,
+                      },
+                      "name": "result",
+                      "start": Object {
+                        "character": 12,
+                        "line": 54,
+                      },
+                      "type": "Identifier",
+                    },
+                    "end": Object {
+                      "character": 18,
+                      "line": 54,
+                    },
+                    "start": Object {
+                      "character": 5,
+                      "line": 54,
+                    },
+                    "type": "ReturnStatement",
+                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -65373,48 +65396,25 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 52,
-                  "line": 53,
+                  "character": 18,
+                  "line": 54,
                 },
                 "start": Object {
                   "character": 32,
                   "line": 53,
                 },
-                "type": "IfShortcutClause",
+                "type": "IfClause",
               },
             ],
-            "end": Object {
-              "character": 11,
-              "line": 54,
-            },
-            "start": Object {
-              "character": 32,
-              "line": 53,
-            },
-            "type": "IfShortcutStatement",
-          },
-          Object {
-            "argument": Object {
-              "end": Object {
-                "character": 18,
-                "line": 54,
-              },
-              "name": "result",
-              "start": Object {
-                "character": 12,
-                "line": 54,
-              },
-              "type": "Identifier",
-            },
             "end": Object {
               "character": 13,
               "line": 55,
             },
             "start": Object {
-              "character": 5,
-              "line": 54,
+              "character": 32,
+              "line": 53,
             },
-            "type": "ReturnStatement",
+            "type": "IfStatement",
           },
         ],
         "end": Object {

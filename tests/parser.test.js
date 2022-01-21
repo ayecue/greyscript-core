@@ -48,6 +48,14 @@ describe('parse', function() {
 				end func
 
 				print("wo")
+
+				if (true) then;
+					print("true")
+				else;
+					print((false));
+				end if;
+
+				if (false) print("false")
 			`;
 			const lexer = new Lexer(content, { unsafe: true });
 			const parser = new Parser(content, {
