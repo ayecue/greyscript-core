@@ -209,7 +209,10 @@ export default class Parser {
 			return me.raise(new UnexpectedIdentifier(me.token));
 		}
 
-		me.namespaces.add(identifier);
+		if (!me.validator.isNative(identifier)) {
+			me.namespaces.add(identifier);
+		}
+
 		me.next();
 
 		return me.astProvider.identifier(identifier, start, end);
