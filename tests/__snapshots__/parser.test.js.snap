@@ -22021,7 +22021,7 @@ Object {
         "value": false,
       },
       "end": Object {
-        "character": 11,
+        "character": 10,
         "line": 9,
       },
       "start": Object {
@@ -22083,7 +22083,7 @@ Object {
         },
       ],
       "end": Object {
-        "character": 9,
+        "character": 8,
         "line": 13,
       },
       "iterator": Object {
@@ -22433,7 +22433,7 @@ Object {
         "value": false,
       },
       "end": Object {
-        "character": 11,
+        "character": 10,
         "line": 9,
       },
       "start": Object {
@@ -22495,7 +22495,7 @@ Object {
         },
       ],
       "end": Object {
-        "character": 9,
+        "character": 8,
         "line": 13,
       },
       "iterator": Object {
@@ -22616,6 +22616,2770 @@ Object {
   "namespaces": Set {
     "print",
     "foo",
+  },
+  "nativeImports": Array [],
+  "start": Object {
+    "character": 1,
+    "line": 1,
+  },
+  "type": "Chunk",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "clauses": Array [
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 29,
+                "line": 1,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 28,
+                      "line": 1,
+                    },
+                    "raw": "\\"true\\"",
+                    "start": Object {
+                      "character": 22,
+                      "line": 1,
+                    },
+                    "type": "StringLiteral",
+                    "value": "true",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 21,
+                    "line": 1,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 16,
+                    "line": 1,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 29,
+                  "line": 1,
+                },
+                "start": Object {
+                  "character": 21,
+                  "line": 1,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 16,
+                "line": 1,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "condition": Object {
+            "end": Object {
+              "character": 9,
+              "line": 1,
+            },
+            "raw": "true",
+            "start": Object {
+              "character": 5,
+              "line": 1,
+            },
+            "type": "BooleanLiteral",
+            "value": true,
+          },
+          "end": Object {
+            "character": 29,
+            "line": 1,
+          },
+          "start": Object {
+            "character": 1,
+            "line": 1,
+          },
+          "type": "IfShortcutClause",
+        },
+      ],
+      "end": Object {
+        "character": 29,
+        "line": 1,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 1,
+      },
+      "type": "IfShortcutStatement",
+    },
+    Object {
+      "clauses": Array [
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 35,
+                "line": 2,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 29,
+                      "line": 2,
+                    },
+                    "raw": "\\"true\\"",
+                    "start": Object {
+                      "character": 23,
+                      "line": 2,
+                    },
+                    "type": "StringLiteral",
+                    "value": "true",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 22,
+                    "line": 2,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 17,
+                    "line": 2,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 35,
+                  "line": 2,
+                },
+                "start": Object {
+                  "character": 22,
+                  "line": 2,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 17,
+                "line": 2,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "condition": Object {
+            "end": Object {
+              "character": 10,
+              "line": 2,
+            },
+            "raw": "false",
+            "start": Object {
+              "character": 5,
+              "line": 2,
+            },
+            "type": "BooleanLiteral",
+            "value": false,
+          },
+          "end": Object {
+            "character": 35,
+            "line": 2,
+          },
+          "start": Object {
+            "character": 1,
+            "line": 2,
+          },
+          "type": "IfShortcutClause",
+        },
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 49,
+                "line": 2,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 48,
+                      "line": 2,
+                    },
+                    "raw": "\\"true\\"",
+                    "start": Object {
+                      "character": 42,
+                      "line": 2,
+                    },
+                    "type": "StringLiteral",
+                    "value": "true",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 41,
+                    "line": 2,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 36,
+                    "line": 2,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 49,
+                  "line": 2,
+                },
+                "start": Object {
+                  "character": 41,
+                  "line": 2,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 36,
+                "line": 2,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "end": Object {
+            "character": 49,
+            "line": 2,
+          },
+          "start": Object {
+            "character": 36,
+            "line": 2,
+          },
+          "type": "ElseShortcutClause",
+        },
+      ],
+      "end": Object {
+        "character": 49,
+        "line": 2,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 2,
+      },
+      "type": "IfShortcutStatement",
+    },
+    Object {
+      "end": Object {
+        "character": 13,
+        "line": 3,
+      },
+      "expression": Object {
+        "arguments": Array [
+          Object {
+            "end": Object {
+              "character": 12,
+              "line": 3,
+            },
+            "raw": "\\"was\\"",
+            "start": Object {
+              "character": 7,
+              "line": 3,
+            },
+            "type": "StringLiteral",
+            "value": "was",
+          },
+        ],
+        "base": Object {
+          "end": Object {
+            "character": 6,
+            "line": 3,
+          },
+          "name": "print",
+          "start": Object {
+            "character": 1,
+            "line": 3,
+          },
+          "type": "Identifier",
+        },
+        "end": Object {
+          "character": 13,
+          "line": 3,
+        },
+        "start": Object {
+          "character": 6,
+          "line": 3,
+        },
+        "type": "CallExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 3,
+      },
+      "type": "CallStatement",
+    },
+    Object {
+      "clauses": Array [
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 17,
+                "line": 5,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 16,
+                      "line": 5,
+                    },
+                    "raw": "false",
+                    "start": Object {
+                      "character": 11,
+                      "line": 5,
+                    },
+                    "type": "BooleanLiteral",
+                    "value": false,
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 10,
+                    "line": 5,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 5,
+                    "line": 5,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 17,
+                  "line": 5,
+                },
+                "start": Object {
+                  "character": 10,
+                  "line": 5,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 5,
+                "line": 5,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "condition": Object {
+            "end": Object {
+              "character": 10,
+              "line": 4,
+            },
+            "raw": "false",
+            "start": Object {
+              "character": 5,
+              "line": 4,
+            },
+            "type": "BooleanLiteral",
+            "value": false,
+          },
+          "end": Object {
+            "character": 5,
+            "line": 6,
+          },
+          "start": Object {
+            "character": 1,
+            "line": 4,
+          },
+          "type": "IfClause",
+        },
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 16,
+                "line": 7,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 15,
+                      "line": 7,
+                    },
+                    "raw": "true",
+                    "start": Object {
+                      "character": 11,
+                      "line": 7,
+                    },
+                    "type": "BooleanLiteral",
+                    "value": true,
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 10,
+                    "line": 7,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 5,
+                    "line": 7,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 16,
+                  "line": 7,
+                },
+                "start": Object {
+                  "character": 10,
+                  "line": 7,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 5,
+                "line": 7,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "end": Object {
+            "character": 7,
+            "line": 8,
+          },
+          "start": Object {
+            "character": 5,
+            "line": 6,
+          },
+          "type": "ElseClause",
+        },
+      ],
+      "end": Object {
+        "character": 7,
+        "line": 8,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 4,
+      },
+      "type": "IfStatement",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 23,
+            "line": 10,
+          },
+          "expression": Object {
+            "arguments": Array [
+              Object {
+                "end": Object {
+                  "character": 22,
+                  "line": 10,
+                },
+                "name": "i",
+                "start": Object {
+                  "character": 21,
+                  "line": 10,
+                },
+                "type": "Identifier",
+              },
+            ],
+            "base": Object {
+              "end": Object {
+                "character": 20,
+                "line": 10,
+              },
+              "name": "print",
+              "start": Object {
+                "character": 15,
+                "line": 10,
+              },
+              "type": "Identifier",
+            },
+            "end": Object {
+              "character": 23,
+              "line": 10,
+            },
+            "start": Object {
+              "character": 20,
+              "line": 10,
+            },
+            "type": "CallExpression",
+          },
+          "start": Object {
+            "character": 15,
+            "line": 10,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "end": Object {
+        "character": 23,
+        "line": 10,
+      },
+      "iterator": Object {
+        "end": Object {
+          "character": 13,
+          "line": 10,
+        },
+        "fields": Array [],
+        "start": Object {
+          "character": 11,
+          "line": 10,
+        },
+        "type": "ListConstructorExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 10,
+      },
+      "type": "ForGenericStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 7,
+          "line": 10,
+        },
+        "name": "i",
+        "start": Object {
+          "character": 6,
+          "line": 10,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 13,
+            "line": 12,
+          },
+          "expression": Object {
+            "arguments": Array [
+              Object {
+                "end": Object {
+                  "character": 12,
+                  "line": 12,
+                },
+                "name": "b",
+                "start": Object {
+                  "character": 11,
+                  "line": 12,
+                },
+                "type": "Identifier",
+              },
+            ],
+            "base": Object {
+              "end": Object {
+                "character": 10,
+                "line": 12,
+              },
+              "name": "print",
+              "start": Object {
+                "character": 5,
+                "line": 12,
+              },
+              "type": "Identifier",
+            },
+            "end": Object {
+              "character": 13,
+              "line": 12,
+            },
+            "start": Object {
+              "character": 10,
+              "line": 12,
+            },
+            "type": "CallExpression",
+          },
+          "start": Object {
+            "character": 5,
+            "line": 12,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "end": Object {
+        "character": 8,
+        "line": 13,
+      },
+      "iterator": Object {
+        "end": Object {
+          "character": 13,
+          "line": 11,
+        },
+        "fields": Array [],
+        "start": Object {
+          "character": 11,
+          "line": 11,
+        },
+        "type": "ListConstructorExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 11,
+      },
+      "type": "ForGenericStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 7,
+          "line": 11,
+        },
+        "name": "b",
+        "start": Object {
+          "character": 6,
+          "line": 11,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 21,
+            "line": 14,
+          },
+          "expression": Object {
+            "end": Object {
+              "character": 21,
+              "line": 14,
+            },
+            "init": Object {
+              "end": Object {
+                "character": 21,
+                "line": 14,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 16,
+                  "line": 14,
+                },
+                "name": "i",
+                "start": Object {
+                  "character": 15,
+                  "line": 14,
+                },
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": Object {
+                "end": Object {
+                  "character": 21,
+                  "line": 14,
+                },
+                "raw": "1",
+                "start": Object {
+                  "character": 20,
+                  "line": 14,
+                },
+                "type": "NumericLiteral",
+                "value": 1,
+              },
+              "start": Object {
+                "character": 20,
+                "line": 14,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 15,
+              "line": 14,
+            },
+            "type": "AssignmentStatement",
+            "variable": Object {
+              "end": Object {
+                "character": 16,
+                "line": 14,
+              },
+              "name": "i",
+              "start": Object {
+                "character": 15,
+                "line": 14,
+              },
+              "type": "Identifier",
+            },
+          },
+          "start": Object {
+            "character": 15,
+            "line": 14,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "condition": Object {
+        "end": Object {
+          "character": 14,
+          "line": 14,
+        },
+        "left": Object {
+          "end": Object {
+            "character": 9,
+            "line": 14,
+          },
+          "name": "i",
+          "start": Object {
+            "character": 8,
+            "line": 14,
+          },
+          "type": "Identifier",
+        },
+        "operator": "<",
+        "right": Object {
+          "end": Object {
+            "character": 13,
+            "line": 14,
+          },
+          "name": "b",
+          "start": Object {
+            "character": 12,
+            "line": 14,
+          },
+          "type": "Identifier",
+        },
+        "start": Object {
+          "character": 10,
+          "line": 14,
+        },
+        "type": "BinaryExpression",
+      },
+      "end": Object {
+        "character": 21,
+        "line": 14,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 14,
+      },
+      "type": "WhileStatement",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 11,
+            "line": 16,
+          },
+          "expression": Object {
+            "end": Object {
+              "character": 11,
+              "line": 16,
+            },
+            "init": Object {
+              "end": Object {
+                "character": 11,
+                "line": 16,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 6,
+                  "line": 16,
+                },
+                "name": "b",
+                "start": Object {
+                  "character": 5,
+                  "line": 16,
+                },
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": Object {
+                "end": Object {
+                  "character": 11,
+                  "line": 16,
+                },
+                "raw": "1",
+                "start": Object {
+                  "character": 10,
+                  "line": 16,
+                },
+                "type": "NumericLiteral",
+                "value": 1,
+              },
+              "start": Object {
+                "character": 10,
+                "line": 16,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 5,
+              "line": 16,
+            },
+            "type": "AssignmentStatement",
+            "variable": Object {
+              "end": Object {
+                "character": 6,
+                "line": 16,
+              },
+              "name": "b",
+              "start": Object {
+                "character": 5,
+                "line": 16,
+              },
+              "type": "Identifier",
+            },
+          },
+          "start": Object {
+            "character": 5,
+            "line": 16,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "condition": Object {
+        "end": Object {
+          "character": 14,
+          "line": 15,
+        },
+        "left": Object {
+          "end": Object {
+            "character": 9,
+            "line": 15,
+          },
+          "name": "b",
+          "start": Object {
+            "character": 8,
+            "line": 15,
+          },
+          "type": "Identifier",
+        },
+        "operator": "<",
+        "right": Object {
+          "end": Object {
+            "character": 13,
+            "line": 15,
+          },
+          "name": "i",
+          "start": Object {
+            "character": 12,
+            "line": 15,
+          },
+          "type": "Identifier",
+        },
+        "start": Object {
+          "character": 10,
+          "line": 15,
+        },
+        "type": "BinaryExpression",
+      },
+      "end": Object {
+        "character": 10,
+        "line": 17,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 15,
+      },
+      "type": "WhileStatement",
+    },
+    Object {
+      "end": Object {
+        "character": 14,
+        "line": 19,
+      },
+      "init": Object {
+        "body": Array [
+          Object {
+            "end": Object {
+              "character": 34,
+              "line": 18,
+            },
+            "expression": Object {
+              "arguments": Array [
+                Object {
+                  "end": Object {
+                    "character": 33,
+                    "line": 18,
+                  },
+                  "name": "v",
+                  "start": Object {
+                    "character": 32,
+                    "line": 18,
+                  },
+                  "type": "Identifier",
+                },
+              ],
+              "base": Object {
+                "end": Object {
+                  "character": 31,
+                  "line": 18,
+                },
+                "name": "print",
+                "start": Object {
+                  "character": 26,
+                  "line": 18,
+                },
+                "type": "Identifier",
+              },
+              "end": Object {
+                "character": 34,
+                "line": 18,
+              },
+              "start": Object {
+                "character": 31,
+                "line": 18,
+              },
+              "type": "CallExpression",
+            },
+            "start": Object {
+              "character": 26,
+              "line": 18,
+            },
+            "type": "CallStatement",
+          },
+        ],
+        "end": Object {
+          "character": 34,
+          "line": 18,
+        },
+        "parameters": Array [
+          Object {
+            "end": Object {
+              "character": 24,
+              "line": 18,
+            },
+            "name": "v",
+            "start": Object {
+              "character": 23,
+              "line": 18,
+            },
+            "type": "Identifier",
+          },
+        ],
+        "start": Object {
+          "character": 14,
+          "line": 18,
+        },
+        "type": "FunctionDeclaration",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 18,
+      },
+      "type": "AssignmentStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 11,
+          "line": 18,
+        },
+        "name": "myFunction",
+        "start": Object {
+          "character": 1,
+          "line": 18,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "end": Object {
+        "character": 13,
+        "line": 21,
+      },
+      "init": Object {
+        "body": Array [
+          Object {
+            "end": Object {
+              "character": 13,
+              "line": 20,
+            },
+            "expression": Object {
+              "arguments": Array [
+                Object {
+                  "end": Object {
+                    "character": 12,
+                    "line": 20,
+                  },
+                  "name": "n",
+                  "start": Object {
+                    "character": 11,
+                    "line": 20,
+                  },
+                  "type": "Identifier",
+                },
+              ],
+              "base": Object {
+                "end": Object {
+                  "character": 10,
+                  "line": 20,
+                },
+                "name": "print",
+                "start": Object {
+                  "character": 5,
+                  "line": 20,
+                },
+                "type": "Identifier",
+              },
+              "end": Object {
+                "character": 13,
+                "line": 20,
+              },
+              "start": Object {
+                "character": 10,
+                "line": 20,
+              },
+              "type": "CallExpression",
+            },
+            "start": Object {
+              "character": 5,
+              "line": 20,
+            },
+            "type": "CallStatement",
+          },
+        ],
+        "end": Object {
+          "character": 13,
+          "line": 21,
+        },
+        "parameters": Array [
+          Object {
+            "end": Object {
+              "character": 27,
+              "line": 19,
+            },
+            "name": "n",
+            "start": Object {
+              "character": 26,
+              "line": 19,
+            },
+            "type": "Identifier",
+          },
+        ],
+        "start": Object {
+          "character": 17,
+          "line": 19,
+        },
+        "type": "FunctionDeclaration",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 19,
+      },
+      "type": "AssignmentStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 14,
+          "line": 19,
+        },
+        "name": "otherFunction",
+        "start": Object {
+          "character": 1,
+          "line": 19,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "body": Array [
+        Object {
+          "argument": Object {
+            "end": Object {
+              "character": 25,
+              "line": 23,
+            },
+            "raw": "\\"was\\"",
+            "start": Object {
+              "character": 20,
+              "line": 23,
+            },
+            "type": "StringLiteral",
+            "value": "was",
+          },
+          "end": Object {
+            "character": 25,
+            "line": 23,
+          },
+          "start": Object {
+            "character": 13,
+            "line": 23,
+          },
+          "type": "ReturnStatement",
+        },
+      ],
+      "end": Object {
+        "character": 25,
+        "line": 23,
+      },
+      "parameters": Array [
+        Object {
+          "end": Object {
+            "character": 11,
+            "line": 23,
+          },
+          "name": "m",
+          "start": Object {
+            "character": 10,
+            "line": 23,
+          },
+          "type": "Identifier",
+        },
+      ],
+      "start": Object {
+        "character": 1,
+        "line": 23,
+      },
+      "type": "FunctionDeclaration",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "clauses": Array [
+            Object {
+              "body": Array [
+                Object {
+                  "argument": Object {
+                    "end": Object {
+                      "character": 29,
+                      "line": 27,
+                    },
+                    "raw": "\\"foo\\"",
+                    "start": Object {
+                      "character": 24,
+                      "line": 27,
+                    },
+                    "type": "StringLiteral",
+                    "value": "foo",
+                  },
+                  "end": Object {
+                    "character": 29,
+                    "line": 27,
+                  },
+                  "start": Object {
+                    "character": 17,
+                    "line": 27,
+                  },
+                  "type": "ReturnStatement",
+                },
+              ],
+              "condition": Object {
+                "end": Object {
+                  "character": 10,
+                  "line": 27,
+                },
+                "name": "a",
+                "start": Object {
+                  "character": 9,
+                  "line": 27,
+                },
+                "type": "Identifier",
+              },
+              "end": Object {
+                "character": 29,
+                "line": 27,
+              },
+              "start": Object {
+                "character": 5,
+                "line": 27,
+              },
+              "type": "IfShortcutClause",
+            },
+          ],
+          "end": Object {
+            "character": 29,
+            "line": 27,
+          },
+          "start": Object {
+            "character": 5,
+            "line": 27,
+          },
+          "type": "IfShortcutStatement",
+        },
+      ],
+      "end": Object {
+        "character": 13,
+        "line": 28,
+      },
+      "parameters": Array [
+        Object {
+          "end": Object {
+            "character": 11,
+            "line": 26,
+          },
+          "name": "b",
+          "start": Object {
+            "character": 10,
+            "line": 26,
+          },
+          "type": "Identifier",
+        },
+      ],
+      "start": Object {
+        "character": 1,
+        "line": 26,
+      },
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": Object {
+    "character": 13,
+    "line": 28,
+  },
+  "literals": Array [
+    Object {
+      "end": Object {
+        "character": 9,
+        "line": 1,
+      },
+      "raw": "true",
+      "start": Object {
+        "character": 5,
+        "line": 1,
+      },
+      "type": "BooleanLiteral",
+      "value": true,
+    },
+    Object {
+      "end": Object {
+        "character": 28,
+        "line": 1,
+      },
+      "raw": "\\"true\\"",
+      "start": Object {
+        "character": 22,
+        "line": 1,
+      },
+      "type": "StringLiteral",
+      "value": "true",
+    },
+    Object {
+      "end": Object {
+        "character": 10,
+        "line": 2,
+      },
+      "raw": "false",
+      "start": Object {
+        "character": 5,
+        "line": 2,
+      },
+      "type": "BooleanLiteral",
+      "value": false,
+    },
+    Object {
+      "end": Object {
+        "character": 29,
+        "line": 2,
+      },
+      "raw": "\\"true\\"",
+      "start": Object {
+        "character": 23,
+        "line": 2,
+      },
+      "type": "StringLiteral",
+      "value": "true",
+    },
+    Object {
+      "end": Object {
+        "character": 48,
+        "line": 2,
+      },
+      "raw": "\\"true\\"",
+      "start": Object {
+        "character": 42,
+        "line": 2,
+      },
+      "type": "StringLiteral",
+      "value": "true",
+    },
+    Object {
+      "end": Object {
+        "character": 12,
+        "line": 3,
+      },
+      "raw": "\\"was\\"",
+      "start": Object {
+        "character": 7,
+        "line": 3,
+      },
+      "type": "StringLiteral",
+      "value": "was",
+    },
+    Object {
+      "end": Object {
+        "character": 10,
+        "line": 4,
+      },
+      "raw": "false",
+      "start": Object {
+        "character": 5,
+        "line": 4,
+      },
+      "type": "BooleanLiteral",
+      "value": false,
+    },
+    Object {
+      "end": Object {
+        "character": 16,
+        "line": 5,
+      },
+      "raw": "false",
+      "start": Object {
+        "character": 11,
+        "line": 5,
+      },
+      "type": "BooleanLiteral",
+      "value": false,
+    },
+    Object {
+      "end": Object {
+        "character": 15,
+        "line": 7,
+      },
+      "raw": "true",
+      "start": Object {
+        "character": 11,
+        "line": 7,
+      },
+      "type": "BooleanLiteral",
+      "value": true,
+    },
+    Object {
+      "end": Object {
+        "character": 21,
+        "line": 14,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 20,
+        "line": 14,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 11,
+        "line": 16,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 10,
+        "line": 16,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 25,
+        "line": 23,
+      },
+      "raw": "\\"was\\"",
+      "start": Object {
+        "character": 20,
+        "line": 23,
+      },
+      "type": "StringLiteral",
+      "value": "was",
+    },
+    Object {
+      "end": Object {
+        "character": 29,
+        "line": 27,
+      },
+      "raw": "\\"foo\\"",
+      "start": Object {
+        "character": 24,
+        "line": 27,
+      },
+      "type": "StringLiteral",
+      "value": "foo",
+    },
+  ],
+  "namespaces": Set {
+    "print",
+    "i",
+    "b",
+    "myFunction",
+    "v",
+    "otherFunction",
+    "n",
+    "m",
+    "a",
+  },
+  "nativeImports": Array [],
+  "start": Object {
+    "character": 1,
+    "line": 1,
+  },
+  "type": "Chunk",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src unsafe 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "clauses": Array [
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 29,
+                "line": 1,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 28,
+                      "line": 1,
+                    },
+                    "raw": "\\"true\\"",
+                    "start": Object {
+                      "character": 22,
+                      "line": 1,
+                    },
+                    "type": "StringLiteral",
+                    "value": "true",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 21,
+                    "line": 1,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 16,
+                    "line": 1,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 29,
+                  "line": 1,
+                },
+                "start": Object {
+                  "character": 21,
+                  "line": 1,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 16,
+                "line": 1,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "condition": Object {
+            "end": Object {
+              "character": 9,
+              "line": 1,
+            },
+            "raw": "true",
+            "start": Object {
+              "character": 5,
+              "line": 1,
+            },
+            "type": "BooleanLiteral",
+            "value": true,
+          },
+          "end": Object {
+            "character": 29,
+            "line": 1,
+          },
+          "start": Object {
+            "character": 1,
+            "line": 1,
+          },
+          "type": "IfShortcutClause",
+        },
+      ],
+      "end": Object {
+        "character": 29,
+        "line": 1,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 1,
+      },
+      "type": "IfShortcutStatement",
+    },
+    Object {
+      "clauses": Array [
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 35,
+                "line": 2,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 29,
+                      "line": 2,
+                    },
+                    "raw": "\\"true\\"",
+                    "start": Object {
+                      "character": 23,
+                      "line": 2,
+                    },
+                    "type": "StringLiteral",
+                    "value": "true",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 22,
+                    "line": 2,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 17,
+                    "line": 2,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 35,
+                  "line": 2,
+                },
+                "start": Object {
+                  "character": 22,
+                  "line": 2,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 17,
+                "line": 2,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "condition": Object {
+            "end": Object {
+              "character": 10,
+              "line": 2,
+            },
+            "raw": "false",
+            "start": Object {
+              "character": 5,
+              "line": 2,
+            },
+            "type": "BooleanLiteral",
+            "value": false,
+          },
+          "end": Object {
+            "character": 35,
+            "line": 2,
+          },
+          "start": Object {
+            "character": 1,
+            "line": 2,
+          },
+          "type": "IfShortcutClause",
+        },
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 49,
+                "line": 2,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 48,
+                      "line": 2,
+                    },
+                    "raw": "\\"true\\"",
+                    "start": Object {
+                      "character": 42,
+                      "line": 2,
+                    },
+                    "type": "StringLiteral",
+                    "value": "true",
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 41,
+                    "line": 2,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 36,
+                    "line": 2,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 49,
+                  "line": 2,
+                },
+                "start": Object {
+                  "character": 41,
+                  "line": 2,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 36,
+                "line": 2,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "end": Object {
+            "character": 49,
+            "line": 2,
+          },
+          "start": Object {
+            "character": 36,
+            "line": 2,
+          },
+          "type": "ElseShortcutClause",
+        },
+      ],
+      "end": Object {
+        "character": 49,
+        "line": 2,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 2,
+      },
+      "type": "IfShortcutStatement",
+    },
+    Object {
+      "end": Object {
+        "character": 13,
+        "line": 3,
+      },
+      "expression": Object {
+        "arguments": Array [
+          Object {
+            "end": Object {
+              "character": 12,
+              "line": 3,
+            },
+            "raw": "\\"was\\"",
+            "start": Object {
+              "character": 7,
+              "line": 3,
+            },
+            "type": "StringLiteral",
+            "value": "was",
+          },
+        ],
+        "base": Object {
+          "end": Object {
+            "character": 6,
+            "line": 3,
+          },
+          "name": "print",
+          "start": Object {
+            "character": 1,
+            "line": 3,
+          },
+          "type": "Identifier",
+        },
+        "end": Object {
+          "character": 13,
+          "line": 3,
+        },
+        "start": Object {
+          "character": 6,
+          "line": 3,
+        },
+        "type": "CallExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 3,
+      },
+      "type": "CallStatement",
+    },
+    Object {
+      "clauses": Array [
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 17,
+                "line": 5,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 16,
+                      "line": 5,
+                    },
+                    "raw": "false",
+                    "start": Object {
+                      "character": 11,
+                      "line": 5,
+                    },
+                    "type": "BooleanLiteral",
+                    "value": false,
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 10,
+                    "line": 5,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 5,
+                    "line": 5,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 17,
+                  "line": 5,
+                },
+                "start": Object {
+                  "character": 10,
+                  "line": 5,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 5,
+                "line": 5,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "condition": Object {
+            "end": Object {
+              "character": 10,
+              "line": 4,
+            },
+            "raw": "false",
+            "start": Object {
+              "character": 5,
+              "line": 4,
+            },
+            "type": "BooleanLiteral",
+            "value": false,
+          },
+          "end": Object {
+            "character": 5,
+            "line": 6,
+          },
+          "start": Object {
+            "character": 1,
+            "line": 4,
+          },
+          "type": "IfClause",
+        },
+        Object {
+          "body": Array [
+            Object {
+              "end": Object {
+                "character": 16,
+                "line": 7,
+              },
+              "expression": Object {
+                "arguments": Array [
+                  Object {
+                    "end": Object {
+                      "character": 15,
+                      "line": 7,
+                    },
+                    "raw": "true",
+                    "start": Object {
+                      "character": 11,
+                      "line": 7,
+                    },
+                    "type": "BooleanLiteral",
+                    "value": true,
+                  },
+                ],
+                "base": Object {
+                  "end": Object {
+                    "character": 10,
+                    "line": 7,
+                  },
+                  "name": "print",
+                  "start": Object {
+                    "character": 5,
+                    "line": 7,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 16,
+                  "line": 7,
+                },
+                "start": Object {
+                  "character": 10,
+                  "line": 7,
+                },
+                "type": "CallExpression",
+              },
+              "start": Object {
+                "character": 5,
+                "line": 7,
+              },
+              "type": "CallStatement",
+            },
+          ],
+          "end": Object {
+            "character": 7,
+            "line": 8,
+          },
+          "start": Object {
+            "character": 5,
+            "line": 6,
+          },
+          "type": "ElseClause",
+        },
+      ],
+      "end": Object {
+        "character": 7,
+        "line": 8,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 4,
+      },
+      "type": "IfStatement",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 23,
+            "line": 10,
+          },
+          "expression": Object {
+            "arguments": Array [
+              Object {
+                "end": Object {
+                  "character": 22,
+                  "line": 10,
+                },
+                "name": "i",
+                "start": Object {
+                  "character": 21,
+                  "line": 10,
+                },
+                "type": "Identifier",
+              },
+            ],
+            "base": Object {
+              "end": Object {
+                "character": 20,
+                "line": 10,
+              },
+              "name": "print",
+              "start": Object {
+                "character": 15,
+                "line": 10,
+              },
+              "type": "Identifier",
+            },
+            "end": Object {
+              "character": 23,
+              "line": 10,
+            },
+            "start": Object {
+              "character": 20,
+              "line": 10,
+            },
+            "type": "CallExpression",
+          },
+          "start": Object {
+            "character": 15,
+            "line": 10,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "end": Object {
+        "character": 23,
+        "line": 10,
+      },
+      "iterator": Object {
+        "end": Object {
+          "character": 13,
+          "line": 10,
+        },
+        "fields": Array [],
+        "start": Object {
+          "character": 11,
+          "line": 10,
+        },
+        "type": "ListConstructorExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 10,
+      },
+      "type": "ForGenericStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 7,
+          "line": 10,
+        },
+        "name": "i",
+        "start": Object {
+          "character": 6,
+          "line": 10,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 13,
+            "line": 12,
+          },
+          "expression": Object {
+            "arguments": Array [
+              Object {
+                "end": Object {
+                  "character": 12,
+                  "line": 12,
+                },
+                "name": "b",
+                "start": Object {
+                  "character": 11,
+                  "line": 12,
+                },
+                "type": "Identifier",
+              },
+            ],
+            "base": Object {
+              "end": Object {
+                "character": 10,
+                "line": 12,
+              },
+              "name": "print",
+              "start": Object {
+                "character": 5,
+                "line": 12,
+              },
+              "type": "Identifier",
+            },
+            "end": Object {
+              "character": 13,
+              "line": 12,
+            },
+            "start": Object {
+              "character": 10,
+              "line": 12,
+            },
+            "type": "CallExpression",
+          },
+          "start": Object {
+            "character": 5,
+            "line": 12,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "end": Object {
+        "character": 8,
+        "line": 13,
+      },
+      "iterator": Object {
+        "end": Object {
+          "character": 13,
+          "line": 11,
+        },
+        "fields": Array [],
+        "start": Object {
+          "character": 11,
+          "line": 11,
+        },
+        "type": "ListConstructorExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 11,
+      },
+      "type": "ForGenericStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 7,
+          "line": 11,
+        },
+        "name": "b",
+        "start": Object {
+          "character": 6,
+          "line": 11,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 21,
+            "line": 14,
+          },
+          "expression": Object {
+            "end": Object {
+              "character": 21,
+              "line": 14,
+            },
+            "init": Object {
+              "end": Object {
+                "character": 21,
+                "line": 14,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 16,
+                  "line": 14,
+                },
+                "name": "i",
+                "start": Object {
+                  "character": 15,
+                  "line": 14,
+                },
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": Object {
+                "end": Object {
+                  "character": 21,
+                  "line": 14,
+                },
+                "raw": "1",
+                "start": Object {
+                  "character": 20,
+                  "line": 14,
+                },
+                "type": "NumericLiteral",
+                "value": 1,
+              },
+              "start": Object {
+                "character": 20,
+                "line": 14,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 15,
+              "line": 14,
+            },
+            "type": "AssignmentStatement",
+            "variable": Object {
+              "end": Object {
+                "character": 16,
+                "line": 14,
+              },
+              "name": "i",
+              "start": Object {
+                "character": 15,
+                "line": 14,
+              },
+              "type": "Identifier",
+            },
+          },
+          "start": Object {
+            "character": 15,
+            "line": 14,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "condition": Object {
+        "end": Object {
+          "character": 14,
+          "line": 14,
+        },
+        "left": Object {
+          "end": Object {
+            "character": 9,
+            "line": 14,
+          },
+          "name": "i",
+          "start": Object {
+            "character": 8,
+            "line": 14,
+          },
+          "type": "Identifier",
+        },
+        "operator": "<",
+        "right": Object {
+          "end": Object {
+            "character": 13,
+            "line": 14,
+          },
+          "name": "b",
+          "start": Object {
+            "character": 12,
+            "line": 14,
+          },
+          "type": "Identifier",
+        },
+        "start": Object {
+          "character": 10,
+          "line": 14,
+        },
+        "type": "BinaryExpression",
+      },
+      "end": Object {
+        "character": 21,
+        "line": 14,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 14,
+      },
+      "type": "WhileStatement",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "end": Object {
+            "character": 11,
+            "line": 16,
+          },
+          "expression": Object {
+            "end": Object {
+              "character": 11,
+              "line": 16,
+            },
+            "init": Object {
+              "end": Object {
+                "character": 11,
+                "line": 16,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 6,
+                  "line": 16,
+                },
+                "name": "b",
+                "start": Object {
+                  "character": 5,
+                  "line": 16,
+                },
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": Object {
+                "end": Object {
+                  "character": 11,
+                  "line": 16,
+                },
+                "raw": "1",
+                "start": Object {
+                  "character": 10,
+                  "line": 16,
+                },
+                "type": "NumericLiteral",
+                "value": 1,
+              },
+              "start": Object {
+                "character": 10,
+                "line": 16,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 5,
+              "line": 16,
+            },
+            "type": "AssignmentStatement",
+            "variable": Object {
+              "end": Object {
+                "character": 6,
+                "line": 16,
+              },
+              "name": "b",
+              "start": Object {
+                "character": 5,
+                "line": 16,
+              },
+              "type": "Identifier",
+            },
+          },
+          "start": Object {
+            "character": 5,
+            "line": 16,
+          },
+          "type": "CallStatement",
+        },
+      ],
+      "condition": Object {
+        "end": Object {
+          "character": 14,
+          "line": 15,
+        },
+        "left": Object {
+          "end": Object {
+            "character": 9,
+            "line": 15,
+          },
+          "name": "b",
+          "start": Object {
+            "character": 8,
+            "line": 15,
+          },
+          "type": "Identifier",
+        },
+        "operator": "<",
+        "right": Object {
+          "end": Object {
+            "character": 13,
+            "line": 15,
+          },
+          "name": "i",
+          "start": Object {
+            "character": 12,
+            "line": 15,
+          },
+          "type": "Identifier",
+        },
+        "start": Object {
+          "character": 10,
+          "line": 15,
+        },
+        "type": "BinaryExpression",
+      },
+      "end": Object {
+        "character": 10,
+        "line": 17,
+      },
+      "start": Object {
+        "character": 1,
+        "line": 15,
+      },
+      "type": "WhileStatement",
+    },
+    Object {
+      "end": Object {
+        "character": 14,
+        "line": 19,
+      },
+      "init": Object {
+        "body": Array [
+          Object {
+            "end": Object {
+              "character": 34,
+              "line": 18,
+            },
+            "expression": Object {
+              "arguments": Array [
+                Object {
+                  "end": Object {
+                    "character": 33,
+                    "line": 18,
+                  },
+                  "name": "v",
+                  "start": Object {
+                    "character": 32,
+                    "line": 18,
+                  },
+                  "type": "Identifier",
+                },
+              ],
+              "base": Object {
+                "end": Object {
+                  "character": 31,
+                  "line": 18,
+                },
+                "name": "print",
+                "start": Object {
+                  "character": 26,
+                  "line": 18,
+                },
+                "type": "Identifier",
+              },
+              "end": Object {
+                "character": 34,
+                "line": 18,
+              },
+              "start": Object {
+                "character": 31,
+                "line": 18,
+              },
+              "type": "CallExpression",
+            },
+            "start": Object {
+              "character": 26,
+              "line": 18,
+            },
+            "type": "CallStatement",
+          },
+        ],
+        "end": Object {
+          "character": 34,
+          "line": 18,
+        },
+        "parameters": Array [
+          Object {
+            "end": Object {
+              "character": 24,
+              "line": 18,
+            },
+            "name": "v",
+            "start": Object {
+              "character": 23,
+              "line": 18,
+            },
+            "type": "Identifier",
+          },
+        ],
+        "start": Object {
+          "character": 14,
+          "line": 18,
+        },
+        "type": "FunctionDeclaration",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 18,
+      },
+      "type": "AssignmentStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 11,
+          "line": 18,
+        },
+        "name": "myFunction",
+        "start": Object {
+          "character": 1,
+          "line": 18,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "end": Object {
+        "character": 13,
+        "line": 21,
+      },
+      "init": Object {
+        "body": Array [
+          Object {
+            "end": Object {
+              "character": 13,
+              "line": 20,
+            },
+            "expression": Object {
+              "arguments": Array [
+                Object {
+                  "end": Object {
+                    "character": 12,
+                    "line": 20,
+                  },
+                  "name": "n",
+                  "start": Object {
+                    "character": 11,
+                    "line": 20,
+                  },
+                  "type": "Identifier",
+                },
+              ],
+              "base": Object {
+                "end": Object {
+                  "character": 10,
+                  "line": 20,
+                },
+                "name": "print",
+                "start": Object {
+                  "character": 5,
+                  "line": 20,
+                },
+                "type": "Identifier",
+              },
+              "end": Object {
+                "character": 13,
+                "line": 20,
+              },
+              "start": Object {
+                "character": 10,
+                "line": 20,
+              },
+              "type": "CallExpression",
+            },
+            "start": Object {
+              "character": 5,
+              "line": 20,
+            },
+            "type": "CallStatement",
+          },
+        ],
+        "end": Object {
+          "character": 13,
+          "line": 21,
+        },
+        "parameters": Array [
+          Object {
+            "end": Object {
+              "character": 27,
+              "line": 19,
+            },
+            "name": "n",
+            "start": Object {
+              "character": 26,
+              "line": 19,
+            },
+            "type": "Identifier",
+          },
+        ],
+        "start": Object {
+          "character": 17,
+          "line": 19,
+        },
+        "type": "FunctionDeclaration",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 19,
+      },
+      "type": "AssignmentStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 14,
+          "line": 19,
+        },
+        "name": "otherFunction",
+        "start": Object {
+          "character": 1,
+          "line": 19,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "body": Array [
+        Object {
+          "argument": Object {
+            "end": Object {
+              "character": 25,
+              "line": 23,
+            },
+            "raw": "\\"was\\"",
+            "start": Object {
+              "character": 20,
+              "line": 23,
+            },
+            "type": "StringLiteral",
+            "value": "was",
+          },
+          "end": Object {
+            "character": 25,
+            "line": 23,
+          },
+          "start": Object {
+            "character": 13,
+            "line": 23,
+          },
+          "type": "ReturnStatement",
+        },
+      ],
+      "end": Object {
+        "character": 25,
+        "line": 23,
+      },
+      "parameters": Array [
+        Object {
+          "end": Object {
+            "character": 11,
+            "line": 23,
+          },
+          "name": "m",
+          "start": Object {
+            "character": 10,
+            "line": 23,
+          },
+          "type": "Identifier",
+        },
+      ],
+      "start": Object {
+        "character": 1,
+        "line": 23,
+      },
+      "type": "FunctionDeclaration",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "clauses": Array [
+            Object {
+              "body": Array [
+                Object {
+                  "argument": Object {
+                    "end": Object {
+                      "character": 29,
+                      "line": 27,
+                    },
+                    "raw": "\\"foo\\"",
+                    "start": Object {
+                      "character": 24,
+                      "line": 27,
+                    },
+                    "type": "StringLiteral",
+                    "value": "foo",
+                  },
+                  "end": Object {
+                    "character": 29,
+                    "line": 27,
+                  },
+                  "start": Object {
+                    "character": 17,
+                    "line": 27,
+                  },
+                  "type": "ReturnStatement",
+                },
+              ],
+              "condition": Object {
+                "end": Object {
+                  "character": 10,
+                  "line": 27,
+                },
+                "name": "a",
+                "start": Object {
+                  "character": 9,
+                  "line": 27,
+                },
+                "type": "Identifier",
+              },
+              "end": Object {
+                "character": 29,
+                "line": 27,
+              },
+              "start": Object {
+                "character": 5,
+                "line": 27,
+              },
+              "type": "IfShortcutClause",
+            },
+          ],
+          "end": Object {
+            "character": 29,
+            "line": 27,
+          },
+          "start": Object {
+            "character": 5,
+            "line": 27,
+          },
+          "type": "IfShortcutStatement",
+        },
+      ],
+      "end": Object {
+        "character": 13,
+        "line": 28,
+      },
+      "parameters": Array [
+        Object {
+          "end": Object {
+            "character": 11,
+            "line": 26,
+          },
+          "name": "b",
+          "start": Object {
+            "character": 10,
+            "line": 26,
+          },
+          "type": "Identifier",
+        },
+      ],
+      "start": Object {
+        "character": 1,
+        "line": 26,
+      },
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": Object {
+    "character": 13,
+    "line": 28,
+  },
+  "literals": Array [
+    Object {
+      "end": Object {
+        "character": 9,
+        "line": 1,
+      },
+      "raw": "true",
+      "start": Object {
+        "character": 5,
+        "line": 1,
+      },
+      "type": "BooleanLiteral",
+      "value": true,
+    },
+    Object {
+      "end": Object {
+        "character": 28,
+        "line": 1,
+      },
+      "raw": "\\"true\\"",
+      "start": Object {
+        "character": 22,
+        "line": 1,
+      },
+      "type": "StringLiteral",
+      "value": "true",
+    },
+    Object {
+      "end": Object {
+        "character": 10,
+        "line": 2,
+      },
+      "raw": "false",
+      "start": Object {
+        "character": 5,
+        "line": 2,
+      },
+      "type": "BooleanLiteral",
+      "value": false,
+    },
+    Object {
+      "end": Object {
+        "character": 29,
+        "line": 2,
+      },
+      "raw": "\\"true\\"",
+      "start": Object {
+        "character": 23,
+        "line": 2,
+      },
+      "type": "StringLiteral",
+      "value": "true",
+    },
+    Object {
+      "end": Object {
+        "character": 48,
+        "line": 2,
+      },
+      "raw": "\\"true\\"",
+      "start": Object {
+        "character": 42,
+        "line": 2,
+      },
+      "type": "StringLiteral",
+      "value": "true",
+    },
+    Object {
+      "end": Object {
+        "character": 12,
+        "line": 3,
+      },
+      "raw": "\\"was\\"",
+      "start": Object {
+        "character": 7,
+        "line": 3,
+      },
+      "type": "StringLiteral",
+      "value": "was",
+    },
+    Object {
+      "end": Object {
+        "character": 10,
+        "line": 4,
+      },
+      "raw": "false",
+      "start": Object {
+        "character": 5,
+        "line": 4,
+      },
+      "type": "BooleanLiteral",
+      "value": false,
+    },
+    Object {
+      "end": Object {
+        "character": 16,
+        "line": 5,
+      },
+      "raw": "false",
+      "start": Object {
+        "character": 11,
+        "line": 5,
+      },
+      "type": "BooleanLiteral",
+      "value": false,
+    },
+    Object {
+      "end": Object {
+        "character": 15,
+        "line": 7,
+      },
+      "raw": "true",
+      "start": Object {
+        "character": 11,
+        "line": 7,
+      },
+      "type": "BooleanLiteral",
+      "value": true,
+    },
+    Object {
+      "end": Object {
+        "character": 21,
+        "line": 14,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 20,
+        "line": 14,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 11,
+        "line": 16,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 10,
+        "line": 16,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 25,
+        "line": 23,
+      },
+      "raw": "\\"was\\"",
+      "start": Object {
+        "character": 20,
+        "line": 23,
+      },
+      "type": "StringLiteral",
+      "value": "was",
+    },
+    Object {
+      "end": Object {
+        "character": 29,
+        "line": 27,
+      },
+      "raw": "\\"foo\\"",
+      "start": Object {
+        "character": 24,
+        "line": 27,
+      },
+      "type": "StringLiteral",
+      "value": "foo",
+    },
+  ],
+  "namespaces": Set {
+    "print",
+    "i",
+    "b",
+    "myFunction",
+    "v",
+    "otherFunction",
+    "n",
+    "m",
+    "a",
   },
   "nativeImports": Array [],
   "start": Object {
@@ -26258,18 +29022,18 @@ Object {
                   "line": 19,
                 },
                 "start": Object {
-                  "character": 25,
+                  "character": 5,
                   "line": 19,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 6,
-              "line": 20,
+              "character": 54,
+              "line": 19,
             },
             "start": Object {
-              "character": 25,
+              "character": 5,
               "line": 19,
             },
             "type": "IfShortcutStatement",
@@ -27321,66 +30085,6 @@ Object {
                         },
                         "type": "CallStatement",
                       },
-                      Object {
-                        "end": Object {
-                          "character": 26,
-                          "line": 44,
-                        },
-                        "init": Object {
-                          "end": Object {
-                            "character": 26,
-                            "line": 44,
-                          },
-                          "left": Object {
-                            "end": Object {
-                              "character": 22,
-                              "line": 44,
-                            },
-                            "name": "index",
-                            "start": Object {
-                              "character": 17,
-                              "line": 44,
-                            },
-                            "type": "Identifier",
-                          },
-                          "operator": "+",
-                          "right": Object {
-                            "end": Object {
-                              "character": 26,
-                              "line": 44,
-                            },
-                            "raw": "1",
-                            "start": Object {
-                              "character": 25,
-                              "line": 44,
-                            },
-                            "type": "NumericLiteral",
-                            "value": 1,
-                          },
-                          "start": Object {
-                            "character": 23,
-                            "line": 44,
-                          },
-                          "type": "BinaryExpression",
-                        },
-                        "start": Object {
-                          "character": 9,
-                          "line": 44,
-                        },
-                        "type": "AssignmentStatement",
-                        "variable": Object {
-                          "end": Object {
-                            "character": 14,
-                            "line": 44,
-                          },
-                          "name": "index",
-                          "start": Object {
-                            "character": 9,
-                            "line": 44,
-                          },
-                          "type": "Identifier",
-                        },
-                      },
                     ],
                     "condition": Object {
                       "end": Object {
@@ -27468,25 +30172,85 @@ Object {
                       "type": "BinaryExpression",
                     },
                     "end": Object {
-                      "character": 26,
-                      "line": 44,
-                    },
-                    "start": Object {
-                      "character": 54,
+                      "character": 75,
                       "line": 43,
                     },
-                    "type": "IfClause",
+                    "start": Object {
+                      "character": 9,
+                      "line": 43,
+                    },
+                    "type": "IfShortcutClause",
                   },
                 ],
                 "end": Object {
-                  "character": 14,
-                  "line": 45,
-                },
-                "start": Object {
-                  "character": 54,
+                  "character": 75,
                   "line": 43,
                 },
-                "type": "IfStatement",
+                "start": Object {
+                  "character": 9,
+                  "line": 43,
+                },
+                "type": "IfShortcutStatement",
+              },
+              Object {
+                "end": Object {
+                  "character": 26,
+                  "line": 44,
+                },
+                "init": Object {
+                  "end": Object {
+                    "character": 26,
+                    "line": 44,
+                  },
+                  "left": Object {
+                    "end": Object {
+                      "character": 22,
+                      "line": 44,
+                    },
+                    "name": "index",
+                    "start": Object {
+                      "character": 17,
+                      "line": 44,
+                    },
+                    "type": "Identifier",
+                  },
+                  "operator": "+",
+                  "right": Object {
+                    "end": Object {
+                      "character": 26,
+                      "line": 44,
+                    },
+                    "raw": "1",
+                    "start": Object {
+                      "character": 25,
+                      "line": 44,
+                    },
+                    "type": "NumericLiteral",
+                    "value": 1,
+                  },
+                  "start": Object {
+                    "character": 23,
+                    "line": 44,
+                  },
+                  "type": "BinaryExpression",
+                },
+                "start": Object {
+                  "character": 9,
+                  "line": 44,
+                },
+                "type": "AssignmentStatement",
+                "variable": Object {
+                  "end": Object {
+                    "character": 14,
+                    "line": 44,
+                  },
+                  "name": "index",
+                  "start": Object {
+                    "character": 9,
+                    "line": 44,
+                  },
+                  "type": "Identifier",
+                },
               },
             ],
             "condition": Object {
@@ -29539,18 +32303,18 @@ Object {
                   "line": 19,
                 },
                 "start": Object {
-                  "character": 25,
+                  "character": 5,
                   "line": 19,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 6,
-              "line": 20,
+              "character": 54,
+              "line": 19,
             },
             "start": Object {
-              "character": 25,
+              "character": 5,
               "line": 19,
             },
             "type": "IfShortcutStatement",
@@ -30602,66 +33366,6 @@ Object {
                         },
                         "type": "CallStatement",
                       },
-                      Object {
-                        "end": Object {
-                          "character": 26,
-                          "line": 44,
-                        },
-                        "init": Object {
-                          "end": Object {
-                            "character": 26,
-                            "line": 44,
-                          },
-                          "left": Object {
-                            "end": Object {
-                              "character": 22,
-                              "line": 44,
-                            },
-                            "name": "index",
-                            "start": Object {
-                              "character": 17,
-                              "line": 44,
-                            },
-                            "type": "Identifier",
-                          },
-                          "operator": "+",
-                          "right": Object {
-                            "end": Object {
-                              "character": 26,
-                              "line": 44,
-                            },
-                            "raw": "1",
-                            "start": Object {
-                              "character": 25,
-                              "line": 44,
-                            },
-                            "type": "NumericLiteral",
-                            "value": 1,
-                          },
-                          "start": Object {
-                            "character": 23,
-                            "line": 44,
-                          },
-                          "type": "BinaryExpression",
-                        },
-                        "start": Object {
-                          "character": 9,
-                          "line": 44,
-                        },
-                        "type": "AssignmentStatement",
-                        "variable": Object {
-                          "end": Object {
-                            "character": 14,
-                            "line": 44,
-                          },
-                          "name": "index",
-                          "start": Object {
-                            "character": 9,
-                            "line": 44,
-                          },
-                          "type": "Identifier",
-                        },
-                      },
                     ],
                     "condition": Object {
                       "end": Object {
@@ -30749,25 +33453,85 @@ Object {
                       "type": "BinaryExpression",
                     },
                     "end": Object {
-                      "character": 26,
-                      "line": 44,
-                    },
-                    "start": Object {
-                      "character": 54,
+                      "character": 75,
                       "line": 43,
                     },
-                    "type": "IfClause",
+                    "start": Object {
+                      "character": 9,
+                      "line": 43,
+                    },
+                    "type": "IfShortcutClause",
                   },
                 ],
                 "end": Object {
-                  "character": 14,
-                  "line": 45,
-                },
-                "start": Object {
-                  "character": 54,
+                  "character": 75,
                   "line": 43,
                 },
-                "type": "IfStatement",
+                "start": Object {
+                  "character": 9,
+                  "line": 43,
+                },
+                "type": "IfShortcutStatement",
+              },
+              Object {
+                "end": Object {
+                  "character": 26,
+                  "line": 44,
+                },
+                "init": Object {
+                  "end": Object {
+                    "character": 26,
+                    "line": 44,
+                  },
+                  "left": Object {
+                    "end": Object {
+                      "character": 22,
+                      "line": 44,
+                    },
+                    "name": "index",
+                    "start": Object {
+                      "character": 17,
+                      "line": 44,
+                    },
+                    "type": "Identifier",
+                  },
+                  "operator": "+",
+                  "right": Object {
+                    "end": Object {
+                      "character": 26,
+                      "line": 44,
+                    },
+                    "raw": "1",
+                    "start": Object {
+                      "character": 25,
+                      "line": 44,
+                    },
+                    "type": "NumericLiteral",
+                    "value": 1,
+                  },
+                  "start": Object {
+                    "character": 23,
+                    "line": 44,
+                  },
+                  "type": "BinaryExpression",
+                },
+                "start": Object {
+                  "character": 9,
+                  "line": 44,
+                },
+                "type": "AssignmentStatement",
+                "variable": Object {
+                  "end": Object {
+                    "character": 14,
+                    "line": 44,
+                  },
+                  "name": "index",
+                  "start": Object {
+                    "character": 9,
+                    "line": 44,
+                  },
+                  "type": "Identifier",
+                },
               },
             ],
             "condition": Object {
@@ -35686,18 +38450,18 @@ Object {
                   "line": 86,
                 },
                 "start": Object {
-                  "character": 31,
+                  "character": 5,
                   "line": 86,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 87,
+              "character": 47,
+              "line": 86,
             },
             "start": Object {
-              "character": 31,
+              "character": 5,
               "line": 86,
             },
             "type": "IfShortcutStatement",
@@ -35832,18 +38596,18 @@ Object {
                   "line": 87,
                 },
                 "start": Object {
-                  "character": 29,
+                  "character": 5,
                   "line": 87,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 88,
+              "character": 57,
+              "line": 87,
             },
             "start": Object {
-              "character": 29,
+              "character": 5,
               "line": 87,
             },
             "type": "IfShortcutStatement",
@@ -36057,29 +38821,6 @@ Object {
                     },
                     "type": "CallStatement",
                   },
-                  Object {
-                    "argument": Object {
-                      "end": Object {
-                        "character": 14,
-                        "line": 89,
-                      },
-                      "name": "me",
-                      "start": Object {
-                        "character": 12,
-                        "line": 89,
-                      },
-                      "type": "Identifier",
-                    },
-                    "end": Object {
-                      "character": 14,
-                      "line": 89,
-                    },
-                    "start": Object {
-                      "character": 5,
-                      "line": 89,
-                    },
-                    "type": "ReturnStatement",
-                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -36167,25 +38908,48 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 14,
-                  "line": 89,
-                },
-                "start": Object {
-                  "character": 32,
+                  "character": 103,
                   "line": 88,
                 },
-                "type": "IfClause",
+                "start": Object {
+                  "character": 5,
+                  "line": 88,
+                },
+                "type": "IfShortcutClause",
               },
             ],
+            "end": Object {
+              "character": 103,
+              "line": 88,
+            },
+            "start": Object {
+              "character": 5,
+              "line": 88,
+            },
+            "type": "IfShortcutStatement",
+          },
+          Object {
+            "argument": Object {
+              "end": Object {
+                "character": 14,
+                "line": 89,
+              },
+              "name": "me",
+              "start": Object {
+                "character": 12,
+                "line": 89,
+              },
+              "type": "Identifier",
+            },
             "end": Object {
               "character": 13,
               "line": 90,
             },
             "start": Object {
-              "character": 32,
-              "line": 88,
+              "character": 5,
+              "line": 89,
             },
-            "type": "IfStatement",
+            "type": "ReturnStatement",
           },
         ],
         "end": Object {
@@ -36857,18 +39621,18 @@ Object {
                   "line": 105,
                 },
                 "start": Object {
-                  "character": 26,
+                  "character": 5,
                   "line": 105,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 9,
-              "line": 106,
+              "character": 47,
+              "line": 105,
             },
             "start": Object {
-              "character": 26,
+              "character": 5,
               "line": 105,
             },
             "type": "IfShortcutStatement",
@@ -41530,18 +44294,18 @@ Object {
                   "line": 160,
                 },
                 "start": Object {
-                  "character": 26,
+                  "character": 5,
                   "line": 160,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 9,
-              "line": 161,
+              "character": 47,
+              "line": 160,
             },
             "start": Object {
-              "character": 26,
+              "character": 5,
               "line": 160,
             },
             "type": "IfShortcutStatement",
@@ -42912,18 +45676,18 @@ Object {
                               "line": 187,
                             },
                             "start": Object {
-                              "character": 60,
+                              "character": 13,
                               "line": 187,
                             },
                             "type": "IfShortcutClause",
                           },
                         ],
                         "end": Object {
-                          "character": 14,
-                          "line": 188,
+                          "character": 65,
+                          "line": 187,
                         },
                         "start": Object {
-                          "character": 60,
+                          "character": 13,
                           "line": 187,
                         },
                         "type": "IfShortcutStatement",
@@ -43385,18 +46149,18 @@ Object {
                                       "line": 194,
                                     },
                                     "start": Object {
-                                      "character": 53,
+                                      "character": 17,
                                       "line": 194,
                                     },
                                     "type": "IfShortcutClause",
                                   },
                                 ],
                                 "end": Object {
-                                  "character": 23,
-                                  "line": 195,
+                                  "character": 58,
+                                  "line": 194,
                                 },
                                 "start": Object {
-                                  "character": 53,
+                                  "character": 17,
                                   "line": 194,
                                 },
                                 "type": "IfShortcutStatement",
@@ -49304,18 +52068,18 @@ Object {
                   "line": 86,
                 },
                 "start": Object {
-                  "character": 31,
+                  "character": 5,
                   "line": 86,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 87,
+              "character": 47,
+              "line": 86,
             },
             "start": Object {
-              "character": 31,
+              "character": 5,
               "line": 86,
             },
             "type": "IfShortcutStatement",
@@ -49450,18 +52214,18 @@ Object {
                   "line": 87,
                 },
                 "start": Object {
-                  "character": 29,
+                  "character": 5,
                   "line": 87,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 88,
+              "character": 57,
+              "line": 87,
             },
             "start": Object {
-              "character": 29,
+              "character": 5,
               "line": 87,
             },
             "type": "IfShortcutStatement",
@@ -49675,29 +52439,6 @@ Object {
                     },
                     "type": "CallStatement",
                   },
-                  Object {
-                    "argument": Object {
-                      "end": Object {
-                        "character": 14,
-                        "line": 89,
-                      },
-                      "name": "me",
-                      "start": Object {
-                        "character": 12,
-                        "line": 89,
-                      },
-                      "type": "Identifier",
-                    },
-                    "end": Object {
-                      "character": 14,
-                      "line": 89,
-                    },
-                    "start": Object {
-                      "character": 5,
-                      "line": 89,
-                    },
-                    "type": "ReturnStatement",
-                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -49785,25 +52526,48 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 14,
-                  "line": 89,
-                },
-                "start": Object {
-                  "character": 32,
+                  "character": 103,
                   "line": 88,
                 },
-                "type": "IfClause",
+                "start": Object {
+                  "character": 5,
+                  "line": 88,
+                },
+                "type": "IfShortcutClause",
               },
             ],
+            "end": Object {
+              "character": 103,
+              "line": 88,
+            },
+            "start": Object {
+              "character": 5,
+              "line": 88,
+            },
+            "type": "IfShortcutStatement",
+          },
+          Object {
+            "argument": Object {
+              "end": Object {
+                "character": 14,
+                "line": 89,
+              },
+              "name": "me",
+              "start": Object {
+                "character": 12,
+                "line": 89,
+              },
+              "type": "Identifier",
+            },
             "end": Object {
               "character": 13,
               "line": 90,
             },
             "start": Object {
-              "character": 32,
-              "line": 88,
+              "character": 5,
+              "line": 89,
             },
-            "type": "IfStatement",
+            "type": "ReturnStatement",
           },
         ],
         "end": Object {
@@ -50475,18 +53239,18 @@ Object {
                   "line": 105,
                 },
                 "start": Object {
-                  "character": 26,
+                  "character": 5,
                   "line": 105,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 9,
-              "line": 106,
+              "character": 47,
+              "line": 105,
             },
             "start": Object {
-              "character": 26,
+              "character": 5,
               "line": 105,
             },
             "type": "IfShortcutStatement",
@@ -55148,18 +57912,18 @@ Object {
                   "line": 160,
                 },
                 "start": Object {
-                  "character": 26,
+                  "character": 5,
                   "line": 160,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 9,
-              "line": 161,
+              "character": 47,
+              "line": 160,
             },
             "start": Object {
-              "character": 26,
+              "character": 5,
               "line": 160,
             },
             "type": "IfShortcutStatement",
@@ -56530,18 +59294,18 @@ Object {
                               "line": 187,
                             },
                             "start": Object {
-                              "character": 60,
+                              "character": 13,
                               "line": 187,
                             },
                             "type": "IfShortcutClause",
                           },
                         ],
                         "end": Object {
-                          "character": 14,
-                          "line": 188,
+                          "character": 65,
+                          "line": 187,
                         },
                         "start": Object {
-                          "character": 60,
+                          "character": 13,
                           "line": 187,
                         },
                         "type": "IfShortcutStatement",
@@ -57003,18 +59767,18 @@ Object {
                                       "line": 194,
                                     },
                                     "start": Object {
-                                      "character": 53,
+                                      "character": 17,
                                       "line": 194,
                                     },
                                     "type": "IfShortcutClause",
                                   },
                                 ],
                                 "end": Object {
-                                  "character": 23,
-                                  "line": 195,
+                                  "character": 58,
+                                  "line": 194,
                                 },
                                 "start": Object {
-                                  "character": 53,
+                                  "character": 17,
                                   "line": 194,
                                 },
                                 "type": "IfShortcutStatement",
@@ -59954,18 +62718,18 @@ Object {
                   "line": 25,
                 },
                 "start": Object {
-                  "character": 27,
+                  "character": 5,
                   "line": 25,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 26,
+              "character": 37,
+              "line": 25,
             },
             "start": Object {
-              "character": 27,
+              "character": 5,
               "line": 25,
             },
             "type": "IfShortcutStatement",
@@ -60076,18 +62840,18 @@ Object {
                   "line": 26,
                 },
                 "start": Object {
-                  "character": 28,
+                  "character": 5,
                   "line": 26,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 27,
+              "character": 49,
+              "line": 26,
             },
             "start": Object {
-              "character": 28,
+              "character": 5,
               "line": 26,
             },
             "type": "IfShortcutStatement",
@@ -60234,18 +62998,18 @@ Object {
                           "line": 29,
                         },
                         "start": Object {
-                          "character": 27,
+                          "character": 9,
                           "line": 29,
                         },
                         "type": "IfShortcutClause",
                       },
                     ],
                     "end": Object {
-                      "character": 11,
-                      "line": 30,
+                      "character": 42,
+                      "line": 29,
                     },
                     "start": Object {
-                      "character": 27,
+                      "character": 9,
                       "line": 29,
                     },
                     "type": "IfShortcutStatement",
@@ -61740,29 +64504,6 @@ Object {
                     },
                     "type": "CallStatement",
                   },
-                  Object {
-                    "argument": Object {
-                      "end": Object {
-                        "character": 18,
-                        "line": 54,
-                      },
-                      "name": "result",
-                      "start": Object {
-                        "character": 12,
-                        "line": 54,
-                      },
-                      "type": "Identifier",
-                    },
-                    "end": Object {
-                      "character": 18,
-                      "line": 54,
-                    },
-                    "start": Object {
-                      "character": 5,
-                      "line": 54,
-                    },
-                    "type": "ReturnStatement",
-                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -61802,25 +64543,48 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 18,
-                  "line": 54,
-                },
-                "start": Object {
-                  "character": 32,
+                  "character": 52,
                   "line": 53,
                 },
-                "type": "IfClause",
+                "start": Object {
+                  "character": 5,
+                  "line": 53,
+                },
+                "type": "IfShortcutClause",
               },
             ],
+            "end": Object {
+              "character": 52,
+              "line": 53,
+            },
+            "start": Object {
+              "character": 5,
+              "line": 53,
+            },
+            "type": "IfShortcutStatement",
+          },
+          Object {
+            "argument": Object {
+              "end": Object {
+                "character": 18,
+                "line": 54,
+              },
+              "name": "result",
+              "start": Object {
+                "character": 12,
+                "line": 54,
+              },
+              "type": "Identifier",
+            },
             "end": Object {
               "character": 13,
               "line": 55,
             },
             "start": Object {
-              "character": 32,
-              "line": 53,
+              "character": 5,
+              "line": 54,
             },
-            "type": "IfStatement",
+            "type": "ReturnStatement",
           },
         ],
         "end": Object {
@@ -63548,18 +66312,18 @@ Object {
                   "line": 25,
                 },
                 "start": Object {
-                  "character": 27,
+                  "character": 5,
                   "line": 25,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 26,
+              "character": 37,
+              "line": 25,
             },
             "start": Object {
-              "character": 27,
+              "character": 5,
               "line": 25,
             },
             "type": "IfShortcutStatement",
@@ -63670,18 +66434,18 @@ Object {
                   "line": 26,
                 },
                 "start": Object {
-                  "character": 28,
+                  "character": 5,
                   "line": 26,
                 },
                 "type": "IfShortcutClause",
               },
             ],
             "end": Object {
-              "character": 7,
-              "line": 27,
+              "character": 49,
+              "line": 26,
             },
             "start": Object {
-              "character": 28,
+              "character": 5,
               "line": 26,
             },
             "type": "IfShortcutStatement",
@@ -63828,18 +66592,18 @@ Object {
                           "line": 29,
                         },
                         "start": Object {
-                          "character": 27,
+                          "character": 9,
                           "line": 29,
                         },
                         "type": "IfShortcutClause",
                       },
                     ],
                     "end": Object {
-                      "character": 11,
-                      "line": 30,
+                      "character": 42,
+                      "line": 29,
                     },
                     "start": Object {
-                      "character": 27,
+                      "character": 9,
                       "line": 29,
                     },
                     "type": "IfShortcutStatement",
@@ -65334,29 +68098,6 @@ Object {
                     },
                     "type": "CallStatement",
                   },
-                  Object {
-                    "argument": Object {
-                      "end": Object {
-                        "character": 18,
-                        "line": 54,
-                      },
-                      "name": "result",
-                      "start": Object {
-                        "character": 12,
-                        "line": 54,
-                      },
-                      "type": "Identifier",
-                    },
-                    "end": Object {
-                      "character": 18,
-                      "line": 54,
-                    },
-                    "start": Object {
-                      "character": 5,
-                      "line": 54,
-                    },
-                    "type": "ReturnStatement",
-                  },
                 ],
                 "condition": Object {
                   "end": Object {
@@ -65396,25 +68137,48 @@ Object {
                   "type": "BinaryExpression",
                 },
                 "end": Object {
-                  "character": 18,
-                  "line": 54,
-                },
-                "start": Object {
-                  "character": 32,
+                  "character": 52,
                   "line": 53,
                 },
-                "type": "IfClause",
+                "start": Object {
+                  "character": 5,
+                  "line": 53,
+                },
+                "type": "IfShortcutClause",
               },
             ],
+            "end": Object {
+              "character": 52,
+              "line": 53,
+            },
+            "start": Object {
+              "character": 5,
+              "line": 53,
+            },
+            "type": "IfShortcutStatement",
+          },
+          Object {
+            "argument": Object {
+              "end": Object {
+                "character": 18,
+                "line": 54,
+              },
+              "name": "result",
+              "start": Object {
+                "character": 12,
+                "line": 54,
+              },
+              "type": "Identifier",
+            },
             "end": Object {
               "character": 13,
               "line": 55,
             },
             "start": Object {
-              "character": 32,
-              "line": 53,
+              "character": 5,
+              "line": 54,
             },
-            "type": "IfStatement",
+            "type": "ReturnStatement",
           },
         ],
         "end": Object {

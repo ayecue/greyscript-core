@@ -1,0 +1,28 @@
+if (true) then print("true")
+if (false) then print("true") else print("true")
+print("was")
+if (false) then
+	print(false)
+else
+	print(true)
+end if
+
+for (i in []) print(i)
+for (b in [])
+	print(b)
+end for
+while (i < b) i += 1
+while (b < i)
+	b += 1
+end while
+myFunction = function(v) print(v)
+otherFunction = function(n)
+	print(n)
+end function
+
+function(m) return "was"
+
+
+function(b)
+	if (a) then return "foo"
+end function

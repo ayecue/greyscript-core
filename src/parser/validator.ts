@@ -4,6 +4,7 @@ import { Operator } from '../types/operators';
 export default class Validator {
 	getBreakingBlockShortcutKeywords(): string[] {
 		return [
+			'if',
 			'else',
 			'else if',
 			'<eof>',

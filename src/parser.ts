@@ -30,7 +30,8 @@ import {
 	ASTEvaluationExpression,
 	ASTSliceExpression,
 	ASTImportCodeExpression,
-	ASTProvider
+	ASTProvider,
+	ASTPosition
 } from './parser/ast';
 import Validator from './parser/validator';
 import {
@@ -731,7 +732,7 @@ export default class Parser {
 			me.expect('end while');
 		} else {
 			body = me.parseBlockShortcut();
-			me.expectMany(['end while', ';', '<eof>']);
+			me.expectMany([';', '<eof>']);
 		}
 
 		return me.astProvider.whileStatement(
@@ -739,8 +740,8 @@ export default class Parser {
 			body,
 			start,
 			{
-				line: me.token.line,
-				character: me.token.lineRange[1]
+				line: me.previousToken.line,
+				character: me.previousToken.lineRange[1]
 			}
 		);
 	}
@@ -762,13 +763,9 @@ export default class Parser {
 		return expression;
 	}
 
-	parseIfShortcutStatement(condition: ASTBase): ASTIfStatement {
+	parseIfShortcutStatement(condition: ASTBase, start: ASTPosition): ASTIfStatement {
 		const me = this;
 		const clauses = [];
-		const start = {
-			line: me.token.line,
-			character: me.token.lineRange[0]
-		};
 		let statementStart = start;
 		let body = [];
 
@@ -780,7 +777,7 @@ export default class Parser {
 			clauses.push(me.astProvider.ifShortcutClause(
 				condition,
 				body,
-				statementStart,
+				start,
 				{
 					line: me.token.line,
 					character: me.token.lineRange[1]
@@ -790,7 +787,7 @@ export default class Parser {
 			clauses.push(me.astProvider.ifClause(
 				condition,
 				body,
-				statementStart,
+				start,
 				{
 					line: me.token.line,
 					character: me.token.lineRange[1]
@@ -865,8 +862,8 @@ export default class Parser {
 				clauses,
 				start,
 				{
-					line: me.token.line,
-					character: me.token.lineRange[1]
+					line: me.previousToken.line,
+					character: me.previousToken.lineRange[1]
 				}
 			);
 		}
@@ -895,7 +892,7 @@ export default class Parser {
 		condition = me.parseExpectedExpression();
 		me.expect('then');
 
-		if (TokenType.EOL !== me.token.type) return me.parseIfShortcutStatement(condition);
+		if (TokenType.EOL !== me.token.type) return me.parseIfShortcutStatement(condition, start);
 
 		body = me.parseBlock();
 		clauses.push(me.astProvider.ifClause(condition, body, statementStart, {
@@ -1028,14 +1025,18 @@ export default class Parser {
 			base = me.parseRighthandExpressionGreedy(base);
 		}
 
-		if (me.consumeMany([';', '<eof>'])) {
+		if (
+			me.token.type === TokenType.EOL ||
+			me.token.type === TokenType.EOF ||
+			me.token.value === 'else'
+		) {
 			if (me.validator.isLiteral(<TokenType>last.type)) {
 				return base;
 			}
 
 			return me.astProvider.callStatement(base, start, {
-				line: me.previousToken.line,
-				character: me.previousToken.lineRange[1]
+				line: me.token.line,
+				character: me.token.lineRange[1]
 			});
 		}
 
@@ -1078,7 +1079,7 @@ export default class Parser {
 			me.expect('end for');
 		} else {
 			body = me.parseBlockShortcut();
-			me.expectMany(['end for', ';', '<eof>']);
+			me.expectMany([';', '<eof>']);
 		}
 
 		return me.astProvider.forGenericStatement(
@@ -1087,8 +1088,8 @@ export default class Parser {
 			body,
 			start,
 			{
-				line: me.token.line,
-				character: me.token.lineRange[1]
+				line: me.previousToken.line,
+				character: me.previousToken.lineRange[1]
 			}
 		);
 	}
@@ -1140,7 +1141,7 @@ export default class Parser {
 			me.expect('end function');
 		} else {
 			body = me.parseBlockShortcut();
-			me.expectMany(['end function', ';', '<eof>']);
+			me.expectMany([';', '<eof>']);
 		}
 
 		return me.astProvider.functionStatement(
@@ -1148,8 +1149,8 @@ export default class Parser {
 			body,
 			start,
 			{
-				line: me.token.line,
-				character: me.token.lineRange[1]
+				line: me.previousToken.line,
+				character: me.previousToken.lineRange[1]
 			}
 		);
 	};
@@ -1212,19 +1213,15 @@ export default class Parser {
 		const me = this;
 		const block = [];
 		let statement;
-		let value;
+		let value = me.token.value;
 
-		while (true) {
-			value = me.token.value;
-			if (me.token.type === TokenType.EOL || me.validator.isBreakingBlockShortcutKeyword(value)) {
-				break;
-			}
+		while (
+			me.token.type !== TokenType.EOL &&
+			!me.validator.isBreakingBlockShortcutKeyword(value)
+		) {
 			statement = me.parseStatement('return' === value);
 			if (statement) block.push(statement);
-			if (me.token.type === TokenType.EOL) {
-				break;
-			}
-			me.consume(';');
+			value = me.token.value;
 		}
 
 		return block;
