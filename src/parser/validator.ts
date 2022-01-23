@@ -128,6 +128,7 @@ export default class Validator {
 	isLiteral(type: TokenType): boolean {
 		return this.getLiterals().indexOf(type) !== -1;
 	}
+
 	isExpressionOperator(value: Operator): boolean {
 		return this.getExpressionOperators().indexOf(value) !== -1;
 	}

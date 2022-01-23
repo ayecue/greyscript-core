@@ -22612,6 +22612,1502 @@ Object {
 }
 `;
 
+exports[`parse default scripts if-clause.src 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "end": Object {
+        "character": 41,
+        "line": 1,
+      },
+      "init": Object {
+        "end": Object {
+          "character": 40,
+          "line": 1,
+        },
+        "fields": Array [
+          Object {
+            "end": Object {
+              "character": 23,
+              "line": 1,
+            },
+            "start": Object {
+              "character": 11,
+              "line": 1,
+            },
+            "type": "ListValue",
+            "value": Object {
+              "end": Object {
+                "character": 23,
+                "line": 1,
+              },
+              "raw": "\\"/home/test\\"",
+              "start": Object {
+                "character": 11,
+                "line": 1,
+              },
+              "type": "StringLiteral",
+              "value": "/home/test",
+            },
+          },
+          Object {
+            "end": Object {
+              "character": 39,
+              "line": 1,
+            },
+            "start": Object {
+              "character": 25,
+              "line": 1,
+            },
+            "type": "ListValue",
+            "value": Object {
+              "end": Object {
+                "character": 39,
+                "line": 1,
+              },
+              "raw": "\\"myTestFolder\\"",
+              "start": Object {
+                "character": 25,
+                "line": 1,
+              },
+              "type": "StringLiteral",
+              "value": "myTestFolder",
+            },
+          },
+        ],
+        "start": Object {
+          "character": 10,
+          "line": 1,
+        },
+        "type": "ListConstructorExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 1,
+      },
+      "type": "AssignmentStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 7,
+          "line": 1,
+        },
+        "name": "params",
+        "start": Object {
+          "character": 1,
+          "line": 1,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "end": Object {
+        "character": 70,
+        "line": 3,
+      },
+      "expression": Object {
+        "arguments": Array [
+          Object {
+            "end": Object {
+              "character": 69,
+              "line": 3,
+            },
+            "left": Object {
+              "end": Object {
+                "character": 46,
+                "line": 3,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 25,
+                  "line": 3,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 13,
+                      "line": 3,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 7,
+                      "line": 3,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 20,
+                    "line": 3,
+                  },
+                  "identifier": Object {
+                    "end": Object {
+                      "character": 17,
+                      "line": 3,
+                    },
+                    "name": "len",
+                    "start": Object {
+                      "character": 14,
+                      "line": 3,
+                    },
+                    "type": "Identifier",
+                  },
+                  "indexer": ".",
+                  "start": Object {
+                    "character": 13,
+                    "line": 3,
+                  },
+                  "type": "MemberExpression",
+                },
+                "operator": "!=",
+                "right": Object {
+                  "end": Object {
+                    "character": 22,
+                    "line": 3,
+                  },
+                  "raw": "1",
+                  "start": Object {
+                    "character": 21,
+                    "line": 3,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 1,
+                },
+                "start": Object {
+                  "character": 18,
+                  "line": 3,
+                },
+                "type": "BinaryExpression",
+              },
+              "operator": "or",
+              "right": Object {
+                "end": Object {
+                  "character": 46,
+                  "line": 3,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 32,
+                      "line": 3,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 26,
+                      "line": 3,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 38,
+                    "line": 3,
+                  },
+                  "index": Object {
+                    "end": Object {
+                      "character": 34,
+                      "line": 3,
+                    },
+                    "raw": "0",
+                    "start": Object {
+                      "character": 33,
+                      "line": 3,
+                    },
+                    "type": "NumericLiteral",
+                    "value": 0,
+                  },
+                  "start": Object {
+                    "character": 33,
+                    "line": 3,
+                  },
+                  "type": "IndexExpression",
+                },
+                "operator": "==",
+                "right": Object {
+                  "end": Object {
+                    "character": 43,
+                    "line": 3,
+                  },
+                  "raw": "\\"-h\\"",
+                  "start": Object {
+                    "character": 39,
+                    "line": 3,
+                  },
+                  "type": "StringLiteral",
+                  "value": "-h",
+                },
+                "start": Object {
+                  "character": 36,
+                  "line": 3,
+                },
+                "type": "BinaryExpression",
+              },
+              "start": Object {
+                "character": 18,
+                "line": 3,
+              },
+              "type": "LogicalExpression",
+            },
+            "operator": "or",
+            "right": Object {
+              "end": Object {
+                "character": 69,
+                "line": 3,
+              },
+              "left": Object {
+                "base": Object {
+                  "end": Object {
+                    "character": 53,
+                    "line": 3,
+                  },
+                  "name": "params",
+                  "start": Object {
+                    "character": 47,
+                    "line": 3,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 59,
+                  "line": 3,
+                },
+                "index": Object {
+                  "end": Object {
+                    "character": 55,
+                    "line": 3,
+                  },
+                  "raw": "0",
+                  "start": Object {
+                    "character": 54,
+                    "line": 3,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 0,
+                },
+                "start": Object {
+                  "character": 54,
+                  "line": 3,
+                },
+                "type": "IndexExpression",
+              },
+              "operator": "==",
+              "right": Object {
+                "end": Object {
+                  "character": 68,
+                  "line": 3,
+                },
+                "raw": "\\"--help\\"",
+                "start": Object {
+                  "character": 60,
+                  "line": 3,
+                },
+                "type": "StringLiteral",
+                "value": "--help",
+              },
+              "start": Object {
+                "character": 57,
+                "line": 3,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 18,
+              "line": 3,
+            },
+            "type": "LogicalExpression",
+          },
+        ],
+        "base": Object {
+          "end": Object {
+            "character": 6,
+            "line": 3,
+          },
+          "name": "print",
+          "start": Object {
+            "character": 1,
+            "line": 3,
+          },
+          "type": "Identifier",
+        },
+        "end": Object {
+          "character": 70,
+          "line": 3,
+        },
+        "start": Object {
+          "character": 6,
+          "line": 3,
+        },
+        "type": "CallExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 3,
+      },
+      "type": "CallStatement",
+    },
+    Object {
+      "end": Object {
+        "character": 75,
+        "line": 4,
+      },
+      "expression": Object {
+        "arguments": Array [
+          Object {
+            "end": Object {
+              "character": 75,
+              "line": 4,
+            },
+            "left": Object {
+              "end": Object {
+                "character": 50,
+                "line": 4,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 24,
+                  "line": 4,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 14,
+                      "line": 4,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 8,
+                      "line": 4,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 21,
+                    "line": 4,
+                  },
+                  "identifier": Object {
+                    "end": Object {
+                      "character": 18,
+                      "line": 4,
+                    },
+                    "name": "len",
+                    "start": Object {
+                      "character": 15,
+                      "line": 4,
+                    },
+                    "type": "Identifier",
+                  },
+                  "indexer": ".",
+                  "start": Object {
+                    "character": 14,
+                    "line": 4,
+                  },
+                  "type": "MemberExpression",
+                },
+                "operator": "!=",
+                "right": Object {
+                  "end": Object {
+                    "character": 23,
+                    "line": 4,
+                  },
+                  "raw": "1",
+                  "start": Object {
+                    "character": 22,
+                    "line": 4,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 1,
+                },
+                "start": Object {
+                  "character": 19,
+                  "line": 4,
+                },
+                "type": "BinaryExpression",
+              },
+              "operator": "or",
+              "right": Object {
+                "end": Object {
+                  "character": 47,
+                  "line": 4,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 35,
+                      "line": 4,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 29,
+                      "line": 4,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 41,
+                    "line": 4,
+                  },
+                  "index": Object {
+                    "end": Object {
+                      "character": 37,
+                      "line": 4,
+                    },
+                    "raw": "0",
+                    "start": Object {
+                      "character": 36,
+                      "line": 4,
+                    },
+                    "type": "NumericLiteral",
+                    "value": 0,
+                  },
+                  "start": Object {
+                    "character": 36,
+                    "line": 4,
+                  },
+                  "type": "IndexExpression",
+                },
+                "operator": "==",
+                "right": Object {
+                  "end": Object {
+                    "character": 46,
+                    "line": 4,
+                  },
+                  "raw": "\\"-h\\"",
+                  "start": Object {
+                    "character": 42,
+                    "line": 4,
+                  },
+                  "type": "StringLiteral",
+                  "value": "-h",
+                },
+                "start": Object {
+                  "character": 39,
+                  "line": 4,
+                },
+                "type": "BinaryExpression",
+              },
+              "start": Object {
+                "character": 25,
+                "line": 4,
+              },
+              "type": "LogicalExpression",
+            },
+            "operator": "or",
+            "right": Object {
+              "end": Object {
+                "character": 74,
+                "line": 4,
+              },
+              "left": Object {
+                "base": Object {
+                  "end": Object {
+                    "character": 58,
+                    "line": 4,
+                  },
+                  "name": "params",
+                  "start": Object {
+                    "character": 52,
+                    "line": 4,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 64,
+                  "line": 4,
+                },
+                "index": Object {
+                  "end": Object {
+                    "character": 60,
+                    "line": 4,
+                  },
+                  "raw": "0",
+                  "start": Object {
+                    "character": 59,
+                    "line": 4,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 0,
+                },
+                "start": Object {
+                  "character": 59,
+                  "line": 4,
+                },
+                "type": "IndexExpression",
+              },
+              "operator": "==",
+              "right": Object {
+                "end": Object {
+                  "character": 73,
+                  "line": 4,
+                },
+                "raw": "\\"--help\\"",
+                "start": Object {
+                  "character": 65,
+                  "line": 4,
+                },
+                "type": "StringLiteral",
+                "value": "--help",
+              },
+              "start": Object {
+                "character": 62,
+                "line": 4,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 25,
+              "line": 4,
+            },
+            "type": "LogicalExpression",
+          },
+        ],
+        "base": Object {
+          "end": Object {
+            "character": 6,
+            "line": 4,
+          },
+          "name": "print",
+          "start": Object {
+            "character": 1,
+            "line": 4,
+          },
+          "type": "Identifier",
+        },
+        "end": Object {
+          "character": 75,
+          "line": 4,
+        },
+        "start": Object {
+          "character": 6,
+          "line": 4,
+        },
+        "type": "CallExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 4,
+      },
+      "type": "CallStatement",
+    },
+  ],
+  "end": Object {
+    "character": 75,
+    "line": 4,
+  },
+  "literals": Array [
+    Object {
+      "end": Object {
+        "character": 23,
+        "line": 1,
+      },
+      "raw": "\\"/home/test\\"",
+      "start": Object {
+        "character": 11,
+        "line": 1,
+      },
+      "type": "StringLiteral",
+      "value": "/home/test",
+    },
+    Object {
+      "end": Object {
+        "character": 39,
+        "line": 1,
+      },
+      "raw": "\\"myTestFolder\\"",
+      "start": Object {
+        "character": 25,
+        "line": 1,
+      },
+      "type": "StringLiteral",
+      "value": "myTestFolder",
+    },
+    Object {
+      "end": Object {
+        "character": 22,
+        "line": 3,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 21,
+        "line": 3,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 34,
+        "line": 3,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 33,
+        "line": 3,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 43,
+        "line": 3,
+      },
+      "raw": "\\"-h\\"",
+      "start": Object {
+        "character": 39,
+        "line": 3,
+      },
+      "type": "StringLiteral",
+      "value": "-h",
+    },
+    Object {
+      "end": Object {
+        "character": 55,
+        "line": 3,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 54,
+        "line": 3,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 68,
+        "line": 3,
+      },
+      "raw": "\\"--help\\"",
+      "start": Object {
+        "character": 60,
+        "line": 3,
+      },
+      "type": "StringLiteral",
+      "value": "--help",
+    },
+    Object {
+      "end": Object {
+        "character": 23,
+        "line": 4,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 22,
+        "line": 4,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 37,
+        "line": 4,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 36,
+        "line": 4,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 46,
+        "line": 4,
+      },
+      "raw": "\\"-h\\"",
+      "start": Object {
+        "character": 42,
+        "line": 4,
+      },
+      "type": "StringLiteral",
+      "value": "-h",
+    },
+    Object {
+      "end": Object {
+        "character": 60,
+        "line": 4,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 59,
+        "line": 4,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 73,
+        "line": 4,
+      },
+      "raw": "\\"--help\\"",
+      "start": Object {
+        "character": 65,
+        "line": 4,
+      },
+      "type": "StringLiteral",
+      "value": "--help",
+    },
+  ],
+  "namespaces": Set {
+    "len",
+  },
+  "nativeImports": Array [],
+  "start": Object {
+    "character": 1,
+    "line": 1,
+  },
+  "type": "Chunk",
+}
+`;
+
+exports[`parse default scripts if-clause.src unsafe 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "end": Object {
+        "character": 41,
+        "line": 1,
+      },
+      "init": Object {
+        "end": Object {
+          "character": 40,
+          "line": 1,
+        },
+        "fields": Array [
+          Object {
+            "end": Object {
+              "character": 23,
+              "line": 1,
+            },
+            "start": Object {
+              "character": 11,
+              "line": 1,
+            },
+            "type": "ListValue",
+            "value": Object {
+              "end": Object {
+                "character": 23,
+                "line": 1,
+              },
+              "raw": "\\"/home/test\\"",
+              "start": Object {
+                "character": 11,
+                "line": 1,
+              },
+              "type": "StringLiteral",
+              "value": "/home/test",
+            },
+          },
+          Object {
+            "end": Object {
+              "character": 39,
+              "line": 1,
+            },
+            "start": Object {
+              "character": 25,
+              "line": 1,
+            },
+            "type": "ListValue",
+            "value": Object {
+              "end": Object {
+                "character": 39,
+                "line": 1,
+              },
+              "raw": "\\"myTestFolder\\"",
+              "start": Object {
+                "character": 25,
+                "line": 1,
+              },
+              "type": "StringLiteral",
+              "value": "myTestFolder",
+            },
+          },
+        ],
+        "start": Object {
+          "character": 10,
+          "line": 1,
+        },
+        "type": "ListConstructorExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 1,
+      },
+      "type": "AssignmentStatement",
+      "variable": Object {
+        "end": Object {
+          "character": 7,
+          "line": 1,
+        },
+        "name": "params",
+        "start": Object {
+          "character": 1,
+          "line": 1,
+        },
+        "type": "Identifier",
+      },
+    },
+    Object {
+      "end": Object {
+        "character": 70,
+        "line": 3,
+      },
+      "expression": Object {
+        "arguments": Array [
+          Object {
+            "end": Object {
+              "character": 69,
+              "line": 3,
+            },
+            "left": Object {
+              "end": Object {
+                "character": 46,
+                "line": 3,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 25,
+                  "line": 3,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 13,
+                      "line": 3,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 7,
+                      "line": 3,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 20,
+                    "line": 3,
+                  },
+                  "identifier": Object {
+                    "end": Object {
+                      "character": 17,
+                      "line": 3,
+                    },
+                    "name": "len",
+                    "start": Object {
+                      "character": 14,
+                      "line": 3,
+                    },
+                    "type": "Identifier",
+                  },
+                  "indexer": ".",
+                  "start": Object {
+                    "character": 13,
+                    "line": 3,
+                  },
+                  "type": "MemberExpression",
+                },
+                "operator": "!=",
+                "right": Object {
+                  "end": Object {
+                    "character": 22,
+                    "line": 3,
+                  },
+                  "raw": "1",
+                  "start": Object {
+                    "character": 21,
+                    "line": 3,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 1,
+                },
+                "start": Object {
+                  "character": 18,
+                  "line": 3,
+                },
+                "type": "BinaryExpression",
+              },
+              "operator": "or",
+              "right": Object {
+                "end": Object {
+                  "character": 46,
+                  "line": 3,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 32,
+                      "line": 3,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 26,
+                      "line": 3,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 38,
+                    "line": 3,
+                  },
+                  "index": Object {
+                    "end": Object {
+                      "character": 34,
+                      "line": 3,
+                    },
+                    "raw": "0",
+                    "start": Object {
+                      "character": 33,
+                      "line": 3,
+                    },
+                    "type": "NumericLiteral",
+                    "value": 0,
+                  },
+                  "start": Object {
+                    "character": 33,
+                    "line": 3,
+                  },
+                  "type": "IndexExpression",
+                },
+                "operator": "==",
+                "right": Object {
+                  "end": Object {
+                    "character": 43,
+                    "line": 3,
+                  },
+                  "raw": "\\"-h\\"",
+                  "start": Object {
+                    "character": 39,
+                    "line": 3,
+                  },
+                  "type": "StringLiteral",
+                  "value": "-h",
+                },
+                "start": Object {
+                  "character": 36,
+                  "line": 3,
+                },
+                "type": "BinaryExpression",
+              },
+              "start": Object {
+                "character": 18,
+                "line": 3,
+              },
+              "type": "LogicalExpression",
+            },
+            "operator": "or",
+            "right": Object {
+              "end": Object {
+                "character": 69,
+                "line": 3,
+              },
+              "left": Object {
+                "base": Object {
+                  "end": Object {
+                    "character": 53,
+                    "line": 3,
+                  },
+                  "name": "params",
+                  "start": Object {
+                    "character": 47,
+                    "line": 3,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 59,
+                  "line": 3,
+                },
+                "index": Object {
+                  "end": Object {
+                    "character": 55,
+                    "line": 3,
+                  },
+                  "raw": "0",
+                  "start": Object {
+                    "character": 54,
+                    "line": 3,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 0,
+                },
+                "start": Object {
+                  "character": 54,
+                  "line": 3,
+                },
+                "type": "IndexExpression",
+              },
+              "operator": "==",
+              "right": Object {
+                "end": Object {
+                  "character": 68,
+                  "line": 3,
+                },
+                "raw": "\\"--help\\"",
+                "start": Object {
+                  "character": 60,
+                  "line": 3,
+                },
+                "type": "StringLiteral",
+                "value": "--help",
+              },
+              "start": Object {
+                "character": 57,
+                "line": 3,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 18,
+              "line": 3,
+            },
+            "type": "LogicalExpression",
+          },
+        ],
+        "base": Object {
+          "end": Object {
+            "character": 6,
+            "line": 3,
+          },
+          "name": "print",
+          "start": Object {
+            "character": 1,
+            "line": 3,
+          },
+          "type": "Identifier",
+        },
+        "end": Object {
+          "character": 70,
+          "line": 3,
+        },
+        "start": Object {
+          "character": 6,
+          "line": 3,
+        },
+        "type": "CallExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 3,
+      },
+      "type": "CallStatement",
+    },
+    Object {
+      "end": Object {
+        "character": 75,
+        "line": 4,
+      },
+      "expression": Object {
+        "arguments": Array [
+          Object {
+            "end": Object {
+              "character": 75,
+              "line": 4,
+            },
+            "left": Object {
+              "end": Object {
+                "character": 50,
+                "line": 4,
+              },
+              "left": Object {
+                "end": Object {
+                  "character": 24,
+                  "line": 4,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 14,
+                      "line": 4,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 8,
+                      "line": 4,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 21,
+                    "line": 4,
+                  },
+                  "identifier": Object {
+                    "end": Object {
+                      "character": 18,
+                      "line": 4,
+                    },
+                    "name": "len",
+                    "start": Object {
+                      "character": 15,
+                      "line": 4,
+                    },
+                    "type": "Identifier",
+                  },
+                  "indexer": ".",
+                  "start": Object {
+                    "character": 14,
+                    "line": 4,
+                  },
+                  "type": "MemberExpression",
+                },
+                "operator": "!=",
+                "right": Object {
+                  "end": Object {
+                    "character": 23,
+                    "line": 4,
+                  },
+                  "raw": "1",
+                  "start": Object {
+                    "character": 22,
+                    "line": 4,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 1,
+                },
+                "start": Object {
+                  "character": 19,
+                  "line": 4,
+                },
+                "type": "BinaryExpression",
+              },
+              "operator": "or",
+              "right": Object {
+                "end": Object {
+                  "character": 47,
+                  "line": 4,
+                },
+                "left": Object {
+                  "base": Object {
+                    "end": Object {
+                      "character": 35,
+                      "line": 4,
+                    },
+                    "name": "params",
+                    "start": Object {
+                      "character": 29,
+                      "line": 4,
+                    },
+                    "type": "Identifier",
+                  },
+                  "end": Object {
+                    "character": 41,
+                    "line": 4,
+                  },
+                  "index": Object {
+                    "end": Object {
+                      "character": 37,
+                      "line": 4,
+                    },
+                    "raw": "0",
+                    "start": Object {
+                      "character": 36,
+                      "line": 4,
+                    },
+                    "type": "NumericLiteral",
+                    "value": 0,
+                  },
+                  "start": Object {
+                    "character": 36,
+                    "line": 4,
+                  },
+                  "type": "IndexExpression",
+                },
+                "operator": "==",
+                "right": Object {
+                  "end": Object {
+                    "character": 46,
+                    "line": 4,
+                  },
+                  "raw": "\\"-h\\"",
+                  "start": Object {
+                    "character": 42,
+                    "line": 4,
+                  },
+                  "type": "StringLiteral",
+                  "value": "-h",
+                },
+                "start": Object {
+                  "character": 39,
+                  "line": 4,
+                },
+                "type": "BinaryExpression",
+              },
+              "start": Object {
+                "character": 25,
+                "line": 4,
+              },
+              "type": "LogicalExpression",
+            },
+            "operator": "or",
+            "right": Object {
+              "end": Object {
+                "character": 74,
+                "line": 4,
+              },
+              "left": Object {
+                "base": Object {
+                  "end": Object {
+                    "character": 58,
+                    "line": 4,
+                  },
+                  "name": "params",
+                  "start": Object {
+                    "character": 52,
+                    "line": 4,
+                  },
+                  "type": "Identifier",
+                },
+                "end": Object {
+                  "character": 64,
+                  "line": 4,
+                },
+                "index": Object {
+                  "end": Object {
+                    "character": 60,
+                    "line": 4,
+                  },
+                  "raw": "0",
+                  "start": Object {
+                    "character": 59,
+                    "line": 4,
+                  },
+                  "type": "NumericLiteral",
+                  "value": 0,
+                },
+                "start": Object {
+                  "character": 59,
+                  "line": 4,
+                },
+                "type": "IndexExpression",
+              },
+              "operator": "==",
+              "right": Object {
+                "end": Object {
+                  "character": 73,
+                  "line": 4,
+                },
+                "raw": "\\"--help\\"",
+                "start": Object {
+                  "character": 65,
+                  "line": 4,
+                },
+                "type": "StringLiteral",
+                "value": "--help",
+              },
+              "start": Object {
+                "character": 62,
+                "line": 4,
+              },
+              "type": "BinaryExpression",
+            },
+            "start": Object {
+              "character": 25,
+              "line": 4,
+            },
+            "type": "LogicalExpression",
+          },
+        ],
+        "base": Object {
+          "end": Object {
+            "character": 6,
+            "line": 4,
+          },
+          "name": "print",
+          "start": Object {
+            "character": 1,
+            "line": 4,
+          },
+          "type": "Identifier",
+        },
+        "end": Object {
+          "character": 75,
+          "line": 4,
+        },
+        "start": Object {
+          "character": 6,
+          "line": 4,
+        },
+        "type": "CallExpression",
+      },
+      "start": Object {
+        "character": 1,
+        "line": 4,
+      },
+      "type": "CallStatement",
+    },
+  ],
+  "end": Object {
+    "character": 75,
+    "line": 4,
+  },
+  "literals": Array [
+    Object {
+      "end": Object {
+        "character": 23,
+        "line": 1,
+      },
+      "raw": "\\"/home/test\\"",
+      "start": Object {
+        "character": 11,
+        "line": 1,
+      },
+      "type": "StringLiteral",
+      "value": "/home/test",
+    },
+    Object {
+      "end": Object {
+        "character": 39,
+        "line": 1,
+      },
+      "raw": "\\"myTestFolder\\"",
+      "start": Object {
+        "character": 25,
+        "line": 1,
+      },
+      "type": "StringLiteral",
+      "value": "myTestFolder",
+    },
+    Object {
+      "end": Object {
+        "character": 22,
+        "line": 3,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 21,
+        "line": 3,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 34,
+        "line": 3,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 33,
+        "line": 3,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 43,
+        "line": 3,
+      },
+      "raw": "\\"-h\\"",
+      "start": Object {
+        "character": 39,
+        "line": 3,
+      },
+      "type": "StringLiteral",
+      "value": "-h",
+    },
+    Object {
+      "end": Object {
+        "character": 55,
+        "line": 3,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 54,
+        "line": 3,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 68,
+        "line": 3,
+      },
+      "raw": "\\"--help\\"",
+      "start": Object {
+        "character": 60,
+        "line": 3,
+      },
+      "type": "StringLiteral",
+      "value": "--help",
+    },
+    Object {
+      "end": Object {
+        "character": 23,
+        "line": 4,
+      },
+      "raw": "1",
+      "start": Object {
+        "character": 22,
+        "line": 4,
+      },
+      "type": "NumericLiteral",
+      "value": 1,
+    },
+    Object {
+      "end": Object {
+        "character": 37,
+        "line": 4,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 36,
+        "line": 4,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 46,
+        "line": 4,
+      },
+      "raw": "\\"-h\\"",
+      "start": Object {
+        "character": 42,
+        "line": 4,
+      },
+      "type": "StringLiteral",
+      "value": "-h",
+    },
+    Object {
+      "end": Object {
+        "character": 60,
+        "line": 4,
+      },
+      "raw": "0",
+      "start": Object {
+        "character": 59,
+        "line": 4,
+      },
+      "type": "NumericLiteral",
+      "value": 0,
+    },
+    Object {
+      "end": Object {
+        "character": 73,
+        "line": 4,
+      },
+      "raw": "\\"--help\\"",
+      "start": Object {
+        "character": 65,
+        "line": 4,
+      },
+      "type": "StringLiteral",
+      "value": "--help",
+    },
+  ],
+  "namespaces": Set {
+    "len",
+  },
+  "nativeImports": Array [],
+  "start": Object {
+    "character": 1,
+    "line": 1,
+  },
+  "type": "Chunk",
+}
+`;
+
 exports[`parse default scripts if-shorthand.src 1`] = `
 Object {
   "body": Array [
