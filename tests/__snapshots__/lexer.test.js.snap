@@ -66654,6 +66654,2970 @@ Object {
 }
 `;
 
+exports[`parse default scripts scuffed-if-clauses.src 1`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    0,
+    2,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 2`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    3,
+    4,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 3`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    5,
+    9,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    4,
+    8,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 4`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    8,
+    9,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 5`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    11,
+    15,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    10,
+    14,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 6`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    16,
+    21,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    15,
+    20,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 7`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    21,
+    22,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    20,
+    21,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 8`] = `
+Object {
+  "lastLine": 1,
+  "lastLineStart": 0,
+  "line": 1,
+  "lineRange": Array [
+    22,
+    32,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    21,
+    31,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 1",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 9`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    32,
+    33,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    31,
+    32,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 10`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    33,
+    34,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    32,
+    33,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 11`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 34,
+  "range": Array [
+    34,
+    40,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 12`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 34,
+  "range": Array [
+    40,
+    41,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 13`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 42,
+  "range": Array [
+    42,
+    43,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 14`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 44,
+  "range": Array [
+    44,
+    45,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 15`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    46,
+    48,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 16`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    49,
+    50,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 17`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    5,
+    9,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    50,
+    54,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 18`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    54,
+    55,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 19`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    11,
+    15,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    56,
+    60,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 20`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    16,
+    21,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    61,
+    66,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 21`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    21,
+    22,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    66,
+    67,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 22`] = `
+Object {
+  "lastLine": 5,
+  "lastLineStart": 46,
+  "line": 5,
+  "lineRange": Array [
+    22,
+    32,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    67,
+    77,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 2",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 23`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    32,
+    33,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    77,
+    78,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 24`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    33,
+    34,
+  ],
+  "lineStart": 46,
+  "range": Array [
+    78,
+    79,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 25`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    1,
+    8,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    80,
+    87,
+  ],
+  "type": "Keyword",
+  "value": "else if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 26`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    88,
+    89,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 27`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    10,
+    14,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    89,
+    93,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 28`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    93,
+    94,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 29`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    16,
+    20,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    95,
+    99,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 30`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    21,
+    26,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    100,
+    105,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 31`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    26,
+    27,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    105,
+    106,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 32`] = `
+Object {
+  "lastLine": 6,
+  "lastLineStart": 80,
+  "line": 6,
+  "lineRange": Array [
+    27,
+    37,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    106,
+    116,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 2",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 33`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    37,
+    38,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    116,
+    117,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 34`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    38,
+    39,
+  ],
+  "lineStart": 80,
+  "range": Array [
+    117,
+    118,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 35`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 119,
+  "range": Array [
+    119,
+    125,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 36`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 119,
+  "range": Array [
+    125,
+    126,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 37`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 8,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 127,
+  "range": Array [
+    127,
+    128,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 38`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    129,
+    131,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 39`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    132,
+    133,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 40`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    5,
+    9,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    133,
+    137,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 41`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    137,
+    138,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 42`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    11,
+    15,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    139,
+    143,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 43`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    16,
+    21,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    144,
+    149,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 44`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    21,
+    22,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    149,
+    150,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 45`] = `
+Object {
+  "lastLine": 9,
+  "lastLineStart": 129,
+  "line": 9,
+  "lineRange": Array [
+    22,
+    32,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    150,
+    160,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 3",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 46`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    32,
+    33,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    160,
+    161,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 47`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    33,
+    34,
+  ],
+  "lineStart": 129,
+  "range": Array [
+    161,
+    162,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 48`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    1,
+    8,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    163,
+    170,
+  ],
+  "type": "Keyword",
+  "value": "else if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 49`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    171,
+    172,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 50`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    10,
+    14,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    172,
+    176,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 51`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    176,
+    177,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 52`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    16,
+    20,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    178,
+    182,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 53`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    21,
+    26,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    183,
+    188,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 54`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    26,
+    27,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    188,
+    189,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 55`] = `
+Object {
+  "lastLine": 10,
+  "lastLineStart": 163,
+  "line": 10,
+  "lineRange": Array [
+    27,
+    37,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    189,
+    199,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 3",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 56`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    37,
+    38,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    199,
+    200,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 57`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 10,
+  "lineRange": Array [
+    38,
+    39,
+  ],
+  "lineStart": 163,
+  "range": Array [
+    200,
+    201,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 58`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    1,
+    8,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    202,
+    209,
+  ],
+  "type": "Keyword",
+  "value": "else if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 59`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    210,
+    211,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 60`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    10,
+    14,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    211,
+    215,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 61`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    215,
+    216,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 62`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    16,
+    20,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    217,
+    221,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 63`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    21,
+    26,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    222,
+    227,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 64`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    26,
+    27,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    227,
+    228,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 65`] = `
+Object {
+  "lastLine": 11,
+  "lastLineStart": 202,
+  "line": 11,
+  "lineRange": Array [
+    27,
+    37,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    228,
+    238,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 3",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 66`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    37,
+    38,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    238,
+    239,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 67`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    38,
+    39,
+  ],
+  "lineStart": 202,
+  "range": Array [
+    239,
+    240,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 68`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 12,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 241,
+  "range": Array [
+    241,
+    247,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 69`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 12,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 241,
+  "range": Array [
+    247,
+    248,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 70`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 13,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 249,
+  "range": Array [
+    249,
+    250,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 71`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 14,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 251,
+  "range": Array [
+    251,
+    252,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 72`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    253,
+    255,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 73`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    256,
+    257,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 74`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    5,
+    9,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    257,
+    261,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 75`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    261,
+    262,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 76`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    11,
+    15,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    263,
+    267,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 77`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    16,
+    21,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    268,
+    273,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 78`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    21,
+    22,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    273,
+    274,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 79`] = `
+Object {
+  "lastLine": 15,
+  "lastLineStart": 253,
+  "line": 15,
+  "lineRange": Array [
+    22,
+    32,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    274,
+    284,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 4",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 80`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    32,
+    33,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    284,
+    285,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 81`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    33,
+    34,
+  ],
+  "lineStart": 253,
+  "range": Array [
+    285,
+    286,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 82`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    1,
+    8,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    287,
+    294,
+  ],
+  "type": "Keyword",
+  "value": "else if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 83`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    295,
+    296,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 84`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    10,
+    14,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    296,
+    300,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 85`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    300,
+    301,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 86`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    16,
+    20,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    302,
+    306,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 87`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    21,
+    26,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    307,
+    312,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 88`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    26,
+    27,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    312,
+    313,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 89`] = `
+Object {
+  "lastLine": 16,
+  "lastLineStart": 287,
+  "line": 16,
+  "lineRange": Array [
+    27,
+    37,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    313,
+    323,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 4",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 90`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    37,
+    38,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    323,
+    324,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 91`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    38,
+    39,
+  ],
+  "lineStart": 287,
+  "range": Array [
+    324,
+    325,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 92`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    1,
+    8,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    326,
+    333,
+  ],
+  "type": "Keyword",
+  "value": "else if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 93`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    334,
+    335,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 94`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    10,
+    14,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    335,
+    339,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 95`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    339,
+    340,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 96`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    16,
+    20,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    341,
+    345,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 97`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    21,
+    26,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    346,
+    351,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 98`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    26,
+    27,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    351,
+    352,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 99`] = `
+Object {
+  "lastLine": 17,
+  "lastLineStart": 326,
+  "line": 17,
+  "lineRange": Array [
+    27,
+    37,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    352,
+    362,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 4",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 100`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    37,
+    38,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    362,
+    363,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 101`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    38,
+    39,
+  ],
+  "lineStart": 326,
+  "range": Array [
+    363,
+    364,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 102`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 18,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 365,
+  "range": Array [
+    365,
+    369,
+  ],
+  "type": "Keyword",
+  "value": "else",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 103`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 18,
+  "lineRange": Array [
+    6,
+    11,
+  ],
+  "lineStart": 365,
+  "range": Array [
+    370,
+    375,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 104`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 18,
+  "lineRange": Array [
+    11,
+    12,
+  ],
+  "lineStart": 365,
+  "range": Array [
+    375,
+    376,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 105`] = `
+Object {
+  "lastLine": 18,
+  "lastLineStart": 365,
+  "line": 18,
+  "lineRange": Array [
+    12,
+    22,
+  ],
+  "lineStart": 365,
+  "range": Array [
+    376,
+    386,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 4",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 106`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 18,
+  "lineRange": Array [
+    22,
+    23,
+  ],
+  "lineStart": 365,
+  "range": Array [
+    386,
+    387,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 107`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 18,
+  "lineRange": Array [
+    23,
+    24,
+  ],
+  "lineStart": 365,
+  "range": Array [
+    387,
+    388,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 108`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 19,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 389,
+  "range": Array [
+    389,
+    395,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 109`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 19,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 389,
+  "range": Array [
+    395,
+    396,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 110`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 20,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 397,
+  "range": Array [
+    397,
+    398,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 111`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    399,
+    401,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 112`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    402,
+    403,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 113`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    5,
+    9,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    403,
+    407,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 114`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    407,
+    408,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 115`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    11,
+    15,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    409,
+    413,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 116`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    16,
+    21,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    414,
+    419,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 117`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    21,
+    22,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    419,
+    420,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 118`] = `
+Object {
+  "lastLine": 21,
+  "lastLineStart": 399,
+  "line": 21,
+  "lineRange": Array [
+    22,
+    32,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    420,
+    430,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 5",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 119`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    32,
+    33,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    430,
+    431,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 120`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 21,
+  "lineRange": Array [
+    33,
+    34,
+  ],
+  "lineStart": 399,
+  "range": Array [
+    431,
+    432,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 121`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    1,
+    8,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    433,
+    440,
+  ],
+  "type": "Keyword",
+  "value": "else if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 122`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    441,
+    442,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 123`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    10,
+    14,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    442,
+    446,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 124`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    14,
+    15,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    446,
+    447,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 125`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    16,
+    20,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    448,
+    452,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 126`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    21,
+    26,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    453,
+    458,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 127`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    26,
+    27,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    458,
+    459,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 128`] = `
+Object {
+  "lastLine": 22,
+  "lastLineStart": 433,
+  "line": 22,
+  "lineRange": Array [
+    27,
+    37,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    459,
+    469,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 5",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 129`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    37,
+    38,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    469,
+    470,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 130`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    38,
+    39,
+  ],
+  "lineStart": 433,
+  "range": Array [
+    470,
+    471,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 131`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 472,
+  "range": Array [
+    472,
+    476,
+  ],
+  "type": "Keyword",
+  "value": "else",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 132`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    6,
+    11,
+  ],
+  "lineStart": 472,
+  "range": Array [
+    477,
+    482,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 133`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    11,
+    12,
+  ],
+  "lineStart": 472,
+  "range": Array [
+    482,
+    483,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 134`] = `
+Object {
+  "lastLine": 23,
+  "lastLineStart": 472,
+  "line": 23,
+  "lineRange": Array [
+    12,
+    22,
+  ],
+  "lineStart": 472,
+  "range": Array [
+    483,
+    493,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 5",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 135`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    22,
+    23,
+  ],
+  "lineStart": 472,
+  "range": Array [
+    493,
+    494,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 136`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    23,
+    24,
+  ],
+  "lineStart": 472,
+  "range": Array [
+    494,
+    495,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 137`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 496,
+  "range": Array [
+    496,
+    502,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 138`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 496,
+  "range": Array [
+    502,
+    503,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 139`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 504,
+  "range": Array [
+    504,
+    505,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 140`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    506,
+    508,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 141`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    509,
+    510,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 142`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    5,
+    9,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    510,
+    514,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 143`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    514,
+    515,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 144`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    11,
+    15,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    516,
+    520,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 145`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    16,
+    21,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    521,
+    526,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 146`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    21,
+    22,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    526,
+    527,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 147`] = `
+Object {
+  "lastLine": 26,
+  "lastLineStart": 506,
+  "line": 26,
+  "lineRange": Array [
+    22,
+    32,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    527,
+    537,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 6",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 148`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    32,
+    33,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    537,
+    538,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 149`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    33,
+    34,
+  ],
+  "lineStart": 506,
+  "range": Array [
+    538,
+    539,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 150`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 540,
+  "range": Array [
+    540,
+    544,
+  ],
+  "type": "Keyword",
+  "value": "else",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 151`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    6,
+    11,
+  ],
+  "lineStart": 540,
+  "range": Array [
+    545,
+    550,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 152`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    11,
+    12,
+  ],
+  "lineStart": 540,
+  "range": Array [
+    550,
+    551,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 153`] = `
+Object {
+  "lastLine": 27,
+  "lastLineStart": 540,
+  "line": 27,
+  "lineRange": Array [
+    12,
+    22,
+  ],
+  "lineStart": 540,
+  "range": Array [
+    551,
+    561,
+  ],
+  "type": "StringLiteral",
+  "value": "true - 6",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 154`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    22,
+    23,
+  ],
+  "lineStart": 540,
+  "range": Array [
+    561,
+    562,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 155`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    23,
+    24,
+  ],
+  "lineStart": 540,
+  "range": Array [
+    562,
+    563,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts scuffed-if-clauses.src 156`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 28,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 564,
+  "range": Array [
+    564,
+    570,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
 exports[`parse default scripts simple-object.src 1`] = `
 Object {
   "lastLine": undefined,

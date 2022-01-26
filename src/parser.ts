@@ -798,6 +798,8 @@ export default class Parser {
 			));
 		}
 
+		me.consume(';');
+
 		while (me.consume('else if')) {
 			statementStart = {
 				line: me.token.line,
@@ -828,6 +830,8 @@ export default class Parser {
 					}
 				));
 			}
+
+			me.consume(';');
 		}
 
 		if (me.consume('else')) {
@@ -858,7 +862,8 @@ export default class Parser {
 			}
 		}
 
-		me.consumeMany(['end if', ';', '<eof>']);
+		me.consume(';');
+		me.consumeMany(['end if', '<eof>']);
 
 		if (isActuallyShortcut) {
 			return me.astProvider.ifShortcutStatement(
