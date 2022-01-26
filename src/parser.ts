@@ -44,7 +44,8 @@ import {
 	UnexpectedAssignmentOrCall,
 	UnexpectedParameterInFunction,
 	UnexpectedEOF,
-	UnexpectedNonStringLiteralInImportCode
+	UnexpectedNonStringLiteralInImportCode,
+	UnexpectedEndOfIfStatement
 } from './utils/errors';
 import getPrecedence from './parser/precedence';
 import { Operator } from './types/operators';
@@ -71,6 +72,7 @@ export default class Parser {
 	astProvider: ASTProvider;
 	unsafe: boolean;
 	errors: Error[];
+	endIfOnShortcutStack: { statement: ASTIfStatement, token: Token, previousEnd: ASTPosition }[];
 
 	constructor(content: string, options: ParserOptions = {}) {
 		const me = this;
@@ -91,6 +93,7 @@ export default class Parser {
 		me.astProvider = options.astProvider || new ASTProvider();
 		me.unsafe = options.unsafe || false;
 		me.errors = [];
+		me.endIfOnShortcutStack = [];
 	}
 
 	next(): Parser {
@@ -768,35 +771,26 @@ export default class Parser {
 
 	parseIfShortcutStatement(condition: ASTBase, start: ASTPosition): ASTIfStatement {
 		const me = this;
-		const clauses = [];
+		const clauses: ASTBase[] = [];
+		const ifStatement = me.astProvider.ifShortcutStatement(
+			clauses,
+			start,
+			null
+		);
 		let statementStart = start;
 		let body = [];
 
 		body = me.parseBlockShortcut();
 
-		const isActuallyShortcut = body.length === 1;
-
-		if (isActuallyShortcut) {
-			clauses.push(me.astProvider.ifShortcutClause(
-				condition,
-				body,
-				start,
-				{
-					line: me.token.line,
-					character: me.token.lineRange[1]
-				}
-			));
-		} else {
-			clauses.push(me.astProvider.ifClause(
-				condition,
-				body,
-				start,
-				{
-					line: me.token.line,
-					character: me.token.lineRange[1]
-				}
-			));
-		}
+		clauses.push(me.astProvider.ifShortcutClause(
+			condition,
+			body,
+			start,
+			{
+				line: me.token.line,
+				character: me.token.lineRange[1]
+			}
+		));
 
 		me.consume(';');
 
@@ -809,27 +803,15 @@ export default class Parser {
 			me.expect('then');
 			body = me.parseBlockShortcut();
 
-			if (isActuallyShortcut) {
-				clauses.push(me.astProvider.elseifShortcutClause(
-					condition,
-					body,
-					statementStart,
-					{
-						line: me.token.line,
-						character: me.token.lineRange[1]
-					}
-				));
-			} else {
-				clauses.push(me.astProvider.elseifClause(
-					condition,
-					body,
-					statementStart,
-					{
-						line: me.token.line,
-						character: me.token.lineRange[1]
-					}
-				));
-			}
+			clauses.push(me.astProvider.elseifShortcutClause(
+				condition,
+				body,
+				statementStart,
+				{
+					line: me.token.line,
+					character: me.token.lineRange[1]
+				}
+			));
 
 			me.consume(';');
 		}
@@ -841,58 +823,50 @@ export default class Parser {
 			};
 			body = me.parseBlockShortcut();
 
-			if (isActuallyShortcut) {
-				clauses.push(me.astProvider.elseShortcutClause(
-					body,
-					statementStart,
-					{
-						line: me.token.line,
-						character: me.token.lineRange[1]
-					}
-				));
-			} else {
-				clauses.push(me.astProvider.elseClause(
-					body,
-					statementStart,
-					{
-						line: me.token.line,
-						character: me.token.lineRange[1]
-					}
-				));
-			}
-		}
-
-		me.consume(';');
-		me.consumeMany(['end if', '<eof>']);
-
-		if (isActuallyShortcut) {
-			return me.astProvider.ifShortcutStatement(
-				clauses,
-				start,
+			clauses.push(me.astProvider.elseShortcutClause(
+				body,
+				statementStart,
 				{
-					line: me.previousToken.line,
-					character: me.previousToken.lineRange[1]
+					line: me.token.line,
+					character: me.token.lineRange[1]
 				}
-			);
+			));
+
+			me.consume(';');
 		}
 
-		return me.astProvider.ifStatement(
-			clauses,
-			start,
-			{
-				line: me.token.line,
-				character: me.token.lineRange[1]
-			}
-		);
+		me.consumeMany([';', '<eof>']);
+
+		const currentEnd = {
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[1]
+		};
+
+		if (me.consume('end if')) {
+			me.endIfOnShortcutStack.push({
+				statement: ifStatement,
+				token: me.previousToken,
+				previousEnd: currentEnd
+			});
+		}
+
+		ifStatement.end = currentEnd;
+
+		return ifStatement;
 	}
 
 	parseIfStatement(): ASTIfStatement {
 		const me = this;
-		const clauses = [];
+		const clauses: ASTBase[] = [];
 		const start = {
 			line: me.previousToken.line,
 			character: me.previousToken.lineRange[0]
 		};
+		const ifStatement = me.astProvider.ifStatement(
+			clauses,
+			start,
+			null
+		);
 		let statementStart = start;
 		let condition;
 		let body;
@@ -934,16 +908,25 @@ export default class Parser {
 			}));
 		}
 
-		me.expect('end if');
+		if (!me.consume('end if')) {
+			const item = me.endIfOnShortcutStack.pop();
 
-		return me.astProvider.ifStatement(
-			clauses,
-			start,
-			{
-				line: me.token.line,
-				character: me.token.lineRange[1]
+			if (!item) {
+				me.raise(new UnexpectedEndOfIfStatement(me.token));
 			}
-		);
+
+			ifStatement.end = item.statement.end;
+			item.statement.end = item.previousEnd;
+
+			return ifStatement;
+		}
+
+		ifStatement.end = {
+			line: me.previousToken.line,
+			character: me.previousToken.lineRange[1]
+		};
+
+		return ifStatement;
 	}
 
 	parseReturnStatement(isShortcutStatement: boolean = false): ASTReturnStatement {
@@ -1161,7 +1144,7 @@ export default class Parser {
 				character: me.previousToken.lineRange[1]
 			}
 		);
-	};
+	}
 
 	parseStatement(isShortcutStatement: boolean = false): ASTBase | null {
 		const me = this;

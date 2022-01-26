@@ -63,6 +63,17 @@ export class UnexpectedIdentifier extends Error {
 	}
 }
 
+export class UnexpectedEndOfIfStatement extends Error {
+	token: Token;
+
+	constructor(token: Token) {
+		super(`Unexpected end of if statement ${token.value} at line ${token.line}.`);
+		const me = this;
+
+		me.token = token;
+	}
+}
+
 export class UnexpectedArguments extends Error {
 	token: Token;
 	base: ASTBase;
