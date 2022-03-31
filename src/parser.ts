@@ -276,10 +276,7 @@ export default class Parser {
 		while (true) {
 			value = me.parseExpression()
 			if (value != null) fields.push(me.astProvider.listValue(value, value.start, value.end));
-			if (',;'.indexOf(me.token.value) >= 0) {
-				me.next();
-				continue;
-			}
+			if (me.consumeMany([',', ';'])) continue;
 			break;
 		}
 
@@ -364,7 +361,7 @@ export default class Parser {
 		let token = me.token;
 
 		while (true) {
-			if (token.value === ']') break;
+			if (token.value === ']' || token.value === '<eof>') break;
 			if (token.value === ':' && token.type !== TokenType.StringLiteral) {
 				let left;
 				let right;
