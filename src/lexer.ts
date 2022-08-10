@@ -277,7 +277,7 @@ export default class Lexer {
     const me = this;
     let code = me.codeAt();
 
-    while (!me.validator.isEndOfLine(code) && !me.isNotEOF()) {
+    while (!me.validator.isEndOfLine(code) && me.isNotEOF()) {
       me.nextIndex();
       code = me.codeAt();
     }
