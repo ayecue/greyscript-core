@@ -237,7 +237,12 @@ export default class Parser {
 
     me.next();
 
-    return me.astProvider.identifier({ name: identifier, start, end, scope: me.currentScope });
+    return me.astProvider.identifier({
+      name: identifier,
+      start,
+      end,
+      scope: me.currentScope
+    });
   }
 
   parseMapConstructor(): ASTMapConstructorExpression {
@@ -259,7 +264,8 @@ export default class Parser {
             key,
             value,
             start: key.start,
-            end: value.end, scope: me.currentScope
+            end: value.end,
+            scope: me.currentScope
           })
         );
       }
@@ -274,7 +280,8 @@ export default class Parser {
     return me.astProvider.mapConstructorExpression({
       fields,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[0]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[0]),
+      scope: me.currentScope
     });
   }
 
@@ -294,7 +301,8 @@ export default class Parser {
           me.astProvider.listValue({
             value,
             start: value.start,
-            end: value.end, scope: me.currentScope
+            end: value.end,
+            scope: me.currentScope
           })
         );
       if (me.consumeMany([',', ';'])) continue;
@@ -306,7 +314,8 @@ export default class Parser {
     return me.astProvider.listConstructorExpression({
       fields,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[0]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[0]),
+      scope: me.currentScope
     });
   }
 
@@ -357,13 +366,15 @@ export default class Parser {
       left: base,
       right: value,
       start: binaryExpressionStart,
-      end, scope: me.currentScope
+      end,
+      scope: me.currentScope
     });
     const assignmentStatement = me.astProvider.assignmentStatement({
       variable: base,
       init: expression,
       start: assignmentStart,
-      end, scope: me.currentScope
+      end,
+      scope: me.currentScope
     });
 
     me.currentScope.assignments.push(assignmentStatement);
@@ -389,7 +400,8 @@ export default class Parser {
         } else {
           left = me.astProvider.emptyExpression({
             start,
-            end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+            end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+            scope: me.currentScope
           });
         }
 
@@ -399,7 +411,8 @@ export default class Parser {
         } else {
           right = me.astProvider.emptyExpression({
             start,
-            end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+            end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+            scope: me.currentScope
           });
         }
 
@@ -408,14 +421,16 @@ export default class Parser {
           left,
           right,
           start,
-          end, scope: me.currentScope
+          end,
+          scope: me.currentScope
         });
 
         return me.astProvider.indexExpression({
           base,
           index: sliceExpression,
           start,
-          end, scope: me.currentScope
+          end,
+          scope: me.currentScope
         });
       }
 
@@ -430,7 +445,8 @@ export default class Parser {
       base,
       index: expression,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+      scope: me.currentScope
     });
   }
 
@@ -462,7 +478,8 @@ export default class Parser {
           indexer: '.',
           identifier,
           start,
-          end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+          scope: me.currentScope
         });
       } else if (value === '(') {
         return me.parseCallExpression(base);
@@ -502,7 +519,8 @@ export default class Parser {
       base,
       arguments: expressions,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+      scope: me.currentScope
     });
   }
 
@@ -519,7 +537,8 @@ export default class Parser {
       value: floatValue,
       raw: floatValue,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+      scope: me.currentScope
     });
 
     me.literals.push(base);
@@ -546,7 +565,8 @@ export default class Parser {
           value,
           raw,
           start,
-          end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+          scope: me.currentScope
         }
       );
 
@@ -617,7 +637,8 @@ export default class Parser {
       if (right == null) {
         right = me.astProvider.emptyExpression({
           start,
-          end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+          scope: me.currentScope
         });
       }
 
@@ -626,7 +647,8 @@ export default class Parser {
         left: expression,
         right,
         start,
-        end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+        scope: me.currentScope
       });
     }
 
@@ -652,7 +674,8 @@ export default class Parser {
         operator: <Operator>operator,
         argument,
         start,
-        end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+        scope: me.currentScope
       });
     }
     if (expression == null) {
@@ -705,7 +728,8 @@ export default class Parser {
       gameDirectory,
       fileSystemDirectory,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+      scope: me.currentScope
     });
 
     return base;
@@ -733,7 +757,8 @@ export default class Parser {
       condition,
       body,
       start,
-      end: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]),
+      scope: me.currentScope
     });
   }
 
@@ -763,7 +788,8 @@ export default class Parser {
     const ifStatement = me.astProvider.ifShortcutStatement({
       clauses,
       start,
-      end: null, scope: me.currentScope
+      end: null,
+      scope: me.currentScope
     });
     let statementStart = start;
     let body = [];
@@ -775,7 +801,8 @@ export default class Parser {
         condition,
         body,
         start,
-        end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+        scope: me.currentScope
       })
     );
 
@@ -792,7 +819,8 @@ export default class Parser {
           condition,
           body,
           start: statementStart,
-          end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+          scope: me.currentScope
         })
       );
 
@@ -807,7 +835,8 @@ export default class Parser {
         me.astProvider.elseShortcutClause({
           body,
           start: statementStart,
-          end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+          scope: me.currentScope
         })
       );
 
@@ -844,7 +873,8 @@ export default class Parser {
     const ifStatement = me.astProvider.ifStatement({
       clauses,
       start,
-      end: null, scope: me.currentScope
+      end: null,
+      scope: me.currentScope
     });
     let statementStart = start;
     let condition;
@@ -862,7 +892,8 @@ export default class Parser {
         condition,
         body,
         start: statementStart,
-        end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+        scope: me.currentScope
       })
     );
 
@@ -876,7 +907,8 @@ export default class Parser {
           condition,
           body,
           start: statementStart,
-          end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+          scope: me.currentScope
         })
       );
     }
@@ -888,7 +920,8 @@ export default class Parser {
         me.astProvider.elseClause({
           body,
           start: statementStart,
-          end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+          scope: me.currentScope
         })
       );
     }
@@ -929,7 +962,8 @@ export default class Parser {
     return me.astProvider.returnStatement({
       argument: expression,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+      scope: me.currentScope
     });
   }
 
@@ -948,7 +982,8 @@ export default class Parser {
         indexer: '.',
         identifier: name,
         start,
-        end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+        scope: me.currentScope
       });
     }
 
@@ -1002,7 +1037,8 @@ export default class Parser {
       return me.astProvider.callStatement({
         expression: base,
         start,
-        end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+        scope: me.currentScope
       });
     }
 
@@ -1013,7 +1049,8 @@ export default class Parser {
       variable: base,
       init: value,
       start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+      scope: me.currentScope
     });
 
     me.currentScope.assignments.push(assignmentStatement);
@@ -1053,7 +1090,8 @@ export default class Parser {
       iterator,
       body,
       start,
-      end: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]), scope: me.currentScope
+      end: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]),
+      scope: me.currentScope
     });
   }
 
@@ -1065,7 +1103,8 @@ export default class Parser {
     );
     const functionStatement = me.astProvider.functionStatement({
       start,
-      end: null, scope: me.currentScope
+      end: null,
+      scope: me.currentScope
     });
     const parameters = [];
 
@@ -1085,7 +1124,8 @@ export default class Parser {
               variable: parameter,
               init: value,
               start: paramterStart,
-              end: new ASTPosition(me.token.line, me.token.lineRange[1]), scope: me.currentScope
+              end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+              scope: me.currentScope
             });
 
             me.currentScope.assignments.push(parameter);
@@ -1153,7 +1193,8 @@ export default class Parser {
             end: new ASTPosition(
               me.previousToken.line,
               me.previousToken.lineRange[1]
-            ), scope: me.currentScope
+            ),
+            scope: me.currentScope
           });
         case 'break':
           me.next();
@@ -1165,7 +1206,8 @@ export default class Parser {
             end: new ASTPosition(
               me.previousToken.line,
               me.previousToken.lineRange[1]
-            ), scope: me.currentScope
+            ),
+            scope: me.currentScope
           });
         case 'import_code':
           me.next();
