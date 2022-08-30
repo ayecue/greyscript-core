@@ -196,9 +196,9 @@ export default class Parser {
 
     if (me.currentScope !== null) {
       me.scopes.push(scope);
+      me.outerScopes.push(me.currentScope);
     }
 
-    me.outerScopes.push(scope);
     me.currentScope = scope;
   }
 
