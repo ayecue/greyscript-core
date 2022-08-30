@@ -1,6 +1,7 @@
+import general from 'greyscript-meta/dist/signatures/general.json';
+
 import { TokenType } from '../lexer/token';
 import { Operator } from '../types/operators';
-import general from 'greyscript-meta/dist/signatures/general.json';
 
 export default class Validator {
   getBreakingBlockShortcutKeywords(): string[] {
@@ -22,7 +23,7 @@ export default class Validator {
       'locals',
       'self',
       'params',
-      //missing in meta
+      // missing in meta
       'hasIndex',
       ...Object.keys(general).map((name: string) => {
         return name;
