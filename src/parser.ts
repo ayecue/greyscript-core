@@ -403,10 +403,7 @@ export default class Parser {
           });
         }
 
-        const end = {
-          line: me.token.line,
-          character: me.token.lineRange[1]
-        };
+        const end = new ASTPosition(me.token.line, me.token.lineRange[1]);
         const sliceExpression = me.astProvider.sliceExpression({
           left,
           right,
@@ -1235,7 +1232,7 @@ export default class Parser {
     }
 
     chunk.body = body;
-    chunk.nativeImports = me.nativeImports
+    chunk.nativeImports = me.nativeImports;
     chunk.literals =  me.literals;
     chunk.scopes = me.scopes;
     chunk.end = new ASTPosition(me.token.line, me.token.lineRange[1]);
