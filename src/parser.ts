@@ -3,6 +3,7 @@ import { Token, TokenType } from './lexer/token';
 import {
   ASTAssignmentStatement,
   ASTBase,
+  ASTBaseBlockWithScope,
   ASTCallExpression,
   ASTChunk,
   ASTClause,
@@ -18,8 +19,7 @@ import {
   ASTPosition,
   ASTProvider,
   ASTReturnStatement,
-  ASTWhileStatement,
-  ASTBaseBlockWithScope
+  ASTWhileStatement
 } from './parser/ast';
 import getPrecedence from './parser/precedence';
 import Validator from './parser/validator';
@@ -47,7 +47,7 @@ export interface ParserOptions {
 }
 
 export default class Parser {
-  //runtime
+  // runtime
   history: Token[];
   prefetchedTokens: Token[];
   token: Token | null;
@@ -60,12 +60,12 @@ export default class Parser {
     previousEnd: ASTPosition;
   }[];
 
-  //helper
+  // helper
   nativeImports: string[];
   literals: ASTBase[];
   scopes: ASTBaseBlockWithScope[];
 
-  //settings
+  // settings
   content: string;
   lexer: Lexer;
   validator: Validator;
@@ -763,7 +763,10 @@ export default class Parser {
       condition,
       body,
       start,
-      end: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]),
+      end: new ASTPosition(
+        me.previousToken.line,
+        me.previousToken.lineRange[1]
+      ),
       scope: me.currentScope
     });
   }
@@ -1096,7 +1099,10 @@ export default class Parser {
       iterator,
       body,
       start,
-      end: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]),
+      end: new ASTPosition(
+        me.previousToken.line,
+        me.previousToken.lineRange[1]
+      ),
       scope: me.currentScope
     });
   }
@@ -1162,7 +1168,10 @@ export default class Parser {
 
     functionStatement.parameters = parameters;
     functionStatement.body = body;
-    functionStatement.end = new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]);
+    functionStatement.end = new ASTPosition(
+      me.previousToken.line,
+      me.previousToken.lineRange[1]
+    );
 
     return functionStatement;
   }
@@ -1281,8 +1290,9 @@ export default class Parser {
 
     chunk.body = body;
     chunk.nativeImports = me.nativeImports;
-    chunk.literals =  me.literals;
+    chunk.literals = me.literals;
     chunk.scopes = me.scopes;
+    chunk.lines = me.astProvider.lines;
     chunk.end = new ASTPosition(me.token.line, me.token.lineRange[1]);
 
     return chunk;
