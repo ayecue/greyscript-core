@@ -254,21 +254,27 @@ export default class Parser {
     const fields = [];
 
     while (true) {
-      if (me.token.type === TokenType.StringLiteral) {
-        const key = me.parseExpectedExpression();
-        me.expect(':');
-        const value = me.parseExpectedExpression();
-
-        fields.push(
-          me.astProvider.mapKeyString({
-            key,
-            value,
-            start: key.start,
-            end: value.end,
-            scope: me.currentScope
-          })
-        );
+      if (me.consume(';')) {
+        continue;
       }
+
+      if (me.consumeMany(['}', '<eof>'])) {
+        break;
+      }
+
+      const key = me.parseExpectedExpression();
+      me.expect(':');
+      const value = me.parseExpectedExpression();
+
+      fields.push(
+        me.astProvider.mapKeyString({
+          key,
+          value,
+          start: key.start,
+          end: value.end,
+          scope: me.currentScope
+        })
+      );
 
       if (me.consumeMany(['}', '<eof>'])) {
         break;

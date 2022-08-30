@@ -10580,6 +10580,650 @@ Array [
 ]
 `;
 
+exports[`parse default scripts map.src 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 15, character: 2 },
+  scope: null,
+  body: [
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 3, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 1, character: 1 },
+        end: Position { line: 1, character: 5 },
+        scope: [Circular *1],
+        name: 'test'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 1, character: 8 },
+        end: Position { line: 3, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 4, character: 1 },
+      end: Position { line: 6, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 4, character: 1 },
+        end: Position { line: 4, character: 6 },
+        scope: [Circular *1],
+        name: 'test2'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 4, character: 9 },
+        end: Position { line: 6, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 7, character: 1 },
+      end: Position { line: 9, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 7, character: 1 },
+        end: Position { line: 7, character: 6 },
+        scope: [Circular *1],
+        name: 'test3'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 7, character: 9 },
+        end: Position { line: 9, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 10, character: 1 },
+      end: Position { line: 12, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 10, character: 1 },
+        end: Position { line: 10, character: 6 },
+        scope: [Circular *1],
+        name: 'test4'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 10, character: 9 },
+        end: Position { line: 12, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 13, character: 1 },
+      end: Position { line: 15, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 13, character: 1 },
+        end: Position { line: 13, character: 6 },
+        scope: [Circular *1],
+        name: 'test5'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 13, character: 9 },
+        end: Position { line: 15, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    }
+  ],
+  namespaces: Set(5) { 'test', 'test2', 'test3', 'test4', 'test5' },
+  assignments: [
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 3, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 1, character: 1 },
+        end: Position { line: 1, character: 5 },
+        scope: [Circular *1],
+        name: 'test'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 1, character: 8 },
+        end: Position { line: 3, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 4, character: 1 },
+      end: Position { line: 6, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 4, character: 1 },
+        end: Position { line: 4, character: 6 },
+        scope: [Circular *1],
+        name: 'test2'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 4, character: 9 },
+        end: Position { line: 6, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 7, character: 1 },
+      end: Position { line: 9, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 7, character: 1 },
+        end: Position { line: 7, character: 6 },
+        scope: [Circular *1],
+        name: 'test3'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 7, character: 9 },
+        end: Position { line: 9, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 10, character: 1 },
+      end: Position { line: 12, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 10, character: 1 },
+        end: Position { line: 10, character: 6 },
+        scope: [Circular *1],
+        name: 'test4'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 10, character: 9 },
+        end: Position { line: 12, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 13, character: 1 },
+      end: Position { line: 15, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 13, character: 1 },
+        end: Position { line: 13, character: 6 },
+        scope: [Circular *1],
+        name: 'test5'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 13, character: 9 },
+        end: Position { line: 15, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    }
+  ],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 2, character: 6 },
+      end: Position { line: 2, character: 14 },
+      scope: [Circular *1],
+      value: 'myTest',
+      raw: '\\"myTest\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 16 },
+      end: Position { line: 2, character: 17 },
+      scope: [Circular *1],
+      value: 0,
+      raw: '0'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 19 },
+      end: Position { line: 2, character: 20 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 22 },
+      end: Position { line: 2, character: 23 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 2, character: 26 },
+      end: Position { line: 2, character: 30 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 5, character: 6 },
+      end: Position { line: 5, character: 8 },
+      scope: [Circular *1],
+      value: 12,
+      raw: '12'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 5, character: 10 },
+      end: Position { line: 5, character: 12 },
+      scope: [Circular *1],
+      value: 14,
+      raw: '14'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 5, character: 15 },
+      end: Position { line: 5, character: 19 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 8, character: 11 },
+      end: Position { line: 8, character: 14 },
+      scope: [Circular *1],
+      value: 234,
+      raw: '234'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 11, character: 5 },
+      end: Position { line: 11, character: 9 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 11, character: 11 },
+      end: Position { line: 11, character: 16 },
+      scope: [Circular *1],
+      value: 'foo',
+      raw: '\\"foo\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 14, character: 5 },
+      end: Position { line: 14, character: 8 },
+      scope: [Circular *1],
+      value: 123,
+      raw: '123'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 14, character: 10 },
+      end: Position { line: 14, character: 15 },
+      scope: [Circular *1],
+      value: 'bar',
+      raw: '\\"bar\\"'
+    }
+  ],
+  scopes: []
+}"
+`;
+
+exports[`parse default scripts map.src unsafe 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 15, character: 2 },
+  scope: null,
+  body: [
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 3, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 1, character: 1 },
+        end: Position { line: 1, character: 5 },
+        scope: [Circular *1],
+        name: 'test'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 1, character: 8 },
+        end: Position { line: 3, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 4, character: 1 },
+      end: Position { line: 6, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 4, character: 1 },
+        end: Position { line: 4, character: 6 },
+        scope: [Circular *1],
+        name: 'test2'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 4, character: 9 },
+        end: Position { line: 6, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 7, character: 1 },
+      end: Position { line: 9, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 7, character: 1 },
+        end: Position { line: 7, character: 6 },
+        scope: [Circular *1],
+        name: 'test3'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 7, character: 9 },
+        end: Position { line: 9, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 10, character: 1 },
+      end: Position { line: 12, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 10, character: 1 },
+        end: Position { line: 10, character: 6 },
+        scope: [Circular *1],
+        name: 'test4'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 10, character: 9 },
+        end: Position { line: 12, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 13, character: 1 },
+      end: Position { line: 15, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 13, character: 1 },
+        end: Position { line: 13, character: 6 },
+        scope: [Circular *1],
+        name: 'test5'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 13, character: 9 },
+        end: Position { line: 15, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    }
+  ],
+  namespaces: Set(5) { 'test', 'test2', 'test3', 'test4', 'test5' },
+  assignments: [
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 3, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 1, character: 1 },
+        end: Position { line: 1, character: 5 },
+        scope: [Circular *1],
+        name: 'test'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 1, character: 8 },
+        end: Position { line: 3, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 4, character: 1 },
+      end: Position { line: 6, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 4, character: 1 },
+        end: Position { line: 4, character: 6 },
+        scope: [Circular *1],
+        name: 'test2'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 4, character: 9 },
+        end: Position { line: 6, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 7, character: 1 },
+      end: Position { line: 9, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 7, character: 1 },
+        end: Position { line: 7, character: 6 },
+        scope: [Circular *1],
+        name: 'test3'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 7, character: 9 },
+        end: Position { line: 9, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 10, character: 1 },
+      end: Position { line: 12, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 10, character: 1 },
+        end: Position { line: 10, character: 6 },
+        scope: [Circular *1],
+        name: 'test4'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 10, character: 9 },
+        end: Position { line: 12, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 13, character: 1 },
+      end: Position { line: 15, character: 2 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 13, character: 1 },
+        end: Position { line: 13, character: 6 },
+        scope: [Circular *1],
+        name: 'test5'
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 13, character: 9 },
+        end: Position { line: 15, character: 2 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
+      }
+    }
+  ],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 2, character: 6 },
+      end: Position { line: 2, character: 14 },
+      scope: [Circular *1],
+      value: 'myTest',
+      raw: '\\"myTest\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 16 },
+      end: Position { line: 2, character: 17 },
+      scope: [Circular *1],
+      value: 0,
+      raw: '0'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 19 },
+      end: Position { line: 2, character: 20 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 22 },
+      end: Position { line: 2, character: 23 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 2, character: 26 },
+      end: Position { line: 2, character: 30 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 5, character: 6 },
+      end: Position { line: 5, character: 8 },
+      scope: [Circular *1],
+      value: 12,
+      raw: '12'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 5, character: 10 },
+      end: Position { line: 5, character: 12 },
+      scope: [Circular *1],
+      value: 14,
+      raw: '14'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 5, character: 15 },
+      end: Position { line: 5, character: 19 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 8, character: 11 },
+      end: Position { line: 8, character: 14 },
+      scope: [Circular *1],
+      value: 234,
+      raw: '234'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 11, character: 5 },
+      end: Position { line: 11, character: 9 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 11, character: 11 },
+      end: Position { line: 11, character: 16 },
+      scope: [Circular *1],
+      value: 'foo',
+      raw: '\\"foo\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 14, character: 5 },
+      end: Position { line: 14, character: 8 },
+      scope: [Circular *1],
+      value: 123,
+      raw: '123'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 14, character: 10 },
+      end: Position { line: 14, character: 15 },
+      scope: [Circular *1],
+      value: 'bar',
+      raw: '\\"bar\\"'
+    }
+  ],
+  scopes: []
+}"
+`;
+
 exports[`parse default scripts negation.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',

@@ -5,7 +5,7 @@ const testFolder = path.resolve(__dirname, 'scripts');
 const util = require('util');
 
 describe('parse', function() {
-	describe('default scripts', function() {
+	describe.only('default scripts', function() {
 		fs
 			.readdirSync(testFolder)
 			.forEach(file => {
