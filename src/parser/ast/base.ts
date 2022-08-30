@@ -55,17 +55,20 @@ export enum ASTType {
 export interface ASTBaseOptions {
   start: Position | null;
   end: Position | null;
+  scope?: ASTBaseBlockWithScope;
 }
 
 export class ASTBase {
   readonly type: string;
   start: Position | null;
   end: Position | null;
+  scope?: ASTBaseBlockWithScope;
 
   constructor(type: string, options: ASTBaseOptions) {
     this.type = type;
     this.start = options.start;
     this.end = options.end;
+    this.scope = options.scope || null;
   }
 }
 
@@ -85,6 +88,7 @@ export class ASTBaseBlock extends ASTBase {
 export interface ASTBaseBlockWithScopeOptions extends ASTBaseBlockOptions {
   assignments?: ASTBase[];
   namespaces?: Set<string>;
+  parent?: ASTBaseBlockWithScope;
 }
 
 export class ASTBaseBlockWithScope extends ASTBaseBlock {
