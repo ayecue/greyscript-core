@@ -69,15 +69,6 @@ import { ASTUnaryExpression, ASTUnaryExpressionOptions } from './ast/unary';
 import { ASTWhileStatement, ASTWhileStatementOptions } from './ast/while';
 
 export class ASTProvider {
-  lines: Map<number, ASTBase> = new Map<number, ASTBase>();
-
-  addLines(item: ASTBaseBlock): ASTBaseBlock {
-    for (const line of item.body) {
-      this.lines.set(line.start.line, line);
-    }
-    return item;
-  }
-
   breakStatement(options: ASTBaseOptions): ASTBase {
     return new ASTBase(ASTType.BreakStatement, options);
   }
@@ -95,21 +86,15 @@ export class ASTProvider {
   }
 
   ifShortcutClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLines(
-      new ASTIfClause(ASTType.IfShortcutClause, options)
-    ) as ASTIfClause;
+    return new ASTIfClause(ASTType.IfShortcutClause, options);
   }
 
   elseifShortcutClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLines(
-      new ASTIfClause(ASTType.ElseifShortcutClause, options)
-    ) as ASTIfClause;
+    return new ASTIfClause(ASTType.ElseifShortcutClause, options);
   }
 
   elseShortcutClause(options: ASTBaseBlockOptions): ASTElseClause {
-    return this.addLines(
-      new ASTElseClause(ASTType.ElseShortcutClause, options)
-    ) as ASTElseClause;
+    return new ASTElseClause(ASTType.ElseShortcutClause, options);
   }
 
   ifStatement(options: ASTIfStatementOptions): ASTIfStatement {
@@ -117,25 +102,19 @@ export class ASTProvider {
   }
 
   ifClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLines(
-      new ASTIfClause(ASTType.IfClause, options)
-    ) as ASTIfClause;
+    return new ASTIfClause(ASTType.IfClause, options);
   }
 
   elseifClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLines(
-      new ASTIfClause(ASTType.ElseifClause, options)
-    ) as ASTIfClause;
+    return new ASTIfClause(ASTType.ElseifClause, options);
   }
 
   elseClause(options: ASTBaseBlockOptions): ASTElseClause {
-    return this.addLines(
-      new ASTElseClause(ASTType.ElseClause, options)
-    ) as ASTElseClause;
+    return new ASTElseClause(ASTType.ElseClause, options);
   }
 
   whileStatement(options: ASTWhileStatementOptions): ASTWhileStatement {
-    return this.addLines(new ASTWhileStatement(options)) as ASTWhileStatement;
+    return new ASTWhileStatement(options);
   }
 
   assignmentStatement(
@@ -151,21 +130,17 @@ export class ASTProvider {
   functionStatement(
     options: ASTFunctionStatementOptions
   ): ASTFunctionStatement {
-    return this.addLines(
-      new ASTFunctionStatement(options)
-    ) as ASTFunctionStatement;
+    return new ASTFunctionStatement(options);
   }
 
   forGenericStatement(
     options: ASTForGenericStatementOptions
   ): ASTForGenericStatement {
-    return this.addLines(
-      new ASTForGenericStatement(options)
-    ) as ASTForGenericStatement;
+    return new ASTForGenericStatement(options);
   }
 
   chunk(options: ASTChunkOptions): ASTChunk {
-    return this.addLines(new ASTChunk(options)) as ASTChunk;
+    return new ASTChunk(options);
   }
 
   identifier(options: ASTIdentifierOptions): ASTIdentifier {

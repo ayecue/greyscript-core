@@ -64,6 +64,7 @@ export default class Parser {
   nativeImports: string[];
   literals: ASTBase[];
   scopes: ASTBaseBlockWithScope[];
+  lines: Map<number, ASTBase>;
 
   // settings
   content: string;
@@ -88,6 +89,7 @@ export default class Parser {
     me.token = null;
     me.previousToken = null;
     me.nativeImports = [];
+    me.lines = new Map<number, ASTBase>();
     me.scopes = [];
     me.currentScope = null;
     me.outerScopes = [];
@@ -1249,7 +1251,10 @@ export default class Parser {
       !me.validator.isBreakingBlockShortcutKeyword(value)
     ) {
       statement = me.parseStatement(value === 'return');
-      if (statement) block.push(statement);
+      if (statement) {
+        this.lines.set(statement.start.line, statement);
+        block.push(statement);
+      }
       value = me.token.value;
     }
 
@@ -1264,7 +1269,10 @@ export default class Parser {
     while (!me.isBlockFollow(me.token)) {
       statement = me.parseStatement();
       me.consume(';');
-      if (statement) block.push(statement);
+      if (statement) {
+        this.lines.set(statement.start.line, statement);
+        block.push(statement);
+      }
     }
 
     return block;
@@ -1292,7 +1300,7 @@ export default class Parser {
     chunk.nativeImports = me.nativeImports;
     chunk.literals = me.literals;
     chunk.scopes = me.scopes;
-    chunk.lines = me.astProvider.lines;
+    chunk.lines = me.lines;
     chunk.end = new ASTPosition(me.token.line, me.token.lineRange[1]);
 
     return chunk;
