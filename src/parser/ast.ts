@@ -5,6 +5,7 @@ import {
 } from './ast/assignment';
 import {
   ASTBase,
+  ASTBaseBlock,
   ASTBaseBlockOptions,
   ASTBaseOptions,
   ASTComment,
@@ -68,95 +69,89 @@ import { ASTUnaryExpression, ASTUnaryExpressionOptions } from './ast/unary';
 import { ASTWhileStatement, ASTWhileStatementOptions } from './ast/while';
 
 export class ASTProvider {
-  lines: Map<number, ASTBase[]> = new Map<number, ASTBase[]>();
+  lines: Map<number, ASTBase> = new Map<number, ASTBase>();
 
-  addLine(item: ASTBase): ASTBase {
-    const line = this.lines.get(item.start.line) || [];
-    line.push(item);
-    this.lines.set(item.start.line, line);
+  addLines(item: ASTBaseBlock): ASTBaseBlock {
+    for (const line of item.body) {
+      this.lines.set(line.start.line, line);
+    }
     return item;
   }
 
   breakStatement(options: ASTBaseOptions): ASTBase {
-    return this.addLine(new ASTBase(ASTType.BreakStatement, options));
+    return new ASTBase(ASTType.BreakStatement, options);
   }
 
   continueStatement(options: ASTBaseOptions): ASTBase {
-    return this.addLine(new ASTBase(ASTType.ContinueStatement, options));
+    return new ASTBase(ASTType.ContinueStatement, options);
   }
 
   returnStatement(options: ASTReturnStatementOptions): ASTReturnStatement {
-    return this.addLine(new ASTReturnStatement(options));
+    return new ASTReturnStatement(options);
   }
 
   ifShortcutStatement(options: ASTIfStatementOptions): ASTIfStatement {
-    return this.addLine(
-      new ASTIfStatement(ASTType.IfShortcutStatement, options)
-    ) as ASTIfStatement;
+    return new ASTIfStatement(ASTType.IfShortcutStatement, options);
   }
 
   ifShortcutClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLine(
+    return this.addLines(
       new ASTIfClause(ASTType.IfShortcutClause, options)
     ) as ASTIfClause;
   }
 
   elseifShortcutClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLine(
+    return this.addLines(
       new ASTIfClause(ASTType.ElseifShortcutClause, options)
     ) as ASTIfClause;
   }
 
   elseShortcutClause(options: ASTBaseBlockOptions): ASTElseClause {
-    return this.addLine(
+    return this.addLines(
       new ASTElseClause(ASTType.ElseShortcutClause, options)
     ) as ASTElseClause;
   }
 
   ifStatement(options: ASTIfStatementOptions): ASTIfStatement {
-    return this.addLine(
-      new ASTIfStatement(ASTType.IfStatement, options)
-    ) as ASTIfStatement;
+    return new ASTIfStatement(ASTType.IfStatement, options);
   }
 
   ifClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLine(
+    return this.addLines(
       new ASTIfClause(ASTType.IfClause, options)
     ) as ASTIfClause;
   }
 
   elseifClause(options: ASTIfClauseOptions): ASTIfClause {
-    return this.addLine(
+    return this.addLines(
       new ASTIfClause(ASTType.ElseifClause, options)
     ) as ASTIfClause;
   }
 
   elseClause(options: ASTBaseBlockOptions): ASTElseClause {
-    return this.addLine(
+    return this.addLines(
       new ASTElseClause(ASTType.ElseClause, options)
     ) as ASTElseClause;
   }
 
   whileStatement(options: ASTWhileStatementOptions): ASTWhileStatement {
-    return this.addLine(new ASTWhileStatement(options)) as ASTWhileStatement;
+    return this.addLines(new ASTWhileStatement(options)) as ASTWhileStatement;
   }
 
   assignmentStatement(
     options: ASTAssignmentStatementOptions
   ): ASTAssignmentStatement {
-    return this.addLine(
-      new ASTAssignmentStatement(options)
-    ) as ASTAssignmentStatement;
+    return new ASTAssignmentStatement(options);
   }
 
   callStatement(options: ASTCallStatementOptions): ASTCallStatement {
-    return this.addLine(new ASTCallStatement(options)) as ASTCallStatement;
+    return new ASTCallStatement(options);
   }
 
   functionStatement(
     options: ASTFunctionStatementOptions
   ): ASTFunctionStatement {
-    return this.addLine(
+    return this.addLines(
       new ASTFunctionStatement(options)
     ) as ASTFunctionStatement;
   }
@@ -164,17 +159,17 @@ export class ASTProvider {
   forGenericStatement(
     options: ASTForGenericStatementOptions
   ): ASTForGenericStatement {
-    return this.addLine(
+    return this.addLines(
       new ASTForGenericStatement(options)
     ) as ASTForGenericStatement;
   }
 
   chunk(options: ASTChunkOptions): ASTChunk {
-    return this.addLine(new ASTChunk(options)) as ASTChunk;
+    return this.addLines(new ASTChunk(options)) as ASTChunk;
   }
 
   identifier(options: ASTIdentifierOptions): ASTIdentifier {
-    return this.addLine(new ASTIdentifier(options)) as ASTIdentifier;
+    return new ASTIdentifier(options);
   }
 
   literal(
@@ -185,81 +180,71 @@ export class ASTProvider {
       | TokenType.NilLiteral,
     options: ASTLiteralOptions
   ): ASTLiteral {
-    return this.addLine(new ASTLiteral(type, options)) as ASTLiteral;
+    return new ASTLiteral(type, options);
   }
 
   memberExpression(options: ASTMemberExpressionOptions): ASTMemberExpression {
-    return this.addLine(
-      new ASTMemberExpression(options)
-    ) as ASTMemberExpression;
+    return new ASTMemberExpression(options);
   }
 
   callExpression(options: ASTCallExpressionOptions): ASTCallExpression {
-    return this.addLine(new ASTCallExpression(options)) as ASTCallExpression;
+    return new ASTCallExpression(options);
   }
 
   comment(options: ASTCommentOptions): ASTComment {
-    return this.addLine(new ASTComment(options)) as ASTComment;
+    return new ASTComment(options);
   }
 
   unaryExpression(options: ASTUnaryExpressionOptions): ASTUnaryExpression {
-    return this.addLine(new ASTUnaryExpression(options)) as ASTUnaryExpression;
+    return new ASTUnaryExpression(options);
   }
 
   mapKeyString(options: ASTMapKeyStringOptions): ASTMapKeyString {
-    return this.addLine(new ASTMapKeyString(options)) as ASTMapKeyString;
+    return new ASTMapKeyString(options);
   }
 
   mapConstructorExpression(
     options: ASTMapConstructorExpressionOptions
   ): ASTMapConstructorExpression {
-    return this.addLine(
-      new ASTMapConstructorExpression(options)
-    ) as ASTMapConstructorExpression;
+    return new ASTMapConstructorExpression(options);
   }
 
   listValue(options: ASTListValueOptions): ASTListValue {
-    return this.addLine(new ASTListValue(options)) as ASTListValue;
+    return new ASTListValue(options);
   }
 
   listConstructorExpression(
     options: ASTListConstructorExpressionOptions
   ): ASTListConstructorExpression {
-    return this.addLine(
-      new ASTListConstructorExpression(options)
-    ) as ASTListConstructorExpression;
+    return new ASTListConstructorExpression(options);
   }
 
   emptyExpression(options: ASTBaseOptions): ASTBase {
-    return this.addLine(new ASTBase(ASTType.EmptyExpression, options));
+    return new ASTBase(ASTType.EmptyExpression, options);
   }
 
   invalidCodeExpression(options: ASTBaseOptions): ASTBase {
-    return this.addLine(new ASTBase(ASTType.InvalidCodeExpression, options));
+    return new ASTBase(ASTType.InvalidCodeExpression, options);
   }
 
   indexExpression(options: ASTIndexExpressionOptions): ASTIndexExpression {
-    return this.addLine(new ASTIndexExpression(options)) as ASTIndexExpression;
+    return new ASTIndexExpression(options);
   }
 
   binaryExpression(
     options: ASTEvaluationExpressionOptions
   ): ASTEvaluationExpression {
-    return this.addLine(
-      new ASTEvaluationExpression(options)
-    ) as ASTEvaluationExpression;
+    return new ASTEvaluationExpression(options);
   }
 
   sliceExpression(options: ASTSliceExpressionOptions): ASTSliceExpression {
-    return this.addLine(new ASTSliceExpression(options)) as ASTSliceExpression;
+    return new ASTSliceExpression(options);
   }
 
   importCodeExpression(
     options: ASTImportCodeExpressionOptions
   ): ASTImportCodeExpression {
-    return this.addLine(
-      new ASTImportCodeExpression(options)
-    ) as ASTImportCodeExpression;
+    return new ASTImportCodeExpression(options);
   }
 }
 
