@@ -23,8 +23,6 @@ export default class Validator {
       'locals',
       'self',
       'params',
-      // missing in meta
-      'hasIndex',
       ...Object.keys(general).map((name: string) => {
         return name;
       })
