@@ -18506,6 +18506,140 @@ exports[`parse default scripts map.src unsafe 1`] = `
 }"
 `;
 
+exports[`parse default scripts multiline.src 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 1, character: 50 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 1, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 1, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  ],
+  namespaces: Set(0) {},
+  assignments: [],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 1, character: 7 },
+      end: Position { line: 1, character: 49 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\nwas\\\\nprint(\\"\\"was\\"\\")\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n',
+      raw: '\\"\\\\n\\\\nwas\\\\nprint(\\"\\"was\\"\\")\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n\\"'
+    }
+  ],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 1, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 1, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  }
+}"
+`;
+
+exports[`parse default scripts multiline.src unsafe 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 1, character: 50 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 1, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 1, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  ],
+  namespaces: Set(0) {},
+  assignments: [],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 1, character: 7 },
+      end: Position { line: 1, character: 49 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\nwas\\\\nprint(\\"\\"was\\"\\")\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n',
+      raw: '\\"\\\\n\\\\nwas\\\\nprint(\\"\\"was\\"\\")\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n\\"'
+    }
+  ],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 1, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 1, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  }
+}"
+`;
+
 exports[`parse default scripts negation.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',

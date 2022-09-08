@@ -22384,6 +22384,87 @@ Object {
 }
 `;
 
+exports[`parse default scripts multiline.src 1`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    1,
+    6,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    0,
+    5,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts multiline.src 2`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    5,
+    6,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts multiline.src 3`] = `
+Object {
+  "lastLine": 1,
+  "lastLineStart": 0,
+  "line": 1,
+  "lineRange": Array [
+    7,
+    49,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    6,
+    48,
+  ],
+  "type": "StringLiteral",
+  "value": "
+
+was
+print(\\"\\"was\\"\\")
+foo[\\"\\"xxxx\\"\\"].test
+",
+}
+`;
+
+exports[`parse default scripts multiline.src 4`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    49,
+    50,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    48,
+    49,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
 exports[`parse default scripts negation.src 1`] = `
 Object {
   "lastLine": undefined,
