@@ -18510,7 +18510,7 @@ exports[`parse default scripts multiline.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 15, character: 63 },
+  end: Position { line: 22, character: 74 },
   scope: null,
   body: [
     ASTCallStatement {
@@ -18552,6 +18552,26 @@ exports[`parse default scripts multiline.src 1`] = `
         },
         arguments: [ [ASTEvaluationExpression] ]
       }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
     }
   ],
   namespaces: Set(0) {},
@@ -18589,10 +18609,18 @@ exports[`parse default scripts multiline.src 1`] = `
       scope: [Circular *1],
       value: '\\\\n\\\\n\\\\nwas\\\\n',
       raw: '\\"\\\\n\\\\n\\\\nwas\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 7 },
+      end: Position { line: 17, character: 73 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\n    if (typeof(@item.value) == \\"function\\") then\\\\n\\\\n    end if\\\\n',
+      raw: '\\"\\\\n\\\\n    if (typeof(@item.value) == \\"\\"function\\"\\") then\\\\n\\\\n    end if\\\\n\\"'
     }
   ],
   scopes: [],
-  lines: Map(2) {
+  lines: Map(3) {
     1 => ASTCallStatement {
       type: 'CallStatement',
       start: Position { line: 1, character: 1 },
@@ -18631,6 +18659,26 @@ exports[`parse default scripts multiline.src 1`] = `
           name: 'print'
         },
         arguments: [ [ASTEvaluationExpression] ]
+      }
+    },
+    17 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
       }
     }
   }
@@ -18641,7 +18689,7 @@ exports[`parse default scripts multiline.src unsafe 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 15, character: 63 },
+  end: Position { line: 22, character: 74 },
   scope: null,
   body: [
     ASTCallStatement {
@@ -18683,6 +18731,26 @@ exports[`parse default scripts multiline.src unsafe 1`] = `
         },
         arguments: [ [ASTEvaluationExpression] ]
       }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
     }
   ],
   namespaces: Set(0) {},
@@ -18720,10 +18788,18 @@ exports[`parse default scripts multiline.src unsafe 1`] = `
       scope: [Circular *1],
       value: '\\\\n\\\\n\\\\nwas\\\\n',
       raw: '\\"\\\\n\\\\n\\\\nwas\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 7 },
+      end: Position { line: 17, character: 73 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\n    if (typeof(@item.value) == \\"function\\") then\\\\n\\\\n    end if\\\\n',
+      raw: '\\"\\\\n\\\\n    if (typeof(@item.value) == \\"\\"function\\"\\") then\\\\n\\\\n    end if\\\\n\\"'
     }
   ],
   scopes: [],
-  lines: Map(2) {
+  lines: Map(3) {
     1 => ASTCallStatement {
       type: 'CallStatement',
       start: Position { line: 1, character: 1 },
@@ -18762,6 +18838,26 @@ exports[`parse default scripts multiline.src unsafe 1`] = `
           name: 'print'
         },
         arguments: [ [ASTEvaluationExpression] ]
+      }
+    },
+    17 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
       }
     }
   }

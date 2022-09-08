@@ -22662,6 +22662,125 @@ Object {
 }
 `;
 
+exports[`parse default scripts multiline.src 15`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    63,
+    63,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    113,
+    113,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts multiline.src 16`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 114,
+  "range": Array [
+    114,
+    114,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts multiline.src 17`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    1,
+    6,
+  ],
+  "lineStart": 115,
+  "range": Array [
+    115,
+    120,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts multiline.src 18`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 115,
+  "range": Array [
+    120,
+    121,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts multiline.src 19`] = `
+Object {
+  "lastLine": 22,
+  "lastLineStart": 115,
+  "line": 17,
+  "lineRange": Array [
+    7,
+    73,
+  ],
+  "lineStart": 115,
+  "range": Array [
+    121,
+    187,
+  ],
+  "type": "StringLiteral",
+  "value": "
+
+    if (typeof(@item.value) == \\"function\\") then
+
+    end if
+",
+}
+`;
+
+exports[`parse default scripts multiline.src 20`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    73,
+    74,
+  ],
+  "lineStart": 115,
+  "range": Array [
+    187,
+    188,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
 exports[`parse default scripts negation.src 1`] = `
 Object {
   "lastLine": undefined,

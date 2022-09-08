@@ -13,3 +13,10 @@ foo[""xxxx""].test
 
 was
 ")
+
+print("
+
+    if (typeof(@item.value) == ""function"") then
+
+    end if
+")
