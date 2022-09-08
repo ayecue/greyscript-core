@@ -168,6 +168,11 @@ export default class Lexer {
     while (true) {
       me.nextIndex();
       code = me.codeAt();
+
+      if (me.validator.isEndOfLine(code)) {
+        me.nextLine();
+      }
+
       if (CharacterCode.QUOTE === code) {
         if (me.isStringEscaped()) {
           me.nextIndex();

@@ -22424,7 +22424,7 @@ Object {
 
 exports[`parse default scripts multiline.src 3`] = `
 Object {
-  "lastLine": 1,
+  "lastLine": 6,
   "lastLineStart": 0,
   "line": 1,
   "lineRange": Array [
@@ -22450,7 +22450,7 @@ exports[`parse default scripts multiline.src 4`] = `
 Object {
   "lastLine": undefined,
   "lastLineStart": undefined,
-  "line": 1,
+  "line": 6,
   "lineRange": Array [
     49,
     50,
@@ -22459,6 +22459,203 @@ Object {
   "range": Array [
     48,
     49,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
+exports[`parse default scripts multiline.src 5`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    50,
+    50,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    49,
+    49,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts multiline.src 6`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 50,
+  "range": Array [
+    50,
+    50,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts multiline.src 7`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 8,
+  "lineRange": Array [
+    1,
+    6,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    51,
+    56,
+  ],
+  "type": "Identifier",
+  "value": "print",
+}
+`;
+
+exports[`parse default scripts multiline.src 8`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 8,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    56,
+    57,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts multiline.src 9`] = `
+Object {
+  "lastLine": 9,
+  "lastLineStart": 51,
+  "line": 8,
+  "lineRange": Array [
+    7,
+    25,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    57,
+    75,
+  ],
+  "type": "StringLiteral",
+  "value": "
+print(\\"was\\") ",
+}
+`;
+
+exports[`parse default scripts multiline.src 10`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 9,
+  "lineRange": Array [
+    26,
+    27,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    76,
+    77,
+  ],
+  "type": "Punctuator",
+  "value": "+",
+}
+`;
+
+exports[`parse default scripts multiline.src 11`] = `
+Object {
+  "lastLine": 11,
+  "lastLineStart": 51,
+  "line": 9,
+  "lineRange": Array [
+    28,
+    50,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    78,
+    100,
+  ],
+  "type": "StringLiteral",
+  "value": "
+foo[\\"xxxx\\"].test
+",
+}
+`;
+
+exports[`parse default scripts multiline.src 12`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 11,
+  "lineRange": Array [
+    51,
+    52,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    101,
+    102,
+  ],
+  "type": "Punctuator",
+  "value": "+",
+}
+`;
+
+exports[`parse default scripts multiline.src 13`] = `
+Object {
+  "lastLine": 15,
+  "lastLineStart": 51,
+  "line": 11,
+  "lineRange": Array [
+    53,
+    62,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    103,
+    112,
+  ],
+  "type": "StringLiteral",
+  "value": "
+
+
+was
+",
+}
+`;
+
+exports[`parse default scripts multiline.src 14`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    62,
+    63,
+  ],
+  "lineStart": 51,
+  "range": Array [
+    112,
+    113,
   ],
   "type": "Punctuator",
   "value": ")",

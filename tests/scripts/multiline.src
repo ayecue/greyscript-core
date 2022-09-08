@@ -4,3 +4,12 @@ was
 print(""was"")
 foo[""xxxx""].test
 ")
+
+print("
+print(""was"") " + "
+foo[""xxxx""].test
+" + "
+
+
+was
+")
