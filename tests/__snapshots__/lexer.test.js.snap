@@ -22440,8 +22440,8 @@ Object {
   "value": "
 
 was
-print(\\"\\"was\\"\\")
-foo[\\"\\"xxxx\\"\\"].test
+print(\\"was\\")
+foo[\\"xxxx\\"].test
 ",
 }
 `;
@@ -74968,16 +74968,909 @@ Object {
   "lastLineStart": undefined,
   "line": 21,
   "lineRange": Array [
-    12,
-    12,
+    8,
+    8,
   ],
   "lineStart": 458,
+  "range": Array [
+    465,
+    465,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts slice.src 179`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 22,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 466,
   "range": Array [
     466,
     466,
   ],
   "type": "EOL",
   "value": ";",
+}
+`;
+
+exports[`parse default scripts slice.src 180`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    1,
+    4,
+  ],
+  "lineStart": 467,
+  "range": Array [
+    467,
+    470,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 181`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 467,
+  "range": Array [
+    470,
+    471,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 182`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 467,
+  "range": Array [
+    471,
+    472,
+  ],
+  "type": "NumericLiteral",
+  "value": 1,
+}
+`;
+
+exports[`parse default scripts slice.src 183`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 467,
+  "range": Array [
+    472,
+    473,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 184`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 467,
+  "range": Array [
+    473,
+    474,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 185`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 23,
+  "lineRange": Array [
+    8,
+    8,
+  ],
+  "lineStart": 467,
+  "range": Array [
+    474,
+    474,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts slice.src 186`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    1,
+    4,
+  ],
+  "lineStart": 475,
+  "range": Array [
+    475,
+    478,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 187`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 475,
+  "range": Array [
+    478,
+    479,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 188`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 475,
+  "range": Array [
+    479,
+    480,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 189`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 475,
+  "range": Array [
+    480,
+    481,
+  ],
+  "type": "NumericLiteral",
+  "value": 1,
+}
+`;
+
+exports[`parse default scripts slice.src 190`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    7,
+    8,
+  ],
+  "lineStart": 475,
+  "range": Array [
+    481,
+    482,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 191`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 24,
+  "lineRange": Array [
+    8,
+    8,
+  ],
+  "lineStart": 475,
+  "range": Array [
+    482,
+    482,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts slice.src 192`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    1,
+    4,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    483,
+    486,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 193`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    486,
+    487,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 194`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    5,
+    8,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    487,
+    490,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 195`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    8,
+    9,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    490,
+    491,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 196`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    491,
+    492,
+  ],
+  "type": "NumericLiteral",
+  "value": 1,
+}
+`;
+
+exports[`parse default scripts slice.src 197`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    492,
+    493,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 198`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    11,
+    12,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    493,
+    494,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 199`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    12,
+    13,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    494,
+    495,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 200`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    13,
+    14,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    495,
+    496,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 201`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 25,
+  "lineRange": Array [
+    14,
+    14,
+  ],
+  "lineStart": 483,
+  "range": Array [
+    496,
+    496,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts slice.src 202`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    1,
+    4,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    497,
+    500,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 203`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    500,
+    501,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 204`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    501,
+    502,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 205`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    6,
+    9,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    502,
+    505,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 206`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    505,
+    506,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 207`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    506,
+    507,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 208`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    11,
+    12,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    507,
+    508,
+  ],
+  "type": "NumericLiteral",
+  "value": 1,
+}
+`;
+
+exports[`parse default scripts slice.src 209`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    12,
+    13,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    508,
+    509,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 210`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    13,
+    14,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    509,
+    510,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 211`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 26,
+  "lineRange": Array [
+    14,
+    14,
+  ],
+  "lineStart": 497,
+  "range": Array [
+    510,
+    510,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts slice.src 212`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    1,
+    4,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    511,
+    514,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 213`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    4,
+    5,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    514,
+    515,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 214`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    5,
+    8,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    515,
+    518,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 215`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    8,
+    9,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    518,
+    519,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 216`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    9,
+    10,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    519,
+    520,
+  ],
+  "type": "NumericLiteral",
+  "value": 1,
+}
+`;
+
+exports[`parse default scripts slice.src 217`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    520,
+    521,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 218`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    11,
+    12,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    521,
+    522,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 219`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    12,
+    13,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    522,
+    523,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 220`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    13,
+    16,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    523,
+    526,
+  ],
+  "type": "Identifier",
+  "value": "foo",
+}
+`;
+
+exports[`parse default scripts slice.src 221`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    16,
+    17,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    526,
+    527,
+  ],
+  "type": "Punctuator",
+  "value": "[",
+}
+`;
+
+exports[`parse default scripts slice.src 222`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    17,
+    18,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    527,
+    528,
+  ],
+  "type": "SliceOperator",
+  "value": ":",
+}
+`;
+
+exports[`parse default scripts slice.src 223`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    18,
+    19,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    528,
+    529,
+  ],
+  "type": "NumericLiteral",
+  "value": 1,
+}
+`;
+
+exports[`parse default scripts slice.src 224`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    19,
+    20,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    529,
+    530,
+  ],
+  "type": "Punctuator",
+  "value": "]",
+}
+`;
+
+exports[`parse default scripts slice.src 225`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 27,
+  "lineRange": Array [
+    20,
+    21,
+  ],
+  "lineStart": 511,
+  "range": Array [
+    530,
+    531,
+  ],
+  "type": "Punctuator",
+  "value": "]",
 }
 `;
 
