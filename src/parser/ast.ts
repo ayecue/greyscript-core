@@ -5,7 +5,6 @@ import {
 } from './ast/assignment';
 import {
   ASTBase,
-  ASTBaseBlock,
   ASTBaseBlockOptions,
   ASTBaseOptions,
   ASTComment,

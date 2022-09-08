@@ -18506,6 +18506,364 @@ exports[`parse default scripts map.src unsafe 1`] = `
 }"
 `;
 
+exports[`parse default scripts multiline.src 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 22, character: 74 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 6, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 6, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 8, character: 1 },
+      end: Position { line: 15, character: 63 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 8, character: 6 },
+        end: Position { line: 15, character: 63 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTEvaluationExpression] ]
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  ],
+  namespaces: Set(0) {},
+  assignments: [],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 1, character: 7 },
+      end: Position { line: 1, character: 49 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\nwas\\\\nprint(\\"was\\")\\\\nfoo[\\"xxxx\\"].test\\\\n',
+      raw: '\\"\\\\n\\\\nwas\\\\nprint(\\"\\"was\\"\\")\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 8, character: 7 },
+      end: Position { line: 8, character: 25 },
+      scope: [Circular *1],
+      value: '\\\\nprint(\\"was\\") ',
+      raw: '\\"\\\\nprint(\\"\\"was\\"\\") \\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 9, character: 28 },
+      end: Position { line: 9, character: 50 },
+      scope: [Circular *1],
+      value: '\\\\nfoo[\\"xxxx\\"].test\\\\n',
+      raw: '\\"\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 11, character: 53 },
+      end: Position { line: 11, character: 62 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\n\\\\nwas\\\\n',
+      raw: '\\"\\\\n\\\\n\\\\nwas\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 7 },
+      end: Position { line: 17, character: 73 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\n    if (typeof(@item.value) == \\"function\\") then\\\\n\\\\n    end if\\\\n',
+      raw: '\\"\\\\n\\\\n    if (typeof(@item.value) == \\"\\"function\\"\\") then\\\\n\\\\n    end if\\\\n\\"'
+    }
+  ],
+  scopes: [],
+  lines: Map(3) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 6, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 6, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    },
+    8 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 8, character: 1 },
+      end: Position { line: 15, character: 63 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 8, character: 6 },
+        end: Position { line: 15, character: 63 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTEvaluationExpression] ]
+      }
+    },
+    17 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  }
+}"
+`;
+
+exports[`parse default scripts multiline.src unsafe 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 22, character: 74 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 6, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 6, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 8, character: 1 },
+      end: Position { line: 15, character: 63 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 8, character: 6 },
+        end: Position { line: 15, character: 63 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTEvaluationExpression] ]
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  ],
+  namespaces: Set(0) {},
+  assignments: [],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 1, character: 7 },
+      end: Position { line: 1, character: 49 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\nwas\\\\nprint(\\"was\\")\\\\nfoo[\\"xxxx\\"].test\\\\n',
+      raw: '\\"\\\\n\\\\nwas\\\\nprint(\\"\\"was\\"\\")\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 8, character: 7 },
+      end: Position { line: 8, character: 25 },
+      scope: [Circular *1],
+      value: '\\\\nprint(\\"was\\") ',
+      raw: '\\"\\\\nprint(\\"\\"was\\"\\") \\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 9, character: 28 },
+      end: Position { line: 9, character: 50 },
+      scope: [Circular *1],
+      value: '\\\\nfoo[\\"xxxx\\"].test\\\\n',
+      raw: '\\"\\\\nfoo[\\"\\"xxxx\\"\\"].test\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 11, character: 53 },
+      end: Position { line: 11, character: 62 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\n\\\\nwas\\\\n',
+      raw: '\\"\\\\n\\\\n\\\\nwas\\\\n\\"'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 7 },
+      end: Position { line: 17, character: 73 },
+      scope: [Circular *1],
+      value: '\\\\n\\\\n    if (typeof(@item.value) == \\"function\\") then\\\\n\\\\n    end if\\\\n',
+      raw: '\\"\\\\n\\\\n    if (typeof(@item.value) == \\"\\"function\\"\\") then\\\\n\\\\n    end if\\\\n\\"'
+    }
+  ],
+  scopes: [],
+  lines: Map(3) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 6, character: 50 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 6 },
+        end: Position { line: 6, character: 50 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    },
+    8 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 8, character: 1 },
+      end: Position { line: 15, character: 63 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 8, character: 6 },
+        end: Position { line: 15, character: 63 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTEvaluationExpression] ]
+      }
+    },
+    17 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 22, character: 74 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 17, character: 6 },
+        end: Position { line: 22, character: 74 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'print'
+        },
+        arguments: [ [ASTLiteral] ]
+      }
+    }
+  }
+}"
+`;
+
 exports[`parse default scripts negation.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
@@ -84080,7 +84438,7 @@ exports[`parse default scripts slice.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 15, character: 59 },
+  end: Position { line: 27, character: 21 },
   scope: null,
   body: [
     ASTAssignmentStatement {
@@ -84137,9 +84495,240 @@ exports[`parse default scripts slice.src 1`] = `
         },
         arguments: [ [ASTCallExpression] ]
       }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 17, character: 81 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 20 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'current_path'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTEvaluationExpression {
+        type: 'BinaryExpression',
+        start: Position { line: 17, character: 29 },
+        end: Position { line: 17, character: 81 },
+        scope: [Circular *1],
+        operator: '+',
+        left: ASTLiteral {
+          type: 'StringLiteral',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          value: '/home/',
+          raw: '\\"/home/\\"'
+        },
+        right: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTMemberExpression],
+          index: [ASTSliceExpression]
+        }
+      }
+    },
+    ASTForGenericStatement {
+      type: 'ForGenericStatement',
+      start: Position { line: 19, character: 1 },
+      end: Position { line: 21, character: 8 },
+      scope: [Circular *1],
+      body: [
+        ASTIfStatement {
+          type: 'IfShortcutStatement',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          clauses: [Array]
+        }
+      ],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 19, character: 5 },
+        end: Position { line: 19, character: 6 },
+        scope: [Circular *1],
+        name: 'i'
+      },
+      iterator: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 19, character: 15 },
+        end: Position { line: 19, character: 26 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'range'
+        },
+        arguments: [ [ASTLiteral], [ASTEvaluationExpression] ]
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 23, character: 1 },
+      end: Position { line: 23, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 23, character: 5 },
+        end: Position { line: 23, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 24, character: 1 },
+      end: Position { line: 24, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 24, character: 5 },
+        end: Position { line: 24, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 25, character: 1 },
+      end: Position { line: 25, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 25, character: 5 },
+        end: Position { line: 25, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 26, character: 1 },
+      end: Position { line: 26, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 26, character: 5 },
+        end: Position { line: 26, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 27, character: 1 },
+      end: Position { line: 27, character: 21 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 27, character: 5 },
+        end: Position { line: 27, character: 21 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTIndexExpression]
+        }
+      }
     }
   ],
-  namespaces: Set(1) { 'divideString' },
+  namespaces: Set(9) {
+    'divideString',
+    'test',
+    'moo',
+    'user',
+    'bar',
+    'foo',
+    'i',
+    's',
+    'f'
+  },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -84174,6 +84763,127 @@ exports[`parse default scripts slice.src 1`] = `
           [ASTAssignmentStatement]
         ],
         parameters: [ [ASTIdentifier], [ASTIdentifier] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 17, character: 81 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 20 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'current_path'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTEvaluationExpression {
+        type: 'BinaryExpression',
+        start: Position { line: 17, character: 29 },
+        end: Position { line: 17, character: 81 },
+        scope: [Circular *1],
+        operator: '+',
+        left: ASTLiteral {
+          type: 'StringLiteral',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          value: '/home/',
+          raw: '\\"/home/\\"'
+        },
+        right: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTMemberExpression],
+          index: [ASTSliceExpression]
+        }
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 20, character: 34 },
+      end: Position { line: 20, character: 59 },
+      scope: [Circular *1],
+      variable: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 20, character: 46 },
+        end: Position { line: 20, character: 53 },
+        scope: [Circular *1],
+        base: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTIdentifier],
+          index: [ASTIndexExpression]
+        },
+        index: ASTMemberExpression {
+          type: 'MemberExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          indexer: '.',
+          identifier: [ASTIdentifier],
+          base: [ASTIdentifier]
+        }
+      },
+      init: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 20, character: 53 },
+        end: Position { line: 20, character: 54 },
+        scope: [Circular *1],
+        value: 1,
+        raw: '1'
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 20, character: 60 },
+      end: Position { line: 20, character: 81 },
+      scope: [Circular *1],
+      variable: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 20, character: 62 },
+        end: Position { line: 20, character: 72 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'f'
+        },
+        index: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTIdentifier],
+          index: [ASTSliceExpression]
+        }
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 20, character: 72 },
+        end: Position { line: 20, character: 81 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
       }
     }
   ],
@@ -84223,6 +84933,150 @@ exports[`parse default scripts slice.src 1`] = `
       scope: [Circular *1],
       value: 5,
       raw: '5'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 21 },
+      end: Position { line: 17, character: 29 },
+      scope: [Circular *1],
+      value: '/home/',
+      raw: '\\"/home/\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 40 },
+      end: Position { line: 17, character: 41 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 58 },
+      end: Position { line: 17, character: 59 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 73 },
+      end: Position { line: 17, character: 76 },
+      scope: [Circular *1],
+      value: '@',
+      raw: '\\"@\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 78 },
+      end: Position { line: 17, character: 79 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 19, character: 16 },
+      end: Position { line: 19, character: 17 },
+      scope: [Circular *1],
+      value: 0,
+      raw: '0'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 19, character: 24 },
+      end: Position { line: 19, character: 25 },
+      scope: [Circular *1],
+      value: 4,
+      raw: '4'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 25 },
+      end: Position { line: 20, character: 26 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 42 },
+      end: Position { line: 20, character: 43 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 53 },
+      end: Position { line: 20, character: 54 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 68 },
+      end: Position { line: 20, character: 69 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 79 },
+      end: Position { line: 20, character: 80 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 23, character: 5 },
+      end: Position { line: 23, character: 6 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 24, character: 6 },
+      end: Position { line: 24, character: 7 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 25, character: 9 },
+      end: Position { line: 25, character: 10 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 26, character: 11 },
+      end: Position { line: 26, character: 12 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 27, character: 9 },
+      end: Position { line: 27, character: 10 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 27, character: 18 },
+      end: Position { line: 27, character: 19 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
     }
   ],
   scopes: [
@@ -84333,7 +85187,7 @@ exports[`parse default scripts slice.src 1`] = `
       ]
     }
   ],
-  lines: Map(10) {
+  lines: Map(18) {
     2 => <ref *3> ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 2, character: 5 },
@@ -84888,6 +85742,250 @@ exports[`parse default scripts slice.src 1`] = `
           name: 'print'
         },
         arguments: [ [ASTCallExpression] ]
+      }
+    },
+    17 => ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 17, character: 81 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 20 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'current_path'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTEvaluationExpression {
+        type: 'BinaryExpression',
+        start: Position { line: 17, character: 29 },
+        end: Position { line: 17, character: 81 },
+        scope: [Circular *1],
+        operator: '+',
+        left: ASTLiteral {
+          type: 'StringLiteral',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          value: '/home/',
+          raw: '\\"/home/\\"'
+        },
+        right: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTMemberExpression],
+          index: [ASTSliceExpression]
+        }
+      }
+    },
+    20 => ASTIfStatement {
+      type: 'IfShortcutStatement',
+      start: Position { line: 20, character: 5 },
+      end: Position { line: 20, character: 81 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfShortcutClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array],
+          condition: [ASTCallExpression]
+        },
+        ASTElseClause {
+          type: 'ElseShortcutClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array]
+        }
+      ]
+    },
+    19 => ASTForGenericStatement {
+      type: 'ForGenericStatement',
+      start: Position { line: 19, character: 1 },
+      end: Position { line: 21, character: 8 },
+      scope: [Circular *1],
+      body: [
+        ASTIfStatement {
+          type: 'IfShortcutStatement',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          clauses: [Array]
+        }
+      ],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 19, character: 5 },
+        end: Position { line: 19, character: 6 },
+        scope: [Circular *1],
+        name: 'i'
+      },
+      iterator: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 19, character: 15 },
+        end: Position { line: 19, character: 26 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'range'
+        },
+        arguments: [ [ASTLiteral], [ASTEvaluationExpression] ]
+      }
+    },
+    23 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 23, character: 1 },
+      end: Position { line: 23, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 23, character: 5 },
+        end: Position { line: 23, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    24 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 24, character: 1 },
+      end: Position { line: 24, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 24, character: 5 },
+        end: Position { line: 24, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    25 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 25, character: 1 },
+      end: Position { line: 25, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 25, character: 5 },
+        end: Position { line: 25, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    26 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 26, character: 1 },
+      end: Position { line: 26, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 26, character: 5 },
+        end: Position { line: 26, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    27 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 27, character: 1 },
+      end: Position { line: 27, character: 21 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 27, character: 5 },
+        end: Position { line: 27, character: 21 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTIndexExpression]
+        }
       }
     }
   }
@@ -84898,7 +85996,7 @@ exports[`parse default scripts slice.src unsafe 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 15, character: 59 },
+  end: Position { line: 27, character: 21 },
   scope: null,
   body: [
     ASTAssignmentStatement {
@@ -84955,9 +86053,240 @@ exports[`parse default scripts slice.src unsafe 1`] = `
         },
         arguments: [ [ASTCallExpression] ]
       }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 17, character: 81 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 20 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'current_path'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTEvaluationExpression {
+        type: 'BinaryExpression',
+        start: Position { line: 17, character: 29 },
+        end: Position { line: 17, character: 81 },
+        scope: [Circular *1],
+        operator: '+',
+        left: ASTLiteral {
+          type: 'StringLiteral',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          value: '/home/',
+          raw: '\\"/home/\\"'
+        },
+        right: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTMemberExpression],
+          index: [ASTSliceExpression]
+        }
+      }
+    },
+    ASTForGenericStatement {
+      type: 'ForGenericStatement',
+      start: Position { line: 19, character: 1 },
+      end: Position { line: 21, character: 8 },
+      scope: [Circular *1],
+      body: [
+        ASTIfStatement {
+          type: 'IfShortcutStatement',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          clauses: [Array]
+        }
+      ],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 19, character: 5 },
+        end: Position { line: 19, character: 6 },
+        scope: [Circular *1],
+        name: 'i'
+      },
+      iterator: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 19, character: 15 },
+        end: Position { line: 19, character: 26 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'range'
+        },
+        arguments: [ [ASTLiteral], [ASTEvaluationExpression] ]
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 23, character: 1 },
+      end: Position { line: 23, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 23, character: 5 },
+        end: Position { line: 23, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 24, character: 1 },
+      end: Position { line: 24, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 24, character: 5 },
+        end: Position { line: 24, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 25, character: 1 },
+      end: Position { line: 25, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 25, character: 5 },
+        end: Position { line: 25, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 26, character: 1 },
+      end: Position { line: 26, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 26, character: 5 },
+        end: Position { line: 26, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 27, character: 1 },
+      end: Position { line: 27, character: 21 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 27, character: 5 },
+        end: Position { line: 27, character: 21 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTIndexExpression]
+        }
+      }
     }
   ],
-  namespaces: Set(1) { 'divideString' },
+  namespaces: Set(9) {
+    'divideString',
+    'test',
+    'moo',
+    'user',
+    'bar',
+    'foo',
+    'i',
+    's',
+    'f'
+  },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -84992,6 +86321,127 @@ exports[`parse default scripts slice.src unsafe 1`] = `
           [ASTAssignmentStatement]
         ],
         parameters: [ [ASTIdentifier], [ASTIdentifier] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 17, character: 81 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 20 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'current_path'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTEvaluationExpression {
+        type: 'BinaryExpression',
+        start: Position { line: 17, character: 29 },
+        end: Position { line: 17, character: 81 },
+        scope: [Circular *1],
+        operator: '+',
+        left: ASTLiteral {
+          type: 'StringLiteral',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          value: '/home/',
+          raw: '\\"/home/\\"'
+        },
+        right: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTMemberExpression],
+          index: [ASTSliceExpression]
+        }
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 20, character: 34 },
+      end: Position { line: 20, character: 59 },
+      scope: [Circular *1],
+      variable: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 20, character: 46 },
+        end: Position { line: 20, character: 53 },
+        scope: [Circular *1],
+        base: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTIdentifier],
+          index: [ASTIndexExpression]
+        },
+        index: ASTMemberExpression {
+          type: 'MemberExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          indexer: '.',
+          identifier: [ASTIdentifier],
+          base: [ASTIdentifier]
+        }
+      },
+      init: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 20, character: 53 },
+        end: Position { line: 20, character: 54 },
+        scope: [Circular *1],
+        value: 1,
+        raw: '1'
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 20, character: 60 },
+      end: Position { line: 20, character: 81 },
+      scope: [Circular *1],
+      variable: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 20, character: 62 },
+        end: Position { line: 20, character: 72 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'f'
+        },
+        index: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTIdentifier],
+          index: [ASTSliceExpression]
+        }
+      },
+      init: ASTMapConstructorExpression {
+        type: 'MapConstructorExpression',
+        start: Position { line: 20, character: 72 },
+        end: Position { line: 20, character: 81 },
+        scope: [Circular *1],
+        fields: [ [ASTMapKeyString] ]
       }
     }
   ],
@@ -85041,6 +86491,150 @@ exports[`parse default scripts slice.src unsafe 1`] = `
       scope: [Circular *1],
       value: 5,
       raw: '5'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 21 },
+      end: Position { line: 17, character: 29 },
+      scope: [Circular *1],
+      value: '/home/',
+      raw: '\\"/home/\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 40 },
+      end: Position { line: 17, character: 41 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 58 },
+      end: Position { line: 17, character: 59 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'StringLiteral',
+      start: Position { line: 17, character: 73 },
+      end: Position { line: 17, character: 76 },
+      scope: [Circular *1],
+      value: '@',
+      raw: '\\"@\\"'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 78 },
+      end: Position { line: 17, character: 79 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 19, character: 16 },
+      end: Position { line: 19, character: 17 },
+      scope: [Circular *1],
+      value: 0,
+      raw: '0'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 19, character: 24 },
+      end: Position { line: 19, character: 25 },
+      scope: [Circular *1],
+      value: 4,
+      raw: '4'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 25 },
+      end: Position { line: 20, character: 26 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 42 },
+      end: Position { line: 20, character: 43 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 53 },
+      end: Position { line: 20, character: 54 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 68 },
+      end: Position { line: 20, character: 69 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 20, character: 79 },
+      end: Position { line: 20, character: 80 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 23, character: 5 },
+      end: Position { line: 23, character: 6 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 24, character: 6 },
+      end: Position { line: 24, character: 7 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 25, character: 9 },
+      end: Position { line: 25, character: 10 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 26, character: 11 },
+      end: Position { line: 26, character: 12 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 27, character: 9 },
+      end: Position { line: 27, character: 10 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 27, character: 18 },
+      end: Position { line: 27, character: 19 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
     }
   ],
   scopes: [
@@ -85151,7 +86745,7 @@ exports[`parse default scripts slice.src unsafe 1`] = `
       ]
     }
   ],
-  lines: Map(10) {
+  lines: Map(18) {
     2 => <ref *3> ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 2, character: 5 },
@@ -85706,6 +87300,250 @@ exports[`parse default scripts slice.src unsafe 1`] = `
           name: 'print'
         },
         arguments: [ [ASTCallExpression] ]
+      }
+    },
+    17 => ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 17, character: 1 },
+      end: Position { line: 17, character: 81 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 20 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'current_path'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTEvaluationExpression {
+        type: 'BinaryExpression',
+        start: Position { line: 17, character: 29 },
+        end: Position { line: 17, character: 81 },
+        scope: [Circular *1],
+        operator: '+',
+        left: ASTLiteral {
+          type: 'StringLiteral',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          value: '/home/',
+          raw: '\\"/home/\\"'
+        },
+        right: ASTIndexExpression {
+          type: 'IndexExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          base: [ASTMemberExpression],
+          index: [ASTSliceExpression]
+        }
+      }
+    },
+    20 => ASTIfStatement {
+      type: 'IfShortcutStatement',
+      start: Position { line: 20, character: 5 },
+      end: Position { line: 20, character: 81 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfShortcutClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array],
+          condition: [ASTCallExpression]
+        },
+        ASTElseClause {
+          type: 'ElseShortcutClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array]
+        }
+      ]
+    },
+    19 => ASTForGenericStatement {
+      type: 'ForGenericStatement',
+      start: Position { line: 19, character: 1 },
+      end: Position { line: 21, character: 8 },
+      scope: [Circular *1],
+      body: [
+        ASTIfStatement {
+          type: 'IfShortcutStatement',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          clauses: [Array]
+        }
+      ],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 19, character: 5 },
+        end: Position { line: 19, character: 6 },
+        scope: [Circular *1],
+        name: 'i'
+      },
+      iterator: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 19, character: 15 },
+        end: Position { line: 19, character: 26 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'range'
+        },
+        arguments: [ [ASTLiteral], [ASTEvaluationExpression] ]
+      }
+    },
+    23 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 23, character: 1 },
+      end: Position { line: 23, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 23, character: 5 },
+        end: Position { line: 23, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    24 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 24, character: 1 },
+      end: Position { line: 24, character: 8 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 24, character: 5 },
+        end: Position { line: 24, character: 8 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTLiteral],
+          right: [ASTBase]
+        }
+      }
+    },
+    25 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 25, character: 1 },
+      end: Position { line: 25, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 25, character: 5 },
+        end: Position { line: 25, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    26 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 26, character: 1 },
+      end: Position { line: 26, character: 14 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 26, character: 5 },
+        end: Position { line: 26, character: 14 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTBase]
+        }
+      }
+    },
+    27 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 27, character: 1 },
+      end: Position { line: 27, character: 21 },
+      scope: [Circular *1],
+      expression: ASTIndexExpression {
+        type: 'IndexExpression',
+        start: Position { line: 27, character: 5 },
+        end: Position { line: 27, character: 21 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'foo'
+        },
+        index: ASTSliceExpression {
+          type: 'SliceExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          left: [ASTIndexExpression],
+          right: [ASTIndexExpression]
+        }
       }
     }
   }
