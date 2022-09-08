@@ -393,60 +393,43 @@ export default class Parser {
   parseIndexExpression(base: ASTBase): ASTIndexExpression {
     const me = this;
     const start = new ASTPosition(me.token.line, me.token.lineRange[0]);
-    let offset = 1;
-    let token = me.token;
+    let isSlice = me.consume(':');
 
-    while (true) {
-      if (token.value === ']' || token.value === '<eof>') break;
-      if (token.value === ':' && token.type !== TokenType.StringLiteral) {
-        let left;
-        let right;
+    const expression = me.parseExpectedExpression();
 
-        if (!me.consume(':')) {
-          left = me.parseExpectedExpression();
-          me.expect(':');
-        } else {
-          left = me.astProvider.emptyExpression({
-            start,
-            end: new ASTPosition(me.token.line, me.token.lineRange[1]),
-            scope: me.currentScope
-          });
-        }
+    if (isSlice || me.consume(':')) {
+      let right;
 
-        if (!me.consume(']')) {
-          right = me.parseExpectedExpression();
-          me.expect(']');
-        } else {
-          right = me.astProvider.emptyExpression({
-            start,
-            end: new ASTPosition(me.token.line, me.token.lineRange[1]),
-            scope: me.currentScope
-          });
-        }
-
-        const end = new ASTPosition(me.token.line, me.token.lineRange[1]);
-        const sliceExpression = me.astProvider.sliceExpression({
-          left,
-          right,
-          start,
-          end,
-          scope: me.currentScope
-        });
-
-        return me.astProvider.indexExpression({
-          base,
-          index: sliceExpression,
-          start,
-          end,
+      if (me.previousToken.value === ':' && me.token.value !== ']') {
+        right = me.parseExpectedExpression();
+      } else {
+        right = me.astProvider.emptyExpression({
+          start: new ASTPosition(me.token.line, me.token.lineRange[0]),
+          end: new ASTPosition(me.token.line, me.token.lineRange[1]),
           scope: me.currentScope
         });
       }
 
-      token = me.prefetch(offset);
-      offset = offset + 1;
+      me.expect(']');
+
+      const end = new ASTPosition(me.token.line, me.token.lineRange[1]);
+      const sliceExpression = me.astProvider.sliceExpression({
+        left: expression,
+        right,
+        start,
+        end,
+        scope: me.currentScope
+      });
+
+      return me.astProvider.indexExpression({
+        base,
+        index: sliceExpression,
+        start,
+        end,
+        scope: me.currentScope
+      });
     }
 
-    const expression = me.parseExpectedExpression();
     me.expect(']');
 
     return me.astProvider.indexExpression({
