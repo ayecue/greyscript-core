@@ -84631,8 +84631,8 @@ exports[`parse default scripts slice.src 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTLiteral],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTLiteral]
         }
       }
     },
@@ -84685,8 +84685,8 @@ exports[`parse default scripts slice.src 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTIndexExpression],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTIndexExpression]
         }
       }
     },
@@ -85902,8 +85902,8 @@ exports[`parse default scripts slice.src 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTLiteral],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTLiteral]
         }
       }
     },
@@ -85956,8 +85956,8 @@ exports[`parse default scripts slice.src 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTIndexExpression],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTIndexExpression]
         }
       }
     },
@@ -86189,8 +86189,8 @@ exports[`parse default scripts slice.src unsafe 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTLiteral],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTLiteral]
         }
       }
     },
@@ -86243,8 +86243,8 @@ exports[`parse default scripts slice.src unsafe 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTIndexExpression],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTIndexExpression]
         }
       }
     },
@@ -87460,8 +87460,8 @@ exports[`parse default scripts slice.src unsafe 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTLiteral],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTLiteral]
         }
       }
     },
@@ -87514,8 +87514,8 @@ exports[`parse default scripts slice.src unsafe 1`] = `
           start: [Position],
           end: [Position],
           scope: [Circular *1],
-          left: [ASTIndexExpression],
-          right: [ASTBase]
+          left: [ASTBase],
+          right: [ASTIndexExpression]
         }
       }
     },

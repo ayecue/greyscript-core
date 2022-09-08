@@ -393,16 +393,46 @@ export default class Parser {
   parseIndexExpression(base: ASTBase): ASTIndexExpression {
     const me = this;
     const start = new ASTPosition(me.token.line, me.token.lineRange[0]);
-    let isSlice = me.consume(':');
+
+    //right side slice
+    if (me.consume(':')) {
+      const left = me.astProvider.emptyExpression({
+        start: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[0]),
+        end: new ASTPosition(me.previousToken.line, me.previousToken.lineRange[1]),
+        scope: me.currentScope
+      });
+      const right = me.parseExpectedExpression();
+
+      me.expect(']');
+
+      const end = new ASTPosition(me.token.line, me.token.lineRange[1]);
+      const sliceExpression = me.astProvider.sliceExpression({
+        left,
+        right,
+        start,
+        end,
+        scope: me.currentScope
+      });
+
+      return me.astProvider.indexExpression({
+        base,
+        index: sliceExpression,
+        start,
+        end,
+        scope: me.currentScope
+      });
+    }
 
     const expression = me.parseExpectedExpression();
 
-    if (isSlice || me.consume(':')) {
+    //slice
+    if (me.consume(':')) {
       let right;
 
-      if (me.previousToken.value === ':' && me.token.value !== ']') {
+      if (me.token.value !== ']') {
         right = me.parseExpectedExpression();
       } else {
+        //left slice
         right = me.astProvider.emptyExpression({
           start: new ASTPosition(me.token.line, me.token.lineRange[0]),
           end: new ASTPosition(me.token.line, me.token.lineRange[1]),
