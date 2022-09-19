@@ -1,6 +1,6 @@
 {
     "name": "greyscript-core",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "description": "Core lexer/parser for GreyScript",
     "main": "dist/index",
     "typings": "dist/index",
@@ -51,6 +51,6 @@
         "greyhack"
     ],
     "dependencies": {
-        "greyscript-meta": "^1.1.5"
+        "greyscript-meta": "^1.1.8"
     }
 }
