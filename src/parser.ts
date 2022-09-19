@@ -61,7 +61,7 @@ export default class Parser {
   }[];
 
   // helper
-  nativeImports: string[];
+  nativeImports: ASTImportCodeExpression[];
   literals: ASTBase[];
   scopes: ASTBaseBlockWithScope[];
   lines: Map<number, ASTBase>;
@@ -739,7 +739,6 @@ export default class Parser {
       fileSystemDirectory = me.token.value;
 
       me.next();
-      me.nativeImports.push(fileSystemDirectory);
     }
 
     me.expect(')');
@@ -752,6 +751,8 @@ export default class Parser {
       end: new ASTPosition(me.token.line, me.token.lineRange[1]),
       scope: me.currentScope
     });
+
+    me.nativeImports.push(base);
 
     return base;
   }

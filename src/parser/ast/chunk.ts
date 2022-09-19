@@ -4,16 +4,17 @@ import {
   ASTBaseBlockWithScopeOptions,
   ASTType
 } from './base';
+import { ASTImportCodeExpression } from './import-code';
 
 export interface ASTChunkOptions extends ASTBaseBlockWithScopeOptions {
-  nativeImports?: string[];
+  nativeImports?: ASTImportCodeExpression[];
   literals?: ASTBase[];
   scopes?: ASTBaseBlockWithScope[];
   lines?: Map<number, ASTBase>;
 }
 
 export class ASTChunk extends ASTBaseBlockWithScope {
-  nativeImports: string[];
+  nativeImports: ASTImportCodeExpression[];
   literals: ASTBase[];
   scopes: ASTBaseBlockWithScope[];
   lines: Map<number, ASTBase>;
