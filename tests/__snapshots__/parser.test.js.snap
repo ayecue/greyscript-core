@@ -6225,7 +6225,7 @@ exports[`parse default scripts ascii.src 1`] = `
     68 => <ref *14> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 68, character: 5 },
-      end: Position { line: 69, character: 13 },
+      end: Position { line: 68, character: 68 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 45, character: 16 },
@@ -12580,7 +12580,7 @@ exports[`parse default scripts ascii.src unsafe 1`] = `
     68 => <ref *14> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 68, character: 5 },
-      end: Position { line: 69, character: 13 },
+      end: Position { line: 68, character: 68 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 45, character: 16 },
@@ -22698,7 +22698,7 @@ exports[`parse default scripts password-generator.src 1`] = `
     12 => <ref *8> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 12, character: 5 },
-      end: Position { line: 13, character: 13 },
+      end: Position { line: 12, character: 14 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 8, character: 33 },
@@ -24592,7 +24592,7 @@ exports[`parse default scripts password-generator.src 1`] = `
     48 => ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 48, character: 9 },
-      end: Position { line: 49, character: 11 },
+      end: Position { line: 48, character: 20 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 33, character: 25 },
@@ -24707,7 +24707,7 @@ exports[`parse default scripts password-generator.src 1`] = `
     51 => <ref *28> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 51, character: 5 },
-      end: Position { line: 52, character: 13 },
+      end: Position { line: 51, character: 20 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 33, character: 25 },
@@ -27436,7 +27436,7 @@ exports[`parse default scripts password-generator.src unsafe 1`] = `
     12 => <ref *8> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 12, character: 5 },
-      end: Position { line: 13, character: 13 },
+      end: Position { line: 12, character: 14 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 8, character: 33 },
@@ -29330,7 +29330,7 @@ exports[`parse default scripts password-generator.src unsafe 1`] = `
     48 => ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 48, character: 9 },
-      end: Position { line: 49, character: 11 },
+      end: Position { line: 48, character: 20 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 33, character: 25 },
@@ -29445,7 +29445,7 @@ exports[`parse default scripts password-generator.src unsafe 1`] = `
     51 => <ref *28> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 51, character: 5 },
-      end: Position { line: 52, character: 13 },
+      end: Position { line: 51, character: 20 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 33, character: 25 },
@@ -39243,7 +39243,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     5 => <ref *26> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 5, character: 5 },
-      end: Position { line: 6, character: 13 },
+      end: Position { line: 5, character: 16 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 3, character: 22 },
@@ -39770,7 +39770,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     18 => <ref *33> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 18, character: 5 },
-      end: Position { line: 19, character: 13 },
+      end: Position { line: 18, character: 42 },
       scope: <ref *3> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 8, character: 16 },
@@ -39883,7 +39883,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     22 => <ref *34> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 22, character: 5 },
-      end: Position { line: 23, character: 13 },
+      end: Position { line: 22, character: 38 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 21, character: 21 },
@@ -39967,7 +39967,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     26 => <ref *35> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 26, character: 5 },
-      end: Position { line: 27, character: 13 },
+      end: Position { line: 26, character: 73 },
       scope: <ref *5> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 25, character: 17 },
@@ -40044,7 +40044,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     30 => <ref *36> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 30, character: 5 },
-      end: Position { line: 31, character: 13 },
+      end: Position { line: 30, character: 33 },
       scope: <ref *6> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 29, character: 18 },
@@ -40121,7 +40121,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     34 => <ref *37> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 34, character: 5 },
-      end: Position { line: 35, character: 13 },
+      end: Position { line: 34, character: 65 },
       scope: <ref *7> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 33, character: 18 },
@@ -40198,7 +40198,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     38 => <ref *38> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 38, character: 5 },
-      end: Position { line: 39, character: 13 },
+      end: Position { line: 38, character: 56 },
       scope: <ref *8> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 37, character: 17 },
@@ -40275,7 +40275,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     42 => <ref *39> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 42, character: 5 },
-      end: Position { line: 43, character: 13 },
+      end: Position { line: 42, character: 20 },
       scope: <ref *9> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 41, character: 19 },
@@ -40357,7 +40357,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     46 => <ref *40> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 46, character: 5 },
-      end: Position { line: 47, character: 13 },
+      end: Position { line: 46, character: 24 },
       scope: <ref *10> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 45, character: 17 },
@@ -40441,7 +40441,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     50 => <ref *41> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 50, character: 5 },
-      end: Position { line: 51, character: 13 },
+      end: Position { line: 50, character: 37 },
       scope: <ref *11> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 49, character: 16 },
@@ -40518,7 +40518,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     54 => <ref *42> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 54, character: 5 },
-      end: Position { line: 55, character: 13 },
+      end: Position { line: 54, character: 51 },
       scope: <ref *12> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 53, character: 15 },
@@ -40916,7 +40916,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     67 => <ref *47> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 67, character: 5 },
-      end: Position { line: 68, character: 13 },
+      end: Position { line: 67, character: 13 },
       scope: <ref *13> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 61, character: 21 },
@@ -41744,7 +41744,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     89 => <ref *56> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 89, character: 5 },
-      end: Position { line: 90, character: 13 },
+      end: Position { line: 89, character: 14 },
       scope: <ref *15> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 81, character: 22 },
@@ -42221,7 +42221,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     100 => <ref *62> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 100, character: 5 },
-      end: Position { line: 101, character: 13 },
+      end: Position { line: 100, character: 16 },
       scope: <ref *16> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 92, character: 18 },
@@ -43280,7 +43280,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     116 => <ref *72> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 116, character: 9 },
-      end: Position { line: 117, character: 17 },
+      end: Position { line: 116, character: 27 },
       scope: <ref *18> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 112, character: 11 },
@@ -43446,7 +43446,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     119 => <ref *74> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 119, character: 9 },
-      end: Position { line: 120, character: 17 },
+      end: Position { line: 119, character: 34 },
       scope: <ref *19> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 118, character: 11 },
@@ -43604,7 +43604,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     122 => <ref *76> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 122, character: 9 },
-      end: Position { line: 123, character: 17 },
+      end: Position { line: 122, character: 35 },
       scope: <ref *20> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 121, character: 14 },
@@ -43762,7 +43762,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     125 => <ref *78> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 125, character: 9 },
-      end: Position { line: 126, character: 17 },
+      end: Position { line: 125, character: 35 },
       scope: <ref *21> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 124, character: 14 },
@@ -46764,7 +46764,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     155 => <ref *94> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 155, character: 5 },
-      end: Position { line: 156, character: 13 },
+      end: Position { line: 155, character: 27 },
       scope: <ref *17> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 103, character: 18 },
@@ -48226,7 +48226,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     171 => <ref *106> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 171, character: 9 },
-      end: Position { line: 172, character: 17 },
+      end: Position { line: 171, character: 34 },
       scope: <ref *23> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 170, character: 11 },
@@ -48389,7 +48389,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     174 => <ref *108> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 174, character: 9 },
-      end: Position { line: 175, character: 17 },
+      end: Position { line: 174, character: 35 },
       scope: <ref *24> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 173, character: 14 },
@@ -50883,7 +50883,7 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
     201 => <ref *124> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 201, character: 5 },
-      end: Position { line: 202, character: 13 },
+      end: Position { line: 201, character: 27 },
       scope: <ref *22> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 158, character: 18 },
@@ -60700,7 +60700,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     5 => <ref *26> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 5, character: 5 },
-      end: Position { line: 6, character: 13 },
+      end: Position { line: 5, character: 16 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 3, character: 22 },
@@ -61227,7 +61227,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     18 => <ref *33> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 18, character: 5 },
-      end: Position { line: 19, character: 13 },
+      end: Position { line: 18, character: 42 },
       scope: <ref *3> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 8, character: 16 },
@@ -61340,7 +61340,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     22 => <ref *34> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 22, character: 5 },
-      end: Position { line: 23, character: 13 },
+      end: Position { line: 22, character: 38 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 21, character: 21 },
@@ -61424,7 +61424,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     26 => <ref *35> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 26, character: 5 },
-      end: Position { line: 27, character: 13 },
+      end: Position { line: 26, character: 73 },
       scope: <ref *5> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 25, character: 17 },
@@ -61501,7 +61501,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     30 => <ref *36> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 30, character: 5 },
-      end: Position { line: 31, character: 13 },
+      end: Position { line: 30, character: 33 },
       scope: <ref *6> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 29, character: 18 },
@@ -61578,7 +61578,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     34 => <ref *37> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 34, character: 5 },
-      end: Position { line: 35, character: 13 },
+      end: Position { line: 34, character: 65 },
       scope: <ref *7> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 33, character: 18 },
@@ -61655,7 +61655,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     38 => <ref *38> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 38, character: 5 },
-      end: Position { line: 39, character: 13 },
+      end: Position { line: 38, character: 56 },
       scope: <ref *8> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 37, character: 17 },
@@ -61732,7 +61732,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     42 => <ref *39> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 42, character: 5 },
-      end: Position { line: 43, character: 13 },
+      end: Position { line: 42, character: 20 },
       scope: <ref *9> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 41, character: 19 },
@@ -61814,7 +61814,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     46 => <ref *40> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 46, character: 5 },
-      end: Position { line: 47, character: 13 },
+      end: Position { line: 46, character: 24 },
       scope: <ref *10> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 45, character: 17 },
@@ -61898,7 +61898,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     50 => <ref *41> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 50, character: 5 },
-      end: Position { line: 51, character: 13 },
+      end: Position { line: 50, character: 37 },
       scope: <ref *11> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 49, character: 16 },
@@ -61975,7 +61975,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     54 => <ref *42> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 54, character: 5 },
-      end: Position { line: 55, character: 13 },
+      end: Position { line: 54, character: 51 },
       scope: <ref *12> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 53, character: 15 },
@@ -62373,7 +62373,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     67 => <ref *47> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 67, character: 5 },
-      end: Position { line: 68, character: 13 },
+      end: Position { line: 67, character: 13 },
       scope: <ref *13> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 61, character: 21 },
@@ -63201,7 +63201,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     89 => <ref *56> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 89, character: 5 },
-      end: Position { line: 90, character: 13 },
+      end: Position { line: 89, character: 14 },
       scope: <ref *15> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 81, character: 22 },
@@ -63678,7 +63678,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     100 => <ref *62> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 100, character: 5 },
-      end: Position { line: 101, character: 13 },
+      end: Position { line: 100, character: 16 },
       scope: <ref *16> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 92, character: 18 },
@@ -64737,7 +64737,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     116 => <ref *72> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 116, character: 9 },
-      end: Position { line: 117, character: 17 },
+      end: Position { line: 116, character: 27 },
       scope: <ref *18> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 112, character: 11 },
@@ -64903,7 +64903,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     119 => <ref *74> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 119, character: 9 },
-      end: Position { line: 120, character: 17 },
+      end: Position { line: 119, character: 34 },
       scope: <ref *19> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 118, character: 11 },
@@ -65061,7 +65061,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     122 => <ref *76> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 122, character: 9 },
-      end: Position { line: 123, character: 17 },
+      end: Position { line: 122, character: 35 },
       scope: <ref *20> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 121, character: 14 },
@@ -65219,7 +65219,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     125 => <ref *78> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 125, character: 9 },
-      end: Position { line: 126, character: 17 },
+      end: Position { line: 125, character: 35 },
       scope: <ref *21> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 124, character: 14 },
@@ -68221,7 +68221,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     155 => <ref *94> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 155, character: 5 },
-      end: Position { line: 156, character: 13 },
+      end: Position { line: 155, character: 27 },
       scope: <ref *17> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 103, character: 18 },
@@ -69683,7 +69683,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     171 => <ref *106> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 171, character: 9 },
-      end: Position { line: 172, character: 17 },
+      end: Position { line: 171, character: 34 },
       scope: <ref *23> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 170, character: 11 },
@@ -69846,7 +69846,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     174 => <ref *108> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 174, character: 9 },
-      end: Position { line: 175, character: 17 },
+      end: Position { line: 174, character: 35 },
       scope: <ref *24> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 173, character: 14 },
@@ -72340,7 +72340,7 @@ exports[`parse default scripts pseudo-crypto.src unsafe 1`] = `
     201 => <ref *124> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 201, character: 5 },
-      end: Position { line: 202, character: 13 },
+      end: Position { line: 201, character: 27 },
       scope: <ref *22> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 158, character: 18 },
@@ -74629,7 +74629,7 @@ exports[`parse default scripts random.src 1`] = `
     7 => <ref *7> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 7, character: 5 },
-      end: Position { line: 8, character: 13 },
+      end: Position { line: 7, character: 59 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 6, character: 21 },
@@ -75046,7 +75046,7 @@ exports[`parse default scripts random.src 1`] = `
     19 => <ref *13> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 19, character: 5 },
-      end: Position { line: 20, character: 13 },
+      end: Position { line: 19, character: 19 },
       scope: <ref *3> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 10, character: 19 },
@@ -75939,7 +75939,7 @@ exports[`parse default scripts random.src 1`] = `
     33 => ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 33, character: 9 },
-      end: Position { line: 34, character: 11 },
+      end: Position { line: 33, character: 19 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 22, character: 14 },
@@ -76379,7 +76379,7 @@ exports[`parse default scripts random.src 1`] = `
     41 => <ref *26> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 41, character: 5 },
-      end: Position { line: 42, character: 13 },
+      end: Position { line: 41, character: 15 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 22, character: 14 },
@@ -77172,7 +77172,7 @@ exports[`parse default scripts random.src 1`] = `
     54 => <ref *34> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 54, character: 5 },
-      end: Position { line: 55, character: 13 },
+      end: Position { line: 54, character: 18 },
       scope: <ref *5> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 44, character: 14 },
@@ -77302,7 +77302,7 @@ exports[`parse default scripts random.src 1`] = `
     58 => <ref *35> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 58, character: 5 },
-      end: Position { line: 59, character: 13 },
+      end: Position { line: 58, character: 30 },
       scope: <ref *6> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 57, character: 14 },
@@ -79351,7 +79351,7 @@ exports[`parse default scripts random.src unsafe 1`] = `
     7 => <ref *7> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 7, character: 5 },
-      end: Position { line: 8, character: 13 },
+      end: Position { line: 7, character: 59 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 6, character: 21 },
@@ -79768,7 +79768,7 @@ exports[`parse default scripts random.src unsafe 1`] = `
     19 => <ref *13> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 19, character: 5 },
-      end: Position { line: 20, character: 13 },
+      end: Position { line: 19, character: 19 },
       scope: <ref *3> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 10, character: 19 },
@@ -80661,7 +80661,7 @@ exports[`parse default scripts random.src unsafe 1`] = `
     33 => ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 33, character: 9 },
-      end: Position { line: 34, character: 11 },
+      end: Position { line: 33, character: 19 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 22, character: 14 },
@@ -81101,7 +81101,7 @@ exports[`parse default scripts random.src unsafe 1`] = `
     41 => <ref *26> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 41, character: 5 },
-      end: Position { line: 42, character: 13 },
+      end: Position { line: 41, character: 15 },
       scope: <ref *4> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 22, character: 14 },
@@ -81894,7 +81894,7 @@ exports[`parse default scripts random.src unsafe 1`] = `
     54 => <ref *34> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 54, character: 5 },
-      end: Position { line: 55, character: 13 },
+      end: Position { line: 54, character: 18 },
       scope: <ref *5> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 44, character: 14 },
@@ -82024,7 +82024,7 @@ exports[`parse default scripts random.src unsafe 1`] = `
     58 => <ref *35> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 58, character: 5 },
-      end: Position { line: 59, character: 13 },
+      end: Position { line: 58, character: 30 },
       scope: <ref *6> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 57, character: 14 },
@@ -85649,7 +85649,7 @@ exports[`parse default scripts slice.src 1`] = `
     12 => <ref *9> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 12, character: 5 },
-      end: Position { line: 13, character: 13 },
+      end: Position { line: 12, character: 17 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 1, character: 16 },
@@ -87207,7 +87207,7 @@ exports[`parse default scripts slice.src unsafe 1`] = `
     12 => <ref *9> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 12, character: 5 },
-      end: Position { line: 13, character: 13 },
+      end: Position { line: 12, character: 17 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 1, character: 16 },
@@ -87899,7 +87899,7 @@ exports[`parse default scripts unary.src 1`] = `
     2 => <ref *3> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 2, character: 5 },
-      end: Position { line: 3, character: 13 },
+      end: Position { line: 2, character: 16 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 1, character: 8 },
@@ -88424,7 +88424,7 @@ exports[`parse default scripts unary.src unsafe 1`] = `
     2 => <ref *3> ASTReturnStatement {
       type: 'ReturnStatement',
       start: Position { line: 2, character: 5 },
-      end: Position { line: 3, character: 13 },
+      end: Position { line: 2, character: 16 },
       scope: <ref *2> ASTFunctionStatement {
         type: 'FunctionDeclaration',
         start: Position { line: 1, character: 8 },
