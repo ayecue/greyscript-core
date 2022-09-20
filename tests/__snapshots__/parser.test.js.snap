@@ -15600,7 +15600,7 @@ exports[`parse default scripts if-shorthand.src 1`] = `
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 18, character: 1 },
-      end: Position { line: 19, character: 14 },
+      end: Position { line: 18, character: 34 },
       scope: [Circular *1],
       variable: ASTIdentifier {
         type: 'Identifier',
@@ -15771,7 +15771,7 @@ exports[`parse default scripts if-shorthand.src 1`] = `
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 18, character: 1 },
-      end: Position { line: 19, character: 14 },
+      end: Position { line: 18, character: 34 },
       scope: [Circular *1],
       variable: ASTIdentifier {
         type: 'Identifier',
@@ -16350,7 +16350,7 @@ exports[`parse default scripts if-shorthand.src 1`] = `
     18 => ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 18, character: 1 },
-      end: Position { line: 19, character: 14 },
+      end: Position { line: 18, character: 34 },
       scope: [Circular *1],
       variable: ASTIdentifier {
         type: 'Identifier',
@@ -16734,7 +16734,7 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 18, character: 1 },
-      end: Position { line: 19, character: 14 },
+      end: Position { line: 18, character: 34 },
       scope: [Circular *1],
       variable: ASTIdentifier {
         type: 'Identifier',
@@ -16905,7 +16905,7 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 18, character: 1 },
-      end: Position { line: 19, character: 14 },
+      end: Position { line: 18, character: 34 },
       scope: [Circular *1],
       variable: ASTIdentifier {
         type: 'Identifier',
@@ -17484,7 +17484,7 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
     18 => ASTAssignmentStatement {
       type: 'AssignmentStatement',
       start: Position { line: 18, character: 1 },
-      end: Position { line: 19, character: 14 },
+      end: Position { line: 18, character: 34 },
       scope: [Circular *1],
       variable: ASTIdentifier {
         type: 'Identifier',
