@@ -742,7 +742,6 @@ export default class Parser {
     }
 
     me.expect(')');
-    me.expect(';');
 
     const base = me.astProvider.importCodeExpression({
       gameDirectory,
@@ -982,8 +981,6 @@ export default class Parser {
     );
     const expression = me.parseExpression();
 
-    if (!isShortcutStatement) me.consume(';');
-
     return me.astProvider.returnStatement({
       argument: expression,
       start,
@@ -1192,7 +1189,7 @@ export default class Parser {
     return functionStatement;
   }
 
-  parseStatement(isShortcutStatement: boolean = false): ASTBase | null {
+  parseStatement(): ASTBase | null {
     const me = this;
 
     if (TokenType.Keyword === me.token.type) {
@@ -1204,7 +1201,7 @@ export default class Parser {
           return me.parseIfStatement();
         case 'return':
           me.next();
-          return me.parseReturnStatement(isShortcutStatement);
+          return me.parseReturnStatement();
         case 'function':
           me.next();
           return me.parseFunctionDeclaration();
@@ -1264,7 +1261,7 @@ export default class Parser {
       me.token.type !== TokenType.EOL &&
       !me.validator.isBreakingBlockShortcutKeyword(value)
     ) {
-      statement = me.parseStatement(value === 'return');
+      statement = me.parseStatement();
       if (statement) {
         this.lines.set(statement.start.line, statement);
         block.push(statement);
