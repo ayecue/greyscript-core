@@ -771,7 +771,6 @@ export default class Parser {
       me.expect('end while');
     } else {
       body = me.parseBlockShortcut();
-      me.expectMany([';', '<eof>']);
     }
 
     return me.astProvider.whileStatement({
@@ -1104,7 +1103,6 @@ export default class Parser {
       me.expect('end for');
     } else {
       body = me.parseBlockShortcut();
-      me.expectMany([';', '<eof>']);
     }
 
     return me.astProvider.forGenericStatement({
@@ -1174,7 +1172,6 @@ export default class Parser {
       me.expect('end function');
     } else {
       body = me.parseBlockShortcut();
-      me.expectMany([';', '<eof>']);
     }
 
     me.popScope();
