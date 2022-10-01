@@ -114,12 +114,16 @@ export default class Parser {
     return me;
   }
 
-  isBlockFollow(token: Token): boolean {
+  isBlockEnd(token: Token, endBlocks?: string[]): boolean {
     const type = token.type;
     const value = token.value;
     if (TokenType.EOF === type) return true;
-    if (TokenType.Keyword !== type) return false;
-    return value.indexOf('else') === 0 || value.indexOf('end') === 0;
+    if (endBlocks) {
+      for (let index = endBlocks.length - 1; index >= 0; index--) {
+        if (value.startsWith(endBlocks[index])) return true;
+      }
+    }
+    return false;
   }
 
   consume(value: string): boolean {
@@ -767,7 +771,7 @@ export default class Parser {
     let body;
 
     if (TokenType.EOL === me.token.type) {
-      body = me.parseBlock();
+      body = me.parseBlock(['end while']);
       me.expect('end while');
     } else {
       body = me.parseBlockShortcut();
@@ -886,7 +890,7 @@ export default class Parser {
     return ifStatement;
   }
 
-  parseIfStatement(): ASTIfStatement {
+  parseIfStatement(): ASTBase {
     const me = this;
     const clauses: ASTClause[] = [];
     const start = new ASTPosition(
@@ -909,7 +913,7 @@ export default class Parser {
     if (TokenType.EOL !== me.token.type)
       return me.parseIfShortcutStatement(condition, start);
 
-    body = me.parseBlock();
+    body = me.parseBlock(['else', 'end if']);
     clauses.push(
       me.astProvider.ifClause({
         condition,
@@ -924,7 +928,7 @@ export default class Parser {
       statementStart = new ASTPosition(me.token.line, me.token.lineRange[0]);
       condition = me.parseExpectedExpression();
       me.expect('then');
-      body = me.parseBlock();
+      body = me.parseBlock(['else', 'end if']);
       clauses.push(
         me.astProvider.elseifClause({
           condition,
@@ -938,7 +942,7 @@ export default class Parser {
 
     if (me.consume('else')) {
       statementStart = new ASTPosition(me.token.line, me.token.lineRange[0]);
-      body = me.parseBlock();
+      body = me.parseBlock(['else', 'end if']);
       clauses.push(
         me.astProvider.elseClause({
           body,
@@ -953,7 +957,7 @@ export default class Parser {
       const item = me.endIfOnShortcutStack.pop();
 
       if (!item) {
-        me.raise(new UnexpectedEndOfIfStatement(me.token));
+        return me.raise(new UnexpectedEndOfIfStatement(me.token)); 
       }
 
       ifStatement.end = item.statement.end;
@@ -1108,7 +1112,7 @@ export default class Parser {
     let body;
 
     if (TokenType.EOL === me.token.type) {
-      body = me.parseBlock();
+      body = me.parseBlock(['end for']);
       me.expect('end for');
     } else {
       body = me.parseBlockShortcut();
@@ -1177,7 +1181,7 @@ export default class Parser {
     let body;
 
     if (TokenType.EOL === me.token.type) {
-      body = me.parseBlock();
+      body = me.parseBlock(['end function']);
       me.expect('end function');
     } else {
       body = me.parseBlockShortcut();
@@ -1278,12 +1282,12 @@ export default class Parser {
     return block;
   }
 
-  parseBlock(): ASTBase[] {
+  parseBlock(endBlocks?: string[]): ASTBase[] {
     const me = this;
     const block: ASTBase[] = [];
     let statement;
 
-    while (!me.isBlockFollow(me.token)) {
+    while (!me.isBlockEnd(me.token, endBlocks)) {
       statement = me.parseStatement();
       me.consume(';');
       if (statement) {
