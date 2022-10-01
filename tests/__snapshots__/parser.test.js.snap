@@ -12714,7 +12714,7 @@ exports[`parse default scripts binary-expressions.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 12, character: 7 },
+  end: Position { line: 17, character: 13 },
   scope: null,
   body: [
     ASTCallStatement {
@@ -13011,9 +13011,117 @@ exports[`parse default scripts binary-expressions.src 1`] = `
         scope: [Circular *1],
         name: 'b'
       }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 15, character: 5 },
+        end: Position { line: 15, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      operator: '+',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 16, character: 5 },
+        end: Position { line: 16, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      operator: '-',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
     }
   ],
-  namespaces: Set(4) { 'a', 'b', 'w', 'c' },
+  namespaces: Set(5) { 'a', 'b', 'w', 'c', 'test' },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -13189,9 +13297,34 @@ exports[`parse default scripts binary-expressions.src 1`] = `
     }
   ],
   nativeImports: [],
-  literals: [],
+  literals: [
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 15, character: 12 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 16, character: 12 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 12 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    }
+  ],
   scopes: [],
-  lines: Map(12) {
+  lines: Map(15) {
     1 => ASTCallStatement {
       type: 'CallStatement',
       start: Position { line: 1, character: 1 },
@@ -13485,6 +13618,114 @@ exports[`parse default scripts binary-expressions.src 1`] = `
         end: Position { line: 12, character: 7 },
         scope: [Circular *1],
         name: 'b'
+      }
+    },
+    15 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 15, character: 5 },
+        end: Position { line: 15, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    16 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      operator: '+',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 16, character: 5 },
+        end: Position { line: 16, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    17 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      operator: '-',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
       }
     }
   }
@@ -13495,7 +13736,7 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 12, character: 7 },
+  end: Position { line: 17, character: 13 },
   scope: null,
   body: [
     ASTCallStatement {
@@ -13792,9 +14033,117 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
         scope: [Circular *1],
         name: 'b'
       }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 15, character: 5 },
+        end: Position { line: 15, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      operator: '+',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 16, character: 5 },
+        end: Position { line: 16, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      operator: '-',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
     }
   ],
-  namespaces: Set(4) { 'a', 'b', 'w', 'c' },
+  namespaces: Set(5) { 'a', 'b', 'w', 'c', 'test' },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -13970,9 +14319,34 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
     }
   ],
   nativeImports: [],
-  literals: [],
+  literals: [
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 15, character: 12 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 16, character: 12 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 12 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    }
+  ],
   scopes: [],
-  lines: Map(12) {
+  lines: Map(15) {
     1 => ASTCallStatement {
       type: 'CallStatement',
       start: Position { line: 1, character: 1 },
@@ -14266,6 +14640,114 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
         end: Position { line: 12, character: 7 },
         scope: [Circular *1],
         name: 'b'
+      }
+    },
+    15 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 15, character: 5 },
+        end: Position { line: 15, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    16 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      operator: '+',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 16, character: 5 },
+        end: Position { line: 16, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    17 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      operator: '-',
+      left: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 17, character: 5 },
+        end: Position { line: 17, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
       }
     }
   }
@@ -17651,10 +18133,11 @@ exports[`parse default scripts invalid code 1`] = `Array []`;
 exports[`parse default scripts invalid code 2`] = `
 Array [
   [Error: Unexpected value ; at line 2. Expected: )],
-  [Error: Unexpected value ) at line 4. Expected: =],
-  [Error: Unexpected expression at line 4.],
+  [Error: Unexpected assignment or call at line 4.],
   [Error: Unexpected assignment or call at line 8.],
-  [Error: Unexpected end of file at line 9.],
+  [Error: Unexpected assignment or call at line 9.],
+  [Error: Unexpected value print at line 19. Expected: then],
+  [Error: Unexpected end of if statement <eof> at line 20.],
 ]
 `;
 

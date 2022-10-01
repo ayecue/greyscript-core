@@ -16188,6 +16188,386 @@ Object {
 }
 `;
 
+exports[`parse default scripts binary-expressions.src 56`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 12,
+  "lineRange": Array [
+    7,
+    7,
+  ],
+  "lineStart": 92,
+  "range": Array [
+    98,
+    98,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 57`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 13,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 99,
+  "range": Array [
+    99,
+    99,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 58`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 14,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 100,
+  "range": Array [
+    100,
+    100,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 59`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 101,
+  "range": Array [
+    101,
+    105,
+  ],
+  "type": "Identifier",
+  "value": "test",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 60`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 101,
+  "range": Array [
+    105,
+    106,
+  ],
+  "type": "Punctuator",
+  "value": ".",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 61`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    6,
+    9,
+  ],
+  "lineStart": 101,
+  "range": Array [
+    106,
+    109,
+  ],
+  "type": "Identifier",
+  "value": "len",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 62`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 101,
+  "range": Array [
+    110,
+    111,
+  ],
+  "type": "Punctuator",
+  "value": "/",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 63`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    12,
+    13,
+  ],
+  "lineStart": 101,
+  "range": Array [
+    112,
+    113,
+  ],
+  "type": "NumericLiteral",
+  "value": 2,
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 64`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 15,
+  "lineRange": Array [
+    13,
+    13,
+  ],
+  "lineStart": 101,
+  "range": Array [
+    113,
+    113,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 65`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 114,
+  "range": Array [
+    114,
+    118,
+  ],
+  "type": "Identifier",
+  "value": "test",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 66`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 114,
+  "range": Array [
+    118,
+    119,
+  ],
+  "type": "Punctuator",
+  "value": ".",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 67`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    6,
+    9,
+  ],
+  "lineStart": 114,
+  "range": Array [
+    119,
+    122,
+  ],
+  "type": "Identifier",
+  "value": "len",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 68`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 114,
+  "range": Array [
+    123,
+    124,
+  ],
+  "type": "Punctuator",
+  "value": "+",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 69`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    12,
+    13,
+  ],
+  "lineStart": 114,
+  "range": Array [
+    125,
+    126,
+  ],
+  "type": "NumericLiteral",
+  "value": 2,
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 70`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 16,
+  "lineRange": Array [
+    13,
+    13,
+  ],
+  "lineStart": 114,
+  "range": Array [
+    126,
+    126,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 71`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 127,
+  "range": Array [
+    127,
+    131,
+  ],
+  "type": "Identifier",
+  "value": "test",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 72`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 127,
+  "range": Array [
+    131,
+    132,
+  ],
+  "type": "Punctuator",
+  "value": ".",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 73`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    6,
+    9,
+  ],
+  "lineStart": 127,
+  "range": Array [
+    132,
+    135,
+  ],
+  "type": "Identifier",
+  "value": "len",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 74`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 127,
+  "range": Array [
+    136,
+    137,
+  ],
+  "type": "Punctuator",
+  "value": "-",
+}
+`;
+
+exports[`parse default scripts binary-expressions.src 75`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 17,
+  "lineRange": Array [
+    12,
+    13,
+  ],
+  "lineStart": 127,
+  "range": Array [
+    138,
+    139,
+  ],
+  "type": "NumericLiteral",
+  "value": 2,
+}
+`;
+
 exports[`parse default scripts eol.src 1`] = `
 Object {
   "lastLine": undefined,
