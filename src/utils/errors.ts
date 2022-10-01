@@ -36,7 +36,7 @@ export class UnexpectedValue extends Error {
 
   constructor(token: Token, expected: string) {
     super(
-      `Unexpected value ${token.value} at line ${token.line}. Expected: ${expected}`
+      `Unexpected value "${token.value}" at line ${token.line}. Expected: "${expected}"`
     );
     const me = this;
 
@@ -51,7 +51,7 @@ export class UnexpectedValues extends Error {
 
   constructor(token: Token, expectedList: string[]) {
     super(
-      `Unexpected value ${token.value} at line ${
+      `Unexpected value "${token.value}" at line ${
         token.line
       }. Expected one of: ${expectedList.join(', ')}`
     );
@@ -62,11 +62,22 @@ export class UnexpectedValues extends Error {
   }
 }
 
+export class UnexpectedReferenceArgument extends Error {
+  token: Token;
+
+  constructor(token: Token) {
+    super(`Unexpected argument for "${token.value}" at line ${token.line}.`);
+    const me = this;
+
+    me.token = token;
+  }
+}
+
 export class UnexpectedIdentifier extends Error {
   token: Token;
 
   constructor(token: Token) {
-    super(`Unexpected identifier ${token.value} at line ${token.line}.`);
+    super(`Unexpected identifier "${token.value}" at line ${token.line}.`);
     const me = this;
 
     me.token = token;
@@ -78,7 +89,7 @@ export class UnexpectedEndOfIfStatement extends Error {
 
   constructor(token: Token) {
     super(
-      `Unexpected end of if statement ${token.value} at line ${token.line}.`
+      `Unexpected end of if statement "${token.value}" at line ${token.line}.`
     );
     const me = this;
 
@@ -92,7 +103,7 @@ export class UnexpectedArguments extends Error {
 
   constructor(token: Token, base: ASTBase) {
     super(
-      `${base.type} received unexpected arguments ${token.value} at line ${token.line}.`
+      `${base.type} received unexpected arguments "${token.value}" at line ${token.line}.`
     );
     const me = this;
 
@@ -135,6 +146,18 @@ export class UnexpectedParameterInFunction extends Error {
     me.token = token;
   }
 }
+
+export class UnexpectedEOL extends Error {
+  token: Token;
+
+  constructor(token: Token) {
+    super(`Unexpected value "${token.value}" at ${token.line}. Expected end of line.`);
+    const me = this;
+
+    me.token = token;
+  }
+}
+
 
 export class UnexpectedEOF extends Error {
   token: Token;

@@ -51,6 +51,15 @@ describe('parse', function() {
 
 				print("was")
 
+				wad;  aw dwad wa
+
+				not @a;not -@b
+				not +@v
+
+				not not not not not not not not @a
+
+				if not @a then x
+
 				function () .
 				end func
 
