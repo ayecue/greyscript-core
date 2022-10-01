@@ -15864,7 +15864,7 @@ exports[`parse default scripts if-shorthand.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 31, character: 7 },
+  end: Position { line: 36, character: 7 },
   scope: null,
   body: [
     ASTIfStatement {
@@ -16192,9 +16192,39 @@ exports[`parse default scripts if-shorthand.src 1`] = `
           condition: [ASTUnaryExpression]
         }
       ]
+    },
+    ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 33, character: 1 },
+      end: Position { line: 36, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array],
+          condition: [ASTLiteral]
+        },
+        ASTElseClause {
+          type: 'ElseClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: []
+        }
+      ]
     }
   ],
-  namespaces: Set(5) { 'i', 'b', 'myFunction', 'otherFunction', 'ref' },
+  namespaces: Set(6) {
+    'i',
+    'b',
+    'myFunction',
+    'otherFunction',
+    'ref',
+    'elseSomething'
+  },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -16310,6 +16340,27 @@ exports[`parse default scripts if-shorthand.src 1`] = `
         namespaces: Set(1) { 'n' },
         assignments: [],
         parameters: [ [ASTIdentifier] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 34, character: 5 },
+      end: Position { line: 34, character: 26 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 34, character: 5 },
+        end: Position { line: 34, character: 18 },
+        scope: [Circular *1],
+        name: 'elseSomething'
+      },
+      init: ASTLiteral {
+        type: 'BooleanLiteral',
+        start: Position { line: 34, character: 21 },
+        end: Position { line: 34, character: 26 },
+        scope: [Circular *1],
+        value: false,
+        raw: 'false'
       }
     }
   ],
@@ -16436,6 +16487,22 @@ exports[`parse default scripts if-shorthand.src 1`] = `
       },
       value: 'foo',
       raw: '\\"foo\\"'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 33, character: 4 },
+      end: Position { line: 33, character: 8 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 34, character: 21 },
+      end: Position { line: 34, character: 26 },
+      scope: [Circular *1],
+      value: false,
+      raw: 'false'
     }
   ],
   scopes: [
@@ -16544,7 +16611,7 @@ exports[`parse default scripts if-shorthand.src 1`] = `
       ]
     }
   ],
-  lines: Map(19) {
+  lines: Map(21) {
     1 => ASTIfStatement {
       type: 'IfShortcutStatement',
       start: Position { line: 1, character: 1 },
@@ -17019,6 +17086,50 @@ exports[`parse default scripts if-shorthand.src 1`] = `
           scope: [Circular *1],
           body: [],
           condition: [ASTUnaryExpression]
+        }
+      ]
+    },
+    34 => ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 34, character: 5 },
+      end: Position { line: 34, character: 26 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 34, character: 5 },
+        end: Position { line: 34, character: 18 },
+        scope: [Circular *1],
+        name: 'elseSomething'
+      },
+      init: ASTLiteral {
+        type: 'BooleanLiteral',
+        start: Position { line: 34, character: 21 },
+        end: Position { line: 34, character: 26 },
+        scope: [Circular *1],
+        value: false,
+        raw: 'false'
+      }
+    },
+    33 => ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 33, character: 1 },
+      end: Position { line: 36, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array],
+          condition: [ASTLiteral]
+        },
+        ASTElseClause {
+          type: 'ElseClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: []
         }
       ]
     }
@@ -17030,7 +17141,7 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 31, character: 7 },
+  end: Position { line: 36, character: 7 },
   scope: null,
   body: [
     ASTIfStatement {
@@ -17358,9 +17469,39 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
           condition: [ASTUnaryExpression]
         }
       ]
+    },
+    ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 33, character: 1 },
+      end: Position { line: 36, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array],
+          condition: [ASTLiteral]
+        },
+        ASTElseClause {
+          type: 'ElseClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: []
+        }
+      ]
     }
   ],
-  namespaces: Set(5) { 'i', 'b', 'myFunction', 'otherFunction', 'ref' },
+  namespaces: Set(6) {
+    'i',
+    'b',
+    'myFunction',
+    'otherFunction',
+    'ref',
+    'elseSomething'
+  },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -17476,6 +17617,27 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
         namespaces: Set(1) { 'n' },
         assignments: [],
         parameters: [ [ASTIdentifier] ]
+      }
+    },
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 34, character: 5 },
+      end: Position { line: 34, character: 26 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 34, character: 5 },
+        end: Position { line: 34, character: 18 },
+        scope: [Circular *1],
+        name: 'elseSomething'
+      },
+      init: ASTLiteral {
+        type: 'BooleanLiteral',
+        start: Position { line: 34, character: 21 },
+        end: Position { line: 34, character: 26 },
+        scope: [Circular *1],
+        value: false,
+        raw: 'false'
       }
     }
   ],
@@ -17602,6 +17764,22 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
       },
       value: 'foo',
       raw: '\\"foo\\"'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 33, character: 4 },
+      end: Position { line: 33, character: 8 },
+      scope: [Circular *1],
+      value: true,
+      raw: 'true'
+    },
+    ASTLiteral {
+      type: 'BooleanLiteral',
+      start: Position { line: 34, character: 21 },
+      end: Position { line: 34, character: 26 },
+      scope: [Circular *1],
+      value: false,
+      raw: 'false'
     }
   ],
   scopes: [
@@ -17710,7 +17888,7 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
       ]
     }
   ],
-  lines: Map(19) {
+  lines: Map(21) {
     1 => ASTIfStatement {
       type: 'IfShortcutStatement',
       start: Position { line: 1, character: 1 },
@@ -18185,6 +18363,50 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
           scope: [Circular *1],
           body: [],
           condition: [ASTUnaryExpression]
+        }
+      ]
+    },
+    34 => ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 34, character: 5 },
+      end: Position { line: 34, character: 26 },
+      scope: [Circular *1],
+      variable: ASTIdentifier {
+        type: 'Identifier',
+        start: Position { line: 34, character: 5 },
+        end: Position { line: 34, character: 18 },
+        scope: [Circular *1],
+        name: 'elseSomething'
+      },
+      init: ASTLiteral {
+        type: 'BooleanLiteral',
+        start: Position { line: 34, character: 21 },
+        end: Position { line: 34, character: 26 },
+        scope: [Circular *1],
+        value: false,
+        raw: 'false'
+      }
+    },
+    33 => ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 33, character: 1 },
+      end: Position { line: 36, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [Array],
+          condition: [ASTLiteral]
+        },
+        ASTElseClause {
+          type: 'ElseClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: []
         }
       ]
     }

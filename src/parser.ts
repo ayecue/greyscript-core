@@ -118,7 +118,7 @@ export default class Parser {
     const type = token.type;
     const value = token.value;
     if (TokenType.EOF === type) return true;
-    if (endBlocks) {
+    if (endBlocks && type === TokenType.Keyword) {
       for (let index = endBlocks.length - 1; index >= 0; index--) {
         if (value.startsWith(endBlocks[index])) return true;
       }

@@ -21774,6 +21774,253 @@ Object {
 }
 `;
 
+exports[`parse default scripts if-shorthand.src 160`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 31,
+  "lineRange": Array [
+    7,
+    7,
+  ],
+  "lineStart": 437,
+  "range": Array [
+    443,
+    443,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 161`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 32,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 444,
+  "range": Array [
+    444,
+    444,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 162`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 33,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 445,
+  "range": Array [
+    445,
+    447,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 163`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 33,
+  "lineRange": Array [
+    4,
+    8,
+  ],
+  "lineStart": 445,
+  "range": Array [
+    448,
+    452,
+  ],
+  "type": "BooleanLiteral",
+  "value": true,
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 164`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 33,
+  "lineRange": Array [
+    9,
+    13,
+  ],
+  "lineStart": 445,
+  "range": Array [
+    453,
+    457,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 165`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 33,
+  "lineRange": Array [
+    13,
+    13,
+  ],
+  "lineStart": 445,
+  "range": Array [
+    457,
+    457,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 166`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 34,
+  "lineRange": Array [
+    5,
+    18,
+  ],
+  "lineStart": 458,
+  "range": Array [
+    459,
+    472,
+  ],
+  "type": "Identifier",
+  "value": "elseSomething",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 167`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 34,
+  "lineRange": Array [
+    19,
+    20,
+  ],
+  "lineStart": 458,
+  "range": Array [
+    473,
+    474,
+  ],
+  "type": "Punctuator",
+  "value": "=",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 168`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 34,
+  "lineRange": Array [
+    21,
+    26,
+  ],
+  "lineStart": 458,
+  "range": Array [
+    475,
+    480,
+  ],
+  "type": "BooleanLiteral",
+  "value": false,
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 169`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 34,
+  "lineRange": Array [
+    26,
+    26,
+  ],
+  "lineStart": 458,
+  "range": Array [
+    480,
+    480,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 170`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 35,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 481,
+  "range": Array [
+    481,
+    485,
+  ],
+  "type": "Keyword",
+  "value": "else",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 171`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 35,
+  "lineRange": Array [
+    5,
+    5,
+  ],
+  "lineStart": 481,
+  "range": Array [
+    485,
+    485,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 172`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 36,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 486,
+  "range": Array [
+    486,
+    492,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts map.src 1`] = `

@@ -29,3 +29,8 @@ end function
 
 if not @ref then
 end if
+
+if true then
+	elseSomething = false
+else
+end if
