@@ -680,6 +680,37 @@ export default class Parser {
     return expression;
   }
 
+  parseUnaryExpression() {
+    const me = this;
+    const start = new ASTPosition(me.token.line, me.token.lineRange[0]);
+    const operator = me.token.value;
+
+    me.next();
+
+    let argument = null;
+
+    if (me.isUnary(me.token)) {
+      argument = me.parseUnaryExpression();
+    }
+    if (argument == null) {
+      argument = me.parsePrimaryExpression();
+
+      if (argument == null) {
+        argument = me.parseRighthandExpression();
+      }
+    }
+
+    const expr = me.astProvider.unaryExpression({
+      operator: <Operator>operator,
+      argument,
+      start,
+      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+      scope: me.currentScope
+    });
+
+    return expr;
+  }
+
   parseSubExpression(minPrecedence?: number) {
     const me = this;
     const start = new ASTPosition(me.token.line, me.token.lineRange[0]);
@@ -687,21 +718,7 @@ export default class Parser {
     let expression = null;
 
     if (me.isUnary(me.token)) {
-      me.next();
-
-      let argument = me.parsePrimaryExpression();
-
-      if (argument == null) {
-        argument = me.parseRighthandExpression();
-      }
-
-      expression = me.astProvider.unaryExpression({
-        operator: <Operator>operator,
-        argument,
-        start,
-        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
-        scope: me.currentScope
-      });
+      expression = me.parseUnaryExpression();
     }
     if (expression == null) {
       expression = me.parsePrimaryExpression();

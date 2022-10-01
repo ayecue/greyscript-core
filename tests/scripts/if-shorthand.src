@@ -26,3 +26,6 @@ function(m) return "was"
 function(b)
 	if (a) then return "foo"
 end function
+
+if not @ref then
+end if

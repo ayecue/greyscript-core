@@ -15864,7 +15864,7 @@ exports[`parse default scripts if-shorthand.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 28, character: 13 },
+  end: Position { line: 31, character: 7 },
   scope: null,
   body: [
     ASTIfStatement {
@@ -16176,9 +16176,25 @@ exports[`parse default scripts if-shorthand.src 1`] = `
           name: 'b'
         }
       ]
+    },
+    ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 30, character: 1 },
+      end: Position { line: 31, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [],
+          condition: [ASTUnaryExpression]
+        }
+      ]
     }
   ],
-  namespaces: Set(4) { 'i', 'b', 'myFunction', 'otherFunction' },
+  namespaces: Set(5) { 'i', 'b', 'myFunction', 'otherFunction', 'ref' },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -16528,7 +16544,7 @@ exports[`parse default scripts if-shorthand.src 1`] = `
       ]
     }
   ],
-  lines: Map(18) {
+  lines: Map(19) {
     1 => ASTIfStatement {
       type: 'IfShortcutStatement',
       start: Position { line: 1, character: 1 },
@@ -16987,6 +17003,22 @@ exports[`parse default scripts if-shorthand.src 1`] = `
           end: [Position],
           scope: [Circular *3],
           name: 'b'
+        }
+      ]
+    },
+    30 => ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 30, character: 1 },
+      end: Position { line: 31, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [],
+          condition: [ASTUnaryExpression]
         }
       ]
     }
@@ -16998,7 +17030,7 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 28, character: 13 },
+  end: Position { line: 31, character: 7 },
   scope: null,
   body: [
     ASTIfStatement {
@@ -17310,9 +17342,25 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
           name: 'b'
         }
       ]
+    },
+    ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 30, character: 1 },
+      end: Position { line: 31, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [],
+          condition: [ASTUnaryExpression]
+        }
+      ]
     }
   ],
-  namespaces: Set(4) { 'i', 'b', 'myFunction', 'otherFunction' },
+  namespaces: Set(5) { 'i', 'b', 'myFunction', 'otherFunction', 'ref' },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -17662,7 +17710,7 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
       ]
     }
   ],
-  lines: Map(18) {
+  lines: Map(19) {
     1 => ASTIfStatement {
       type: 'IfShortcutStatement',
       start: Position { line: 1, character: 1 },
@@ -18121,6 +18169,22 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
           end: [Position],
           scope: [Circular *3],
           name: 'b'
+        }
+      ]
+    },
+    30 => ASTIfStatement {
+      type: 'IfStatement',
+      start: Position { line: 30, character: 1 },
+      end: Position { line: 31, character: 7 },
+      scope: [Circular *1],
+      clauses: [
+        ASTIfClause {
+          type: 'IfClause',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          body: [],
+          condition: [ASTUnaryExpression]
         }
       ]
     }

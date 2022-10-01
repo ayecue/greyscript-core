@@ -21603,6 +21603,177 @@ Object {
 }
 `;
 
+exports[`parse default scripts if-shorthand.src 151`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 28,
+  "lineRange": Array [
+    13,
+    13,
+  ],
+  "lineStart": 406,
+  "range": Array [
+    418,
+    418,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 152`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 29,
+  "lineRange": Array [
+    1,
+    1,
+  ],
+  "lineStart": 419,
+  "range": Array [
+    419,
+    419,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 153`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 30,
+  "lineRange": Array [
+    1,
+    3,
+  ],
+  "lineStart": 420,
+  "range": Array [
+    420,
+    422,
+  ],
+  "type": "Keyword",
+  "value": "if",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 154`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 30,
+  "lineRange": Array [
+    4,
+    7,
+  ],
+  "lineStart": 420,
+  "range": Array [
+    423,
+    426,
+  ],
+  "type": "Keyword",
+  "value": "not",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 155`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 30,
+  "lineRange": Array [
+    8,
+    9,
+  ],
+  "lineStart": 420,
+  "range": Array [
+    427,
+    428,
+  ],
+  "type": "Punctuator",
+  "value": "@",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 156`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 30,
+  "lineRange": Array [
+    9,
+    12,
+  ],
+  "lineStart": 420,
+  "range": Array [
+    428,
+    431,
+  ],
+  "type": "Identifier",
+  "value": "ref",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 157`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 30,
+  "lineRange": Array [
+    13,
+    17,
+  ],
+  "lineStart": 420,
+  "range": Array [
+    432,
+    436,
+  ],
+  "type": "Keyword",
+  "value": "then",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 158`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 30,
+  "lineRange": Array [
+    17,
+    17,
+  ],
+  "lineStart": 420,
+  "range": Array [
+    436,
+    436,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts if-shorthand.src 159`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 31,
+  "lineRange": Array [
+    1,
+    7,
+  ],
+  "lineStart": 437,
+  "range": Array [
+    437,
+    443,
+  ],
+  "type": "Keyword",
+  "value": "end if",
+}
+`;
+
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts map.src 1`] = `
