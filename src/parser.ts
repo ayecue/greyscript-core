@@ -1089,7 +1089,7 @@ export default class Parser {
       return assignmentStatement;
     }
 
-    return me.parseExpectedExpression();
+    return me.parseBinaryExpression(base);
   }
 
   parseForStatement(): ASTForGenericStatement {
