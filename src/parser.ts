@@ -1043,7 +1043,14 @@ export default class Parser {
       me.token.value !== '<eof>'
     ) {
       last = me.token;
-      base = me.parseRighthandExpressionGreedy(base);
+
+      const rightExpr = me.parseRighthandExpressionPart(base);
+
+      if (rightExpr === null) {
+        break;
+      }
+
+      base = rightExpr;
     }
 
     if (
@@ -1063,20 +1070,22 @@ export default class Parser {
       });
     }
 
-    me.expect('=');
+    if (me.consume('=')) {
+      const value = me.parseExpectedExpression();
+      const assignmentStatement = me.astProvider.assignmentStatement({
+        variable: base,
+        init: value,
+        start,
+        end: new ASTPosition(me.token.line, me.token.lineRange[1]),
+        scope: me.currentScope
+      });
 
-    const value = me.parseExpectedExpression();
-    const assignmentStatement = me.astProvider.assignmentStatement({
-      variable: base,
-      init: value,
-      start,
-      end: new ASTPosition(me.token.line, me.token.lineRange[1]),
-      scope: me.currentScope
-    });
+      me.currentScope.assignments.push(assignmentStatement);
 
-    me.currentScope.assignments.push(assignmentStatement);
+      return assignmentStatement;
+    }
 
-    return assignmentStatement;
+    return me.parseExpectedExpression();
   }
 
   parseForStatement(): ASTForGenericStatement {

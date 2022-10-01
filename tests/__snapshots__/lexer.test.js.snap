@@ -16188,6 +16188,101 @@ Object {
 }
 `;
 
+exports[`parse default scripts division-issue.src 1`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    0,
+    4,
+  ],
+  "type": "Identifier",
+  "value": "test",
+}
+`;
+
+exports[`parse default scripts division-issue.src 2`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    4,
+    5,
+  ],
+  "type": "Punctuator",
+  "value": ".",
+}
+`;
+
+exports[`parse default scripts division-issue.src 3`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    6,
+    9,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    5,
+    8,
+  ],
+  "type": "Identifier",
+  "value": "len",
+}
+`;
+
+exports[`parse default scripts division-issue.src 4`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    10,
+    11,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    9,
+    10,
+  ],
+  "type": "Punctuator",
+  "value": "/",
+}
+`;
+
+exports[`parse default scripts division-issue.src 5`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    12,
+    13,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    11,
+    12,
+  ],
+  "type": "NumericLiteral",
+  "value": 2,
+}
+`;
+
 exports[`parse default scripts eol.src 1`] = `
 Object {
   "lastLine": undefined,

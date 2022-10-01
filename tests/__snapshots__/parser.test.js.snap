@@ -14272,6 +14272,183 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 }"
 `;
 
+exports[`parse default scripts division-issue.src 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 1, character: 13 },
+  scope: null,
+  body: [
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 1, character: 10 },
+      end: Position { line: 1, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: null,
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 1, character: 12 },
+        end: Position { line: 1, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    }
+  ],
+  namespaces: Set(1) { 'test' },
+  assignments: [],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 1, character: 12 },
+      end: Position { line: 1, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    }
+  ],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 1, character: 10 },
+      end: Position { line: 1, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: null,
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 1, character: 12 },
+        end: Position { line: 1, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    }
+  }
+}"
+`;
+
+exports[`parse default scripts division-issue.src unsafe 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 1, character: 13 },
+  scope: null,
+  body: [
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 1, character: 13 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 1, character: 5 },
+        end: Position { line: 1, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTBase {
+        type: 'InvalidCodeExpression',
+        start: Position { line: 1, character: 13 },
+        end: Position { line: 1, character: 13 },
+        scope: null
+      }
+    }
+  ],
+  namespaces: Set(1) { 'test' },
+  assignments: [
+    ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 1, character: 13 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 1, character: 5 },
+        end: Position { line: 1, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTBase {
+        type: 'InvalidCodeExpression',
+        start: Position { line: 1, character: 13 },
+        end: Position { line: 1, character: 13 },
+        scope: null
+      }
+    }
+  ],
+  nativeImports: [],
+  literals: [],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTAssignmentStatement {
+      type: 'AssignmentStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 1, character: 13 },
+      scope: [Circular *1],
+      variable: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 1, character: 5 },
+        end: Position { line: 1, character: 11 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'len'
+        },
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        }
+      },
+      init: ASTBase {
+        type: 'InvalidCodeExpression',
+        start: Position { line: 1, character: 13 },
+        end: Position { line: 1, character: 13 },
+        scope: null
+      }
+    }
+  }
+}"
+`;
+
 exports[`parse default scripts eol.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
