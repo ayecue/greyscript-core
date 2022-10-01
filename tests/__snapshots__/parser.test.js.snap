@@ -12714,7 +12714,7 @@ exports[`parse default scripts binary-expressions.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 12, character: 7 },
+  end: Position { line: 17, character: 13 },
   scope: null,
   body: [
     ASTCallStatement {
@@ -13011,9 +13011,55 @@ exports[`parse default scripts binary-expressions.src 1`] = `
         scope: [Circular *1],
         name: 'b'
       }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: null,
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      argument: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      },
+      operator: '+'
+    },
+    ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      argument: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      },
+      operator: '-'
     }
   ],
-  namespaces: Set(4) { 'a', 'b', 'w', 'c' },
+  namespaces: Set(5) { 'a', 'b', 'w', 'c', 'test' },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -13189,9 +13235,34 @@ exports[`parse default scripts binary-expressions.src 1`] = `
     }
   ],
   nativeImports: [],
-  literals: [],
+  literals: [
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 15, character: 12 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 16, character: 12 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 12 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    }
+  ],
   scopes: [],
-  lines: Map(12) {
+  lines: Map(15) {
     1 => ASTCallStatement {
       type: 'CallStatement',
       start: Position { line: 1, character: 1 },
@@ -13486,6 +13557,52 @@ exports[`parse default scripts binary-expressions.src 1`] = `
         scope: [Circular *1],
         name: 'b'
       }
+    },
+    15 => ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: null,
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    16 => ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      argument: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      },
+      operator: '+'
+    },
+    17 => ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      argument: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      },
+      operator: '-'
     }
   }
 }"
@@ -13495,7 +13612,7 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
   start: Position { line: 1, character: 1 },
-  end: Position { line: 12, character: 7 },
+  end: Position { line: 17, character: 13 },
   scope: null,
   body: [
     ASTCallStatement {
@@ -13792,9 +13909,55 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
         scope: [Circular *1],
         name: 'b'
       }
+    },
+    ASTEvaluationExpression {
+      type: 'BinaryExpression',
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      operator: '/',
+      left: null,
+      right: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      }
+    },
+    ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      argument: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      },
+      operator: '+'
+    },
+    ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      argument: ASTLiteral {
+        type: 'NumericLiteral',
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
+        scope: [Circular *1],
+        value: 2,
+        raw: '2'
+      },
+      operator: '-'
     }
   ],
-  namespaces: Set(4) { 'a', 'b', 'w', 'c' },
+  namespaces: Set(5) { 'a', 'b', 'w', 'c', 'test' },
   assignments: [
     ASTAssignmentStatement {
       type: 'AssignmentStatement',
@@ -13970,9 +14133,34 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
     }
   ],
   nativeImports: [],
-  literals: [],
+  literals: [
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 15, character: 12 },
+      end: Position { line: 15, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 16, character: 12 },
+      end: Position { line: 16, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 17, character: 12 },
+      end: Position { line: 17, character: 13 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    }
+  ],
   scopes: [],
-  lines: Map(12) {
+  lines: Map(15) {
     1 => ASTCallStatement {
       type: 'CallStatement',
       start: Position { line: 1, character: 1 },
@@ -14267,124 +14455,52 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
         scope: [Circular *1],
         name: 'b'
       }
-    }
-  }
-}"
-`;
-
-exports[`parse default scripts division-issue.src 1`] = `
-"<ref *1> ASTChunk {
-  type: 'Chunk',
-  start: Position { line: 1, character: 1 },
-  end: Position { line: 1, character: 13 },
-  scope: null,
-  body: [
-    ASTEvaluationExpression {
+    },
+    15 => ASTEvaluationExpression {
       type: 'BinaryExpression',
-      start: Position { line: 1, character: 10 },
-      end: Position { line: 1, character: 13 },
+      start: Position { line: 15, character: 10 },
+      end: Position { line: 15, character: 13 },
       scope: [Circular *1],
       operator: '/',
       left: null,
       right: ASTLiteral {
         type: 'NumericLiteral',
-        start: Position { line: 1, character: 12 },
-        end: Position { line: 1, character: 13 },
+        start: Position { line: 15, character: 12 },
+        end: Position { line: 15, character: 13 },
         scope: [Circular *1],
         value: 2,
         raw: '2'
       }
-    }
-  ],
-  namespaces: Set(1) { 'test' },
-  assignments: [],
-  nativeImports: [],
-  literals: [
-    ASTLiteral {
-      type: 'NumericLiteral',
-      start: Position { line: 1, character: 12 },
-      end: Position { line: 1, character: 13 },
+    },
+    16 => ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 16, character: 10 },
+      end: Position { line: 16, character: 13 },
       scope: [Circular *1],
-      value: 2,
-      raw: '2'
-    }
-  ],
-  scopes: [],
-  lines: Map(1) {
-    1 => ASTEvaluationExpression {
-      type: 'BinaryExpression',
-      start: Position { line: 1, character: 10 },
-      end: Position { line: 1, character: 13 },
-      scope: [Circular *1],
-      operator: '/',
-      left: null,
-      right: ASTLiteral {
+      argument: ASTLiteral {
         type: 'NumericLiteral',
-        start: Position { line: 1, character: 12 },
-        end: Position { line: 1, character: 13 },
+        start: Position { line: 16, character: 12 },
+        end: Position { line: 16, character: 13 },
         scope: [Circular *1],
         value: 2,
         raw: '2'
-      }
-    }
-  }
-}"
-`;
-
-exports[`parse default scripts division-issue.src unsafe 1`] = `
-"<ref *1> ASTChunk {
-  type: 'Chunk',
-  start: Position { line: 1, character: 1 },
-  end: Position { line: 1, character: 13 },
-  scope: null,
-  body: [
-    ASTEvaluationExpression {
-      type: 'BinaryExpression',
-      start: Position { line: 1, character: 10 },
-      end: Position { line: 1, character: 13 },
+      },
+      operator: '+'
+    },
+    17 => ASTUnaryExpression {
+      type: 'BinaryNegatedExpression',
+      start: Position { line: 17, character: 10 },
+      end: Position { line: 17, character: 13 },
       scope: [Circular *1],
-      operator: '/',
-      left: null,
-      right: ASTLiteral {
+      argument: ASTLiteral {
         type: 'NumericLiteral',
-        start: Position { line: 1, character: 12 },
-        end: Position { line: 1, character: 13 },
+        start: Position { line: 17, character: 12 },
+        end: Position { line: 17, character: 13 },
         scope: [Circular *1],
         value: 2,
         raw: '2'
-      }
-    }
-  ],
-  namespaces: Set(1) { 'test' },
-  assignments: [],
-  nativeImports: [],
-  literals: [
-    ASTLiteral {
-      type: 'NumericLiteral',
-      start: Position { line: 1, character: 12 },
-      end: Position { line: 1, character: 13 },
-      scope: [Circular *1],
-      value: 2,
-      raw: '2'
-    }
-  ],
-  scopes: [],
-  lines: Map(1) {
-    1 => ASTEvaluationExpression {
-      type: 'BinaryExpression',
-      start: Position { line: 1, character: 10 },
-      end: Position { line: 1, character: 13 },
-      scope: [Circular *1],
-      operator: '/',
-      left: null,
-      right: ASTLiteral {
-        type: 'NumericLiteral',
-        start: Position { line: 1, character: 12 },
-        end: Position { line: 1, character: 13 },
-        scope: [Circular *1],
-        value: 2,
-        raw: '2'
-      }
+      },
+      operator: '-'
     }
   }
 }"

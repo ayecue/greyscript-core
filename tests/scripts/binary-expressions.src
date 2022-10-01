@@ -10,3 +10,8 @@ a & b
 a ^ b
 a and b
 a or b
+
+
+test.len / 2
+test.len + 2
+test.len - 2
