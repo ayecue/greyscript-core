@@ -737,8 +737,6 @@ export default class Parser {
 
   parseSubExpression(minPrecedence?: number) {
     const me = this;
-    const start = new ASTPosition(me.token.line, me.token.lineRange[0]);
-    const operator = me.token.value;
     let expression = null;
 
     if (me.isUnary(me.token)) {
@@ -1064,40 +1062,17 @@ export default class Parser {
 
     if (TokenType.Identifier === last.type) {
       base = me.parseIdentifier();
-    } else if (last.value === '(') {
-      me.next();
-      base = me.parseExpectedExpression();
-      me.expect(')');
-    } else if (me.validator.isNonNilLiteral(<TokenType>last.type)) {
-      base = me.parseExpectedExpression();
-    } else if (me.token.value === '[' || last.value === '{') {
-      base = me.parseExpectedExpression();
-    } else if (me.isUnary(me.token)) {
-      base = me.parseUnaryExpression();
+      //here
+      base = me.parseRighthandExpressionGreedy(base);
     } else {
-      return me.raise(new UnexpectedAssignmentOrCall(me.token));
+      base = me.parseExpectedExpression();
     }
 
-    if (me.validator.isExpressionOperator(<Operator>me.token.value)) {
-      return me.parseBinaryExpression(base);
-    }
-
-    while (
-      TokenType.Punctuator === me.token.type &&
-      me.token.value !== '=' &&
-      me.token.value !== ';' &&
-      me.token.value !== ')' &&
-      me.token.value !== '<eof>'
+    if (
+      (me.token.type ===TokenType.Punctuator || me.token.type === TokenType.Keyword) &&
+      me.validator.isExpressionOperator(me.token.value as Operator)
     ) {
-      last = me.token;
-
-      const rightExpr = me.parseRighthandExpressionPart(base);
-
-      if (rightExpr === null) {
-        break;
-      }
-
-      base = rightExpr;
+      return me.parseBinaryExpression(base);
     }
 
     if (me.consume('=')) {
@@ -1130,16 +1105,7 @@ export default class Parser {
       });
     }
 
-    const expr = me.parseBinaryExpression(base);
-    
-    if (
-      me.token.type !== TokenType.EOL &&
-      me.token.type !== TokenType.EOF
-    ) {
-      return me.raise(new UnexpectedEOL(me.token));
-    }
-
-    return expr;
+    return me.raise(new UnexpectedAssignmentOrCall(me.token));
   }
 
   parseForStatement(): ASTForGenericStatement {
