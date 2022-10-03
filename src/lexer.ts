@@ -41,51 +41,52 @@ export default class Lexer {
 
   scan(
     code: CharacterCode,
-    nextCode?: CharacterCode,
-    lastCode?: CharacterCode
+    nextCode: CharacterCode | undefined,
+    lastCode: CharacterCode | undefined,
+    afterSpace: boolean
   ): Token | null {
     const me = this;
     const validator = me.validator;
 
     switch (code) {
       case CharacterCode.QUOTE:
-        return me.scanStringLiteral();
+        return me.scanStringLiteral(afterSpace);
       case CharacterCode.DOT:
-        if (validator.isDecDigit(code)) return me.scanNumericLiteral();
-        return me.scanPunctuator('.');
+        if (validator.isDecDigit(code)) return me.scanNumericLiteral(afterSpace);
+        return me.scanPunctuator('.', afterSpace);
       case CharacterCode.EQUAL:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('==');
-        return me.scanPunctuator('=');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('==', afterSpace);
+        return me.scanPunctuator('=', afterSpace);
       case CharacterCode.ARROW_LEFT:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('<=');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('<=', afterSpace);
         if (CharacterCode.ARROW_LEFT === nextCode)
-          return me.scanPunctuator('<<');
-        return me.scanPunctuator('<');
+          return me.scanPunctuator('<<', afterSpace);
+        return me.scanPunctuator('<', afterSpace);
       case CharacterCode.ARROW_RIGHT:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('>=');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('>=', afterSpace);
         if (CharacterCode.ARROW_RIGHT === nextCode) {
           if (CharacterCode.ARROW_RIGHT === lastCode)
-            return me.scanPunctuator('>>>');
-          return me.scanPunctuator('>>');
+            return me.scanPunctuator('>>>', afterSpace);
+          return me.scanPunctuator('>>', afterSpace);
         }
-        return me.scanPunctuator('>');
+        return me.scanPunctuator('>', afterSpace);
       case CharacterCode.EXCLAMATION_MARK:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('!=');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('!=', afterSpace);
         return null;
       case CharacterCode.MINUS:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('-=');
-        return me.scanPunctuator('-');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('-=', afterSpace);
+        return me.scanPunctuator('-', afterSpace);
       case CharacterCode.PLUS:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('+=');
-        return me.scanPunctuator('+');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('+=', afterSpace);
+        return me.scanPunctuator('+', afterSpace);
       case CharacterCode.ASTERISK:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('*=');
-        return me.scanPunctuator('*');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('*=', afterSpace);
+        return me.scanPunctuator('*', afterSpace);
       case CharacterCode.SLASH:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('/=');
-        return me.scanPunctuator('/');
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('/=', afterSpace);
+        return me.scanPunctuator('/', afterSpace);
       case CharacterCode.COLON:
-        return me.scanSliceOperator();
+        return me.scanSliceOperator(afterSpace);
       case CharacterCode.CARET:
       case CharacterCode.PERCENT:
       case CharacterCode.COMMA:
@@ -98,7 +99,7 @@ export default class Lexer {
       case CharacterCode.AT_SIGN:
       case CharacterCode.AMPERSAND:
       case CharacterCode.VERTICAL_LINE:
-        return me.scanPunctuator(String.fromCharCode(code));
+        return me.scanPunctuator(String.fromCharCode(code), afterSpace);
       case CharacterCode.NUMBER_0:
       case CharacterCode.NUMBER_1:
       case CharacterCode.NUMBER_2:
@@ -109,10 +110,10 @@ export default class Lexer {
       case CharacterCode.NUMBER_7:
       case CharacterCode.NUMBER_8:
       case CharacterCode.NUMBER_9:
-        return me.scanNumericLiteral();
+        return me.scanNumericLiteral(afterSpace);
       case CharacterCode.SEMICOLON:
         me.nextIndex();
-        return me.createEOL();
+        return me.createEOL(afterSpace);
       default:
         return null;
     }
@@ -144,7 +145,7 @@ export default class Lexer {
     return CharacterCode.QUOTE === this.codeAt(1);
   }
 
-  createEOL(): Token {
+  createEOL(afterSpace: boolean): Token {
     const me = this;
 
     return createToken(
@@ -153,11 +154,12 @@ export default class Lexer {
       me.line,
       me.lineStart,
       [me.tokenStart, me.index],
-      me.offset
+      me.offset,
+      afterSpace
     );
   }
 
-  scanStringLiteral(): Token {
+  scanStringLiteral(afterSpace: boolean): Token {
     const me = this;
     const beginLine = me.line;
     const beginLineStart = me.lineStart;
@@ -195,6 +197,7 @@ export default class Lexer {
       beginLineStart,
       [me.tokenStart, me.index],
       me.offset,
+      afterSpace,
       me.line,
       me.lineStart
     );
@@ -234,7 +237,7 @@ export default class Lexer {
     };
   }
 
-  scanNumericLiteral(): Token {
+  scanNumericLiteral(afterSpace: boolean): Token {
     const me = this;
     const literal = me.readDecLiteral();
 
@@ -244,11 +247,12 @@ export default class Lexer {
       me.line,
       me.lineStart,
       [me.tokenStart, me.index],
-      me.offset
+      me.offset,
+      afterSpace
     );
   }
 
-  scanPunctuator(value: string): Token {
+  scanPunctuator(value: string, afterSpace: boolean): Token {
     const me = this;
 
     me.index = me.index + value.length;
@@ -259,11 +263,12 @@ export default class Lexer {
       me.line,
       me.lineStart,
       [me.tokenStart, me.index],
-      me.offset
+      me.offset,
+      afterSpace
     );
   }
 
-  scanSliceOperator(): Token {
+  scanSliceOperator(afterSpace: boolean): Token {
     const me = this;
 
     me.index++;
@@ -274,7 +279,8 @@ export default class Lexer {
       me.line,
       me.lineStart,
       [me.tokenStart, me.index],
-      me.offset
+      me.offset,
+      afterSpace
     );
   }
 
@@ -309,7 +315,7 @@ export default class Lexer {
     }
   }
 
-  scanIdentifierOrKeyword(): Token {
+  scanIdentifierOrKeyword(afterSpace: boolean): Token {
     const me = this;
     const validator = me.validator;
 
@@ -355,7 +361,8 @@ export default class Lexer {
       me.line,
       me.lineStart,
       [me.tokenStart, me.index],
-      me.offset
+      me.offset,
+      afterSpace
     );
   }
 
@@ -373,7 +380,10 @@ export default class Lexer {
     const me = this;
     const validator = me.validator;
 
+    const oldPosition = me.index;
     me.skipWhiteSpace();
+
+    const afterSpace = oldPosition < me.index;
 
     while (validator.isComment(me.codeAt(), me.codeAt(1))) {
       me.tokenStart = me.index;
@@ -387,7 +397,8 @@ export default class Lexer {
         me.line,
         me.lineStart,
         [me.index, me.index],
-        me.offset
+        me.offset,
+        afterSpace
       );
     }
 
@@ -409,7 +420,7 @@ export default class Lexer {
       )
         me.nextIndex();
 
-      const token = me.createEOL();
+      const token = me.createEOL(afterSpace);
 
       me.nextLine();
       me.offset = me.index + 1;
@@ -418,9 +429,9 @@ export default class Lexer {
       return token;
     }
 
-    if (validator.isIdentifierStart(code)) return me.scanIdentifierOrKeyword();
+    if (validator.isIdentifierStart(code)) return me.scanIdentifierOrKeyword(afterSpace);
 
-    const item = me.scan(code, nextCode, lastCode);
+    const item = me.scan(code, nextCode, lastCode, afterSpace);
 
     if (item) return item;
 

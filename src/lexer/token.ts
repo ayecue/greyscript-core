@@ -20,6 +20,7 @@ export interface Token {
   lineRange: number[];
   lastLine?: number;
   lastLineStart?: number;
+  afterSpace: boolean;
 }
 
 export function createToken(
@@ -29,6 +30,7 @@ export function createToken(
   lineStart: number,
   range: number[],
   offset: number,
+  afterSpace: boolean,
   lastLine?: number,
   lastLineStart?: number
 ): Token {
@@ -39,6 +41,7 @@ export function createToken(
     lineStart,
     range,
     lineRange: [range[0] - offset + 1, range[1] - offset + 1],
+    afterSpace,
     lastLine,
     lastLineStart
   };
