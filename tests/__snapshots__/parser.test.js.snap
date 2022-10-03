@@ -14754,6 +14754,228 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 }"
 `;
 
+exports[`parse default scripts callexpr-with-nl.src 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 7, character: 2 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 7, character: 2 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 2 },
+        end: Position { line: 7, character: 2 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'x'
+        },
+        arguments: [
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral]
+        ]
+      }
+    }
+  ],
+  namespaces: Set(1) { 'x' },
+  assignments: [],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 5 },
+      end: Position { line: 2, character: 6 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 3, character: 5 },
+      end: Position { line: 3, character: 6 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 4, character: 5 },
+      end: Position { line: 4, character: 6 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 5, character: 5 },
+      end: Position { line: 5, character: 6 },
+      scope: [Circular *1],
+      value: 4,
+      raw: '4'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 6, character: 5 },
+      end: Position { line: 6, character: 6 },
+      scope: [Circular *1],
+      value: 5,
+      raw: '5'
+    }
+  ],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 7, character: 2 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 2 },
+        end: Position { line: 7, character: 2 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'x'
+        },
+        arguments: [
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral]
+        ]
+      }
+    }
+  }
+}"
+`;
+
+exports[`parse default scripts callexpr-with-nl.src unsafe 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 7, character: 2 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 7, character: 2 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 2 },
+        end: Position { line: 7, character: 2 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'x'
+        },
+        arguments: [
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral]
+        ]
+      }
+    }
+  ],
+  namespaces: Set(1) { 'x' },
+  assignments: [],
+  nativeImports: [],
+  literals: [
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 2, character: 5 },
+      end: Position { line: 2, character: 6 },
+      scope: [Circular *1],
+      value: 1,
+      raw: '1'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 3, character: 5 },
+      end: Position { line: 3, character: 6 },
+      scope: [Circular *1],
+      value: 2,
+      raw: '2'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 4, character: 5 },
+      end: Position { line: 4, character: 6 },
+      scope: [Circular *1],
+      value: 3,
+      raw: '3'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 5, character: 5 },
+      end: Position { line: 5, character: 6 },
+      scope: [Circular *1],
+      value: 4,
+      raw: '4'
+    },
+    ASTLiteral {
+      type: 'NumericLiteral',
+      start: Position { line: 6, character: 5 },
+      end: Position { line: 6, character: 6 },
+      scope: [Circular *1],
+      value: 5,
+      raw: '5'
+    }
+  ],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 7, character: 2 },
+      scope: [Circular *1],
+      expression: ASTCallExpression {
+        type: 'CallExpression',
+        start: Position { line: 1, character: 2 },
+        end: Position { line: 7, character: 2 },
+        scope: [Circular *1],
+        base: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'x'
+        },
+        arguments: [
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral],
+          [ASTLiteral]
+        ]
+      }
+    }
+  }
+}"
+`;
+
 exports[`parse default scripts eol.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',
@@ -18418,8 +18640,7 @@ exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts invalid code 2`] = `
 Array [
-  [Error: Unexpected value ";" at line 2. Expected: ")"],
-  [Error: Unexpected value ")" at 4. Expected end of line.],
+  [Error: Unexpected value ";" at line 3. Expected: ")"],
   [Error: Unexpected value "dwad" at 8. Expected end of line.],
   [Error: Unexpected argument for "not" at line 11.],
   [Error: Unexpected argument for "not" at line 13.],

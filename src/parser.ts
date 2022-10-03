@@ -531,16 +531,20 @@ export default class Parser {
     }
 
     me.next();
+    me.consume(';');
+
     const expressions = [];
     let expression = me.parseExpression();
 
     if (expression != null) expressions.push(expression);
 
     while (me.consume(',')) {
+      me.consume(';');
       expression = me.parseExpectedExpression();
       expressions.push(expression);
     }
 
+    me.consume(';');
     me.expect(')');
 
     return me.astProvider.callExpression({

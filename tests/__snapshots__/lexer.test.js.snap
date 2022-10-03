@@ -17440,6 +17440,366 @@ Object {
 }
 `;
 
+exports[`parse default scripts callexpr-with-nl.src 1`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    0,
+    1,
+  ],
+  "type": "Identifier",
+  "value": "x",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 2`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    2,
+    3,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    1,
+    2,
+  ],
+  "type": "Punctuator",
+  "value": "(",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 3`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    3,
+    3,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    2,
+    2,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 4`] = `
+Object {
+  "afterSpace": true,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 3,
+  "range": Array [
+    7,
+    8,
+  ],
+  "type": "NumericLiteral",
+  "value": 1,
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 5`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 3,
+  "range": Array [
+    8,
+    9,
+  ],
+  "type": "Punctuator",
+  "value": ",",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 6`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    7,
+    7,
+  ],
+  "lineStart": 3,
+  "range": Array [
+    9,
+    9,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 7`] = `
+Object {
+  "afterSpace": true,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 10,
+  "range": Array [
+    14,
+    15,
+  ],
+  "type": "NumericLiteral",
+  "value": 2,
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 8`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 10,
+  "range": Array [
+    15,
+    16,
+  ],
+  "type": "Punctuator",
+  "value": ",",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 9`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    7,
+    7,
+  ],
+  "lineStart": 10,
+  "range": Array [
+    16,
+    16,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 10`] = `
+Object {
+  "afterSpace": true,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 17,
+  "range": Array [
+    21,
+    22,
+  ],
+  "type": "NumericLiteral",
+  "value": 3,
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 11`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 17,
+  "range": Array [
+    22,
+    23,
+  ],
+  "type": "Punctuator",
+  "value": ",",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 12`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    7,
+    7,
+  ],
+  "lineStart": 17,
+  "range": Array [
+    23,
+    23,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 13`] = `
+Object {
+  "afterSpace": true,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 24,
+  "range": Array [
+    28,
+    29,
+  ],
+  "type": "NumericLiteral",
+  "value": 4,
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 14`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    6,
+    7,
+  ],
+  "lineStart": 24,
+  "range": Array [
+    29,
+    30,
+  ],
+  "type": "Punctuator",
+  "value": ",",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 15`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 5,
+  "lineRange": Array [
+    7,
+    7,
+  ],
+  "lineStart": 24,
+  "range": Array [
+    30,
+    30,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 16`] = `
+Object {
+  "afterSpace": true,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 31,
+  "range": Array [
+    35,
+    36,
+  ],
+  "type": "NumericLiteral",
+  "value": 5,
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 17`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 6,
+  "lineRange": Array [
+    6,
+    6,
+  ],
+  "lineStart": 31,
+  "range": Array [
+    36,
+    36,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts callexpr-with-nl.src 18`] = `
+Object {
+  "afterSpace": false,
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 7,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 37,
+  "range": Array [
+    37,
+    38,
+  ],
+  "type": "Punctuator",
+  "value": ")",
+}
+`;
+
 exports[`parse default scripts eol.src 1`] = `
 Object {
   "afterSpace": false,
