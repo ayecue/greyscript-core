@@ -499,6 +499,7 @@ export default class Parser {
         return me.parseIndexExpression(base);
       } else if (value === '.') {
         me.next();
+        me.consume(';');
         identifier = me.parseIdentifier();
         return me.astProvider.memberExpression({
           base,

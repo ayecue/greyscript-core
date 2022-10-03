@@ -19278,6 +19278,158 @@ exports[`parse default scripts map.src unsafe 1`] = `
 }"
 `;
 
+exports[`parse default scripts member-with-nl.src 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 4, character: 5 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 4, character: 5 },
+      scope: [Circular *1],
+      expression: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 3, character: 5 },
+        end: Position { line: 4, character: 5 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        },
+        base: ASTMemberExpression {
+          type: 'MemberExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          indexer: '.',
+          identifier: [ASTIdentifier],
+          base: [ASTMemberExpression]
+        }
+      }
+    }
+  ],
+  namespaces: Set(2) { 'x', 'test' },
+  assignments: [],
+  nativeImports: [],
+  literals: [],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 4, character: 5 },
+      scope: [Circular *1],
+      expression: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 3, character: 5 },
+        end: Position { line: 4, character: 5 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        },
+        base: ASTMemberExpression {
+          type: 'MemberExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          indexer: '.',
+          identifier: [ASTIdentifier],
+          base: [ASTMemberExpression]
+        }
+      }
+    }
+  }
+}"
+`;
+
+exports[`parse default scripts member-with-nl.src unsafe 1`] = `
+"<ref *1> ASTChunk {
+  type: 'Chunk',
+  start: Position { line: 1, character: 1 },
+  end: Position { line: 4, character: 5 },
+  scope: null,
+  body: [
+    ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 4, character: 5 },
+      scope: [Circular *1],
+      expression: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 3, character: 5 },
+        end: Position { line: 4, character: 5 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        },
+        base: ASTMemberExpression {
+          type: 'MemberExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          indexer: '.',
+          identifier: [ASTIdentifier],
+          base: [ASTMemberExpression]
+        }
+      }
+    }
+  ],
+  namespaces: Set(2) { 'x', 'test' },
+  assignments: [],
+  nativeImports: [],
+  literals: [],
+  scopes: [],
+  lines: Map(1) {
+    1 => ASTCallStatement {
+      type: 'CallStatement',
+      start: Position { line: 1, character: 1 },
+      end: Position { line: 4, character: 5 },
+      scope: [Circular *1],
+      expression: ASTMemberExpression {
+        type: 'MemberExpression',
+        start: Position { line: 3, character: 5 },
+        end: Position { line: 4, character: 5 },
+        scope: [Circular *1],
+        indexer: '.',
+        identifier: ASTIdentifier {
+          type: 'Identifier',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          name: 'test'
+        },
+        base: ASTMemberExpression {
+          type: 'MemberExpression',
+          start: [Position],
+          end: [Position],
+          scope: [Circular *1],
+          indexer: '.',
+          identifier: [ASTIdentifier],
+          base: [ASTMemberExpression]
+        }
+      }
+    }
+  }
+}"
+`;
+
 exports[`parse default scripts multiline.src 1`] = `
 "<ref *1> ASTChunk {
   type: 'Chunk',

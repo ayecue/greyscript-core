@@ -23182,6 +23182,196 @@ Object {
 }
 `;
 
+exports[`parse default scripts member-with-nl.src 1`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    1,
+    2,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    0,
+    1,
+  ],
+  "type": "Identifier",
+  "value": "x",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 2`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    2,
+    3,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    1,
+    2,
+  ],
+  "type": "Punctuator",
+  "value": ".",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 3`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 1,
+  "lineRange": Array [
+    3,
+    3,
+  ],
+  "lineStart": 0,
+  "range": Array [
+    2,
+    2,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 4`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 3,
+  "range": Array [
+    3,
+    7,
+  ],
+  "type": "Identifier",
+  "value": "test",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 5`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 3,
+  "range": Array [
+    7,
+    8,
+  ],
+  "type": "Punctuator",
+  "value": ".",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 6`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 2,
+  "lineRange": Array [
+    6,
+    6,
+  ],
+  "lineStart": 3,
+  "range": Array [
+    8,
+    8,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 7`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 9,
+  "range": Array [
+    9,
+    13,
+  ],
+  "type": "Identifier",
+  "value": "test",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 8`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    5,
+    6,
+  ],
+  "lineStart": 9,
+  "range": Array [
+    13,
+    14,
+  ],
+  "type": "Punctuator",
+  "value": ".",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 9`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 3,
+  "lineRange": Array [
+    6,
+    6,
+  ],
+  "lineStart": 9,
+  "range": Array [
+    14,
+    14,
+  ],
+  "type": "EOL",
+  "value": ";",
+}
+`;
+
+exports[`parse default scripts member-with-nl.src 10`] = `
+Object {
+  "lastLine": undefined,
+  "lastLineStart": undefined,
+  "line": 4,
+  "lineRange": Array [
+    1,
+    5,
+  ],
+  "lineStart": 15,
+  "range": Array [
+    15,
+    19,
+  ],
+  "type": "Identifier",
+  "value": "test",
+}
+`;
+
 exports[`parse default scripts multiline.src 1`] = `
 Object {
   "lastLine": undefined,
