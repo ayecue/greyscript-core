@@ -750,7 +750,7 @@ exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts invalid code 2`] = `
 Array [
-  [Error: Unexpected value ";" at line 3. Expected: ")"],
+  [Error: Expected call expression to be closed after line 2.],
   [Error: Unexpected assignment or call at line 8.],
   [Error: Unexpected argument for "not" at line 11.],
   [Error: Unexpected argument for "not" at line 13.],

@@ -1,7 +1,7 @@
 import { createToken, Token, TokenType } from './lexer/token';
 import Validator from './lexer/validator';
 import { CharacterCode } from './utils/codes';
-import { InvalidCharacter, UnexpectedStringEOL } from './utils/errors';
+import { LexerException } from './utils/errors';
 
 export interface LexerOptions {
   validator?: Validator;
@@ -183,7 +183,9 @@ export default class Lexer {
         }
       }
       if (!me.isNotEOF()) {
-        return me.raise(new UnexpectedStringEOL(beginLine));
+        const line = beginLine;
+        return me.raise(`Unexpected string ending at line ${line}.`, line
+        );
       }
     }
 
@@ -435,11 +437,16 @@ export default class Lexer {
 
     if (item) return item;
 
-    return me.raise(new InvalidCharacter(code, me.line));
+    return me.raise(
+      `Invalid character ${code} (Code: ${String.fromCharCode(
+        code
+      )}) at line ${me.line}.`, me.line
+    );
   }
 
-  raise(err: Error): Token {
+  raise(message: string, line: number): Token {
     const me = this;
+    const err = new LexerException(message, line);
 
     me.errors.push(err);
 
