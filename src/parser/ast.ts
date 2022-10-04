@@ -235,7 +235,6 @@ export {
   ASTBaseOptions,
   ASTComment,
   ASTCommentOptions,
-  Position as ASTPosition,
   ASTType
 } from './ast/base';
 export {

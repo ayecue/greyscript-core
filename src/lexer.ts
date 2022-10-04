@@ -1,4 +1,4 @@
-import { createToken, Token, TokenType } from './lexer/token';
+import { Token, TokenType } from './lexer/token';
 import Validator from './lexer/validator';
 import { CharacterCode } from './utils/codes';
 import { LexerException } from './utils/errors';
@@ -148,15 +148,15 @@ export default class Lexer {
   createEOL(afterSpace: boolean): Token {
     const me = this;
 
-    return createToken(
-      TokenType.EOL,
-      ';',
-      me.line,
-      me.lineStart,
-      [me.tokenStart, me.index],
-      me.offset,
+    return new Token({
+      type: TokenType.EOL,
+      value: ';',
+      line: me.line,
+      lineStart: me.lineStart,
+      range: [me.tokenStart, me.index],
+      offset: me.offset,
       afterSpace
-    );
+    });
   }
 
   scanStringLiteral(afterSpace: boolean): Token {
@@ -192,17 +192,17 @@ export default class Lexer {
     me.nextIndex();
     string = me.content.slice(stringStart, me.index - 1).replace(/""/g, '"');
 
-    return createToken(
-      TokenType.StringLiteral,
-      string,
-      beginLine,
-      beginLineStart,
-      [me.tokenStart, me.index],
-      me.offset,
+    return new Token({
+      type: TokenType.StringLiteral,
+      value: string,
+      line: beginLine,
+      lineStart: beginLineStart,
+      range: [me.tokenStart, me.index],
+      offset: me.offset,
       afterSpace,
-      me.line,
-      me.lineStart
-    );
+      lastLine: me.line,
+      lastLineStart: me.lineStart
+    });
   }
 
   readDecLiteral(): {
@@ -243,15 +243,15 @@ export default class Lexer {
     const me = this;
     const literal = me.readDecLiteral();
 
-    return createToken(
-      TokenType.NumericLiteral,
-      literal.value,
-      me.line,
-      me.lineStart,
-      [me.tokenStart, me.index],
-      me.offset,
+    return new Token({
+      type: TokenType.NumericLiteral,
+      value: literal.value,
+      line: me.line,
+      lineStart: me.lineStart,
+      range: [me.tokenStart, me.index],
+      offset: me.offset,
       afterSpace
-    );
+    });
   }
 
   scanPunctuator(value: string, afterSpace: boolean): Token {
@@ -259,15 +259,15 @@ export default class Lexer {
 
     me.index = me.index + value.length;
 
-    return createToken(
-      TokenType.Punctuator,
+    return new Token({
+      type: TokenType.Punctuator,
       value,
-      me.line,
-      me.lineStart,
-      [me.tokenStart, me.index],
-      me.offset,
+      line: me.line,
+      lineStart: me.lineStart,
+      range: [me.tokenStart, me.index],
+      offset: me.offset,
       afterSpace
-    );
+    });
   }
 
   scanSliceOperator(afterSpace: boolean): Token {
@@ -275,15 +275,15 @@ export default class Lexer {
 
     me.index++;
 
-    return createToken(
-      TokenType.SliceOperator,
-      ':',
-      me.line,
-      me.lineStart,
-      [me.tokenStart, me.index],
-      me.offset,
+    return new Token({
+      type: TokenType.SliceOperator,
+      value: ':',
+      line: me.line,
+      lineStart: me.lineStart,
+      range: [me.tokenStart, me.index],
+      offset: me.offset,
       afterSpace
-    );
+   } );
   }
 
   skipToNextLine() {
@@ -357,15 +357,15 @@ export default class Lexer {
       type = TokenType.Identifier;
     }
 
-    return createToken(
+    return new Token({
       type,
       value,
-      me.line,
-      me.lineStart,
-      [me.tokenStart, me.index],
-      me.offset,
+      line: me.line,
+      lineStart: me.lineStart,
+      range: [me.tokenStart, me.index],
+      offset: me.offset,
       afterSpace
-    );
+    });
   }
 
   scanComment() {
@@ -393,15 +393,15 @@ export default class Lexer {
     }
 
     if (!me.isNotEOF()) {
-      return createToken(
-        TokenType.EOF,
-        '<eof>',
-        me.line,
-        me.lineStart,
-        [me.index, me.index],
-        me.offset,
+      return new Token({
+        type: TokenType.EOF,
+        value: '<eof>',
+        line: me.line,
+        lineStart: me.lineStart,
+        range: [me.index, me.index],
+        offset: me.offset,
         afterSpace
-      );
+      });
     }
 
     const code = me.codeAt();

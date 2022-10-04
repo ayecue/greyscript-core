@@ -8,3 +8,4 @@ export { default as ParserValidator } from './parser/validator';
 export * from './types/operators';
 export * from './utils/codes';
 export * from './utils/errors';
+export { default as ASTPosition } from './utils/position';

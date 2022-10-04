@@ -1,12 +1,4 @@
-export class Position {
-  line: number;
-  character: number;
-
-  constructor(line: number, character: number) {
-    this.line = line;
-    this.character = character;
-  }
-}
+import Position from '../../utils/position';
 
 export enum ASTType {
   BreakStatement = 'BreakStatement',
