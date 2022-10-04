@@ -165,24 +165,22 @@ export default class Lexer {
     const beginLineStart = me.lineStart;
     const stringStart = me.index + 1;
     let string = '';
-    let code;
 
     while (true) {
       me.nextIndex();
-      code = me.codeAt();
+
+      const code = me.codeAt();
 
       if (me.validator.isEndOfLine(code)) {
+        if (me.isWinNewline())  me.nextIndex();
         me.nextLine();
-      }
-
-      if (CharacterCode.QUOTE === code) {
+      } else if (CharacterCode.QUOTE === code) {
         if (me.isStringEscaped()) {
           me.nextIndex();
         } else {
           break;
         }
-      }
-      if (!me.isNotEOF()) {
+      } else if (!me.isNotEOF()) {
         const line = beginLine;
         return me.raise(`Unexpected string ending at line ${line}.`, line
         );
@@ -286,6 +284,20 @@ export default class Lexer {
    } );
   }
 
+  isWinNewline() {
+    const me = this;
+    const code = me.codeAt();
+    const nextCode = me.codeAt(1);
+    
+    return (
+      CharacterCode.RETURN_LINE === code &&
+      CharacterCode.NEW_LINE === nextCode
+    ) || (
+      CharacterCode.NEW_LINE === code &&
+      CharacterCode.RETURN_LINE === nextCode
+    );
+  }
+
   skipToNextLine() {
     const me = this;
     let code = me.codeAt();
@@ -294,6 +306,8 @@ export default class Lexer {
       me.nextIndex();
       code = me.codeAt();
     }
+
+    if (me.isWinNewline())  me.nextIndex();
 
     me.nextLine();
     me.offset = me.index;
@@ -376,6 +390,10 @@ export default class Lexer {
       if (validator.isEndOfLine(me.codeAt())) break;
       me.nextIndex();
     }
+
+    if (me.isWinNewline()) {
+      me.nextIndex();
+    }
   }
 
   next(): Token {
@@ -411,16 +429,7 @@ export default class Lexer {
     me.tokenStart = me.index;
 
     if (validator.isEndOfLine(code)) {
-      if (
-        CharacterCode.NEW_LINE === code &&
-        CharacterCode.RETURN_LINE === nextCode
-      )
-        me.nextIndex();
-      if (
-        CharacterCode.RETURN_LINE === code &&
-        CharacterCode.NEW_LINE === nextCode
-      )
-        me.nextIndex();
+      if (me.isWinNewline()) me.nextIndex();
 
       const token = me.createEOL(afterSpace);
 
