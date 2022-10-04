@@ -1058,9 +1058,9 @@ export default class Parser {
     const me = this;
     const start = new ASTPosition(me.token.line, me.token.lineRange[0]);
     let base;
-    let last = me.token;
+    let origin = me.token;
 
-    if (TokenType.Identifier === last.type) {
+    if (TokenType.Identifier === origin.type) {
       base = me.parseIdentifier();
       //here
       base = me.parseRighthandExpressionGreedy(base);
@@ -1073,9 +1073,9 @@ export default class Parser {
       me.validator.isExpressionOperator(me.token.value as Operator)
     ) {
       return me.parseBinaryExpression(base);
-    }
-
-    if (me.consume('=')) {
+    } else if (me.validator.isLiteral(<TokenType>origin.type)) {
+      return base;
+    } else if (me.consume('=')) {
       const value = me.parseExpectedExpression();
       const assignmentStatement = me.astProvider.assignmentStatement({
         variable: base,
@@ -1088,10 +1088,6 @@ export default class Parser {
       me.currentScope.assignments.push(assignmentStatement);
 
       return assignmentStatement;
-    }
-
-    if (me.validator.isLiteral(<TokenType>last.type)) {
-      return base;
     } else if (
       me.token.type === TokenType.EOL ||
       me.token.type === TokenType.EOF ||
