@@ -117,4 +117,8 @@ export class ASTComment extends ASTBase {
     this.value = options.value;
     this.raw = options.raw;
   }
+
+  toString(): string {
+    return `Comment[${this.value}]`;
+  }
 }

@@ -35,4 +35,8 @@ export class ASTUnaryExpression extends ASTBase {
     this.argument = options.argument;
     this.operator = options.operator;
   }
+
+  toString(): string {
+    return `${this.type}[${this.operator} ${this.argument.toString()}]`;
+  }
 }

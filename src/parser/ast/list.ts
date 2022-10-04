@@ -24,4 +24,10 @@ export class ASTListConstructorExpression extends ASTBase {
     super(ASTType.ListConstructorExpression, options);
     this.fields = options.fields || [];
   }
+
+  toString(): string {
+    const body = this.fields.map((item) => item.toString()).join('\n');
+
+    return `ListConstructor[\n${body}\n]`;
+  }
 }

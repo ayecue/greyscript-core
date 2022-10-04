@@ -11,6 +11,10 @@ export class ASTIdentifier extends ASTBase {
     super(ASTType.Identifier, options);
     this.name = options.name;
   }
+
+  toString(): string {
+    return `Identifier[${this.name}]`;
+  }
 }
 
 export interface ASTMemberExpressionOptions extends ASTBaseOptions {
@@ -30,6 +34,10 @@ export class ASTMemberExpression extends ASTBase {
     this.identifier = options.identifier;
     this.base = options.base;
   }
+
+  toString(): string {
+    return `MemberExpression[${this.base.toString()}.${this.identifier.toString()}]`;
+  }
 }
 
 export interface ASTIndexExpressionOptions extends ASTBaseOptions {
@@ -45,5 +53,9 @@ export class ASTIndexExpression extends ASTBase {
     super(ASTType.IndexExpression, options);
     this.base = options.base;
     this.index = options.index;
+  }
+
+  toString(): string {
+    return `IndexExpression[${this.base.toString()}[${this.index.toString()}]]`;
   }
 }

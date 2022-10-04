@@ -27,4 +27,10 @@ export class ASTMapConstructorExpression extends ASTBase {
     super(ASTType.MapConstructorExpression, options);
     this.fields = options.fields || [];
   }
+
+  toString(): string {
+    const body = this.fields.map((item) => item.toString()).join('\n');
+
+    return `MapConstructor[\n${body}\n]`;
+  }
 }
