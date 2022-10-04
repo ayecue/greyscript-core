@@ -116,14 +116,36 @@ export default class Parser {
     return false;
   }
 
-  consume(value: string): boolean {
+  isType(type: TokenType): boolean {
+    const me = this;
+    return me.token !== null && type === me.token.type;
+  }
+
+  is(type: TokenType, value: string): boolean {
+    const me = this;
+    return me.token !== null && value === me.token.value && type === me.token.type;
+  }
+
+  isOneOf(type: TokenType, ...values: string[]): boolean {
+    const me = this;
+    return me.token !== null && values.indexOf(me.token.value) !== -1 && type === me.token.type;
+  }
+
+  consume(type: TokenType, value: string): boolean {
     const me = this;
 
-    if (me.token === null) {
-      return false;
+    if (this.is(type, value)) {
+      me.next();
+      return true;
     }
 
-    if (value === me.token.value && TokenType.StringLiteral !== me.token.type) {
+    return false;
+  }
+
+  consumeMany(type: TokenType, ...values: string[]): boolean {
+    const me = this;
+
+    if (me.isOneOf(type, ...values)) {
       me.next();
       return true;
     }
@@ -152,44 +174,7 @@ export default class Parser {
 
   skipNewlines() {
     const me = this;
-    while (me.consume(';'));
-  }
-
-  consumeMany(...values: string[]): boolean {
-    const me = this;
-
-    if (
-      values.indexOf(me.token.value) !== -1 &&
-      TokenType.StringLiteral !== me.token.type
-    ) {
-      me.next();
-      return true;
-    }
-
-    return false;
-  }
-
-  expect(value: string) {
-    const me = this;
-
-    if (value === me.token.value && TokenType.StringLiteral !== me.token.type) {
-      me.next();
-    } else {
-      me.raise(`Unexpected value "${me.token.value}" at line ${me.token.line}. Expected: "${value}"`, me.token);
-    }
-  }
-
-  expectMany(...values: string[]) {
-    const me = this;
-
-    if (
-      values.indexOf(me.token.value) !== -1 &&
-      TokenType.StringLiteral !== me.token.type
-    ) {
-      me.next();
-    } else {
-      me.raise(`Unexpected value "${me.token.value}" at line ${me.token.line}. Expected one of: ${values.join(', ')}`, me.token);
-    }
+    while (me.consume(TokenType.EOL, ';'));
   }
 
   pushScope(scope: ASTBaseBlockWithScope) {
@@ -228,7 +213,7 @@ export default class Parser {
     const end = me.token.getEnd();
     const identifier = me.token.value;
 
-    if (TokenType.Identifier !== me.token.type) {
+    if (!me.isType(TokenType.Identifier)) {
       return me.raise(`Unexpected identifier "${me.token.value}" at line ${me.token.line}.`, me.token);
     }
 
@@ -246,23 +231,40 @@ export default class Parser {
     });
   }
 
-  parseMapConstructor(): ASTMapConstructorExpression {
+  parseMapConstructor(): ASTMapConstructorExpression | ASTBase {
     const me = this;
-    const start = me.previousToken.getStart();
+    const start = me.token.getStart();
     const fields = [];
+    let lastToken = me.token;
 
-    while (true) {
-      if (me.consume(';')) {
-        continue;
+    if (!me.consume(TokenType.Punctuator, '{')) {
+      return me.raise(`Map requires opening bracket at line ${me.token.line}.`, me.token);
+    }
+
+    while (!me.is(TokenType.Punctuator, '}')) {
+      me.skipNewlines();
+      lastToken = me.token;
+      const key = me.parseExpression();
+
+      if (key == null) {
+        return me.raise(`Missing key value in map at line ${me.token.line}.`, me.token);
       }
 
-      if (me.consumeMany('}', '<eof>')) {
-        break;
+      me.skipNewlines();
+
+      if (!me.consume(TokenType.SliceOperator, ':')) {
+        return me.raise(`Map constructor requires seperator at line ${me.token.line}.`, me.token);
       }
 
-      const key = me.parseExpectedExpression();
-      me.expect(':');
-      const value = me.parseExpectedExpression();
+      me.skipNewlines();
+      lastToken = me.token;
+      const value = me.parseExpression();
+
+      if (value == null) {
+        me.raise(`Missing value in map at line ${me.token.line}.`, me.token);
+      }
+
+      me.skipNewlines();
 
       fields.push(
         me.astProvider.mapKeyString({
@@ -274,11 +276,11 @@ export default class Parser {
         })
       );
 
-      if (me.consumeMany('}', '<eof>')) {
-        break;
-      }
+      if (!me.consume(TokenType.Punctuator, ',')) break;
+    }
 
-      me.next();
+    if (!me.consume(TokenType.Punctuator, '}')) {
+      return me.raise(`Map requires closing bracket at line ${lastToken.line}.`, lastToken);
     }
 
     return me.astProvider.mapConstructorExpression({
@@ -289,28 +291,42 @@ export default class Parser {
     });
   }
 
-  parseListConstructor(): ASTListConstructorExpression {
+  parseListConstructor(): ASTListConstructorExpression |ASTBase {
     const me = this;
-    const start = me.previousToken.getStart();
+    const start = me.token.getStart();
     const fields = [];
     let value;
+    let lastToken = me.token;
 
-    while (true) {
-      value = me.parseExpression();
-      if (value != null)
-        fields.push(
-          me.astProvider.listValue({
-            value,
-            start: value.start,
-            end: value.end,
-            scope: me.currentScope
-          })
-        );
-      if (me.consumeMany(',', ';')) continue;
-      break;
+    if (!me.consume(TokenType.Punctuator, '[')) {
+      return me.raise(`List requires opening bracket at line ${me.token.line}.`, me.token);
     }
 
-    me.expect(']');
+    while (!me.is(TokenType.Punctuator, ']')) {
+      me.skipNewlines();
+      lastToken = me.token;
+      value = me.parseExpression();
+
+      if (value == null) {
+        return me.raise(`Expect value in list at line ${me.token.line}.`, me.token);
+      }
+
+      fields.push(
+        me.astProvider.listValue({
+          value,
+          start: value.start,
+          end: value.end,
+          scope: me.currentScope
+        })
+      );
+
+      me.skipNewlines();
+      if (!me.consume(TokenType.Punctuator, ',')) break;
+    }
+
+    if (!me.consume(TokenType.Punctuator, ']')) {
+      return me.raise(`List requires closing bracket at line ${lastToken.line}.`, lastToken);
+    }
 
     return me.astProvider.listConstructorExpression({
       fields,
@@ -342,9 +358,12 @@ export default class Parser {
 
     if (TokenType.Identifier === me.token.type) {
       base = me.parseIdentifier();
-    } else if (me.consume('(')) {
+    } else if (me.consume(TokenType.Punctuator, '(')) {
       base = me.parseExpectedExpression();
-      me.expect(')');
+
+      if (!me.consume(TokenType.Punctuator, ')')) {
+        return me.raise(`Expected closing ')' at line ${me.token.line}`, me.token)
+      }
     } else {
       return null;
     }
@@ -380,12 +399,12 @@ export default class Parser {
     return assignmentStatement;
   }
 
-  parseIndexExpression(base: ASTBase): ASTIndexExpression {
+  parseIndexExpression(base: ASTBase): ASTBase {
     const me = this;
     const start = me.token.getStart();
 
     //right side slice
-    if (me.consume(':')) {
+    if (me.consume(TokenType.SliceOperator, ':')) {
       const left = me.astProvider.emptyExpression({
         start: me.previousToken.getStart(),
         end: me.previousToken.getEnd(),
@@ -393,7 +412,9 @@ export default class Parser {
       });
       const right = me.parseExpectedExpression();
 
-      me.expect(']');
+      if (!me.consume(TokenType.Punctuator, ']')) {
+        return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
+      }
 
       const end = me.token.getEnd();
       const sliceExpression = me.astProvider.sliceExpression({
@@ -416,10 +437,10 @@ export default class Parser {
     const expression = me.parseExpectedExpression();
 
     //slice
-    if (me.consume(':')) {
+    if (me.consume(TokenType.SliceOperator, ':')) {
       let right;
 
-      if (me.token.value !== ']') {
+      if (!me.is(TokenType.Punctuator, ']')) {
         right = me.parseExpectedExpression();
       } else {
         //left slice
@@ -430,7 +451,9 @@ export default class Parser {
         });
       }
 
-      me.expect(']');
+      if (!me.consume(TokenType.Punctuator, ']')) {
+        return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
+      }
 
       const end = me.token.getEnd();
       const sliceExpression = me.astProvider.sliceExpression({
@@ -450,7 +473,9 @@ export default class Parser {
       });
     }
 
-    me.expect(']');
+    if (!me.consume(TokenType.Punctuator, ']')) {
+      return me.raise(`Expected index expression to be closed at line ${me.token.line}`, me.token);
+     }
 
     return me.astProvider.indexExpression({
       base,
@@ -483,7 +508,7 @@ export default class Parser {
         return me.parseIndexExpression(base);
       } else if (value === '.') {
         me.next();
-        me.consume(';');
+        me.consume(TokenType.EOL, ';');
         identifier = me.parseIdentifier();
         return me.astProvider.memberExpression({
           base,
@@ -493,7 +518,7 @@ export default class Parser {
           end: me.token.getEnd(),
           scope: me.currentScope
         });
-      } else if (value === '(') {
+      } else if (me.is(TokenType.Punctuator, '(')) {
         return me.parseCallExpression(base);
       }
     }
@@ -501,11 +526,14 @@ export default class Parser {
     return null;
   }
 
-  parseCallExpression(base: ASTBase): ASTCallExpression | ASTBase {
+  parseCallExpression(base: ASTBase):  ASTBase {
     const me = this;
     const start = me.token.getStart();
 
-    me.expect('(');
+    if (!me.consume(TokenType.Punctuator, '(')) {
+      return me.raise(`Expected call expression to be opened after line ${me.token.line}.`, me.token);
+    }
+
     me.skipNewlines();
 
     const expressions = [];
@@ -517,15 +545,15 @@ export default class Parser {
       expressions.push(expression);
       me.skipNewlines();
 
-      if (!me.consume(',')) {
+      if (!me.consume(TokenType.Punctuator, ',')) {
         break;
       }
 
       me.skipNewlines();
     }
 
-    if (!me.consume(')')) {
-      return me.raise(`Expected call expression to be closed after line ${lastToken.line}.`, lastToken)
+    if (!me.consume(TokenType.Punctuator, ')')) {
+      return me.raise(`Expected call expression to be closed after line ${lastToken.line}.`, lastToken);
     }
 
     return me.astProvider.callExpression({
@@ -608,16 +636,13 @@ export default class Parser {
     } else if (TokenType.Keyword === type && value === 'function') {
       me.next();
       return me.parseFunctionDeclaration();
-    } else if (me.consumeMany('{', '[')) {
-      let base;
-      if (value === '{') {
-        base = me.parseMapConstructor();
-      } else {
-        base = me.parseListConstructor();
-      }
-
+    } else if (me.is(TokenType.Punctuator, '[')) {
+      let base = me.parseListConstructor();
       base = me.parseRighthandExpressionGreedy(base);
-
+      return base;
+    } else if (me.is(TokenType.Punctuator, '{')) {
+      let base = me.parseMapConstructor();
+      base = me.parseRighthandExpressionGreedy(base);
       return base;
     }
 
@@ -740,7 +765,9 @@ export default class Parser {
     const me = this;
     const start = me.previousToken.getStart();
 
-    me.expect('(');
+    if (!me.consume(TokenType.Punctuator, '(')) {
+      return me.raise(`Expected import call to have opening operator at line ${me.token.line}.`, me.token);
+    }
 
     let gameDirectory;
     let fileSystemDirectory = null;
@@ -752,8 +779,8 @@ export default class Parser {
       return me.raise(`Unexpected import path at ${me.token.line}. Import code only allows a hardcoded import path.`, me.token);
     }
 
-    if (me.consume(':')) {
-      if (TokenType.StringLiteral !== me.token.type) {
+    if (me.consume(TokenType.SliceOperator, ':')) {
+      if (!me.isType(TokenType.StringLiteral)) {
         return me.raise(`Unexpected import path at ${me.token.line}. Import code only allows a hardcoded import path.`, me.token);
       }
 
@@ -762,7 +789,9 @@ export default class Parser {
       me.next();
     }
 
-    me.expect(')');
+    if (!me.consume(TokenType.Punctuator, ')')) {
+      return me.raise(`Expected import call to have closing operator at line ${me.token.line}.`, me.token);
+    }
 
     const base = me.astProvider.importCodeExpression({
       gameDirectory,
@@ -777,7 +806,7 @@ export default class Parser {
     return base;
   }
 
-  parseWhileStatement(): ASTWhileStatement {
+  parseWhileStatement(): ASTWhileStatement | ASTBase {
     const me = this;
     const start = me.previousToken.getStart();
     const condition = me.parseExpectedExpression();
@@ -786,7 +815,10 @@ export default class Parser {
 
     if (TokenType.EOL === me.token.type) {
       body = me.parseBlock(['end while']);
-      me.expect('end while');
+
+      if (!me.consume(TokenType.Keyword, 'end while')) {
+        return me.raise(`Expected 'end while' for while statement at line ${me.token.line}.`, me.token);
+      }
     } else {
       body = me.parseBlockShortcut();
     }
@@ -820,7 +852,7 @@ export default class Parser {
   parseIfShortcutStatement(
     condition: ASTBase,
     start: ASTPosition
-  ): ASTIfStatement {
+  ): ASTIfStatement | ASTBase {
     const me = this;
     const clauses: ASTClause[] = [];
     const ifStatement = me.astProvider.ifShortcutStatement({
@@ -844,12 +876,16 @@ export default class Parser {
       })
     );
 
-    me.consume(';');
+    me.consume(TokenType.EOL, ';');
 
-    while (me.consume('else if')) {
+    while (me.consume(TokenType.Keyword, 'else if')) {
       statementStart = me.token.getStart();
       condition = me.parseExpectedExpression();
-      me.expect('then');
+      
+      if (!me.consume(TokenType.Keyword, 'then')) {
+        return me.raise(`Else if requires 'then' keyword at line ${me.token.line}.`, me.token);
+      }
+
       body = me.parseBlockShortcut();
 
       clauses.push(
@@ -862,10 +898,10 @@ export default class Parser {
         })
       );
 
-      me.consume(';');
+      me.consume(TokenType.EOL, ';');
     }
 
-    if (me.consume('else')) {
+    if (me.consume(TokenType.Keyword, 'else')) {
       statementStart = me.token.getStart();
       body = me.parseBlockShortcut();
 
@@ -878,14 +914,14 @@ export default class Parser {
         })
       );
 
-      me.consume(';');
+      me.consume(TokenType.EOL, ';');
     }
 
-    me.consumeMany(';', '<eof>');
+    me.consume(TokenType.EOL, ';');
 
     const currentEnd = me.previousToken.getEnd();
 
-    if (me.consume('end if')) {
+    if (me.consume(TokenType.Keyword, 'end if')) {
       me.endIfOnShortcutStack.push({
         statement: ifStatement,
         token: me.previousToken,
@@ -913,7 +949,10 @@ export default class Parser {
     let body;
 
     condition = me.parseExpectedExpression();
-    me.expect('then');
+
+    if (!me.consume(TokenType.Keyword, 'then')) {
+      return me.raise(`If requires 'then' keyword at line ${me.token.line}.`, me.token);
+    }
 
     if (TokenType.EOL !== me.token.type)
       return me.parseIfShortcutStatement(condition, start);
@@ -929,10 +968,14 @@ export default class Parser {
       })
     );
 
-    while (me.consume('else if')) {
+    while (me.consume(TokenType.Keyword, 'else if')) {
       statementStart = me.token.getStart();
       condition = me.parseExpectedExpression();
-      me.expect('then');
+
+      if (!me.consume(TokenType.Keyword, 'then')) {
+        return me.raise(`Else if requires 'then' keyword at line ${me.token.line}.`, me.token);
+      }
+
       body = me.parseBlock(['else', 'end if']);
       clauses.push(
         me.astProvider.elseifClause({
@@ -945,7 +988,7 @@ export default class Parser {
       );
     }
 
-    if (me.consume('else')) {
+    if (me.consume(TokenType.Keyword, 'else')) {
       statementStart = me.token.getStart();
       body = me.parseBlock(['else', 'end if']);
       clauses.push(
@@ -958,7 +1001,7 @@ export default class Parser {
       );
     }
 
-    if (!me.consume('end if')) {
+    if (!me.consume(TokenType.Keyword, 'end if')) {
       const item = me.endIfOnShortcutStack.pop();
 
       if (!item) {
@@ -1010,7 +1053,7 @@ export default class Parser {
       return me.parseBinaryExpression(base);
     } else if (me.validator.isLiteral(<TokenType>origin.type)) {
       return base;
-    } else if (me.consume('=')) {
+    } else if (me.consume(TokenType.Punctuator, '=')) {
       const value = me.parseExpectedExpression();
       const assignmentStatement = me.astProvider.assignmentStatement({
         variable: base,
@@ -1039,25 +1082,30 @@ export default class Parser {
     return me.raise(`Unexpected assignment or call at line ${me.token.line}.`, me.token);
   }
 
-  parseForStatement(): ASTForGenericStatement {
+  parseForStatement(): ASTForGenericStatement | ASTBase {
     const me = this;
     const start = me.previousToken.getStart();
 
-    me.consume('(');
+    me.consume(TokenType.Punctuator, '(');
 
     const variable = me.parseIdentifier();
 
-    me.expect('in');
+    if (!me.consume(TokenType.Keyword, 'in')) {
+      return me.raise(`Missing in keyword in for statement at line ${me.token.line}`, me.token);
+    }
 
     const iterator = me.parseExpectedExpression();
 
-    me.consume(')');
+    me.consume(TokenType.Punctuator, ')');
 
     let body;
 
     if (TokenType.EOL === me.token.type) {
       body = me.parseBlock(['end for']);
-      me.expect('end for');
+
+      if (!me.consume(TokenType.Keyword, 'end for')) {
+        return me.raise(`Expected 'end for' in for statement at line ${me.token.line}.`, me.token);
+      }
     } else {
       body = me.parseBlockShortcut();
     }
@@ -1084,15 +1132,17 @@ export default class Parser {
 
     me.pushScope(functionStatement);
 
-    me.expect('(');
+    if (!me.consume(TokenType.Punctuator, '(')) {
+      return me.raise(`Missing left parenthesis in function declaration at line ${me.token.line}`, me.token);
+    }
 
-    if (!me.consume(')')) {
+    if (!me.consume(TokenType.Punctuator, ')')) {
       while (true) {
         if (TokenType.Identifier === me.token.type) {
           let parameter: ASTBase = me.parseIdentifier();
           const paramterStart = parameter.start;
 
-          if (me.consume('=')) {
+          if (me.consume(TokenType.Punctuator, '=')) {
             const value = me.parseExpectedExpression();
             parameter = me.astProvider.assignmentStatement({
               variable: parameter,
@@ -1106,12 +1156,14 @@ export default class Parser {
           }
 
           parameters.push(parameter);
-          if (me.consume(',')) continue;
+          if (me.consume(TokenType.Punctuator, ',')) continue;
         } else {
           return me.raise(`Unexpected parameter in function declaration at line ${me.token.line}.`, me.token);
         }
 
-        me.expect(')');
+        if (!me.consume(TokenType.Punctuator, ')')) {
+          return me.raise(`Missing right parenthesis in function declaration at line ${me.token.line}`, me.token);
+        }
         break;
       }
     }
@@ -1120,7 +1172,10 @@ export default class Parser {
 
     if (TokenType.EOL === me.token.type) {
       body = me.parseBlock(['end function']);
-      me.expect('end function');
+
+      if (!me.consume(TokenType.Keyword, 'end function')) {
+        return me.raise(`Expected 'end function' in function declaration at line ${me.token.line}.`, me.token);
+      }
     } else {
       body = me.parseBlockShortcut();
     }
@@ -1212,7 +1267,7 @@ export default class Parser {
 
     while (!me.isBlockEnd(me.token, endBlocks)) {
       statement = me.parseStatement();
-      me.consume(';');
+      me.consume(TokenType.EOL, ';');
       if (statement) {
         this.lines.set(statement.start.line, statement);
         block.push(statement);

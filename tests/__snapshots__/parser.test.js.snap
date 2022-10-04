@@ -756,8 +756,7 @@ Array [
   [Error: Unexpected argument for "not" at line 13.],
   [Error: Unexpected expression at line 17.],
   [Error: Unexpected expression at line 18.],
-  [Error: Unexpected value "print" at line 28. Expected: "then"],
-  [Error: Unexpected end of if statement "<eof>" at line 29.],
+  [Error: If requires 'then' keyword at line 28.],
 ]
 `;
 
