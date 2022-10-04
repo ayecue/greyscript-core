@@ -24,7 +24,15 @@ export class ASTIfStatement extends ASTBase {
   }
 
   toString(): string {
-    const clauses = this.clauses.map((item) => item.toString()).join('\n');
+    if (this.clauses.length === 0) {
+      return `IfStatement[]`;
+    }
+
+    const clauses = this.clauses.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
 
     return `IfStatement[\n${clauses}\n]`;
   }
@@ -50,7 +58,15 @@ export class ASTIfClause extends ASTClause {
   }
 
   toString(): string {
-    const body = this.body.map((item) => item.toString()).join('\n');
+    if (this.body.length === 0) {
+      return `${this.type}[${this.condition.toString()}]`;
+    }
+
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
 
     return `${this.type}[${this.condition.toString()}\n${body}\n]`;
   }
@@ -65,8 +81,16 @@ export class ASTElseClause extends ASTClause {
   }
 
   toString(): string {
-    const body = this.body.map((item) => item.toString()).join('\n');
+    if (this.body.length === 0) {
+      return `${this.type}[]`;
+    }
 
-    return `${this.type}[\n${body}\n]`;
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `${this.type}[\n${body}\n}]`;
   }
 }

@@ -13,8 +13,16 @@ export class ASTWhileStatement extends ASTBaseBlock {
   }
 
   toString(): string {
-    const body = this.body.map((item) => item.toString()).join('\n');
+    if (this.body.length === 0) {
+      return `WhileStatement[${this.condition.toString()}]`;
+    }
 
-    return `WhileStatement[${this.condition.toString()}\n${body}\n]`;
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `WhileStatement[${this.condition.toString()}\\n${body}\n]`;
   }
 }

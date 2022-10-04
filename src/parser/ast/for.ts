@@ -16,7 +16,15 @@ export class ASTForGenericStatement extends ASTBaseBlock {
   }
 
   toString(): string {
-    const body = this.body.map((item) => item.toString()).join('\n');
+    if (this.body.length === 0) {
+      return `${this.type}[${this.variable.toString()} in ${this.iterator.toString()}]`;
+    }
+
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
 
     return `For[${this.variable.toString()} in ${this.iterator.toString()}\n${body}\n]`;
   }

@@ -70,6 +70,10 @@ export class ASTBase {
     this.end = options.end;
     this.scope = options.scope || null;
   }
+
+  toString(): string {
+    return `${this.type}[]`;
+  }
 }
 
 export interface ASTBaseBlockOptions extends ASTBaseOptions {
@@ -82,6 +86,16 @@ export class ASTBaseBlock extends ASTBase {
   constructor(type: string, options: ASTBaseBlockOptions) {
     super(type, options);
     this.body = options.body || [];
+  }
+
+  toString(): string {
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `${this.type}[${body.length > 0 ? `\n${body}\n` : ''}]`;
   }
 }
 
