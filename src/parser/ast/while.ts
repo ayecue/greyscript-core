@@ -23,6 +23,6 @@ export class ASTWhileStatement extends ASTBaseBlock {
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `WhileStatement[${this.condition.toString()}\\n${body}\n]`;
+    return `WhileStatement[${this.condition.toString()}\n${body}\n]`;
   }
 }
