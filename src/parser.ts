@@ -20,13 +20,15 @@ import {
   ASTReturnStatement,
   ASTWhileStatement
 } from './parser/ast';
-import ASTPosition from './utils/position';
+import ASTPosition from './types/position';
 import getPrecedence from './parser/precedence';
 import Validator from './parser/validator';
 import { Operator } from './types/operators';
 import {
   ParserException
-} from './utils/errors';
+} from './types/errors';
+import { Selector, Selectors } from './types/selector';
+import { Keyword } from './types/keywords';
 
 export interface ParserOptions {
   validator?: Validator;
@@ -121,20 +123,25 @@ export default class Parser {
     return me.token !== null && type === me.token.type;
   }
 
-  is(type: TokenType, value: string): boolean {
+  is(selector: Selector): boolean {
     const me = this;
-    return me.token !== null && value === me.token.value && type === me.token.type;
+    return me.token !== null && selector.value === me.token.value && selector.type === me.token.type;
   }
 
-  isOneOf(type: TokenType, ...values: string[]): boolean {
+  isOneOf(...selectors: Selector[]): boolean {
     const me = this;
-    return me.token !== null && values.indexOf(me.token.value) !== -1 && type === me.token.type;
+    if (me.token == null) return false;
+    for (let index = selectors.length - 1; index >= 0; index--) {
+      const selector = selectors[index];
+      if (selector.value === me.token.value && selector.type === me.token.type) return true;
+    }
+    return false;
   }
 
-  consume(type: TokenType, value: string): boolean {
+  consume(selector: Selector): boolean {
     const me = this;
 
-    if (this.is(type, value)) {
+    if (this.is(selector)) {
       me.next();
       return true;
     }
@@ -142,10 +149,10 @@ export default class Parser {
     return false;
   }
 
-  consumeMany(type: TokenType, ...values: string[]): boolean {
+  consumeMany(...selectors: Selector[]): boolean {
     const me = this;
 
-    if (me.isOneOf(type, ...values)) {
+    if (me.isOneOf(...selectors)) {
       me.next();
       return true;
     }
@@ -174,7 +181,7 @@ export default class Parser {
 
   skipNewlines() {
     const me = this;
-    while (me.consume(TokenType.EOL, ';'));
+    while (me.consume(Selectors.EndOfLine));
   }
 
   pushScope(scope: ASTBaseBlockWithScope) {
@@ -199,9 +206,9 @@ export default class Parser {
 
     switch (type) {
       case TokenType.Punctuator:
-        return value === '@' || value === '-' || value === '+';
+        return value === Operator.Reference || value === Operator.Minus || value === Operator.Plus;
       case TokenType.Keyword:
-        return value === 'new' || value === 'not';
+        return value === Keyword.New || value === Keyword.Not;
       default:
         return false;
     }
@@ -237,11 +244,11 @@ export default class Parser {
     const fields = [];
     let lastToken = me.token;
 
-    if (!me.consume(TokenType.Punctuator, '{')) {
+    if (!me.consume(Selectors.CLBracket)) {
       return me.raise(`Map requires opening bracket at line ${me.token.line}.`, me.token);
     }
 
-    while (!me.is(TokenType.Punctuator, '}')) {
+    while (!me.is(Selectors.CRBracket)) {
       me.skipNewlines();
       lastToken = me.token;
       const key = me.parseExpression();
@@ -252,7 +259,7 @@ export default class Parser {
 
       me.skipNewlines();
 
-      if (!me.consume(TokenType.SliceOperator, ':')) {
+      if (!me.consume(Selectors.MapKeyValueSeperator)) {
         return me.raise(`Map constructor requires seperator at line ${me.token.line}.`, me.token);
       }
 
@@ -276,10 +283,10 @@ export default class Parser {
         })
       );
 
-      if (!me.consume(TokenType.Punctuator, ',')) break;
+      if (!me.consume(Selectors.MapSeperator)) break;
     }
 
-    if (!me.consume(TokenType.Punctuator, '}')) {
+    if (!me.consume(Selectors.CRBracket)) {
       return me.raise(`Map requires closing bracket at line ${lastToken.line}.`, lastToken);
     }
 
@@ -298,11 +305,11 @@ export default class Parser {
     let value;
     let lastToken = me.token;
 
-    if (!me.consume(TokenType.Punctuator, '[')) {
+    if (!me.consume(Selectors.SLBracket)) {
       return me.raise(`List requires opening bracket at line ${me.token.line}.`, me.token);
     }
 
-    while (!me.is(TokenType.Punctuator, ']')) {
+    while (!me.is(Selectors.SRBracket)) {
       me.skipNewlines();
       lastToken = me.token;
       value = me.parseExpression();
@@ -321,10 +328,10 @@ export default class Parser {
       );
 
       me.skipNewlines();
-      if (!me.consume(TokenType.Punctuator, ',')) break;
+      if (!me.consume(Selectors.ListSeperator)) break;
     }
 
-    if (!me.consume(TokenType.Punctuator, ']')) {
+    if (!me.consume(Selectors.SRBracket)) {
       return me.raise(`List requires closing bracket at line ${lastToken.line}.`, lastToken);
     }
 
@@ -358,10 +365,10 @@ export default class Parser {
 
     if (TokenType.Identifier === me.token.type) {
       base = me.parseIdentifier();
-    } else if (me.consume(TokenType.Punctuator, '(')) {
+    } else if (me.consume(Selectors.LParenthesis)) {
       base = me.parseExpectedExpression();
 
-      if (!me.consume(TokenType.Punctuator, ')')) {
+      if (!me.consume(Selectors.RParenthesis)) {
         return me.raise(`Expected closing ')' at line ${me.token.line}`, me.token)
       }
     } else {
@@ -399,12 +406,12 @@ export default class Parser {
     return assignmentStatement;
   }
 
-  parseIndexExpression(base: ASTBase): ASTBase {
+  parseIndexExpression(base: ASTBase): ASTIndexExpression | ASTBase {
     const me = this;
     const start = me.token.getStart();
 
     //right side slice
-    if (me.consume(TokenType.SliceOperator, ':')) {
+    if (me.consume(Selectors.SliceSeperator)) {
       const left = me.astProvider.emptyExpression({
         start: me.previousToken.getStart(),
         end: me.previousToken.getEnd(),
@@ -412,7 +419,7 @@ export default class Parser {
       });
       const right = me.parseExpectedExpression();
 
-      if (!me.consume(TokenType.Punctuator, ']')) {
+      if (!me.consume(Selectors.SRBracket)) {
         return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
       }
 
@@ -437,10 +444,10 @@ export default class Parser {
     const expression = me.parseExpectedExpression();
 
     //slice
-    if (me.consume(TokenType.SliceOperator, ':')) {
+    if (me.consume(Selectors.SliceSeperator)) {
       let right;
 
-      if (!me.is(TokenType.Punctuator, ']')) {
+      if (!me.is(Selectors.SRBracket)) {
         right = me.parseExpectedExpression();
       } else {
         //left slice
@@ -451,7 +458,7 @@ export default class Parser {
         });
       }
 
-      if (!me.consume(TokenType.Punctuator, ']')) {
+      if (!me.consume(Selectors.SRBracket)) {
         return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
       }
 
@@ -473,7 +480,7 @@ export default class Parser {
       });
     }
 
-    if (!me.consume(TokenType.Punctuator, ']')) {
+    if (!me.consume(Selectors.SRBracket)) {
       return me.raise(`Expected index expression to be closed at line ${me.token.line}`, me.token);
      }
 
@@ -503,22 +510,21 @@ export default class Parser {
       ) {
         me.next();
         return me.parseAssignmentShorthandOperator(base);
-      } else if (value === '[') {
-        me.next();
+      } else if (me.consume(Selectors.SLBracket)) {
         return me.parseIndexExpression(base);
-      } else if (value === '.') {
+      } else if (me.is(Selectors.MemberSeperator)) {
         me.next();
-        me.consume(TokenType.EOL, ';');
+        me.consume(Selectors.EndOfLine);
         identifier = me.parseIdentifier();
         return me.astProvider.memberExpression({
           base,
-          indexer: '.',
+          indexer: Operator.Member,
           identifier,
           start,
           end: me.token.getEnd(),
           scope: me.currentScope
         });
-      } else if (me.is(TokenType.Punctuator, '(')) {
+      } else if (me.is(Selectors.LParenthesis)) {
         return me.parseCallExpression(base);
       }
     }
@@ -526,11 +532,11 @@ export default class Parser {
     return null;
   }
 
-  parseCallExpression(base: ASTBase):  ASTBase {
+  parseCallExpression(base: ASTBase): ASTCallExpression | ASTBase {
     const me = this;
     const start = me.token.getStart();
 
-    if (!me.consume(TokenType.Punctuator, '(')) {
+    if (!me.consume(Selectors.LParenthesis)) {
       return me.raise(`Expected call expression to be opened after line ${me.token.line}.`, me.token);
     }
 
@@ -545,14 +551,14 @@ export default class Parser {
       expressions.push(expression);
       me.skipNewlines();
 
-      if (!me.consume(TokenType.Punctuator, ',')) {
+      if (!me.consume(Selectors.CallSeperator)) {
         break;
       }
 
       me.skipNewlines();
     }
 
-    if (!me.consume(TokenType.Punctuator, ')')) {
+    if (!me.consume(Selectors.RParenthesis)) {
       return me.raise(`Expected call expression to be closed after line ${lastToken.line}.`, lastToken);
     }
 
@@ -633,14 +639,14 @@ export default class Parser {
       TokenType.NumericLiteral === me.prefetch().type
     ) {
       return me.parseFloatExpression(0);
-    } else if (TokenType.Keyword === type && value === 'function') {
+    } else if (me.is(Selectors.Function)) {
       me.next();
       return me.parseFunctionDeclaration();
-    } else if (me.is(TokenType.Punctuator, '[')) {
+    } else if (me.is(Selectors.SLBracket)) {
       let base = me.parseListConstructor();
       base = me.parseRighthandExpressionGreedy(base);
       return base;
-    } else if (me.is(TokenType.Punctuator, '{')) {
+    } else if (me.is(Selectors.CLBracket)) {
       let base = me.parseMapConstructor();
       base = me.parseRighthandExpressionGreedy(base);
       return base;
@@ -732,10 +738,10 @@ export default class Parser {
     const me = this;
 
     switch (me.token.value) {
-      case 'not':
-        return me.parseUnaryExpressionPart('-', '@');
-      case '-':
-        return me.parseUnaryExpressionPart('@');
+      case Keyword.Not:
+        return me.parseUnaryExpressionPart(Operator.Minus, Operator.Reference);
+      case Operator.Minus:
+        return me.parseUnaryExpressionPart(Operator.Reference);
       default:
         return me.parseUnaryExpressionPart();
     }
@@ -765,7 +771,7 @@ export default class Parser {
     const me = this;
     const start = me.previousToken.getStart();
 
-    if (!me.consume(TokenType.Punctuator, '(')) {
+    if (!me.consume(Selectors.LParenthesis)) {
       return me.raise(`Expected import call to have opening operator at line ${me.token.line}.`, me.token);
     }
 
@@ -779,7 +785,7 @@ export default class Parser {
       return me.raise(`Unexpected import path at ${me.token.line}. Import code only allows a hardcoded import path.`, me.token);
     }
 
-    if (me.consume(TokenType.SliceOperator, ':')) {
+    if (me.consume(Selectors.ImportCodeSeperator)) {
       if (!me.isType(TokenType.StringLiteral)) {
         return me.raise(`Unexpected import path at ${me.token.line}. Import code only allows a hardcoded import path.`, me.token);
       }
@@ -789,7 +795,7 @@ export default class Parser {
       me.next();
     }
 
-    if (!me.consume(TokenType.Punctuator, ')')) {
+    if (!me.consume(Selectors.RParenthesis)) {
       return me.raise(`Expected import call to have closing operator at line ${me.token.line}.`, me.token);
     }
 
@@ -814,9 +820,9 @@ export default class Parser {
     let body;
 
     if (TokenType.EOL === me.token.type) {
-      body = me.parseBlock(['end while']);
+      body = me.parseBlock([Keyword.EndWhile]);
 
-      if (!me.consume(TokenType.Keyword, 'end while')) {
+      if (!me.consume(Selectors.EndWhile)) {
         return me.raise(`Expected 'end while' for while statement at line ${me.token.line}.`, me.token);
       }
     } else {
@@ -876,13 +882,13 @@ export default class Parser {
       })
     );
 
-    me.consume(TokenType.EOL, ';');
+    me.consume(Selectors.EndOfLine);
 
-    while (me.consume(TokenType.Keyword, 'else if')) {
+    while (me.consume(Selectors.ElseIf)) {
       statementStart = me.token.getStart();
       condition = me.parseExpectedExpression();
       
-      if (!me.consume(TokenType.Keyword, 'then')) {
+      if (!me.consume(Selectors.Then)) {
         return me.raise(`Else if requires 'then' keyword at line ${me.token.line}.`, me.token);
       }
 
@@ -898,10 +904,10 @@ export default class Parser {
         })
       );
 
-      me.consume(TokenType.EOL, ';');
+      me.consume(Selectors.EndOfLine);
     }
 
-    if (me.consume(TokenType.Keyword, 'else')) {
+    if (me.consume(Selectors.Else)) {
       statementStart = me.token.getStart();
       body = me.parseBlockShortcut();
 
@@ -914,14 +920,14 @@ export default class Parser {
         })
       );
 
-      me.consume(TokenType.EOL, ';');
+      me.consume(Selectors.EndOfLine);
     }
 
-    me.consume(TokenType.EOL, ';');
+    me.consume(Selectors.EndOfLine);
 
     const currentEnd = me.previousToken.getEnd();
 
-    if (me.consume(TokenType.Keyword, 'end if')) {
+    if (me.consume(Selectors.EndIf)) {
       me.endIfOnShortcutStack.push({
         statement: ifStatement,
         token: me.previousToken,
@@ -950,14 +956,14 @@ export default class Parser {
 
     condition = me.parseExpectedExpression();
 
-    if (!me.consume(TokenType.Keyword, 'then')) {
+    if (!me.consume(Selectors.Then)) {
       return me.raise(`If requires 'then' keyword at line ${me.token.line}.`, me.token);
     }
 
     if (TokenType.EOL !== me.token.type)
       return me.parseIfShortcutStatement(condition, start);
 
-    body = me.parseBlock(['else', 'end if']);
+    body = me.parseBlock([Keyword.Else, Keyword.EndIf]);
     clauses.push(
       me.astProvider.ifClause({
         condition,
@@ -968,15 +974,15 @@ export default class Parser {
       })
     );
 
-    while (me.consume(TokenType.Keyword, 'else if')) {
+    while (me.consume(Selectors.ElseIf)) {
       statementStart = me.token.getStart();
       condition = me.parseExpectedExpression();
 
-      if (!me.consume(TokenType.Keyword, 'then')) {
+      if (!me.consume(Selectors.Then)) {
         return me.raise(`Else if requires 'then' keyword at line ${me.token.line}.`, me.token);
       }
 
-      body = me.parseBlock(['else', 'end if']);
+      body = me.parseBlock([Keyword.Else, Keyword.EndIf]);
       clauses.push(
         me.astProvider.elseifClause({
           condition,
@@ -988,9 +994,9 @@ export default class Parser {
       );
     }
 
-    if (me.consume(TokenType.Keyword, 'else')) {
+    if (me.consume(Selectors.Else)) {
       statementStart = me.token.getStart();
-      body = me.parseBlock(['else', 'end if']);
+      body = me.parseBlock([Keyword.Else, Keyword.EndIf]);
       clauses.push(
         me.astProvider.elseClause({
           body,
@@ -1001,7 +1007,7 @@ export default class Parser {
       );
     }
 
-    if (!me.consume(TokenType.Keyword, 'end if')) {
+    if (!me.consume(Selectors.EndIf)) {
       const item = me.endIfOnShortcutStack.pop();
 
       if (!item) {
@@ -1053,7 +1059,7 @@ export default class Parser {
       return me.parseBinaryExpression(base);
     } else if (me.validator.isLiteral(<TokenType>origin.type)) {
       return base;
-    } else if (me.consume(TokenType.Punctuator, '=')) {
+    } else if (me.consume(Selectors.Assign)) {
       const value = me.parseExpectedExpression();
       const assignmentStatement = me.astProvider.assignmentStatement({
         variable: base,
@@ -1086,24 +1092,24 @@ export default class Parser {
     const me = this;
     const start = me.previousToken.getStart();
 
-    me.consume(TokenType.Punctuator, '(');
+    me.consume(Selectors.LParenthesis);
 
     const variable = me.parseIdentifier();
 
-    if (!me.consume(TokenType.Keyword, 'in')) {
+    if (!me.consume(Selectors.In)) {
       return me.raise(`Missing in keyword in for statement at line ${me.token.line}`, me.token);
     }
 
     const iterator = me.parseExpectedExpression();
 
-    me.consume(TokenType.Punctuator, ')');
+    me.consume(Selectors.RParenthesis);
 
     let body;
 
     if (TokenType.EOL === me.token.type) {
-      body = me.parseBlock(['end for']);
+      body = me.parseBlock([Keyword.EndFor]);
 
-      if (!me.consume(TokenType.Keyword, 'end for')) {
+      if (!me.consume(Selectors.EndFor)) {
         return me.raise(`Expected 'end for' in for statement at line ${me.token.line}.`, me.token);
       }
     } else {
@@ -1132,17 +1138,17 @@ export default class Parser {
 
     me.pushScope(functionStatement);
 
-    if (!me.consume(TokenType.Punctuator, '(')) {
+    if (!me.consume(Selectors.LParenthesis)) {
       return me.raise(`Missing left parenthesis in function declaration at line ${me.token.line}`, me.token);
     }
 
-    if (!me.consume(TokenType.Punctuator, ')')) {
+    if (!me.consume(Selectors.RParenthesis)) {
       while (true) {
         if (TokenType.Identifier === me.token.type) {
           let parameter: ASTBase = me.parseIdentifier();
           const paramterStart = parameter.start;
 
-          if (me.consume(TokenType.Punctuator, '=')) {
+          if (me.consume(Selectors.Assign)) {
             const value = me.parseExpectedExpression();
             parameter = me.astProvider.assignmentStatement({
               variable: parameter,
@@ -1156,12 +1162,12 @@ export default class Parser {
           }
 
           parameters.push(parameter);
-          if (me.consume(TokenType.Punctuator, ',')) continue;
+          if (me.consume(Selectors.ArgumentSeperator)) continue;
         } else {
           return me.raise(`Unexpected parameter in function declaration at line ${me.token.line}.`, me.token);
         }
 
-        if (!me.consume(TokenType.Punctuator, ')')) {
+        if (!me.consume(Selectors.RParenthesis)) {
           return me.raise(`Missing right parenthesis in function declaration at line ${me.token.line}`, me.token);
         }
         break;
@@ -1171,9 +1177,9 @@ export default class Parser {
     let body;
 
     if (TokenType.EOL === me.token.type) {
-      body = me.parseBlock(['end function']);
+      body = me.parseBlock([Keyword.EndFunction]);
 
-      if (!me.consume(TokenType.Keyword, 'end function')) {
+      if (!me.consume(Selectors.EndFunction)) {
         return me.raise(`Expected 'end function' in function declaration at line ${me.token.line}.`, me.token);
       }
     } else {
@@ -1196,36 +1202,36 @@ export default class Parser {
       const value = me.token.value;
 
       switch (value) {
-        case 'if':
+        case Keyword.If:
           me.next();
           return me.parseIfStatement();
-        case 'return':
+        case Keyword.Return:
           me.next();
           return me.parseReturnStatement();
-        case 'function':
+        case Keyword.Function:
           me.next();
           return me.parseFunctionDeclaration();
-        case 'while':
+        case Keyword.While:
           me.next();
           return me.parseWhileStatement();
-        case 'for':
+        case Keyword.For:
           me.next();
           return me.parseForStatement();
-        case 'continue':
+        case Keyword.Continue:
           me.next();
           return me.astProvider.continueStatement({
             start: me.previousToken.getStart(),
             end: me.previousToken.getEnd(),
             scope: me.currentScope
           });
-        case 'break':
+        case Keyword.Break:
           me.next();
           return me.astProvider.breakStatement({
             start: me.previousToken.getStart(),
             end: me.previousToken.getEnd(),
             scope: me.currentScope
           });
-        case 'import_code':
+        case Keyword.ImportCode:
           me.next();
           return me.parseNativeImportCodeStatement();
         default:
@@ -1267,7 +1273,7 @@ export default class Parser {
 
     while (!me.isBlockEnd(me.token, endBlocks)) {
       statement = me.parseStatement();
-      me.consume(TokenType.EOL, ';');
+      me.consume(Selectors.EndOfLine);
       if (statement) {
         this.lines.set(statement.start.line, statement);
         block.push(statement);

@@ -1,19 +1,20 @@
 import general from 'greyscript-meta/dist/signatures/general.json';
 
 import { TokenType } from '../lexer/token';
+import { Keyword } from '../types/keywords';
 import { Operator } from '../types/operators';
 
 export default class Validator {
   getBreakingBlockShortcutKeywords(): string[] {
     return [
-      'if',
-      'else',
-      'else if',
-      '<eof>',
-      'end for',
-      'end while',
-      'end function',
-      'end if'
+      Keyword.If,
+      Keyword.Else,
+      Keyword.ElseIf,
+      Operator.EndOfFile,
+      Keyword.EndFor,
+      Keyword.EndWhile,
+      Keyword.EndFunction,
+      Keyword.EndIf
     ];
   }
 

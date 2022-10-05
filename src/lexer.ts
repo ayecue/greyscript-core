@@ -1,7 +1,10 @@
 import { Token, TokenType } from './lexer/token';
 import Validator from './lexer/validator';
-import { CharacterCode } from './utils/codes';
-import { LexerException } from './utils/errors';
+import { Operator } from './types/operators';
+import { Keyword } from './types/keywords';
+import { Literal } from './types/literals';
+import { CharacterCode } from './types/codes';
+import { LexerException } from './types/errors';
 
 export interface LexerOptions {
   validator?: Validator;
@@ -53,38 +56,38 @@ export default class Lexer {
         return me.scanStringLiteral(afterSpace);
       case CharacterCode.DOT:
         if (validator.isDecDigit(code)) return me.scanNumericLiteral(afterSpace);
-        return me.scanPunctuator('.', afterSpace);
+        return me.scanPunctuator(Operator.Member, afterSpace);
       case CharacterCode.EQUAL:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('==', afterSpace);
-        return me.scanPunctuator('=', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.Equal, afterSpace);
+        return me.scanPunctuator(Operator.Assign, afterSpace);
       case CharacterCode.ARROW_LEFT:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('<=', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.LessThanOrEqual, afterSpace);
         if (CharacterCode.ARROW_LEFT === nextCode)
-          return me.scanPunctuator('<<', afterSpace);
-        return me.scanPunctuator('<', afterSpace);
+          return me.scanPunctuator(Operator.LeftShift, afterSpace);
+        return me.scanPunctuator(Operator.LessThan, afterSpace);
       case CharacterCode.ARROW_RIGHT:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('>=', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.GreaterThanOrEqual, afterSpace);
         if (CharacterCode.ARROW_RIGHT === nextCode) {
           if (CharacterCode.ARROW_RIGHT === lastCode)
-            return me.scanPunctuator('>>>', afterSpace);
-          return me.scanPunctuator('>>', afterSpace);
+            return me.scanPunctuator(Operator.UnsignedRightShift, afterSpace);
+          return me.scanPunctuator(Operator.RightShift, afterSpace);
         }
-        return me.scanPunctuator('>', afterSpace);
+        return me.scanPunctuator(Operator.GreaterThan, afterSpace);
       case CharacterCode.EXCLAMATION_MARK:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('!=', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.NotEqual, afterSpace);
         return null;
       case CharacterCode.MINUS:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('-=', afterSpace);
-        return me.scanPunctuator('-', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.SubtractShorhand, afterSpace);
+        return me.scanPunctuator(Operator.Minus, afterSpace);
       case CharacterCode.PLUS:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('+=', afterSpace);
-        return me.scanPunctuator('+', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.AddShorthand, afterSpace);
+        return me.scanPunctuator(Operator.Plus, afterSpace);
       case CharacterCode.ASTERISK:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('*=', afterSpace);
-        return me.scanPunctuator('*', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.MultiplyShorthand, afterSpace);
+        return me.scanPunctuator(Operator.Asterik, afterSpace);
       case CharacterCode.SLASH:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator('/=', afterSpace);
-        return me.scanPunctuator('/', afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.DivideShorthand, afterSpace);
+        return me.scanPunctuator(Operator.Slash, afterSpace);
       case CharacterCode.COLON:
         return me.scanSliceOperator(afterSpace);
       case CharacterCode.CARET:
@@ -150,7 +153,7 @@ export default class Lexer {
 
     return new Token({
       type: TokenType.EOL,
-      value: ';',
+      value: Operator.EndOfLine,
       line: me.line,
       lineStart: me.lineStart,
       range: [me.tokenStart, me.index],
@@ -188,7 +191,7 @@ export default class Lexer {
     }
 
     me.nextIndex();
-    string = me.content.slice(stringStart, me.index - 1).replace(/""/g, '"');
+    string = me.content.slice(stringStart, me.index - 1).replace(/""/g, Operator.Escape);
 
     return new Token({
       type: TokenType.StringLiteral,
@@ -275,7 +278,7 @@ export default class Lexer {
 
     return new Token({
       type: TokenType.SliceOperator,
-      value: ':',
+      value: Operator.SliceSeperator,
       line: me.line,
       lineStart: me.lineStart,
       range: [me.tokenStart, me.index],
@@ -347,24 +350,24 @@ export default class Lexer {
     if (validator.isKeyword(value)) {
       type = TokenType.Keyword;
 
-      if (value === 'end') {
+      if (value === Keyword.End) {
         me.nextIndex();
 
         while (validator.isIdentifierPart(me.codeAt())) {
           me.nextIndex();
         }
         value = me.content.slice(me.tokenStart, me.index);
-      } else if (value === 'else') {
+      } else if (value === Keyword.Else) {
         const elseIfStatement = me.content.slice(me.tokenStart, me.index + 3);
-        if (elseIfStatement === 'else if') {
+        if (elseIfStatement === Keyword.ElseIf) {
           me.nextIndex(3);
           value = elseIfStatement;
         }
       }
-    } else if (value === 'true' || value === 'false') {
+    } else if (value === Literal.True || value === Literal.False) {
       type = TokenType.BooleanLiteral;
-      value = value === 'true';
-    } else if (value === 'null') {
+      value = value === Literal.True;
+    } else if (value === Literal.Null) {
       type = TokenType.NilLiteral;
       value = null;
     } else {
@@ -413,7 +416,7 @@ export default class Lexer {
     if (!me.isNotEOF()) {
       return new Token({
         type: TokenType.EOF,
-        value: '<eof>',
+        value: Operator.EndOfFile,
         line: me.line,
         lineStart: me.lineStart,
         range: [me.index, me.index],

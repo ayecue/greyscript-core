@@ -1,4 +1,4 @@
-import Position from "../utils/position";
+import Position from '../types/position';
 
 export enum TokenType {
   EOF = 'EOF',
@@ -34,7 +34,7 @@ export class Token {
   lineRange: [number, number];
   afterSpace: boolean;
 
-  //used for string literals
+  // used for string literals
   lastLine?: number;
   lastLineStart?: number;
 
@@ -48,10 +48,10 @@ export class Token {
     this.lastLineStart = options.lastLineStart;
     this.afterSpace = options.afterSpace;
 
-    const offset =  options.offset;
+    const offset = options.offset;
     const [start, end] = this.range;
 
-    this.lineRange = [start - offset + 1, end -  offset + 1];
+    this.lineRange = [start - offset + 1, end - offset + 1];
   }
 
   getStart(): Position {

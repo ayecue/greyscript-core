@@ -1,4 +1,4 @@
-import Position from '../../utils/position';
+import Position from '../../types/position';
 
 export enum ASTType {
   BreakStatement = 'BreakStatement',

@@ -1,22 +1,29 @@
-import { CharacterCode } from '../utils/codes';
+import { CharacterCode } from '../types/codes';
+import { Keyword } from '../types/keywords';
 
 export default class Validator {
   getKeywords(index: number): string[] {
     switch (index) {
       case 2:
-        return ['if', 'in', 'or'];
+        return [Keyword.If, Keyword.In, Keyword.Or];
       case 3:
-        return ['and', 'end', 'for', 'not', 'new'];
+        return [
+          Keyword.And,
+          Keyword.End,
+          Keyword.For,
+          Keyword.Not,
+          Keyword.New
+        ];
       case 4:
-        return ['else', 'then'];
+        return [Keyword.Else, Keyword.Then];
       case 5:
-        return ['break', 'while'];
+        return [Keyword.Break, Keyword.While];
       case 6:
-        return ['return'];
+        return [Keyword.Return];
       case 8:
-        return ['function', 'continue'];
+        return [Keyword.Function, Keyword.Continue];
       case 11:
-        return ['import_code'];
+        return [Keyword.ImportCode];
       default:
         return [];
     }

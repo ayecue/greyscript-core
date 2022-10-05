@@ -22,5 +22,19 @@ export enum Operator {
   Xor = '^',
   LeftShift = '<<',
   RightShift = '>>',
-  UnsignedRightShift = '>>>'
+  UnsignedRightShift = '>>>',
+  Member = '.',
+  Assign = '=',
+  EndOfLine = ';',
+  EndOfFile = '<eof>',
+  SliceSeperator = ':',
+  ListSeperator = ',',
+  Escape = '"',
+  SLBracket = '[',
+  SRBracket = ']',
+  CLBracket = '{',
+  CRBracket = '}',
+  LParenthesis = '(',
+  RParenthesis = ')',
+  Reference = '@'
 }
