@@ -25,6 +25,10 @@ export default class Validator {
       'locals',
       'self',
       'params',
+      'string',
+      'list',
+      'map',
+      'number',
       ...Object.keys(general).map((name: string) => {
         return name;
       })
