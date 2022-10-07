@@ -1,6 +1,6 @@
 {
     "name": "greyscript-core",
-    "version": "0.4.8",
+    "version": "0.4.9",
     "description": "Core lexer/parser for GreyScript",
     "main": "dist/index",
     "typings": "dist/index",
