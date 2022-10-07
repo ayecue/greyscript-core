@@ -14,4 +14,8 @@ export class ASTSliceExpression extends ASTBase {
     this.left = options.left;
     this.right = options.right;
   }
+
+  toString(): string {
+    return `SliceExpression[${this.left.toString()}:${this.right.toString()}]`;
+  }
 }

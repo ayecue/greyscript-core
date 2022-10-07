@@ -1,12 +1,4 @@
-export class Position {
-  line: number;
-  character: number;
-
-  constructor(line: number, character: number) {
-    this.line = line;
-    this.character = character;
-  }
-}
+import Position from '../../types/position';
 
 export enum ASTType {
   BreakStatement = 'BreakStatement',
@@ -49,7 +41,8 @@ export enum ASTType {
   LogicalExpression = 'LogicalExpression',
   SliceExpression = 'SliceExpression',
   ImportCodeExpression = 'ImportCodeExpression',
-  InvalidCodeExpression = 'InvalidCodeExpression'
+  InvalidCodeExpression = 'InvalidCodeExpression',
+  ParenthesisExpression = 'ParenthesisExpression'
 }
 
 export interface ASTBaseOptions {
@@ -70,6 +63,10 @@ export class ASTBase {
     this.end = options.end;
     this.scope = options.scope || null;
   }
+
+  toString(): string {
+    return `${this.type}[]`;
+  }
 }
 
 export interface ASTBaseBlockOptions extends ASTBaseOptions {
@@ -82,6 +79,16 @@ export class ASTBaseBlock extends ASTBase {
   constructor(type: string, options: ASTBaseBlockOptions) {
     super(type, options);
     this.body = options.body || [];
+  }
+
+  toString(): string {
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `${this.type}[${body.length > 0 ? `\n${body}\n` : ''}]`;
   }
 }
 
@@ -105,16 +112,17 @@ export class ASTBaseBlockWithScope extends ASTBaseBlock {
 
 export interface ASTCommentOptions extends ASTBaseOptions {
   value: string;
-  raw: string;
 }
 
 export class ASTComment extends ASTBase {
   value: string;
-  raw: string;
 
   constructor(options: ASTCommentOptions) {
     super(ASTType.Comment, options);
     this.value = options.value;
-    this.raw = options.raw;
+  }
+
+  toString(): string {
+    return `Comment[${this.value}]`;
   }
 }

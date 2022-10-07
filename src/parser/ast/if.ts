@@ -22,6 +22,20 @@ export class ASTIfStatement extends ASTBase {
     super(type, options);
     this.clauses = options.clauses || [];
   }
+
+  toString(): string {
+    if (this.clauses.length === 0) {
+      return `IfStatement[]`;
+    }
+
+    const clauses = this.clauses.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `IfStatement[\n${clauses}\n]`;
+  }
 }
 
 export interface ASTIfClauseOptions extends ASTBaseBlockOptions {
@@ -42,6 +56,20 @@ export class ASTIfClause extends ASTClause {
     super(type, options);
     this.condition = options.condition;
   }
+
+  toString(): string {
+    if (this.body.length === 0) {
+      return `${this.type}[${this.condition.toString()}]`;
+    }
+
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `${this.type}[${this.condition.toString()}\n${body}\n]`;
+  }
 }
 
 export class ASTElseClause extends ASTClause {
@@ -50,5 +78,19 @@ export class ASTElseClause extends ASTClause {
     options: ASTBaseBlockOptions
   ) {
     super(type, options);
+  }
+
+  toString(): string {
+    if (this.body.length === 0) {
+      return `${this.type}[]`;
+    }
+
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `${this.type}[\n${body}\n}]`;
   }
 }

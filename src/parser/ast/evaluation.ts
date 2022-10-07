@@ -32,4 +32,8 @@ export class ASTEvaluationExpression extends ASTBase {
     this.left = options.left;
     this.right = options.right;
   }
+
+  toString(): string {
+    return `${this.type}[${this.left.toString()} ${this.operator} ${this.right.toString()}]`;
+  }
 }

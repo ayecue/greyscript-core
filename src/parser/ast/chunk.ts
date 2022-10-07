@@ -26,4 +26,18 @@ export class ASTChunk extends ASTBaseBlockWithScope {
     this.scopes = options.scopes || [];
     this.lines = options.lines || new Map<number, ASTBase>();
   }
+
+  toString(): string {
+    if (this.body.length === 0) {
+      return `Chunk[]`;
+    }
+
+    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+      .join('\n')
+      .split('\n')
+      .map((item) => `\t${item}`)
+      .join('\n');
+
+    return `Chunk[\n${body}\n]`;
+  }
 }

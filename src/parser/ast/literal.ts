@@ -37,4 +37,8 @@ export class ASTLiteral extends ASTBase {
     this.value = options.value;
     this.raw = options.raw;
   }
+
+  toString(): string {
+    return `Literal[${this.value}]`;
+  }
 }

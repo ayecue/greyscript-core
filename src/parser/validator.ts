@@ -1,19 +1,21 @@
 import general from 'greyscript-meta/dist/signatures/general.json';
 
 import { TokenType } from '../lexer/token';
+import { Keyword } from '../types/keywords';
 import { Operator } from '../types/operators';
+import { Selector } from '../types/selector';
 
 export default class Validator {
   getBreakingBlockShortcutKeywords(): string[] {
     return [
-      'if',
-      'else',
-      'else if',
-      '<eof>',
-      'end for',
-      'end while',
-      'end function',
-      'end if'
+      Keyword.If,
+      Keyword.Else,
+      Keyword.ElseIf,
+      Operator.EndOfFile,
+      Keyword.EndFor,
+      Keyword.EndWhile,
+      Keyword.EndFunction,
+      Keyword.EndIf
     ];
   }
 
@@ -23,6 +25,10 @@ export default class Validator {
       'locals',
       'self',
       'params',
+      'string',
+      'list',
+      'map',
+      'number',
       ...Object.keys(general).map((name: string) => {
         return name;
       })
@@ -81,7 +87,11 @@ export default class Validator {
     return this.getLiterals().indexOf(type) !== -1;
   }
 
-  isExpressionOperator(value: Operator): boolean {
-    return this.getExpressionOperators().indexOf(value) !== -1;
+  isExpressionOperator(selector: Selector): boolean {
+    return (
+      (selector.type === TokenType.Punctuator ||
+        selector.type === TokenType.Keyword) &&
+      this.getExpressionOperators().indexOf(selector.value as Operator) !== -1
+    );
   }
 }

@@ -14,4 +14,8 @@ export class ASTImportCodeExpression extends ASTBase {
     this.gameDirectory = options.gameDirectory;
     this.fileSystemDirectory = options.fileSystemDirectory;
   }
+
+  toString(): string {
+    return `ImportCode[${this.gameDirectory}]`;
+  }
 }

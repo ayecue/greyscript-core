@@ -14,4 +14,8 @@ export class ASTAssignmentStatement extends ASTBase {
     this.variable = options.variable;
     this.init = options.init;
   }
+
+  toString(): string {
+    return `AssignmentStatement[${this.variable.toString()} = ${this.init.toString()}]`;
+  }
 }

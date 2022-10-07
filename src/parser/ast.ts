@@ -62,6 +62,10 @@ import {
   ASTMapKeyString,
   ASTMapKeyStringOptions
 } from './ast/map';
+import {
+  ASTParenthesisExpression,
+  ASTParenthesisExpressionOptions
+} from './ast/parenthesis';
 import { ASTReturnStatement, ASTReturnStatementOptions } from './ast/return';
 import { ASTSliceExpression, ASTSliceExpressionOptions } from './ast/slice';
 import { ASTUnaryExpression, ASTUnaryExpressionOptions } from './ast/unary';
@@ -220,6 +224,12 @@ export class ASTProvider {
   ): ASTImportCodeExpression {
     return new ASTImportCodeExpression(options);
   }
+
+  parenthesisExpression(
+    options: ASTParenthesisExpressionOptions
+  ): ASTParenthesisExpression {
+    return new ASTParenthesisExpression(options);
+  }
 }
 
 export {
@@ -235,7 +245,6 @@ export {
   ASTBaseOptions,
   ASTComment,
   ASTCommentOptions,
-  Position as ASTPosition,
   ASTType
 } from './ast/base';
 export {
@@ -290,6 +299,10 @@ export {
   ASTMapKeyString,
   ASTMapKeyStringOptions
 } from './ast/map';
+export {
+  ASTParenthesisExpression,
+  ASTParenthesisExpressionOptions
+} from './ast/parenthesis';
 export { ASTReturnStatement, ASTReturnStatementOptions } from './ast/return';
 export { ASTSliceExpression, ASTSliceExpressionOptions } from './ast/slice';
 export { ASTUnaryExpression, ASTUnaryExpressionOptions } from './ast/unary';

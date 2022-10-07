@@ -11,4 +11,8 @@ export class ASTReturnStatement extends ASTBase {
     super(ASTType.ReturnStatement, options);
     this.argument = options.argument;
   }
+
+  toString(): string {
+    return `ReturnStatement[${this.argument.toString()}]`;
+  }
 }

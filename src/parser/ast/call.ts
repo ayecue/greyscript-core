@@ -11,6 +11,10 @@ export class ASTCallStatement extends ASTBase {
     super(ASTType.CallStatement, options);
     this.expression = options.expression;
   }
+
+  toString(): string {
+    return `CallStatment[${this.expression.toString()}]`;
+  }
 }
 
 export interface ASTCallExpressionOptions extends ASTBaseOptions {
@@ -26,5 +30,9 @@ export class ASTCallExpression extends ASTBase {
     super(ASTType.CallExpression, options);
     this.base = options.base;
     this.arguments = options.arguments || [];
+  }
+
+  toString(): string {
+    return `CallExpression[${this.base.toString()}(${this.arguments.map((item) => item.toString()).join(', ')})]`;
   }
 }

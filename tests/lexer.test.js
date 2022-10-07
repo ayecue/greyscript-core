@@ -17,11 +17,14 @@ describe('parse', function() {
 						unsafe: true
 					});
 					let token = lexer.next();
+					const payload = [];
 
 					while (token.value !== '<eof>') {
-						expect(token).toMatchSnapshot();
+						payload.push(token.toString());
 						token = lexer.next();
 					}
+
+					expect(payload.join('\n')).toMatchSnapshot();
 				});
 			});
 
