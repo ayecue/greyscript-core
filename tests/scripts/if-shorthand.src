@@ -6,6 +6,12 @@ if (false) then
 else
 	print(true)
 end if
+if (false) then
+	print(false)
+else
+	print(true)
+	if (false) then print("true") else print("true")
+end if
 
 for (i in []) print(i)
 for (b in [])

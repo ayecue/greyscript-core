@@ -46,11 +46,6 @@ export default class Parser {
   previousToken: Token | null;
   currentScope: ASTBaseBlockWithScope;
   outerScopes: ASTBaseBlockWithScope[];
-  endIfOnShortcutStack: {
-    statement: ASTIfStatement;
-    token: Token;
-    previousEnd: ASTPosition;
-  }[];
 
   // helper
   nativeImports: ASTImportCodeExpression[];
@@ -90,7 +85,6 @@ export default class Parser {
     me.astProvider = options.astProvider || new ASTProvider();
     me.unsafe = options.unsafe || false;
     me.errors = [];
-    me.endIfOnShortcutStack = [];
   }
 
   next(): Parser {
@@ -939,19 +933,7 @@ export default class Parser {
       me.consume(Selectors.EndOfLine);
     }
 
-    me.consume(Selectors.EndOfLine);
-
-    const currentEnd = me.previousToken.getEnd();
-
-    if (me.consume(Selectors.EndIf)) {
-      me.endIfOnShortcutStack.push({
-        statement: ifStatement,
-        token: me.previousToken,
-        previousEnd: currentEnd
-      });
-    }
-
-    ifStatement.end = currentEnd;
+    ifStatement.end = me.token.getEnd();
 
     return ifStatement;
   }
@@ -1028,16 +1010,7 @@ export default class Parser {
     }
 
     if (!me.consume(Selectors.EndIf)) {
-      const item = me.endIfOnShortcutStack.pop();
-
-      if (!item) {
-        return me.raise(`Unexpected end of if statement "${me.token.value}" at line ${me.token.line}.`, me.token); 
-      }
-
-      ifStatement.end = item.statement.end;
-      item.statement.end = item.previousEnd;
-
-      return ifStatement;
+      return me.raise(`Unexpected end of if statement "${me.token.value}" at line ${me.token.line}.`, me.token); 
     }
 
     ifStatement.end = me.previousToken.getEnd();

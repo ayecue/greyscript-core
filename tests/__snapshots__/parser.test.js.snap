@@ -704,42 +704,58 @@ exports[`parse default scripts if-shorthand.src 1`] = `
 			7: CallStatment[CallExpression[Identifier[print](Literal[true])]]
 		}]
 	]
-	10: For[Identifier[i] in ListConstructor[]
-		10: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
+	9: IfStatement[
+		9: IfClause[Literal[false]
+			10: CallStatment[CallExpression[Identifier[print](Literal[false])]]
+		]
+		11: ElseClause[
+			12: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+			13: IfStatement[
+				13: IfShortcutClause[Literal[false]
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				]
+				13: ElseShortcutClause[
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				}]
+			]
+		}]
 	]
-	11: For[Identifier[b] in ListConstructor[]
-		12: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
+	16: For[Identifier[i] in ListConstructor[]
+		16: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
 	]
-	14: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
-		14: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
+	17: For[Identifier[b] in ListConstructor[]
+		18: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
 	]
-	15: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
-		16: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
+	20: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
+		20: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
 	]
-	18: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
-		18: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
+	21: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
+		22: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
+	]
+	24: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
+		24: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
 	]]
-	19: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
-		20: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
+	25: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
+		26: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
 	]]
-	23: Function[Identifier[m] =>
-		23: ReturnStatement[Literal[was]]
+	29: Function[Identifier[m] =>
+		29: ReturnStatement[Literal[was]]
 	]
-	26: Function[Identifier[b] =>
-		27: IfStatement[
-			27: IfShortcutClause[Identifier[a]
-				27: ReturnStatement[Literal[foo]]
+	32: Function[Identifier[b] =>
+		33: IfStatement[
+			33: IfShortcutClause[Identifier[a]
+				33: ReturnStatement[Literal[foo]]
 			]
 		]
 	]
-	30: IfStatement[
-		30: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
+	36: IfStatement[
+		36: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
 	]
-	33: IfStatement[
-		33: IfClause[Literal[true]
-			34: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
+	39: IfStatement[
+		39: IfClause[Literal[true]
+			40: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
 		]
-		35: ElseClause[]
+		41: ElseClause[]
 	]
 ]"
 `;
@@ -768,42 +784,58 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
 			7: CallStatment[CallExpression[Identifier[print](Literal[true])]]
 		}]
 	]
-	10: For[Identifier[i] in ListConstructor[]
-		10: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
+	9: IfStatement[
+		9: IfClause[Literal[false]
+			10: CallStatment[CallExpression[Identifier[print](Literal[false])]]
+		]
+		11: ElseClause[
+			12: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+			13: IfStatement[
+				13: IfShortcutClause[Literal[false]
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				]
+				13: ElseShortcutClause[
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				}]
+			]
+		}]
 	]
-	11: For[Identifier[b] in ListConstructor[]
-		12: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
+	16: For[Identifier[i] in ListConstructor[]
+		16: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
 	]
-	14: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
-		14: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
+	17: For[Identifier[b] in ListConstructor[]
+		18: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
 	]
-	15: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
-		16: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
+	20: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
+		20: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
 	]
-	18: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
-		18: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
+	21: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
+		22: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
+	]
+	24: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
+		24: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
 	]]
-	19: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
-		20: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
+	25: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
+		26: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
 	]]
-	23: Function[Identifier[m] =>
-		23: ReturnStatement[Literal[was]]
+	29: Function[Identifier[m] =>
+		29: ReturnStatement[Literal[was]]
 	]
-	26: Function[Identifier[b] =>
-		27: IfStatement[
-			27: IfShortcutClause[Identifier[a]
-				27: ReturnStatement[Literal[foo]]
+	32: Function[Identifier[b] =>
+		33: IfStatement[
+			33: IfShortcutClause[Identifier[a]
+				33: ReturnStatement[Literal[foo]]
 			]
 		]
 	]
-	30: IfStatement[
-		30: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
+	36: IfStatement[
+		36: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
 	]
-	33: IfStatement[
-		33: IfClause[Literal[true]
-			34: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
+	39: IfStatement[
+		39: IfClause[Literal[true]
+			40: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
 		]
-		35: ElseClause[]
+		41: ElseClause[]
 	]
 ]"
 `;
@@ -1787,130 +1819,6 @@ exports[`parse default scripts random.src unsafe 1`] = `
 	]]
 	61: CallStatment[CallExpression[Identifier[print](CallExpression[MemberExpression[Identifier[Random].Identifier[get]](Literal[100], Literal[500])])]]
 	62: CallStatment[CallExpression[Identifier[print](CallExpression[MemberExpression[Identifier[Random].Identifier[seq]](Literal[100], Literal[500], Literal[test], Literal[10])])]]
-]"
-`;
-
-exports[`parse default scripts scuffed-if-clauses.src 1`] = `
-"Chunk[
-	1: IfStatement[
-		1: IfShortcutClause[Literal[true]
-			1: CallStatment[CallExpression[Identifier[print](Literal[true - 1])]]
-		]
-	]
-	5: IfStatement[
-		5: IfShortcutClause[Literal[true]
-			5: CallStatment[CallExpression[Identifier[print](Literal[true - 2])]]
-		]
-		6: ElseifShortcutClause[Literal[true]
-			6: CallStatment[CallExpression[Identifier[print](Literal[true - 2])]]
-		]
-	]
-	9: IfStatement[
-		9: IfShortcutClause[Literal[true]
-			9: CallStatment[CallExpression[Identifier[print](Literal[true - 3])]]
-		]
-		10: ElseifShortcutClause[Literal[true]
-			10: CallStatment[CallExpression[Identifier[print](Literal[true - 3])]]
-		]
-		11: ElseifShortcutClause[Literal[true]
-			11: CallStatment[CallExpression[Identifier[print](Literal[true - 3])]]
-		]
-	]
-	15: IfStatement[
-		15: IfShortcutClause[Literal[true]
-			15: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		]
-		16: ElseifShortcutClause[Literal[true]
-			16: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		]
-		17: ElseifShortcutClause[Literal[true]
-			17: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		]
-		18: ElseShortcutClause[
-			18: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		}]
-	]
-	21: IfStatement[
-		21: IfShortcutClause[Literal[true]
-			21: CallStatment[CallExpression[Identifier[print](Literal[true - 5])]]
-		]
-		22: ElseifShortcutClause[Literal[true]
-			22: CallStatment[CallExpression[Identifier[print](Literal[true - 5])]]
-		]
-		23: ElseShortcutClause[
-			23: CallStatment[CallExpression[Identifier[print](Literal[true - 5])]]
-		}]
-	]
-	26: IfStatement[
-		26: IfShortcutClause[Literal[true]
-			26: CallStatment[CallExpression[Identifier[print](Literal[true - 6])]]
-		]
-		27: ElseShortcutClause[
-			27: CallStatment[CallExpression[Identifier[print](Literal[true - 6])]]
-		}]
-	]
-]"
-`;
-
-exports[`parse default scripts scuffed-if-clauses.src unsafe 1`] = `
-"Chunk[
-	1: IfStatement[
-		1: IfShortcutClause[Literal[true]
-			1: CallStatment[CallExpression[Identifier[print](Literal[true - 1])]]
-		]
-	]
-	5: IfStatement[
-		5: IfShortcutClause[Literal[true]
-			5: CallStatment[CallExpression[Identifier[print](Literal[true - 2])]]
-		]
-		6: ElseifShortcutClause[Literal[true]
-			6: CallStatment[CallExpression[Identifier[print](Literal[true - 2])]]
-		]
-	]
-	9: IfStatement[
-		9: IfShortcutClause[Literal[true]
-			9: CallStatment[CallExpression[Identifier[print](Literal[true - 3])]]
-		]
-		10: ElseifShortcutClause[Literal[true]
-			10: CallStatment[CallExpression[Identifier[print](Literal[true - 3])]]
-		]
-		11: ElseifShortcutClause[Literal[true]
-			11: CallStatment[CallExpression[Identifier[print](Literal[true - 3])]]
-		]
-	]
-	15: IfStatement[
-		15: IfShortcutClause[Literal[true]
-			15: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		]
-		16: ElseifShortcutClause[Literal[true]
-			16: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		]
-		17: ElseifShortcutClause[Literal[true]
-			17: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		]
-		18: ElseShortcutClause[
-			18: CallStatment[CallExpression[Identifier[print](Literal[true - 4])]]
-		}]
-	]
-	21: IfStatement[
-		21: IfShortcutClause[Literal[true]
-			21: CallStatment[CallExpression[Identifier[print](Literal[true - 5])]]
-		]
-		22: ElseifShortcutClause[Literal[true]
-			22: CallStatment[CallExpression[Identifier[print](Literal[true - 5])]]
-		]
-		23: ElseShortcutClause[
-			23: CallStatment[CallExpression[Identifier[print](Literal[true - 5])]]
-		}]
-	]
-	26: IfStatement[
-		26: IfShortcutClause[Literal[true]
-			26: CallStatment[CallExpression[Identifier[print](Literal[true - 6])]]
-		]
-		27: ElseShortcutClause[
-			27: CallStatment[CallExpression[Identifier[print](Literal[true - 6])]]
-		}]
-	]
 ]"
 `;
 
