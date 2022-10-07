@@ -508,41 +508,57 @@ exports[`parse default scripts ascii.src unsafe 1`] = `
 
 exports[`parse default scripts binary-expressions.src 1`] = `
 "Chunk[
-	1: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] / Identifier[b]]]]
-	2: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] * Identifier[b]]]]
-	3: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] - Identifier[b]]]]
-	4: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] + Identifier[b]]]]
-	5: BinaryExpression[Identifier[a] << Identifier[b]]
-	6: BinaryExpression[Identifier[a] >> Identifier[b]]
+	1: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] / Identifier[b]]]
+	2: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] * Identifier[b]]]
+	3: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] - Identifier[b]]]
+	4: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] + Identifier[b]]]
+	5: CallStatment[BinaryExpression[Identifier[a] << Identifier[b]]]
+	6: CallStatment[BinaryExpression[Identifier[a] >> Identifier[b]]]
 	7: AssignmentStatement[Identifier[w] = BinaryExpression[BinaryExpression[Identifier[a] >>> BinaryExpression[Identifier[b] << Identifier[c]]] >> Identifier[a]]]
-	8: BinaryExpression[Identifier[a] | Identifier[b]]
-	9: BinaryExpression[Identifier[a] & Identifier[b]]
-	10: BinaryExpression[Identifier[a] ^ Identifier[b]]
-	11: LogicalExpression[Identifier[a] and Identifier[b]]
-	12: LogicalExpression[Identifier[a] or Identifier[b]]
-	15: BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]
-	16: BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]
-	17: BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]
+	8: CallStatment[BinaryExpression[Identifier[a] | Identifier[b]]]
+	9: CallStatment[BinaryExpression[Identifier[a] & Identifier[b]]]
+	10: CallStatment[BinaryExpression[Identifier[a] ^ Identifier[b]]]
+	11: CallStatment[LogicalExpression[Identifier[a] and Identifier[b]]]
+	12: CallStatment[LogicalExpression[Identifier[a] or Identifier[b]]]
+	15: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
+	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
+	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
 ]"
 `;
 
 exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 "Chunk[
-	1: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] / Identifier[b]]]]
-	2: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] * Identifier[b]]]]
-	3: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] - Identifier[b]]]]
-	4: CallStatment[AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] + Identifier[b]]]]
-	5: BinaryExpression[Identifier[a] << Identifier[b]]
-	6: BinaryExpression[Identifier[a] >> Identifier[b]]
+	1: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] / Identifier[b]]]
+	2: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] * Identifier[b]]]
+	3: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] - Identifier[b]]]
+	4: AssignmentStatement[Identifier[a] = BinaryExpression[Identifier[a] + Identifier[b]]]
+	5: CallStatment[BinaryExpression[Identifier[a] << Identifier[b]]]
+	6: CallStatment[BinaryExpression[Identifier[a] >> Identifier[b]]]
 	7: AssignmentStatement[Identifier[w] = BinaryExpression[BinaryExpression[Identifier[a] >>> BinaryExpression[Identifier[b] << Identifier[c]]] >> Identifier[a]]]
-	8: BinaryExpression[Identifier[a] | Identifier[b]]
-	9: BinaryExpression[Identifier[a] & Identifier[b]]
-	10: BinaryExpression[Identifier[a] ^ Identifier[b]]
-	11: LogicalExpression[Identifier[a] and Identifier[b]]
-	12: LogicalExpression[Identifier[a] or Identifier[b]]
-	15: BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]
-	16: BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]
-	17: BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]
+	8: CallStatment[BinaryExpression[Identifier[a] | Identifier[b]]]
+	9: CallStatment[BinaryExpression[Identifier[a] & Identifier[b]]]
+	10: CallStatment[BinaryExpression[Identifier[a] ^ Identifier[b]]]
+	11: CallStatment[LogicalExpression[Identifier[a] and Identifier[b]]]
+	12: CallStatment[LogicalExpression[Identifier[a] or Identifier[b]]]
+	15: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
+	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
+	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
+]"
+`;
+
+exports[`parse default scripts call-with-spaces.src 1`] = `
+"Chunk[
+	1: CallExpression[Identifier[print](Identifier[myVariable], Literal[abc], BinaryExpression[Literal[1] + Literal[2]], ListConstructor[
+		1: ListValue[Identifier[was]]
+	])]
+]"
+`;
+
+exports[`parse default scripts call-with-spaces.src unsafe 1`] = `
+"Chunk[
+	1: CallExpression[Identifier[print](Identifier[myVariable], Literal[abc], BinaryExpression[Literal[1] + Literal[2]], ListConstructor[
+		1: ListValue[Identifier[was]]
+	])]
 ]"
 `;
 
@@ -555,6 +571,26 @@ exports[`parse default scripts callexpr-with-nl.src 1`] = `
 exports[`parse default scripts callexpr-with-nl.src unsafe 1`] = `
 "Chunk[
 	1: CallStatment[CallExpression[Identifier[x](Literal[1], Literal[2], Literal[3], Literal[4], Literal[5])]]
+]"
+`;
+
+exports[`parse default scripts comments.ts 1`] = `
+"Chunk[
+	1: Comment[comment]
+	2: CallStatment[Identifier[myVariable]]
+	2: Comment[comment2]
+	3: AssignmentStatement[Identifier[test] = Literal[2]]
+	3: Comment[comment3]
+]"
+`;
+
+exports[`parse default scripts comments.ts unsafe 1`] = `
+"Chunk[
+	1: Comment[comment]
+	2: CallStatment[Identifier[myVariable]]
+	2: Comment[comment2]
+	3: AssignmentStatement[Identifier[test] = Literal[2]]
+	3: Comment[comment3]
 ]"
 `;
 
@@ -649,10 +685,10 @@ exports[`parse default scripts if-shorthand.src 1`] = `
 		12: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
 	]
 	14: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
-		14: CallStatment[AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]]
+		14: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
 	]
 	15: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
-		16: CallStatment[AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]]
+		16: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
 	]
 	18: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
 		18: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
@@ -713,10 +749,10 @@ exports[`parse default scripts if-shorthand.src unsafe 1`] = `
 		12: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
 	]
 	14: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
-		14: CallStatment[AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]]
+		14: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
 	]
 	15: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
-		16: CallStatment[AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]]
+		16: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
 	]
 	18: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
 		18: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
@@ -750,10 +786,8 @@ exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts invalid code 2`] = `
 Array [
-  [Error: Expected call expression to be closed after line 2.],
+  [Error: Expected call expression to be closed after line 4.],
   [Error: Unexpected assignment or call at line 8.],
-  [Error: Unexpected argument for "not" at line 11.],
-  [Error: Unexpected argument for "not" at line 13.],
   [Error: Unexpected expression at line 17.],
   [Error: Unexpected expression at line 18.],
   [Error: If requires 'then' keyword at line 28.],

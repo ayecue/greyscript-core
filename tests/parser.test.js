@@ -2,7 +2,6 @@ const { Parser, Lexer, ASTBase } = require('../dist');
 const fs = require('fs');
 const path = require('path');
 const testFolder = path.resolve(__dirname, 'scripts');
-const util = require('util');
 
 describe('parse', function() {
 	describe('default scripts', function() {

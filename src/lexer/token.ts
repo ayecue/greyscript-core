@@ -10,7 +10,8 @@ export enum TokenType {
   BooleanLiteral = 'BooleanLiteral',
   NilLiteral = 'NilLiteral',
   EOL = 'EOL',
-  SliceOperator = 'SliceOperator'
+  SliceOperator = 'SliceOperator',
+  Comment = 'Comment'
 }
 
 export class TokenOptions {

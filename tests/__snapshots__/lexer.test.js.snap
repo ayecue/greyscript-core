@@ -878,6 +878,21 @@ Punctuator[17:136 - 17:137: value = '-', isAfterSpace = true]
 NumericLiteral[17:138 - 17:139: value = '2', isAfterSpace = true]"
 `;
 
+exports[`parse default scripts call-with-spaces.src 1`] = `
+"Identifier[1:0 - 1:5: value = 'print', isAfterSpace = false]
+Identifier[1:6 - 1:16: value = 'myVariable', isAfterSpace = true]
+Punctuator[1:16 - 1:17: value = ',', isAfterSpace = false]
+StringLiteral[1:18 - 1:23: value = 'abc', isAfterSpace = true]
+Punctuator[1:23 - 1:24: value = ',', isAfterSpace = false]
+NumericLiteral[1:25 - 1:26: value = '1', isAfterSpace = true]
+Punctuator[1:27 - 1:28: value = '+', isAfterSpace = true]
+NumericLiteral[1:29 - 1:30: value = '2', isAfterSpace = true]
+Punctuator[1:30 - 1:31: value = ',', isAfterSpace = false]
+Punctuator[1:32 - 1:33: value = '[', isAfterSpace = true]
+Identifier[1:33 - 1:36: value = 'was', isAfterSpace = false]
+Punctuator[1:36 - 1:37: value = ']', isAfterSpace = false]"
+`;
+
 exports[`parse default scripts callexpr-with-nl.src 1`] = `
 "Identifier[1:0 - 1:1: value = 'x', isAfterSpace = false]
 Punctuator[1:1 - 1:2: value = '(', isAfterSpace = false]
@@ -897,6 +912,18 @@ EOL[5:30 - 5:30: value = ';', isAfterSpace = false]
 NumericLiteral[6:35 - 6:36: value = '5', isAfterSpace = true]
 EOL[6:36 - 6:36: value = ';', isAfterSpace = false]
 Punctuator[7:37 - 7:38: value = ')', isAfterSpace = false]"
+`;
+
+exports[`parse default scripts comments.ts 1`] = `
+"Comment[1:0 - 1:9: value = 'comment', isAfterSpace = false]
+EOL[1:9 - 1:9: value = ';', isAfterSpace = false]
+Identifier[2:10 - 2:20: value = 'myVariable', isAfterSpace = false]
+Comment[2:21 - 2:31: value = 'comment2', isAfterSpace = true]
+EOL[2:31 - 2:31: value = ';', isAfterSpace = false]
+Identifier[3:32 - 3:36: value = 'test', isAfterSpace = false]
+Punctuator[3:37 - 3:38: value = '=', isAfterSpace = true]
+NumericLiteral[3:39 - 3:40: value = '2', isAfterSpace = true]
+Comment[3:41 - 3:51: value = 'comment3', isAfterSpace = true]"
 `;
 
 exports[`parse default scripts eol.src 1`] = `

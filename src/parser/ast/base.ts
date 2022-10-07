@@ -41,7 +41,8 @@ export enum ASTType {
   LogicalExpression = 'LogicalExpression',
   SliceExpression = 'SliceExpression',
   ImportCodeExpression = 'ImportCodeExpression',
-  InvalidCodeExpression = 'InvalidCodeExpression'
+  InvalidCodeExpression = 'InvalidCodeExpression',
+  ParenthesisExpression = 'ParenthesisExpression'
 }
 
 export interface ASTBaseOptions {
@@ -111,17 +112,14 @@ export class ASTBaseBlockWithScope extends ASTBaseBlock {
 
 export interface ASTCommentOptions extends ASTBaseOptions {
   value: string;
-  raw: string;
 }
 
 export class ASTComment extends ASTBase {
   value: string;
-  raw: string;
 
   constructor(options: ASTCommentOptions) {
     super(ASTType.Comment, options);
     this.value = options.value;
-    this.raw = options.raw;
   }
 
   toString(): string {

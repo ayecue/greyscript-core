@@ -14,7 +14,7 @@ export enum Operator {
   And = 'and',
   Not = 'not',
   AddShorthand = '+=',
-  SubtractShorhand = '-=',
+  SubtractShorthand = '-=',
   MultiplyShorthand = '*=',
   DivideShorthand = '/=',
   BitwiseAnd = '&',

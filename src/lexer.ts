@@ -77,7 +77,7 @@ export default class Lexer {
         if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.NotEqual, afterSpace);
         return null;
       case CharacterCode.MINUS:
-        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.SubtractShorhand, afterSpace);
+        if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.SubtractShorthand, afterSpace);
         return me.scanPunctuator(Operator.Minus, afterSpace);
       case CharacterCode.PLUS:
         if (CharacterCode.EQUAL === nextCode) return me.scanPunctuator(Operator.AddShorthand, afterSpace);
@@ -203,6 +203,34 @@ export default class Lexer {
       afterSpace,
       lastLine: me.line,
       lastLineStart: me.lineStart
+    });
+  }
+
+  scanComment(afterSpace: boolean): Token {
+    const me = this;
+    const validator = me.validator;
+    const beginLine = me.line;
+    const beginLineStart = me.lineStart;
+    
+    while (me.isNotEOF()) {
+      if (validator.isEndOfLine(me.codeAt())) break;
+      me.nextIndex();
+    }
+
+    if (me.isWinNewline()) {
+      me.nextIndex();
+    }
+
+    const value = me.content.slice(me.tokenStart + 2, me.index);
+
+    return new Token({
+      type: TokenType.Comment,
+      value,
+      line: beginLine,
+      lineStart: beginLineStart,
+      range: [me.tokenStart, me.index],
+      offset: me.offset,
+      afterSpace
     });
   }
 
@@ -385,20 +413,6 @@ export default class Lexer {
     });
   }
 
-  scanComment() {
-    const me = this;
-    const validator = me.validator;
-
-    while (me.isNotEOF()) {
-      if (validator.isEndOfLine(me.codeAt())) break;
-      me.nextIndex();
-    }
-
-    if (me.isWinNewline()) {
-      me.nextIndex();
-    }
-  }
-
   next(): Token {
     const me = this;
     const validator = me.validator;
@@ -410,7 +424,7 @@ export default class Lexer {
 
     while (validator.isComment(me.codeAt(), me.codeAt(1))) {
       me.tokenStart = me.index;
-      me.scanComment();
+      return me.scanComment(afterSpace);
     }
 
     if (!me.isNotEOF()) {

@@ -1,10 +1,24 @@
-import { TokenType } from '../lexer/token';
+import { Token, TokenType } from '../lexer/token';
 import { Keyword } from './keywords';
 import { Operator } from './operators';
 
-export interface Selector {
+export class SelectorOptions {
   type: TokenType;
   value: string;
+}
+
+export class Selector {
+  type: TokenType;
+  value: string;
+
+  constructor({ type, value }: SelectorOptions) {
+    this.type = type;
+    this.value = value;
+  }
+
+  is(token: Token) {
+    return this.type === token.type && this.value === token.value;
+  }
 }
 
 export const Selectors: {
@@ -17,6 +31,10 @@ export const Selectors: {
   SLBracket: Selector;
   SRBracket: Selector;
   Assign: Selector;
+  AddShorthand: Selector;
+  SubtractShorthand: Selector;
+  MultiplyShorthand: Selector;
+  DivideShorthand: Selector;
   Seperator: Selector;
   Function: Selector;
   EndFunction: Selector;
@@ -35,113 +53,159 @@ export const Selectors: {
   Then: Selector;
   In: Selector;
   MemberSeperator: Selector;
+  NumberSeperator: Selector;
+  Reference: Selector;
+  Minus: Selector;
+  Plus: Selector;
+  New: Selector;
+  Not: Selector;
 } = {
-  EndOfLine: {
+  EndOfLine: new Selector({
     type: TokenType.EOL,
     value: Operator.EndOfLine
-  },
-  EndOfFile: {
+  }),
+  EndOfFile: new Selector({
     type: TokenType.EOF,
     value: Operator.EndOfFile
-  },
-  LParenthesis: {
+  }),
+  LParenthesis: new Selector({
     type: TokenType.Punctuator,
     value: Operator.LParenthesis
-  },
-  RParenthesis: {
+  }),
+  RParenthesis: new Selector({
     type: TokenType.Punctuator,
     value: Operator.RParenthesis
-  },
-  CLBracket: {
+  }),
+  CLBracket: new Selector({
     type: TokenType.Punctuator,
     value: Operator.CLBracket
-  },
-  CRBracket: {
+  }),
+  CRBracket: new Selector({
     type: TokenType.Punctuator,
     value: Operator.CRBracket
-  },
-  SLBracket: {
+  }),
+  SLBracket: new Selector({
     type: TokenType.Punctuator,
     value: Operator.SLBracket
-  },
-  SRBracket: {
+  }),
+  SRBracket: new Selector({
     type: TokenType.Punctuator,
     value: Operator.SRBracket
-  },
-  Assign: {
+  }),
+  Assign: new Selector({
     type: TokenType.Punctuator,
     value: Operator.Assign
-  },
-  Seperator: {
+  }),
+  AddShorthand: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.AddShorthand
+  }),
+  SubtractShorthand: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.SubtractShorthand
+  }),
+  MultiplyShorthand: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.MultiplyShorthand
+  }),
+  DivideShorthand: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.DivideShorthand
+  }),
+  Seperator: new Selector({
     type: TokenType.Punctuator,
     value: Operator.ListSeperator
-  },
-  Function: {
+  }),
+  Function: new Selector({
     type: TokenType.Keyword,
     value: Keyword.Function
-  },
-  EndFunction: {
+  }),
+  EndFunction: new Selector({
     type: TokenType.Keyword,
     value: Keyword.EndFunction
-  },
-  EndWhile: {
+  }),
+  EndWhile: new Selector({
     type: TokenType.Keyword,
     value: Keyword.EndWhile
-  },
-  EndFor: {
+  }),
+  EndFor: new Selector({
     type: TokenType.Keyword,
     value: Keyword.EndFor
-  },
-  EndIf: {
+  }),
+  EndIf: new Selector({
     type: TokenType.Keyword,
     value: Keyword.EndIf
-  },
-  SliceSeperator: {
+  }),
+  SliceSeperator: new Selector({
     type: TokenType.SliceOperator,
     value: Operator.SliceSeperator
-  },
-  MapKeyValueSeperator: {
+  }),
+  MapKeyValueSeperator: new Selector({
     type: TokenType.SliceOperator,
     value: Operator.SliceSeperator
-  },
-  MapSeperator: {
+  }),
+  MapSeperator: new Selector({
     type: TokenType.Punctuator,
     value: Operator.ListSeperator
-  },
-  ListSeperator: {
+  }),
+  ListSeperator: new Selector({
     type: TokenType.Punctuator,
     value: Operator.ListSeperator
-  },
-  CallSeperator: {
+  }),
+  CallSeperator: new Selector({
     type: TokenType.Punctuator,
     value: Operator.ListSeperator
-  },
-  ArgumentSeperator: {
+  }),
+  ArgumentSeperator: new Selector({
     type: TokenType.Punctuator,
     value: Operator.ListSeperator
-  },
-  ImportCodeSeperator: {
+  }),
+  ImportCodeSeperator: new Selector({
     type: TokenType.SliceOperator,
     value: Operator.SliceSeperator
-  },
-  ElseIf: {
+  }),
+  ElseIf: new Selector({
     type: TokenType.Keyword,
     value: Keyword.ElseIf
-  },
-  Then: {
+  }),
+  Then: new Selector({
     type: TokenType.Keyword,
     value: Keyword.Then
-  },
-  Else: {
+  }),
+  Else: new Selector({
     type: TokenType.Keyword,
     value: Keyword.Else
-  },
-  In: {
+  }),
+  In: new Selector({
     type: TokenType.Keyword,
     value: Keyword.In
-  },
-  MemberSeperator: {
+  }),
+  MemberSeperator: new Selector({
     type: TokenType.Punctuator,
     value: Operator.Member
-  }
+  }),
+  NumberSeperator: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Member
+  }),
+  Reference: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Reference
+  }),
+  Minus: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Minus
+  }),
+  Plus: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Plus
+  }),
+  New: new Selector({
+    type: TokenType.Keyword,
+    value: Keyword.New
+  }),
+  Not: new Selector({
+    type: TokenType.Keyword,
+    value: Keyword.Not
+  })
 };

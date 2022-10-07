@@ -3,6 +3,7 @@ import general from 'greyscript-meta/dist/signatures/general.json';
 import { TokenType } from '../lexer/token';
 import { Keyword } from '../types/keywords';
 import { Operator } from '../types/operators';
+import { Selector } from '../types/selector';
 
 export default class Validator {
   getBreakingBlockShortcutKeywords(): string[] {
@@ -82,7 +83,11 @@ export default class Validator {
     return this.getLiterals().indexOf(type) !== -1;
   }
 
-  isExpressionOperator(value: Operator): boolean {
-    return this.getExpressionOperators().indexOf(value) !== -1;
+  isExpressionOperator(selector: Selector): boolean {
+    return (
+      (selector.type === TokenType.Punctuator ||
+        selector.type === TokenType.Keyword) &&
+      this.getExpressionOperators().indexOf(selector.value as Operator) !== -1
+    );
   }
 }
