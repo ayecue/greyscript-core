@@ -890,7 +890,15 @@ NumericLiteral[1:29 - 1:30: value = '2', isAfterSpace = true]
 Punctuator[1:30 - 1:31: value = ',', isAfterSpace = false]
 Punctuator[1:32 - 1:33: value = '[', isAfterSpace = true]
 Identifier[1:33 - 1:36: value = 'was', isAfterSpace = false]
-Punctuator[1:36 - 1:37: value = ']', isAfterSpace = false]"
+Punctuator[1:36 - 1:37: value = ']', isAfterSpace = false]
+EOL[1:37 - 1:37: value = ';', isAfterSpace = false]
+Identifier[2:38 - 2:43: value = 'print', isAfterSpace = false]
+StringLiteral[2:44 - 2:53: value = 'another', isAfterSpace = true]
+EOL[2:53 - 2:53: value = ';', isAfterSpace = false]
+Identifier[3:54 - 3:59: value = 'print', isAfterSpace = false]
+Punctuator[3:59 - 3:60: value = '(', isAfterSpace = false]
+StringLiteral[3:60 - 3:65: value = 'see', isAfterSpace = false]
+Punctuator[3:65 - 3:66: value = ')', isAfterSpace = false]"
 `;
 
 exports[`parse default scripts callexpr-with-nl.src 1`] = `

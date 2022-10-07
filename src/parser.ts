@@ -683,7 +683,7 @@ export default class Parser {
   parseCallStatement(base: ASTBase): ASTCallExpression | ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const expressions = me.parseCallExpressionArgs();
+    const expressions = me.parseCallExpressionArgs(false);
 
     if (!me.consumeMany(Selectors.EndOfLine, Selectors.EndOfFile)) {
       return null;
@@ -698,7 +698,7 @@ export default class Parser {
     });
   }
 
-  parseCallExpressionArgs(): ASTBase[] {
+  parseCallExpressionArgs(skip: boolean = true): ASTBase[] {
     const me = this;
 
     me.skipNewlines();
@@ -710,13 +710,13 @@ export default class Parser {
     while (expression = me.parseExpr()) {
       lastToken = me.token;
       expressions.push(expression);
-      me.skipNewlines();
+      if (skip) me.skipNewlines();
 
       if (!me.consume(Selectors.CallSeperator)) {
         break;
       }
 
-      me.skipNewlines();
+      if (skip) me.skipNewlines();
     }
 
     return expressions;

@@ -551,6 +551,8 @@ exports[`parse default scripts call-with-spaces.src 1`] = `
 	1: CallExpression[Identifier[print](Identifier[myVariable], Literal[abc], BinaryExpression[Literal[1] + Literal[2]], ListConstructor[
 		1: ListValue[Identifier[was]]
 	])]
+	2: CallExpression[Identifier[print](Literal[another])]
+	3: CallStatment[CallExpression[Identifier[print](Literal[see])]]
 ]"
 `;
 
@@ -559,6 +561,8 @@ exports[`parse default scripts call-with-spaces.src unsafe 1`] = `
 	1: CallExpression[Identifier[print](Identifier[myVariable], Literal[abc], BinaryExpression[Literal[1] + Literal[2]], ListConstructor[
 		1: ListValue[Identifier[was]]
 	])]
+	2: CallExpression[Identifier[print](Literal[another])]
+	3: CallStatment[CallExpression[Identifier[print](Literal[see])]]
 ]"
 `;
 

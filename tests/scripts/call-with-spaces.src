@@ -1,1 +1,3 @@
 print myVariable, "abc", 1 + 2, [was]
+print "another"
+print("see")
