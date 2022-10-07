@@ -1,0 +1,7 @@
+test = function(arg1 = 0, arg2 = "test")
+	print(arg1)
+	print(arg2)
+end function
+
+test()
+test("foo", false)

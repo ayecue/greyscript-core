@@ -914,7 +914,7 @@ EOL[6:36 - 6:36: value = ';', isAfterSpace = false]
 Punctuator[7:37 - 7:38: value = ')', isAfterSpace = false]"
 `;
 
-exports[`parse default scripts comments.ts 1`] = `
+exports[`parse default scripts comments.src 1`] = `
 "Comment[1:0 - 1:9: value = 'comment', isAfterSpace = false]
 EOL[1:9 - 1:9: value = ';', isAfterSpace = false]
 Identifier[2:10 - 2:20: value = 'myVariable', isAfterSpace = false]
@@ -924,6 +924,45 @@ Identifier[3:32 - 3:36: value = 'test', isAfterSpace = false]
 Punctuator[3:37 - 3:38: value = '=', isAfterSpace = true]
 NumericLiteral[3:39 - 3:40: value = '2', isAfterSpace = true]
 Comment[3:41 - 3:51: value = 'comment3', isAfterSpace = true]"
+`;
+
+exports[`parse default scripts default-args.src 1`] = `
+"Identifier[1:0 - 1:4: value = 'test', isAfterSpace = false]
+Punctuator[1:5 - 1:6: value = '=', isAfterSpace = true]
+Keyword[1:7 - 1:15: value = 'function', isAfterSpace = true]
+Punctuator[1:15 - 1:16: value = '(', isAfterSpace = false]
+Identifier[1:16 - 1:20: value = 'arg1', isAfterSpace = false]
+Punctuator[1:21 - 1:22: value = '=', isAfterSpace = true]
+NumericLiteral[1:23 - 1:24: value = '0', isAfterSpace = true]
+Punctuator[1:24 - 1:25: value = ',', isAfterSpace = false]
+Identifier[1:26 - 1:30: value = 'arg2', isAfterSpace = true]
+Punctuator[1:31 - 1:32: value = '=', isAfterSpace = true]
+StringLiteral[1:33 - 1:39: value = 'test', isAfterSpace = true]
+Punctuator[1:39 - 1:40: value = ')', isAfterSpace = false]
+EOL[1:40 - 1:40: value = ';', isAfterSpace = false]
+Identifier[2:42 - 2:47: value = 'print', isAfterSpace = true]
+Punctuator[2:47 - 2:48: value = '(', isAfterSpace = false]
+Identifier[2:48 - 2:52: value = 'arg1', isAfterSpace = false]
+Punctuator[2:52 - 2:53: value = ')', isAfterSpace = false]
+EOL[2:53 - 2:53: value = ';', isAfterSpace = false]
+Identifier[3:55 - 3:60: value = 'print', isAfterSpace = true]
+Punctuator[3:60 - 3:61: value = '(', isAfterSpace = false]
+Identifier[3:61 - 3:65: value = 'arg2', isAfterSpace = false]
+Punctuator[3:65 - 3:66: value = ')', isAfterSpace = false]
+EOL[3:66 - 3:66: value = ';', isAfterSpace = false]
+Keyword[4:67 - 4:79: value = 'end function', isAfterSpace = false]
+EOL[4:79 - 4:79: value = ';', isAfterSpace = false]
+EOL[5:80 - 5:80: value = ';', isAfterSpace = false]
+Identifier[6:81 - 6:85: value = 'test', isAfterSpace = false]
+Punctuator[6:85 - 6:86: value = '(', isAfterSpace = false]
+Punctuator[6:86 - 6:87: value = ')', isAfterSpace = false]
+EOL[6:87 - 6:87: value = ';', isAfterSpace = false]
+Identifier[7:88 - 7:92: value = 'test', isAfterSpace = false]
+Punctuator[7:92 - 7:93: value = '(', isAfterSpace = false]
+StringLiteral[7:93 - 7:98: value = 'foo', isAfterSpace = false]
+Punctuator[7:98 - 7:99: value = ',', isAfterSpace = false]
+BooleanLiteral[7:100 - 7:105: value = 'false', isAfterSpace = true]
+Punctuator[7:105 - 7:106: value = ')', isAfterSpace = false]"
 `;
 
 exports[`parse default scripts eol.src 1`] = `

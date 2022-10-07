@@ -1172,7 +1172,7 @@ export default class Parser {
           if (me.consume(Selectors.Assign)) {
             const value = me.parseExpr();
 
-            if (!me.consume(Selectors.LParenthesis)) {
+            if (!value) {
               return me.raise(`Default in function declaration requires value at line ${me.token.line}`, me.token);
             }
 

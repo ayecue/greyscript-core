@@ -574,7 +574,7 @@ exports[`parse default scripts callexpr-with-nl.src unsafe 1`] = `
 ]"
 `;
 
-exports[`parse default scripts comments.ts 1`] = `
+exports[`parse default scripts comments.src 1`] = `
 "Chunk[
 	1: Comment[comment]
 	2: CallStatment[Identifier[myVariable]]
@@ -584,13 +584,35 @@ exports[`parse default scripts comments.ts 1`] = `
 ]"
 `;
 
-exports[`parse default scripts comments.ts unsafe 1`] = `
+exports[`parse default scripts comments.src unsafe 1`] = `
 "Chunk[
 	1: Comment[comment]
 	2: CallStatment[Identifier[myVariable]]
 	2: Comment[comment2]
 	3: AssignmentStatement[Identifier[test] = Literal[2]]
 	3: Comment[comment3]
+]"
+`;
+
+exports[`parse default scripts default-args.src 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[test] = Function[AssignmentStatement[Identifier[arg1] = Literal[0]], AssignmentStatement[Identifier[arg2] = Literal[test]] =>
+		2: CallStatment[CallExpression[Identifier[print](Identifier[arg1])]]
+		3: CallStatment[CallExpression[Identifier[print](Identifier[arg2])]]
+	]]
+	6: CallStatment[CallExpression[Identifier[test]()]]
+	7: CallStatment[CallExpression[Identifier[test](Literal[foo], Literal[false])]]
+]"
+`;
+
+exports[`parse default scripts default-args.src unsafe 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[test] = Function[AssignmentStatement[Identifier[arg1] = Literal[0]], AssignmentStatement[Identifier[arg2] = Literal[test]] =>
+		2: CallStatment[CallExpression[Identifier[print](Identifier[arg1])]]
+		3: CallStatment[CallExpression[Identifier[print](Identifier[arg2])]]
+	]]
+	6: CallStatment[CallExpression[Identifier[test]()]]
+	7: CallStatment[CallExpression[Identifier[test](Literal[foo], Literal[false])]]
 ]"
 `;
 
