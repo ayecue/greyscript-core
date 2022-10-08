@@ -51,7 +51,7 @@ export default class Parser {
   nativeImports: ASTImportCodeExpression[];
   literals: ASTBase[];
   scopes: ASTBaseBlockWithScope[];
-  lines: Map<number, ASTBase>;
+  lines: Map<number, ASTBase[]>;
 
   // settings
   content: string;
@@ -76,7 +76,7 @@ export default class Parser {
     me.token = null;
     me.previousToken = null;
     me.nativeImports = [];
-    me.lines = new Map<number, ASTBase>();
+    me.lines = new Map<number, ASTBase[]>();
     me.scopes = [];
     me.currentScope = null;
     me.outerScopes = [];
@@ -171,6 +171,18 @@ export default class Parser {
     }
 
     return me.prefetchedTokens[offsetIndex];
+  }
+
+  addLine(item: ASTBase) {
+    const me = this;
+    const line = item.start.line;
+
+    if (!me.lines.has(line)) {
+      me.lines.set(line, []);
+    }
+
+    const statements = me.lines.get(line);
+    statements.push(item);
   }
 
   skipNewlines() {
@@ -1264,7 +1276,7 @@ export default class Parser {
     ) {
       statement = me.parseStatement();
       if (statement) {
-        this.lines.set(statement.start.line, statement);
+        me.addLine(statement);
         block.push(statement);
       }
       value = me.token.value;
@@ -1282,7 +1294,7 @@ export default class Parser {
       statement = me.parseStatement();
       me.consume(Selectors.EndOfLine);
       if (statement) {
-        this.lines.set(statement.start.line, statement);
+        me.addLine(statement);
         block.push(statement);
       }
     }
