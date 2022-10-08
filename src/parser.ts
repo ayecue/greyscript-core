@@ -285,7 +285,7 @@ export default class Parser {
         indexer: Operator.Member,
         identifier,
         start,
-        end: me.token.getEnd(),
+        end: me.previousToken.getEnd(),
         scope: me.currentScope
       });
       return me.parseRightExpr(nextBase);
@@ -318,7 +318,7 @@ export default class Parser {
       operator: <Operator>currentToken.value,
       argument,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
 
@@ -330,23 +330,20 @@ export default class Parser {
     const start = me.token.getStart();
     let base;
 
-    const hasOpening = me.consume(Selectors.LParenthesis);
-
-    if (!hasOpening) {
+    if (!me.consume(Selectors.LParenthesis)) {
       return me.raise(`Requires opening parenthesis at line ${me.token.line}.`, me.token);
     }
 
     base = me.parseExpr();
-    const hasClosing = me.consume(Selectors.RParenthesis);
 
-    if (!hasClosing) {
+    if (!me.consume(Selectors.RParenthesis)) {
       return me.raise(`Requires closing parenthesis at line ${me.token.line}.`, me.token);
     }
 
     return me.astProvider.parenthesisExpression({
       expression: base,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
   }
@@ -572,7 +569,7 @@ export default class Parser {
         return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
       }
 
-      const end = me.token.getEnd();
+      const end = me.previousToken.getEnd();
       const sliceExpression = me.astProvider.sliceExpression({
         left,
         right,
@@ -627,7 +624,7 @@ export default class Parser {
         return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
       }
 
-      const end = me.token.getEnd();
+      const end = me.previousToken.getEnd();
       const sliceExpression = me.astProvider.sliceExpression({
         left: expression,
         right,
@@ -657,7 +654,7 @@ export default class Parser {
       base,
       index: expression,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
   }
@@ -681,7 +678,7 @@ export default class Parser {
       base,
       arguments: expressions,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
   }
@@ -699,7 +696,7 @@ export default class Parser {
       base,
       arguments: expressions,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
   }
@@ -741,7 +738,7 @@ export default class Parser {
       value: floatValue,
       raw: floatValue,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
 
@@ -790,7 +787,7 @@ export default class Parser {
         left: expression,
         right,
         start,
-        end: me.token.getEnd(),
+        end: me.previousToken.getEnd(),
         scope: me.currentScope
       });
     }
@@ -834,7 +831,7 @@ export default class Parser {
       gameDirectory,
       fileSystemDirectory,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
 
@@ -1038,7 +1035,7 @@ export default class Parser {
     return me.astProvider.returnStatement({
       argument: expression,
       start,
-      end: me.token.getEnd(),
+      end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
   }
@@ -1060,7 +1057,7 @@ export default class Parser {
         variable: base,
         init: value,
         start,
-        end: me.token.getEnd(),
+        end: me.previousToken.getEnd(),
         scope: me.currentScope
       });
 
@@ -1165,7 +1162,7 @@ export default class Parser {
               variable: parameter,
               init: value,
               start: parameterStart,
-              end: me.token.getEnd(),
+              end: me.previousToken.getEnd(),
               scope: me.currentScope
             });
 
