@@ -119,7 +119,7 @@ export default class Parser {
     return me.token !== null && type === me.token.type;
   }
 
-  isEndOfLine() {
+  isEOL() {
     const me = this;
     return me.isOneOf(Selectors.EndOfLine, Selectors.Comment);
   }
@@ -875,7 +875,7 @@ export default class Parser {
 
     let body;
 
-    if (me.isEndOfLine()) {
+    if (me.isEOL()) {
       body = me.parseBlock([Keyword.EndWhile]);
 
       if (!me.consume(Selectors.EndWhile)) {
@@ -995,7 +995,7 @@ export default class Parser {
       return me.raise(`If requires 'then' keyword at line ${me.token.line}.`, me.token);
     }
 
-    if (!me.isEndOfLine()) {
+    if (!me.isEOL()) {
       return me.parseIfShortcutStatement(condition, start);
     }
 
@@ -1090,7 +1090,7 @@ export default class Parser {
 
       return assignmentStatement;
     } else if (
-      me.isEndOfLine() ||
+      me.isEOL() ||
       me.isType(TokenType.EOF) ||
       me.isType(TokenType.Keyword)
     ) {
@@ -1133,7 +1133,7 @@ export default class Parser {
 
     let body;
 
-    if (me.isEndOfLine()) {
+    if (me.isEOL()) {
       body = me.parseBlock([Keyword.EndFor]);
 
       if (!me.consume(Selectors.EndFor)) {
@@ -1208,7 +1208,7 @@ export default class Parser {
 
     let body;
 
-    if (me.isEndOfLine()) {
+    if (me.isEOL()) {
       body = me.parseBlock([Keyword.EndFunction]);
 
       if (!me.consume(Selectors.EndFunction)) {
@@ -1295,7 +1295,7 @@ export default class Parser {
     me.currentBlock = block;
 
     while (
-      !me.isEndOfLine() &&
+      !me.isEOL() &&
       !me.validator.isBreakingBlockShortcutKeyword(value)
     ) {
       statement = me.parseStatement();
