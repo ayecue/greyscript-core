@@ -581,20 +581,20 @@ exports[`parse default scripts callexpr-with-nl.src unsafe 1`] = `
 exports[`parse default scripts comments.src 1`] = `
 "Chunk[
 	1: Comment[comment]
-	2: CallStatment[Identifier[myVariable]]
 	2: Comment[comment2]
-	3: AssignmentStatement[Identifier[test] = Literal[2]]
+	2: CallStatment[Identifier[myVariable]]
 	3: Comment[comment3]
+	3: AssignmentStatement[Identifier[test] = Literal[2]]
 ]"
 `;
 
 exports[`parse default scripts comments.src unsafe 1`] = `
 "Chunk[
 	1: Comment[comment]
-	2: CallStatment[Identifier[myVariable]]
 	2: Comment[comment2]
-	3: AssignmentStatement[Identifier[test] = Literal[2]]
+	2: CallStatment[Identifier[myVariable]]
 	3: Comment[comment3]
+	3: AssignmentStatement[Identifier[test] = Literal[2]]
 ]"
 `;
 
@@ -654,188 +654,6 @@ exports[`parse default scripts eol.src unsafe 1`] = `
 	]
 	11: For[Identifier[foo] in ListConstructor[]
 		12: CallStatment[CallExpression[Identifier[print](Literal[foo])]]
-	]
-]"
-`;
-
-exports[`parse default scripts if-clause.src 1`] = `
-"Chunk[
-	1: AssignmentStatement[Identifier[params] = ListConstructor[
-		1: ListValue[Literal[/home/test]]
-		1: ListValue[Literal[myTestFolder]]
-	]]
-	3: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
-	4: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
-]"
-`;
-
-exports[`parse default scripts if-clause.src unsafe 1`] = `
-"Chunk[
-	1: AssignmentStatement[Identifier[params] = ListConstructor[
-		1: ListValue[Literal[/home/test]]
-		1: ListValue[Literal[myTestFolder]]
-	]]
-	3: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
-	4: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
-]"
-`;
-
-exports[`parse default scripts if-shorthand.src 1`] = `
-"Chunk[
-	1: IfStatement[
-		1: IfShortcutClause[Literal[true]
-			1: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		]
-	]
-	2: IfStatement[
-		2: IfShortcutClause[Literal[false]
-			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		]
-		2: ElseShortcutClause[
-			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		}]
-	]
-	3: CallStatment[CallExpression[Identifier[print](Literal[was])]]
-	4: IfStatement[
-		4: IfClause[Literal[false]
-			5: CallStatment[CallExpression[Identifier[print](Literal[false])]]
-		]
-		6: ElseClause[
-			7: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		}]
-	]
-	9: IfStatement[
-		9: IfClause[Literal[false]
-			10: CallStatment[CallExpression[Identifier[print](Literal[false])]]
-		]
-		11: ElseClause[
-			12: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-			13: IfStatement[
-				13: IfShortcutClause[Literal[false]
-					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-				]
-				13: ElseShortcutClause[
-					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-				}]
-			]
-		}]
-	]
-	16: For[Identifier[i] in ListConstructor[]
-		16: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
-	]
-	17: For[Identifier[b] in ListConstructor[]
-		18: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
-	]
-	20: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
-		20: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
-	]
-	21: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
-		22: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
-	]
-	24: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
-		24: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
-	]]
-	25: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
-		26: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
-	]]
-	29: Function[Identifier[m] =>
-		29: ReturnStatement[Literal[was]]
-	]
-	32: Function[Identifier[b] =>
-		33: IfStatement[
-			33: IfShortcutClause[Identifier[a]
-				33: ReturnStatement[Literal[foo]]
-			]
-		]
-	]
-	36: IfStatement[
-		36: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
-	]
-	39: IfStatement[
-		39: IfClause[Literal[true]
-			40: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
-		]
-		41: ElseClause[]
-	]
-]"
-`;
-
-exports[`parse default scripts if-shorthand.src unsafe 1`] = `
-"Chunk[
-	1: IfStatement[
-		1: IfShortcutClause[Literal[true]
-			1: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		]
-	]
-	2: IfStatement[
-		2: IfShortcutClause[Literal[false]
-			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		]
-		2: ElseShortcutClause[
-			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		}]
-	]
-	3: CallStatment[CallExpression[Identifier[print](Literal[was])]]
-	4: IfStatement[
-		4: IfClause[Literal[false]
-			5: CallStatment[CallExpression[Identifier[print](Literal[false])]]
-		]
-		6: ElseClause[
-			7: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-		}]
-	]
-	9: IfStatement[
-		9: IfClause[Literal[false]
-			10: CallStatment[CallExpression[Identifier[print](Literal[false])]]
-		]
-		11: ElseClause[
-			12: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-			13: IfStatement[
-				13: IfShortcutClause[Literal[false]
-					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-				]
-				13: ElseShortcutClause[
-					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
-				}]
-			]
-		}]
-	]
-	16: For[Identifier[i] in ListConstructor[]
-		16: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
-	]
-	17: For[Identifier[b] in ListConstructor[]
-		18: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
-	]
-	20: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
-		20: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
-	]
-	21: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
-		22: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
-	]
-	24: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
-		24: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
-	]]
-	25: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
-		26: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
-	]]
-	29: Function[Identifier[m] =>
-		29: ReturnStatement[Literal[was]]
-	]
-	32: Function[Identifier[b] =>
-		33: IfStatement[
-			33: IfShortcutClause[Identifier[a]
-				33: ReturnStatement[Literal[foo]]
-			]
-		]
-	]
-	36: IfStatement[
-		36: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
-	]
-	39: IfStatement[
-		39: IfClause[Literal[true]
-			40: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
-		]
-		41: ElseClause[]
 	]
 ]"
 `;
@@ -1041,6 +859,28 @@ exports[`parse default scripts obj-init.src unsafe 1`] = `
 		18: ListValue[Identifier[valueOfIdentifier]]
 	]]
 	21: CallStatment[CallExpression[Identifier[print](Identifier[myList])]]
+]"
+`;
+
+exports[`parse default scripts parentheses.src 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[params] = ListConstructor[
+		1: ListValue[Literal[/home/test]]
+		1: ListValue[Literal[myTestFolder]]
+	]]
+	3: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
+	4: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
+]"
+`;
+
+exports[`parse default scripts parentheses.src unsafe 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[params] = ListConstructor[
+		1: ListValue[Literal[/home/test]]
+		1: ListValue[Literal[myTestFolder]]
+	]]
+	3: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
+	4: CallStatment[CallExpression[Identifier[print](LogicalExpression[LogicalExpression[BinaryExpression[MemberExpression[Identifier[params].Identifier[len]] != Literal[1]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[-h]]] or BinaryExpression[IndexExpression[Identifier[params][Literal[0]]] == Literal[--help]]])]]
 ]"
 `;
 
@@ -1819,6 +1659,194 @@ exports[`parse default scripts random.src unsafe 1`] = `
 	]]
 	61: CallStatment[CallExpression[Identifier[print](CallExpression[MemberExpression[Identifier[Random].Identifier[get]](Literal[100], Literal[500])])]]
 	62: CallStatment[CallExpression[Identifier[print](CallExpression[MemberExpression[Identifier[Random].Identifier[seq]](Literal[100], Literal[500], Literal[test], Literal[10])])]]
+]"
+`;
+
+exports[`parse default scripts shorthand.src 1`] = `
+"Chunk[
+	1: IfStatement[
+		1: IfShortcutClause[Literal[true]
+			1: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		]
+	]
+	2: IfStatement[
+		2: IfShortcutClause[Literal[false]
+			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		]
+		2: ElseShortcutClause[
+			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		}]
+	]
+	3: CallStatment[CallExpression[Identifier[print](Literal[was])]]
+	4: IfStatement[
+		4: IfClause[Literal[false]
+			5: CallStatment[CallExpression[Identifier[print](Literal[false])]]
+		]
+		6: ElseClause[
+			7: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		}]
+	]
+	9: IfStatement[
+		9: IfClause[Literal[false]
+			10: CallStatment[CallExpression[Identifier[print](Literal[false])]]
+		]
+		11: ElseClause[
+			12: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+			13: IfStatement[
+				13: IfShortcutClause[Literal[false]
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				]
+				13: ElseShortcutClause[
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				}]
+			]
+		}]
+	]
+	16: For[Identifier[i] in ListConstructor[]
+		16: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
+	]
+	17: For[Identifier[b] in ListConstructor[]
+		18: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
+	]
+	20: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
+		20: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
+	]
+	21: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
+		22: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
+	]
+	24: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
+		24: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
+	]]
+	25: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
+		26: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
+	]]
+	29: Function[Identifier[m] =>
+		29: ReturnStatement[Literal[was]]
+	]
+	32: Function[Identifier[b] =>
+		33: IfStatement[
+			33: IfShortcutClause[Identifier[a]
+				33: ReturnStatement[Literal[foo]]
+			]
+		]
+	]
+	36: IfStatement[
+		36: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
+	]
+	39: IfStatement[
+		39: IfClause[Literal[true]
+			40: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
+		]
+		41: ElseClause[]
+	]
+	44: For[Identifier[c] in Identifier[clist]
+		44: Comment[x]
+		45: CallStatment[CallExpression[Identifier[print](Literal[moo])]]
+	]
+	48: WhileStatement[Literal[true]
+		48: Comment[x]
+		49: CallStatment[CallExpression[Identifier[print](Literal[moo])]]
+	]
+	52: IfStatement[
+		52: IfClause[Literal[true]
+			52: Comment[x]
+			53: CallStatment[CallExpression[Identifier[print](Literal[moo])]]
+		]
+	]
+]"
+`;
+
+exports[`parse default scripts shorthand.src unsafe 1`] = `
+"Chunk[
+	1: IfStatement[
+		1: IfShortcutClause[Literal[true]
+			1: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		]
+	]
+	2: IfStatement[
+		2: IfShortcutClause[Literal[false]
+			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		]
+		2: ElseShortcutClause[
+			2: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		}]
+	]
+	3: CallStatment[CallExpression[Identifier[print](Literal[was])]]
+	4: IfStatement[
+		4: IfClause[Literal[false]
+			5: CallStatment[CallExpression[Identifier[print](Literal[false])]]
+		]
+		6: ElseClause[
+			7: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+		}]
+	]
+	9: IfStatement[
+		9: IfClause[Literal[false]
+			10: CallStatment[CallExpression[Identifier[print](Literal[false])]]
+		]
+		11: ElseClause[
+			12: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+			13: IfStatement[
+				13: IfShortcutClause[Literal[false]
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				]
+				13: ElseShortcutClause[
+					13: CallStatment[CallExpression[Identifier[print](Literal[true])]]
+				}]
+			]
+		}]
+	]
+	16: For[Identifier[i] in ListConstructor[]
+		16: CallStatment[CallExpression[Identifier[print](Identifier[i])]]
+	]
+	17: For[Identifier[b] in ListConstructor[]
+		18: CallStatment[CallExpression[Identifier[print](Identifier[b])]]
+	]
+	20: WhileStatement[BinaryExpression[Identifier[i] < Identifier[b]]
+		20: AssignmentStatement[Identifier[i] = BinaryExpression[Identifier[i] + Literal[1]]]
+	]
+	21: WhileStatement[BinaryExpression[Identifier[b] < Identifier[i]]
+		22: AssignmentStatement[Identifier[b] = BinaryExpression[Identifier[b] + Literal[1]]]
+	]
+	24: AssignmentStatement[Identifier[myFunction] = Function[Identifier[v] =>
+		24: CallStatment[CallExpression[Identifier[print](Identifier[v])]]
+	]]
+	25: AssignmentStatement[Identifier[otherFunction] = Function[Identifier[n] =>
+		26: CallStatment[CallExpression[Identifier[print](Identifier[n])]]
+	]]
+	29: Function[Identifier[m] =>
+		29: ReturnStatement[Literal[was]]
+	]
+	32: Function[Identifier[b] =>
+		33: IfStatement[
+			33: IfShortcutClause[Identifier[a]
+				33: ReturnStatement[Literal[foo]]
+			]
+		]
+	]
+	36: IfStatement[
+		36: IfClause[NegationExpression[not UnaryExpression[@ Identifier[ref]]]]
+	]
+	39: IfStatement[
+		39: IfClause[Literal[true]
+			40: AssignmentStatement[Identifier[elseSomething] = Literal[false]]
+		]
+		41: ElseClause[]
+	]
+	44: For[Identifier[c] in Identifier[clist]
+		44: Comment[x]
+		45: CallStatment[CallExpression[Identifier[print](Literal[moo])]]
+	]
+	48: WhileStatement[Literal[true]
+		48: Comment[x]
+		49: CallStatment[CallExpression[Identifier[print](Literal[moo])]]
+	]
+	52: IfStatement[
+		52: IfClause[Literal[true]
+			52: Comment[x]
+			53: CallStatment[CallExpression[Identifier[print](Literal[moo])]]
+		]
+	]
 ]"
 `;
 

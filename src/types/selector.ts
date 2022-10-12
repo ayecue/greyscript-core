@@ -21,6 +21,26 @@ export class Selector {
   }
 }
 
+export class SelectorOfType extends Selector {
+  constructor({ type }: Omit<SelectorOptions, 'value'>) {
+    super({ type, value: undefined });
+  }
+
+  is(token: Token) {
+    return this.type === token.type;
+  }
+}
+
+export class SelectorOfValue extends Selector {
+  constructor({ value }: Omit<SelectorOptions, 'type'>) {
+    super({ type: null, value });
+  }
+
+  is(token: Token) {
+    return this.value === token.value;
+  }
+}
+
 export const Selectors: {
   EndOfLine: Selector;
   EndOfFile: Selector;
@@ -59,6 +79,7 @@ export const Selectors: {
   Plus: Selector;
   New: Selector;
   Not: Selector;
+  Comment: Selector;
 } = {
   EndOfLine: new Selector({
     type: TokenType.EOL,
@@ -207,5 +228,8 @@ export const Selectors: {
   Not: new Selector({
     type: TokenType.Keyword,
     value: Keyword.Not
+  }),
+  Comment: new SelectorOfType({
+    type: TokenType.Comment
   })
 };
