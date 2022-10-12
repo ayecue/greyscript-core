@@ -3,7 +3,6 @@ import { Token, TokenType } from './lexer/token';
 import {
   ASTAssignmentStatement,
   ASTBase,
-  ASTBaseBlock,
   ASTBaseBlockWithScope,
   ASTCallExpression,
   ASTChunk,
