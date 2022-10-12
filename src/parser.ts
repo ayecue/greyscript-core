@@ -3,6 +3,7 @@ import { Token, TokenType } from './lexer/token';
 import {
   ASTAssignmentStatement,
   ASTBase,
+  ASTBaseBlock,
   ASTBaseBlockWithScope,
   ASTCallExpression,
   ASTChunk,
@@ -46,6 +47,7 @@ export default class Parser {
   previousToken: Token | null;
   currentScope: ASTBaseBlockWithScope;
   outerScopes: ASTBaseBlockWithScope[];
+  currentBlock: ASTBase[];
 
   // helper
   nativeImports: ASTImportCodeExpression[];
@@ -117,9 +119,14 @@ export default class Parser {
     return me.token !== null && type === me.token.type;
   }
 
+  isEndOfLine() {
+    const me = this;
+    return me.isOneOf(Selectors.EndOfLine, Selectors.Comment);
+  }
+
   is(selector: Selector): boolean {
     const me = this;
-    return me.token !== null && selector.value === me.token.value && selector.type === me.token.type;
+    return selector.is(me.token);
   }
 
   isOneOf(...selectors: Selector[]): boolean {
@@ -127,7 +134,7 @@ export default class Parser {
     if (me.token == null) return false;
     for (let index = selectors.length - 1; index >= 0; index--) {
       const selector = selectors[index];
-      if (selector.value === me.token.value && selector.type === me.token.type) return true;
+      if (selector.is(me.token)) return true;
     }
     return false;
   }
@@ -152,6 +159,23 @@ export default class Parser {
     }
 
     return false;
+  }
+
+  consumeEOL() {
+    const me = this;
+
+    if (me.consume(Selectors.Comment)) {
+      const comment = me.astProvider.comment({
+        value: me.previousToken.value,
+        start: me.previousToken.getStart(),
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+
+      me.currentBlock.push(comment);
+    }
+
+    return me.consume(Selectors.EndOfLine);
   }
 
   fetch(): Token {
@@ -187,7 +211,7 @@ export default class Parser {
 
   skipNewlines() {
     const me = this;
-    while (me.consume(Selectors.EndOfLine));
+    while (me.consumeEOL());
   }
 
   pushScope(scope: ASTBaseBlockWithScope) {
@@ -278,7 +302,7 @@ export default class Parser {
       return me.parseRightExpr(nextBase);
     } else if (me.is(Selectors.MemberSeperator)) {
       me.next();
-      me.consume(Selectors.EndOfLine);
+      me.consumeEOL();
       const identifier = me.parseIdentifier();
       const nextBase = me.astProvider.memberExpression({
         base,
@@ -688,7 +712,7 @@ export default class Parser {
     const start = me.token.getStart();
     const expressions = me.parseCallExpressionArgs(false);
 
-    if (!me.consumeMany(Selectors.EndOfLine, Selectors.EndOfFile)) {
+    if (!me.consumeEOL() && !me.consume(Selectors.EndOfFile)) {
       return null;
     }
 
@@ -851,7 +875,7 @@ export default class Parser {
 
     let body;
 
-    if (TokenType.EOL === me.token.type) {
+    if (me.isEndOfLine()) {
       body = me.parseBlock([Keyword.EndWhile]);
 
       if (!me.consume(Selectors.EndWhile)) {
@@ -897,7 +921,7 @@ export default class Parser {
       })
     );
 
-    me.consume(Selectors.EndOfLine);
+    me.consumeEOL();
 
     while (me.consume(Selectors.ElseIf)) {
       statementStart = me.token.getStart();
@@ -923,7 +947,7 @@ export default class Parser {
         })
       );
 
-      me.consume(Selectors.EndOfLine);
+      me.consumeEOL();
     }
 
     if (me.consume(Selectors.Else)) {
@@ -939,7 +963,7 @@ export default class Parser {
         })
       );
 
-      me.consume(Selectors.EndOfLine);
+      me.consumeEOL();
     }
 
     ifStatement.end = me.token.getEnd();
@@ -971,8 +995,9 @@ export default class Parser {
       return me.raise(`If requires 'then' keyword at line ${me.token.line}.`, me.token);
     }
 
-    if (TokenType.EOL !== me.token.type)
+    if (!me.isEndOfLine()) {
       return me.parseIfShortcutStatement(condition, start);
+    }
 
     body = me.parseBlock([Keyword.Else, Keyword.EndIf]);
     clauses.push(
@@ -1065,10 +1090,9 @@ export default class Parser {
 
       return assignmentStatement;
     } else if (
-      me.token.type === TokenType.EOL ||
-      me.token.type === TokenType.EOF ||
-      me.token.type === TokenType.Keyword ||
-      me.token.type === TokenType.Comment
+      me.isEndOfLine() ||
+      me.isType(TokenType.EOF) ||
+      me.isType(TokenType.Keyword)
     ) {
       return me.astProvider.callStatement({
         expression: base,
@@ -1109,7 +1133,7 @@ export default class Parser {
 
     let body;
 
-    if (TokenType.EOL === me.token.type) {
+    if (me.isEndOfLine()) {
       body = me.parseBlock([Keyword.EndFor]);
 
       if (!me.consume(Selectors.EndFor)) {
@@ -1184,7 +1208,7 @@ export default class Parser {
 
     let body;
 
-    if (me.isType(TokenType.EOL)) {
+    if (me.isEndOfLine()) {
       body = me.parseBlock([Keyword.EndFunction]);
 
       if (!me.consume(Selectors.EndFunction)) {
@@ -1263,12 +1287,15 @@ export default class Parser {
 
   parseBlockShortcut(): ASTBase[] {
     const me = this;
-    const block = [];
+    const block: ASTBase[] = [];
+    const previousBlock = me.currentBlock;
     let statement;
     let value = me.token.value;
 
+    me.currentBlock = block;
+
     while (
-      me.token.type !== TokenType.EOL &&
+      !me.isEndOfLine() &&
       !me.validator.isBreakingBlockShortcutKeyword(value)
     ) {
       statement = me.parseStatement();
@@ -1279,22 +1306,29 @@ export default class Parser {
       value = me.token.value;
     }
 
+    me.currentBlock = previousBlock;
+
     return block;
   }
 
   parseBlock(endBlocks?: string[]): ASTBase[] {
     const me = this;
     const block: ASTBase[] = [];
+    const previousBlock = me.currentBlock;
     let statement;
+
+    me.currentBlock = block;
 
     while (!me.isBlockEnd(me.token, endBlocks)) {
       statement = me.parseStatement();
-      me.consume(Selectors.EndOfLine);
+      me.consumeEOL();
       if (statement) {
         me.addLine(statement);
         block.push(statement);
       }
     }
+
+    me.currentBlock = previousBlock;
 
     return block;
   }

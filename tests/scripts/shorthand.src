@@ -40,3 +40,15 @@ if true then
 	elseSomething = false
 else
 end if
+
+for c in clist //x
+	print("moo")
+end for
+
+while true //x
+	print("moo")
+end while
+
+if true then //x
+	print("moo")
+end if
