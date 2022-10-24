@@ -660,6 +660,22 @@ exports[`parse default scripts eol.src unsafe 1`] = `
 ]"
 `;
 
+exports[`parse default scripts function.src 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[a] = FunctionDeclaration[]]
+	4: AssignmentStatement[Identifier[b] = FunctionDeclaration[Identifier[a], AssignmentStatement[Identifier[b] = Literal[test]], Identifier[c]]]
+	7: AssignmentStatement[Identifier[c] = FunctionDeclaration[]]
+]"
+`;
+
+exports[`parse default scripts function.src unsafe 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[a] = FunctionDeclaration[]]
+	4: AssignmentStatement[Identifier[b] = FunctionDeclaration[Identifier[a], AssignmentStatement[Identifier[b] = Literal[test]], Identifier[c]]]
+	7: AssignmentStatement[Identifier[c] = FunctionDeclaration[]]
+]"
+`;
+
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts invalid code 2`] = `
