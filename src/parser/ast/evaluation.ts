@@ -16,6 +16,7 @@ export class ASTEvaluationExpression extends ASTBase {
     operator: Operator
   ): ASTType.BinaryExpression | ASTType.LogicalExpression {
     switch (operator) {
+      case Operator.Isa:
       case Operator.And:
       case Operator.Or: {
         return ASTType.LogicalExpression;

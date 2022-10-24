@@ -10,6 +10,7 @@ a & b
 a ^ b
 a and b
 a or b
+a isa b
 
 
 test.len / 2

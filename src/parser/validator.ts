@@ -63,6 +63,7 @@ export default class Validator {
       Operator.Equal,
       Operator.Or,
       Operator.And,
+      Operator.Isa,
       Operator.BitwiseAnd,
       Operator.BitwiseOr,
       Operator.Xor,
