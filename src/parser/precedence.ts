@@ -9,7 +9,7 @@ export const PrecedenceMap: { [key: string]: number } = {
   [Operator.Minus]: 9,
   [Operator.And]: 2,
   [Operator.Or]: 1,
-  [Operator.Isa]: 2,
+  [Operator.Isa]: 20,
   [Operator.LessThan]: 3,
   [Operator.GreaterThan]: 3,
   [Operator.LeftShift]: 7,

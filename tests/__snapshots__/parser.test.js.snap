@@ -521,9 +521,10 @@ exports[`parse default scripts binary-expressions.src 1`] = `
 	11: CallStatment[LogicalExpression[Identifier[a] and Identifier[b]]]
 	12: CallStatment[LogicalExpression[Identifier[a] or Identifier[b]]]
 	13: CallStatment[IsaExpression[Identifier[a] isa Identifier[b]]]
-	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
-	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
-	18: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
+	14: CallStatment[LogicalExpression[IsaExpression[Identifier[a] isa Identifier[b]] and IsaExpression[Identifier[a] isa Identifier[b]]]]
+	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
+	18: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
+	19: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
 ]"
 `;
 
@@ -542,9 +543,10 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 	11: CallStatment[LogicalExpression[Identifier[a] and Identifier[b]]]
 	12: CallStatment[LogicalExpression[Identifier[a] or Identifier[b]]]
 	13: CallStatment[IsaExpression[Identifier[a] isa Identifier[b]]]
-	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
-	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
-	18: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
+	14: CallStatment[LogicalExpression[IsaExpression[Identifier[a] isa Identifier[b]] and IsaExpression[Identifier[a] isa Identifier[b]]]]
+	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
+	18: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
+	19: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
 ]"
 `;
 
