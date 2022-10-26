@@ -25,6 +25,7 @@ export default class Validator {
       'locals',
       'outer',
       'self',
+      'super',
       'params',
       'string',
       'list',
