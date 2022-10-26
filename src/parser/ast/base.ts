@@ -39,6 +39,7 @@ export enum ASTType {
   IndexExpression = 'IndexExpression',
   BinaryExpression = 'BinaryExpression',
   LogicalExpression = 'LogicalExpression',
+  IsaExpression = 'IsaExpression',
   SliceExpression = 'SliceExpression',
   ImportCodeExpression = 'ImportCodeExpression',
   InvalidCodeExpression = 'InvalidCodeExpression',

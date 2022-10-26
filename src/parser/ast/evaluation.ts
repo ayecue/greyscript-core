@@ -14,9 +14,10 @@ export class ASTEvaluationExpression extends ASTBase {
 
   static getExpressionType(
     operator: Operator
-  ): ASTType.BinaryExpression | ASTType.LogicalExpression {
+  ): ASTType.BinaryExpression | ASTType.LogicalExpression | ASTType.IsaExpression {
     switch (operator) {
       case Operator.Isa:
+        return ASTType.IsaExpression;
       case Operator.And:
       case Operator.Or: {
         return ASTType.LogicalExpression;
