@@ -12,7 +12,8 @@ export default class Validator {
           Keyword.End,
           Keyword.For,
           Keyword.Not,
-          Keyword.New
+          Keyword.New,
+          Keyword.Isa
         ];
       case 4:
         return [Keyword.Else, Keyword.Then];

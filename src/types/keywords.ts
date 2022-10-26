@@ -3,6 +3,7 @@ export enum Keyword {
   In = 'in',
   Or = 'or',
   And = 'and',
+  Isa = 'isa',
   For = 'for',
   Not = 'not',
   New = 'new',

@@ -1164,44 +1164,42 @@ export default class Parser {
 
     me.pushScope(functionStatement);
 
-    if (!me.consume(Selectors.LParenthesis)) {
-      return me.raise(`Missing left parenthesis in function declaration at line ${me.token.line}`, me.token);
-    }
-
-    if (!me.consume(Selectors.RParenthesis)) {
-      while (true) {
-        if (TokenType.Identifier === me.token.type) {
-          let parameter: ASTBase = me.parseIdentifier();
-          const parameterStart = parameter.start;
-
-          if (me.consume(Selectors.Assign)) {
-            const value = me.parseExpr();
-
-            if (!value) {
-              return me.raise(`Default in function declaration requires value at line ${me.token.line}`, me.token);
+    if (me.consume(Selectors.LParenthesis)) {
+      if (!me.consume(Selectors.RParenthesis)) {
+        while (true) {
+          if (TokenType.Identifier === me.token.type) {
+            let parameter: ASTBase = me.parseIdentifier();
+            const parameterStart = parameter.start;
+  
+            if (me.consume(Selectors.Assign)) {
+              const value = me.parseExpr();
+  
+              if (!value) {
+                return me.raise(`Default in function declaration requires value at line ${me.token.line}`, me.token);
+              }
+  
+              parameter = me.astProvider.assignmentStatement({
+                variable: parameter,
+                init: value,
+                start: parameterStart,
+                end: me.previousToken.getEnd(),
+                scope: me.currentScope
+              });
+  
+              me.currentScope.assignments.push(parameter);
             }
-
-            parameter = me.astProvider.assignmentStatement({
-              variable: parameter,
-              init: value,
-              start: parameterStart,
-              end: me.previousToken.getEnd(),
-              scope: me.currentScope
-            });
-
-            me.currentScope.assignments.push(parameter);
+  
+            parameters.push(parameter);
+            if (me.consume(Selectors.ArgumentSeperator)) continue;
+          } else {
+            return me.raise(`Unexpected parameter in function declaration at line ${me.token.line}.`, me.token);
           }
-
-          parameters.push(parameter);
-          if (me.consume(Selectors.ArgumentSeperator)) continue;
-        } else {
-          return me.raise(`Unexpected parameter in function declaration at line ${me.token.line}.`, me.token);
+  
+          if (!me.consume(Selectors.RParenthesis)) {
+            return me.raise(`Missing right parenthesis in function declaration at line ${me.token.line}`, me.token);
+          }
+          break;
         }
-
-        if (!me.consume(Selectors.RParenthesis)) {
-          return me.raise(`Missing right parenthesis in function declaration at line ${me.token.line}`, me.token);
-        }
-        break;
       }
     }
 

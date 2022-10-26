@@ -13,6 +13,7 @@ export enum Operator {
   Or = 'or',
   And = 'and',
   Not = 'not',
+  Isa = 'isa',
   AddShorthand = '+=',
   SubtractShorthand = '-=',
   MultiplyShorthand = '*=',

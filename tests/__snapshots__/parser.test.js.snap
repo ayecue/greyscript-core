@@ -520,9 +520,10 @@ exports[`parse default scripts binary-expressions.src 1`] = `
 	10: CallStatment[BinaryExpression[Identifier[a] ^ Identifier[b]]]
 	11: CallStatment[LogicalExpression[Identifier[a] and Identifier[b]]]
 	12: CallStatment[LogicalExpression[Identifier[a] or Identifier[b]]]
-	15: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
-	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
-	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
+	13: CallStatment[LogicalExpression[Identifier[a] isa Identifier[b]]]
+	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
+	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
+	18: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
 ]"
 `;
 
@@ -540,9 +541,10 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 	10: CallStatment[BinaryExpression[Identifier[a] ^ Identifier[b]]]
 	11: CallStatment[LogicalExpression[Identifier[a] and Identifier[b]]]
 	12: CallStatment[LogicalExpression[Identifier[a] or Identifier[b]]]
-	15: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
-	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
-	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
+	13: CallStatment[LogicalExpression[Identifier[a] isa Identifier[b]]]
+	16: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] / Literal[2]]]
+	17: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] + Literal[2]]]
+	18: CallStatment[BinaryExpression[MemberExpression[Identifier[test].Identifier[len]] - Literal[2]]]
 ]"
 `;
 
@@ -655,6 +657,22 @@ exports[`parse default scripts eol.src unsafe 1`] = `
 	11: For[Identifier[foo] in ListConstructor[]
 		12: CallStatment[CallExpression[Identifier[print](Literal[foo])]]
 	]
+]"
+`;
+
+exports[`parse default scripts function.src 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[a] = FunctionDeclaration[]]
+	4: AssignmentStatement[Identifier[b] = FunctionDeclaration[Identifier[a], AssignmentStatement[Identifier[b] = Literal[test]], Identifier[c]]]
+	7: AssignmentStatement[Identifier[c] = FunctionDeclaration[]]
+]"
+`;
+
+exports[`parse default scripts function.src unsafe 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[a] = FunctionDeclaration[]]
+	4: AssignmentStatement[Identifier[b] = FunctionDeclaration[Identifier[a], AssignmentStatement[Identifier[b] = Literal[test]], Identifier[c]]]
+	7: AssignmentStatement[Identifier[c] = FunctionDeclaration[]]
 ]"
 `;
 
