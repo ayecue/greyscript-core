@@ -1078,6 +1078,37 @@ Keyword[8:87 - 8:99: value = 'end function', isAfterSpace = false]"
 
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
+exports[`parse default scripts list.src 1`] = `
+"Identifier[1:0 - 1:4: value = 'test', isAfterSpace = false]
+Punctuator[1:5 - 1:6: value = '=', isAfterSpace = true]
+Punctuator[1:7 - 1:8: value = '[', isAfterSpace = true]
+StringLiteral[1:8 - 1:13: value = 'foo', isAfterSpace = false]
+Punctuator[1:13 - 1:14: value = ']', isAfterSpace = false]
+EOL[1:14 - 1:14: value = ';', isAfterSpace = false]
+Identifier[2:15 - 2:20: value = 'test2', isAfterSpace = false]
+Punctuator[2:21 - 2:22: value = '=', isAfterSpace = true]
+Punctuator[2:23 - 2:24: value = '[', isAfterSpace = true]
+EOL[2:24 - 2:24: value = ';', isAfterSpace = false]
+NumericLiteral[3:29 - 3:32: value = '123', isAfterSpace = true]
+Punctuator[3:32 - 3:33: value = ',', isAfterSpace = false]
+EOL[3:33 - 3:33: value = ';', isAfterSpace = false]
+NumericLiteral[4:38 - 4:41: value = '345', isAfterSpace = true]
+EOL[4:41 - 4:41: value = ';', isAfterSpace = false]
+Punctuator[5:42 - 5:43: value = ']', isAfterSpace = false]
+EOL[5:43 - 5:43: value = ';', isAfterSpace = false]
+Identifier[6:44 - 6:49: value = 'test3', isAfterSpace = false]
+Punctuator[6:50 - 6:51: value = '=', isAfterSpace = true]
+Punctuator[6:52 - 6:53: value = '[', isAfterSpace = true]
+EOL[6:53 - 6:53: value = ';', isAfterSpace = false]
+StringLiteral[7:58 - 7:63: value = 'foo', isAfterSpace = true]
+Punctuator[7:63 - 7:64: value = ',', isAfterSpace = false]
+EOL[7:64 - 7:64: value = ';', isAfterSpace = false]
+StringLiteral[8:69 - 8:74: value = 'moo', isAfterSpace = true]
+Punctuator[8:74 - 8:75: value = ',', isAfterSpace = false]
+EOL[8:75 - 8:75: value = ';', isAfterSpace = false]
+Punctuator[9:76 - 9:77: value = ']', isAfterSpace = false]"
+`;
+
 exports[`parse default scripts map.src 1`] = `
 "Identifier[1:0 - 1:4: value = 'test', isAfterSpace = false]
 Punctuator[1:5 - 1:6: value = '=', isAfterSpace = true]
