@@ -442,8 +442,9 @@ export default class Parser {
       return me.raise(`Map requires opening bracket at line ${me.token.line}.`, me.token);
     }
 
+    me.skipNewlines();
+
     while (!me.is(Selectors.CRBracket)) {
-      me.skipNewlines();
       lastToken = me.token;
       const key = me.parseExpr();
 
@@ -478,6 +479,7 @@ export default class Parser {
       );
 
       if (!me.consume(Selectors.MapSeperator)) break;
+      me.skipNewlines();
     }
 
     if (!me.consume(Selectors.CRBracket)) {

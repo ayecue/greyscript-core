@@ -1139,7 +1139,23 @@ NumericLiteral[14:140 - 14:143: value = '123', isAfterSpace = true]
 SliceOperator[14:143 - 14:144: value = ':', isAfterSpace = false]
 StringLiteral[14:145 - 14:150: value = 'bar', isAfterSpace = true]
 EOL[14:150 - 14:150: value = ';', isAfterSpace = false]
-Punctuator[15:151 - 15:152: value = '}', isAfterSpace = false]"
+Punctuator[15:151 - 15:152: value = '}', isAfterSpace = false]
+EOL[15:152 - 15:152: value = ';', isAfterSpace = false]
+Identifier[16:153 - 16:158: value = 'test5', isAfterSpace = false]
+Punctuator[16:159 - 16:160: value = '=', isAfterSpace = true]
+Punctuator[16:161 - 16:162: value = '{', isAfterSpace = true]
+EOL[16:162 - 16:162: value = ';', isAfterSpace = false]
+NumericLiteral[17:167 - 17:170: value = '125', isAfterSpace = true]
+SliceOperator[17:170 - 17:171: value = ':', isAfterSpace = false]
+StringLiteral[17:172 - 17:177: value = 'bar', isAfterSpace = true]
+Punctuator[17:177 - 17:178: value = ',', isAfterSpace = false]
+EOL[17:178 - 17:178: value = ';', isAfterSpace = false]
+NumericLiteral[18:183 - 18:185: value = '34', isAfterSpace = true]
+SliceOperator[18:185 - 18:186: value = ':', isAfterSpace = false]
+StringLiteral[18:187 - 18:192: value = 'foo', isAfterSpace = true]
+Punctuator[18:192 - 18:193: value = ',', isAfterSpace = false]
+EOL[18:193 - 18:193: value = ';', isAfterSpace = false]
+Punctuator[19:194 - 19:195: value = '}', isAfterSpace = false]"
 `;
 
 exports[`parse default scripts member-with-nl.src 1`] = `
