@@ -690,6 +690,38 @@ Array [
 ]
 `;
 
+exports[`parse default scripts list.src 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[test] = ListConstructor[
+		1: ListValue[Literal[foo]]
+	]]
+	2: AssignmentStatement[Identifier[test2] = ListConstructor[
+		3: ListValue[Literal[123]]
+		4: ListValue[Literal[345]]
+	]]
+	6: AssignmentStatement[Identifier[test3] = ListConstructor[
+		7: ListValue[Literal[foo]]
+		8: ListValue[Literal[moo]]
+	]]
+]"
+`;
+
+exports[`parse default scripts list.src unsafe 1`] = `
+"Chunk[
+	1: AssignmentStatement[Identifier[test] = ListConstructor[
+		1: ListValue[Literal[foo]]
+	]]
+	2: AssignmentStatement[Identifier[test2] = ListConstructor[
+		3: ListValue[Literal[123]]
+		4: ListValue[Literal[345]]
+	]]
+	6: AssignmentStatement[Identifier[test3] = ListConstructor[
+		7: ListValue[Literal[foo]]
+		8: ListValue[Literal[moo]]
+	]]
+]"
+`;
+
 exports[`parse default scripts map.src 1`] = `
 "Chunk[
 	1: AssignmentStatement[Identifier[test] = MapConstructor[
@@ -712,6 +744,10 @@ exports[`parse default scripts map.src 1`] = `
 	]]
 	13: AssignmentStatement[Identifier[test5] = MapConstructor[
 		14: MapKeyString[Literal[123]: Literal[bar]]
+	]]
+	16: AssignmentStatement[Identifier[test5] = MapConstructor[
+		17: MapKeyString[Literal[125]: Literal[bar]]
+		18: MapKeyString[Literal[34]: Literal[foo]]
 	]]
 ]"
 `;
@@ -738,6 +774,10 @@ exports[`parse default scripts map.src unsafe 1`] = `
 	]]
 	13: AssignmentStatement[Identifier[test5] = MapConstructor[
 		14: MapKeyString[Literal[123]: Literal[bar]]
+	]]
+	16: AssignmentStatement[Identifier[test5] = MapConstructor[
+		17: MapKeyString[Literal[125]: Literal[bar]]
+		18: MapKeyString[Literal[34]: Literal[foo]]
 	]]
 ]"
 `;
