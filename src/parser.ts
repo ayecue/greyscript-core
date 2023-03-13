@@ -931,6 +931,8 @@ export default class Parser {
       statementStart = me.token.getStart();
       condition = me.parseExpr();
 
+      me.addLine(condition);
+
       if (!condition) {
         return me.raise(`Else if requires a condition at line ${me.token.line}.`, me.token);
       }
@@ -1017,6 +1019,8 @@ export default class Parser {
     while (me.consume(Selectors.ElseIf)) {
       statementStart = me.token.getStart();
       condition = me.parseExpr();
+
+      me.addLine(condition);
 
       if (!me.consume(Selectors.Then)) {
         return me.raise(`Else if requires 'then' keyword at line ${me.token.line}.`, me.token);
