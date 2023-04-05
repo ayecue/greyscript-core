@@ -51,6 +51,7 @@ export default class Validator {
 
   getExpressionOperators(): Operator[] {
     return [
+      Operator.Power,
       Operator.Plus,
       Operator.Asterik,
       Operator.Minus,
@@ -67,7 +68,6 @@ export default class Validator {
       Operator.Isa,
       Operator.BitwiseAnd,
       Operator.BitwiseOr,
-      Operator.Xor,
       Operator.LeftShift,
       Operator.RightShift,
       Operator.UnsignedRightShift

@@ -1,7 +1,7 @@
 import { Operator } from '../types/operators';
 
 export const PrecedenceMap: { [key: string]: number } = {
-  [Operator.Xor]: 12,
+  [Operator.Power]: 12,
   [Operator.Asterik]: 10,
   [Operator.PercentSign]: 10,
   [Operator.Slash]: 10,
