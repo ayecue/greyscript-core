@@ -17,6 +17,7 @@ export class Selector {
   }
 
   is(token: Token) {
+    if (token == null) return false;
     return this.type === token.type && this.value === token.value;
   }
 }
@@ -27,6 +28,7 @@ export class SelectorOfType extends Selector {
   }
 
   is(token: Token) {
+    if (token == null) return false;
     return this.type === token.type;
   }
 }
@@ -37,6 +39,7 @@ export class SelectorOfValue extends Selector {
   }
 
   is(token: Token) {
+    if (token == null) return false;
     return this.value === token.value;
   }
 }

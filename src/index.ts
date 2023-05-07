@@ -3,7 +3,6 @@ export * from './lexer/token';
 export { default as LexerValidator } from './lexer/validator';
 export { default as Parser, ParserOptions } from './parser';
 export * from './parser/ast';
-export { default as getPrecedence, PrecedenceMap } from './parser/precedence';
 export { default as ParserValidator } from './parser/validator';
 export * from './types/operators';
 export * from './types/keywords';

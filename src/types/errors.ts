@@ -13,7 +13,7 @@ export class ParserException extends Error {
   token: Token;
 
   constructor(message: string, token: Token) {
-    super(`${message} at line ${token.line}`);
+    super(`${message} at line ${token.line}:${token.lineRange[0]}`);
     this.token = token;
   }
 }

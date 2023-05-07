@@ -13,6 +13,6 @@ export class ASTReturnStatement extends ASTBase {
   }
 
   toString(): string {
-    return `ReturnStatement[${this.argument.toString()}]`;
+    return `ReturnStatement[${this.start}-${this.end}][${this.argument}]`;
   }
 }

@@ -29,15 +29,15 @@ export class ASTChunk extends ASTBaseBlockWithScope {
 
   toString(): string {
     if (this.body.length === 0) {
-      return `Chunk[]`;
+      return `Chunk[${this.start}-${this.end}][]`;
     }
 
-    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.body.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `Chunk[\n${body}\n]`;
+    return `Chunk[${this.start}-${this.end}][\n${body}\n]`;
   }
 }

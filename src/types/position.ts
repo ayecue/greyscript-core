@@ -6,4 +6,8 @@ export default class Position {
     this.line = line;
     this.character = character;
   }
+
+  toString(): string {
+    return `${this.line}:${this.character}`;
+  }
 }

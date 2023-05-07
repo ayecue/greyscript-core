@@ -13,7 +13,7 @@ export class ASTListValue extends ASTBase {
   }
 
   toString(): string {
-    return `ListValue[${this.value.toString()}]`;
+    return `ListValue[${this.start}-${this.end}][${this.value}]`;
   }
 }
 
@@ -31,15 +31,15 @@ export class ASTListConstructorExpression extends ASTBase {
 
   toString(): string {
     if (this.fields.length === 0) {
-      return `ListConstructor[]`;
+      return `ListConstructor[${this.start}-${this.end}][]`;
     }
 
-    const body = this.fields.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.fields.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `ListConstructor[\n${body}\n]`;
+    return `ListConstructor[${this.start}-${this.end}][\n${body}\n]`;
   }
 }

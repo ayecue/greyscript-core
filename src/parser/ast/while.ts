@@ -14,15 +14,15 @@ export class ASTWhileStatement extends ASTBaseBlock {
 
   toString(): string {
     if (this.body.length === 0) {
-      return `WhileStatement[${this.condition.toString()}]`;
+      return `WhileStatement[${this.start}-${this.end}][${this.condition}]`;
     }
 
-    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.body.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `WhileStatement[${this.condition.toString()}\n${body}\n]`;
+    return `WhileStatement[${this.start}-${this.end}][${this.condition}\n${body}\n]`;
   }
 }

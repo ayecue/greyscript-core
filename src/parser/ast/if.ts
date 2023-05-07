@@ -25,16 +25,16 @@ export class ASTIfStatement extends ASTBase {
 
   toString(): string {
     if (this.clauses.length === 0) {
-      return `IfStatement[]`;
+      return `IfStatement[${this.start}-${this.end}][]`;
     }
 
-    const clauses = this.clauses.map((item) => `${item.start.line}: ${item.toString()}`)
+    const clauses = this.clauses.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `IfStatement[\n${clauses}\n]`;
+    return `IfStatement[${this.start}-${this.end}][\n${clauses}\n]`;
   }
 }
 
@@ -59,16 +59,16 @@ export class ASTIfClause extends ASTClause {
 
   toString(): string {
     if (this.body.length === 0) {
-      return `${this.type}[${this.condition.toString()}]`;
+      return `${this.type}[${this.start}-${this.end}][${this.condition}]`;
     }
 
-    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.body.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `${this.type}[${this.condition.toString()}\n${body}\n]`;
+    return `${this.type}[${this.start}-${this.end}][${this.condition}\n${body}\n]`;
   }
 }
 
@@ -85,12 +85,12 @@ export class ASTElseClause extends ASTClause {
       return `${this.type}[]`;
     }
 
-    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.body.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `${this.type}[\n${body}\n}]`;
+    return `${this.type}[${this.start}-${this.end}][\n${body}\n}]`;
   }
 }

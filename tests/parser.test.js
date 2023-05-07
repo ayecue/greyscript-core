@@ -13,11 +13,15 @@ describe('parse', function() {
 				test(path.basename(filepath), () => {
 					const content = fs.readFileSync(filepath, 'utf-8');
 					const parser = new Parser(content, {
-						tabWidth: 4
+						tabWidth: 2
 					});
-					const payload = parser.parseChunk().toString();
+					const payload = parser.parseChunk();
 
-					expect(payload).toMatchSnapshot();
+					expect(payload.toString()).toMatchSnapshot();
+					expect(payload.namespaces.length).toMatchSnapshot();
+					expect(payload.literals.length).toMatchSnapshot();
+					expect(payload.nativeImports.length).toMatchSnapshot();
+					expect(payload.assignments.length).toMatchSnapshot();
 				});
 			});
 
@@ -29,7 +33,7 @@ describe('parse', function() {
 				test(path.basename(filepath) + ' unsafe', () => {
 					const content = fs.readFileSync(filepath, 'utf-8');
 					const parser = new Parser(content, {
-						tabWidth: 4,
+						tabWidth: 2,
 						unsafe: true
 					});
 					const payload = parser.parseChunk().toString();

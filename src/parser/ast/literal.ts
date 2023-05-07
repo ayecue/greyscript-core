@@ -39,6 +39,6 @@ export class ASTLiteral extends ASTBase {
   }
 
   toString(): string {
-    return `Literal[${this.value}]`;
+    return `Literal[${this.start}-${this.end}][${this.value}]`;
   }
 }

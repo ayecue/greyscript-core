@@ -13,7 +13,7 @@ export class ASTIdentifier extends ASTBase {
   }
 
   toString(): string {
-    return `Identifier[${this.name}]`;
+    return `Identifier[${this.start}-${this.end}][${this.name}]`;
   }
 }
 
@@ -36,7 +36,7 @@ export class ASTMemberExpression extends ASTBase {
   }
 
   toString(): string {
-    return `MemberExpression[${this.base.toString()}.${this.identifier.toString()}]`;
+    return `MemberExpression[${this.start}-${this.end}][${this.base}.${this.identifier}]`;
   }
 }
 
@@ -56,6 +56,6 @@ export class ASTIndexExpression extends ASTBase {
   }
 
   toString(): string {
-    return `IndexExpression[${this.base.toString()}[${this.index.toString()}]]`;
+    return `IndexExpression[${this.start}-${this.end}][${this.base}[${this.index}]]`;
   }
 }

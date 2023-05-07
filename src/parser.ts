@@ -2,6 +2,7 @@ import Lexer from './lexer';
 import { Token, TokenType } from './lexer/token';
 import {
   ASTBase,
+  ASTBaseBlock,
   ASTBaseBlockWithScope,
   ASTChunk,
   ASTClause,
@@ -38,6 +39,7 @@ export default class Parser {
   prefetchedTokens: Token[];
   token: Token | null;
   previousToken: Token | null;
+  currentBlock: ASTBase[];
   currentScope: ASTBaseBlockWithScope;
   outerScopes: ASTBaseBlockWithScope[];
 
@@ -72,6 +74,7 @@ export default class Parser {
     me.nativeImports = [];
     me.lines = new Map<number, ASTBase[]>();
     me.scopes = [];
+    me.currentBlock = null;
     me.currentScope = null;
     me.outerScopes = [];
     me.literals = [];
@@ -141,7 +144,7 @@ export default class Parser {
     const token = me.token;
 
     if (me.token.type !== type) {
-      me.raise(`got ${me.token.type} where ${type} is required`, me.token);
+      me.raise(`got ${me.token} where ${type} is required`, me.token);
       return null;
     }
 
@@ -154,7 +157,7 @@ export default class Parser {
     const token = me.token;
 
     if (!selector.is(me.token)) {
-      me.raise(`got ${me.token.value} where ${selector.value} is required`, me.token);
+      me.raise(`got ${me.token} where "${selector.value}" is required`, me.token);
       return null;
     }
 
@@ -175,7 +178,7 @@ export default class Parser {
       }
     }
 
-    me.raise(`got ${me.token.type} where any of ${selectors.map((selector: Selector) => selector.value).join(', ')} is required`, me.token);
+    me.raise(`got ${me.token} where any of ${selectors.map((selector: Selector) => `"${selector.value}"`).join(', ')} is required`, me.token);
 
     return null;
   }
@@ -213,7 +216,20 @@ export default class Parser {
 
   skipNewlines() {
     const me = this;
-    while (me.consumeMany(Selectors.EndOfLine, Selectors.Comment));
+    while (me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      if (me.is(Selectors.Comment)) {
+        const comment = me.astProvider.comment({
+          value: me.token.value,
+          start: me.token.getStart(),
+          end: me.token.getEnd(),
+          scope: me.currentScope
+        });
+  
+        me.currentBlock.push(comment);
+      }
+
+      me.next();
+    };
   }
 
   pushScope(scope: ASTBaseBlockWithScope) {
@@ -235,6 +251,9 @@ export default class Parser {
   parseBlock(...endSelector: Selector[]): ASTBase[] {
     const me = this;
     const block: ASTBase[] = [];
+    const previousBlock = me.currentBlock;
+
+    me.currentBlock = block;
 
     while (!me.isOneOf(Selectors.EndOfFile, ...endSelector)) {
       me.skipNewlines();
@@ -249,6 +268,8 @@ export default class Parser {
       }
     }
 
+    me.currentBlock = previousBlock;
+
     return block;
   }
 
@@ -261,9 +282,11 @@ export default class Parser {
     const chunk = me.astProvider.chunk({ start, end: null });
     const block: ASTBase[] = [];
 
+    me.currentBlock = block;
+
     me.pushScope(chunk);
 
-    while (me.token.type !== TokenType.EOF) {
+    while (!me.is(Selectors.EndOfFile)) {
       me.skipNewlines();
 
       if (me.is(Selectors.EndOfFile)) break;
@@ -284,6 +307,8 @@ export default class Parser {
     chunk.scopes = me.scopes;
     chunk.lines = me.lines;
     chunk.end = me.token.getEnd();
+
+    me.currentBlock = null;
 
     return chunk;
   }
@@ -328,7 +353,7 @@ export default class Parser {
           me.next();
           return me.parseNativeImportCodeStatement();
         default:
-          return me.raise(`unexpected keyword ${me.token.value} at start of line`, me.token);
+          return me.raise(`unexpected keyword ${me.token} at start of line`, me.token);
       }
     } else {
       return me.parseAssignment();
@@ -391,7 +416,7 @@ export default class Parser {
 
     const expressions = [];
 
-    while (true) {
+    while (!me.is(Selectors.EndOfFile)) {
       const arg = me.parseExpr();
       expressions.push(arg);
 
@@ -1097,9 +1122,9 @@ export default class Parser {
 
   parseCallExpr(): ASTBase {
     const me = this;
-    let base = me.parseMap(); 
+    let base = me.parseMap();
 
-    while (true) {
+    while (!me.is(Selectors.EndOfFile)) {
       const start = me.token.getStart();
 
       if (me.is(Selectors.MemberSeperator)) {
@@ -1223,7 +1248,7 @@ export default class Parser {
       if (me.is(Selectors.RParenthesis)) {
         me.next();
       } else {
-        while (true) {
+        while (!me.is(Selectors.EndOfFile)) {
           me.skipNewlines();
           const arg = me.parseExpr();
           expressions.push(arg);
@@ -1251,7 +1276,7 @@ export default class Parser {
     if (me.is(Selectors.CRBracket)) {
       me.next();
     } else {
-      while (true) {
+      while (!me.is(Selectors.EndOfFile)) {
         me.skipNewlines();
 
         if (me.is(Selectors.CRBracket)) {
@@ -1305,7 +1330,7 @@ export default class Parser {
     if (me.is(Selectors.SRBracket)) {
       me.next();
     } else {
-      while (true) {
+      while (!me.is(Selectors.EndOfFile)) {
         me.skipNewlines();
 
         if (me.is(Selectors.SRBracket)) {
@@ -1371,7 +1396,7 @@ export default class Parser {
       return me.parseIdentifier();
     }
 
-    me.raise(`got ${me.token.type} where number, string, or identifier is required`, me.token);
+    return me.raise(`got ${me.token} where number, string, or identifier is required`, me.token);
   }
 
   parseLiteral(): ASTLiteral {
@@ -1438,6 +1463,13 @@ export default class Parser {
     const start = me.token.getStart();
     const end = me.token.getEnd();
     const identifier = me.requireType(TokenType.Identifier);
+
+    if (identifier === null) {
+      return me.astProvider.invalidCodeExpression({
+        start,
+        end
+      });
+    }
 
     if (!me.validator.isNative(identifier.value)) {
       me.currentScope.namespaces.add(identifier.value);
@@ -1507,10 +1539,9 @@ export default class Parser {
       const end = me.token.getEnd();
       const base = me.astProvider.invalidCodeExpression({ start, end });
 
-      while (
-        !me.isType(TokenType.EOL) &&
-        !me.isType(TokenType.EOF)
-      ) {
+      me.next();
+
+      while (!me.isOneOf(Selectors.EndOfFile, Selectors.EndOfLine)) {
         me.next();
       }
 

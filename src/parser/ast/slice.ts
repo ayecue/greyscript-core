@@ -16,6 +16,6 @@ export class ASTSliceExpression extends ASTBase {
   }
 
   toString(): string {
-    return `SliceExpression[${this.left.toString()}:${this.right.toString()}]`;
+    return `SliceExpression[${this.start}-${this.end}][${this.left}:${this.right}]`;
   }
 }
