@@ -32,7 +32,8 @@ export class ASTChunk extends ASTBaseBlockWithScope {
       return `Chunk[${this.start}-${this.end}][]`;
     }
 
-    const body = this.body.map((item) => `${item}`)
+    const body = this.body
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)

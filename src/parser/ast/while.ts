@@ -17,7 +17,8 @@ export class ASTWhileStatement extends ASTBaseBlock {
       return `WhileStatement[${this.start}-${this.end}][${this.condition}]`;
     }
 
-    const body = this.body.map((item) => `${item}`)
+    const body = this.body
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)

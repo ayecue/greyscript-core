@@ -25,7 +25,8 @@ export class ASTFunctionStatement extends ASTBaseBlockWithScope {
       return `${this.type}[${this.start}-${this.end}][${args}]`;
     }
 
-    const body = this.body.map((item) => `${item}`)
+    const body = this.body
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)

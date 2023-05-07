@@ -83,13 +83,16 @@ export class ASTBaseBlock extends ASTBase {
   }
 
   toString(): string {
-    const body = this.body.map((item) => `${item}`)
+    const body = this.body
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `${this.type}[${this.start}-${this.end}][${body.length > 0 ? `\n${body}\n` : ''}]`;
+    return `${this.type}[${this.start}-${this.end}][${
+      body.length > 0 ? `\n${body}\n` : ''
+    }]`;
   }
 }
 

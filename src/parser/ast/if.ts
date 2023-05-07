@@ -28,7 +28,8 @@ export class ASTIfStatement extends ASTBase {
       return `IfStatement[${this.start}-${this.end}][]`;
     }
 
-    const clauses = this.clauses.map((item) => `${item}`)
+    const clauses = this.clauses
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
@@ -62,7 +63,8 @@ export class ASTIfClause extends ASTClause {
       return `${this.type}[${this.start}-${this.end}][${this.condition}]`;
     }
 
-    const body = this.body.map((item) => `${item}`)
+    const body = this.body
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
@@ -85,7 +87,8 @@ export class ASTElseClause extends ASTClause {
       return `${this.type}[]`;
     }
 
-    const body = this.body.map((item) => `${item}`)
+    const body = this.body
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)

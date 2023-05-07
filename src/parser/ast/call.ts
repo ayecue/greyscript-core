@@ -33,6 +33,8 @@ export class ASTCallExpression extends ASTBase {
   }
 
   toString(): string {
-    return `CallExpression[${this.start}-${this.end}][${this.base}(${this.arguments.map((item) => item.toString()).join(', ')})]`;
+    return `CallExpression[${this.start}-${this.end}][${
+      this.base
+    }(${this.arguments.map((item) => item.toString()).join(', ')})]`;
   }
 }

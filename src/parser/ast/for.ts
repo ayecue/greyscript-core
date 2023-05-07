@@ -20,7 +20,8 @@ export class ASTForGenericStatement extends ASTBaseBlock {
       return `${this.type}[${this.start}-${this.end}][${this.variable} in ${this.iterator}]`;
     }
 
-    const body = this.body.map((item) => `${item}`)
+    const body = this.body
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)

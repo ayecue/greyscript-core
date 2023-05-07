@@ -37,7 +37,8 @@ export class ASTMapConstructorExpression extends ASTBase {
       return `MapConstructor[${this.start}-${this.end}][]`;
     }
 
-    const body = this.fields.map((item) => `${item}`)
+    const body = this.fields
+      .map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
