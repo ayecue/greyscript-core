@@ -755,23 +755,16 @@ exports[`parse default scripts invalid code 1`] = `Array []`;
 exports[`parse default scripts invalid code 2`] = `
 Array [
   [Error: got Identifier[4:5 - 4:10: value = 'print'] where any of ",", ")" is required at line 4:5],
-  [Error: got Identifier[8:5 - 8:8: value = 'wad'] where any of ",", ")" is required at line 8:5],
-  [Error: got Identifier[8:14 - 8:18: value = 'dwad'] where any of ",", ")" is required at line 8:14],
-  [Error: got Keyword[10:12 - 10:15: value = 'not'] where any of ",", ")" is required at line 10:12],
+  [Error: got Punctuator[4:11 - 4:12: value = ')'] where number, string, or identifier is required at line 4:11],
+  [Error: got Identifier[8:19 - 8:21: value = 'wa'] where any of ",", ";" is required at line 8:19],
+  [Error: got EOL[8:21 - 8:21: value = ';'] where number, string, or identifier is required at line 8:21],
   [Error: got Punctuator[11:9 - 11:10: value = '+'] where number, string, or identifier is required at line 11:9],
-  [Error: got Keyword[13:5 - 13:8: value = 'not'] where any of ",", ")" is required at line 13:5],
-  [Error: got Keyword[15:5 - 15:7: value = 'if'] where number, string, or identifier is required at line 15:5],
-  [Error: got Keyword[17:5 - 17:13: value = 'function'] where any of ",", ")" is required at line 17:5],
-  [Error: got Keyword[18:5 - 18:13: value = 'end func'] where number, string, or identifier is required at line 18:5],
-  [Error: got Identifier[20:5 - 20:10: value = 'print'] where any of ",", ")" is required at line 20:5],
-  [Error: got Keyword[22:5 - 22:7: value = 'if'] where number, string, or identifier is required at line 22:5],
-  [Error: got Identifier[23:6 - 23:11: value = 'print'] where any of ",", ")" is required at line 23:6],
-  [Error: got Keyword[24:5 - 24:9: value = 'else'] where number, string, or identifier is required at line 24:5],
-  [Error: got Identifier[25:6 - 25:11: value = 'print'] where any of ",", ")" is required at line 25:6],
-  [Error: got Keyword[26:5 - 26:11: value = 'end if'] where number, string, or identifier is required at line 26:5],
-  [Error: got Keyword[28:5 - 28:7: value = 'if'] where any of ",", ")" is required at line 28:5],
-  [Error: got EOF[29:4 - 29:4: value = '<eof>'] where number, string, or identifier is required at line 29:4],
-  [Error: got EOF[29:4 - 29:4: value = '<eof>'] where any of ",", ")" is required at line 29:4],
+  [Error: got Keyword[13:9 - 13:12: value = 'not'] where number, string, or identifier is required at line 13:9],
+  [Error: unexpected keyword Keyword[17:5 - 17:13: value = 'function'] at start of line at line 17:5],
+  [Error: got Punctuator[17:15 - 17:16: value = ')'] where number, string, or identifier is required at line 17:15],
+  [Error: got Keyword[18:5 - 18:13: value = 'end func'] where Identifier is required at line 18:5],
+  [Error: got Identifier[28:16 - 28:21: value = 'print'] where "then" is required at line 28:16],
+  [Error: got Punctuator[28:29 - 28:30: value = ')'] where number, string, or identifier is required at line 28:29],
 ]
 `;
 
