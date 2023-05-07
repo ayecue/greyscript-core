@@ -887,7 +887,13 @@ Identifier[19:1 - 19:5: value = 'test']
 Punctuator[19:5 - 19:6: value = '.']
 Identifier[19:6 - 19:9: value = 'len']
 Punctuator[19:10 - 19:11: value = '-']
-NumericLiteral[19:12 - 19:13: value = '2']"
+NumericLiteral[19:12 - 19:13: value = '2']
+EOL[19:13 - 19:13: value = ';']
+EOL[20:1 - 20:1: value = ';']
+Identifier[21:1 - 21:4: value = 'bar']
+Punctuator[21:5 - 21:6: value = '=']
+Punctuator[21:7 - 21:8: value = '.']
+NumericLiteral[21:8 - 21:9: value = '1']"
 `;
 
 exports[`parse default scripts call-with-spaces.src 1`] = `

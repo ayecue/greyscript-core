@@ -17,3 +17,5 @@ a isa b and a isa b
 test.len / 2
 test.len + 2
 test.len - 2
+
+bar = .1
