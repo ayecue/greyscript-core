@@ -13,6 +13,7 @@ import {
   ASTLiteral,
   ASTProvider,
   ASTReturnStatement,
+  ASTUnaryExpression,
   ASTWhileStatement
 } from './parser/ast';
 import Validator from './parser/validator';
@@ -749,7 +750,13 @@ export default class Parser {
         if (me.consume(Selectors.Assign)) {
           const defaultValue = me.parseExpr();
 
-          if (!(defaultValue instanceof ASTLiteral)) {
+          if (
+            !(defaultValue instanceof ASTLiteral) &&
+            !(
+              defaultValue instanceof ASTUnaryExpression &&
+              defaultValue.operator === Operator.Minus
+            )
+          ) {
             parameters.push(
               me.raise(
                 `parameter default value must be a literal value`,
