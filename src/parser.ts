@@ -633,7 +633,7 @@ export default class Parser {
     const condition = me.parseExpr();
 
     if (!condition) {
-      return me.raise(`while requires a condition at line`, me.token);
+      return me.raise(`while requires a condition`, me.token, false);
     }
 
     if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
@@ -678,7 +678,11 @@ export default class Parser {
     const iterator = me.parseExpr();
 
     if (!iterator) {
-      return me.raise(`sequence expression expected for 'for' loop`, me.token);
+      return me.raise(
+        `sequence expression expected for 'for' loop`,
+        me.token,
+        false
+      );
     }
 
     if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
@@ -743,7 +747,7 @@ export default class Parser {
     if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
       me.requireToken(Selectors.LParenthesis);
 
-      while (!me.is(Selectors.RParenthesis)) {
+      while (!me.isOneOf(Selectors.RParenthesis, Selectors.EndOfFile)) {
         const parameter = me.parseIdentifier();
         const parameterStart = parameter.start;
 
@@ -760,7 +764,8 @@ export default class Parser {
             parameters.push(
               me.raise(
                 `parameter default value must be a literal value`,
-                me.token
+                me.token,
+                false
               )
             );
           } else {
@@ -1562,7 +1567,8 @@ export default class Parser {
     if (!me.consume(Selectors.LParenthesis)) {
       return me.raise(
         `Expected import call to have opening operator`,
-        me.token
+        me.token,
+        false
       );
     }
 
@@ -1575,7 +1581,8 @@ export default class Parser {
     } else {
       return me.raise(
         `Import code only allows a hardcoded import path`,
-        me.token
+        me.token,
+        false
       );
     }
 
@@ -1583,7 +1590,8 @@ export default class Parser {
       if (!me.isType(TokenType.StringLiteral)) {
         return me.raise(
           `Import code only allows a hardcoded import path`,
-          me.token
+          me.token,
+          false
         );
       }
 
@@ -1595,7 +1603,8 @@ export default class Parser {
     if (!me.consume(Selectors.RParenthesis)) {
       return me.raise(
         `Expected import call to have closing operator`,
-        me.token
+        me.token,
+        false
       );
     }
 
@@ -1612,7 +1621,7 @@ export default class Parser {
     return base;
   }
 
-  raise(message: string, token: Token): ASTBase {
+  raise(message: string, token: Token, skipNext: boolean = true): ASTBase {
     const me = this;
     const err = new ParserException(message, token);
 
@@ -1623,9 +1632,24 @@ export default class Parser {
       const end = me.token.getEnd();
       const base = me.astProvider.invalidCodeExpression({ start, end });
 
-      me.next();
+      if (skipNext) me.next();
 
-      while (!me.isOneOf(Selectors.EndOfFile, Selectors.EndOfLine)) {
+      while (
+        !me.isOneOf(
+          Selectors.EndOfFile,
+          Selectors.EndOfLine,
+          Selectors.MapKeyValueSeperator,
+          Selectors.MapSeperator,
+          Selectors.MemberSeperator,
+          Selectors.ListSeperator,
+          Selectors.ArgumentSeperator,
+          Selectors.RParenthesis,
+          Selectors.CRBracket,
+          Selectors.SRBracket,
+          Selectors.Else,
+          Selectors.ElseIf
+        )
+      ) {
         me.next();
       }
 
