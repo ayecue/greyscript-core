@@ -29,7 +29,7 @@ export enum Operator {
   EndOfLine = ';',
   EndOfFile = '<eof>',
   SliceSeperator = ':',
-  ListSeperator = ',',
+  Comma = ',',
   Escape = '"',
   SLBracket = '[',
   SRBracket = ']',
@@ -37,5 +37,6 @@ export enum Operator {
   CRBracket = '}',
   LParenthesis = '(',
   RParenthesis = ')',
-  Reference = '@'
+  Reference = '@',
+  New = 'new'
 }

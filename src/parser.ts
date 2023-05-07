@@ -1,10 +1,8 @@
 import Lexer from './lexer';
 import { Token, TokenType } from './lexer/token';
 import {
-  ASTAssignmentStatement,
   ASTBase,
   ASTBaseBlockWithScope,
-  ASTCallExpression,
   ASTChunk,
   ASTClause,
   ASTForGenericStatement,
@@ -12,16 +10,12 @@ import {
   ASTIdentifier,
   ASTIfStatement,
   ASTImportCodeExpression,
-  ASTIndexExpression,
-  ASTListConstructorExpression,
   ASTLiteral,
-  ASTMapConstructorExpression,
   ASTProvider,
   ASTReturnStatement,
   ASTWhileStatement
 } from './parser/ast';
 import ASTPosition from './types/position';
-import getPrecedence from './parser/precedence';
 import Validator from './parser/validator';
 import { Operator } from './types/operators';
 import {
@@ -46,7 +40,6 @@ export default class Parser {
   previousToken: Token | null;
   currentScope: ASTBaseBlockWithScope;
   outerScopes: ASTBaseBlockWithScope[];
-  currentBlock: ASTBase[];
 
   // helper
   nativeImports: ASTImportCodeExpression[];
@@ -101,26 +94,9 @@ export default class Parser {
     return me;
   }
 
-  isBlockEnd(token: Token, endBlocks?: string[]): boolean {
-    const type = token.type;
-    const value = token.value;
-    if (TokenType.EOF === type) return true;
-    if (endBlocks && type === TokenType.Keyword) {
-      for (let index = endBlocks.length - 1; index >= 0; index--) {
-        if (value.startsWith(endBlocks[index])) return true;
-      }
-    }
-    return false;
-  }
-
   isType(type: TokenType): boolean {
     const me = this;
     return me.token !== null && type === me.token.type;
-  }
-
-  isEOL() {
-    const me = this;
-    return me.isOneOf(Selectors.EndOfLine, Selectors.Comment);
   }
 
   is(selector: Selector): boolean {
@@ -160,21 +136,48 @@ export default class Parser {
     return false;
   }
 
-  consumeEOL() {
+  requireType(type: TokenType): Token | null {
     const me = this;
+    const token = me.token;
 
-    if (me.consume(Selectors.Comment)) {
-      const comment = me.astProvider.comment({
-        value: me.previousToken.value,
-        start: me.previousToken.getStart(),
-        end: me.previousToken.getEnd(),
-        scope: me.currentScope
-      });
-
-      me.currentBlock.push(comment);
+    if (me.token.type !== type) {
+      me.raise(`got ${me.token.type} where ${type} is required`, me.token);
+      return null;
     }
 
-    return me.consume(Selectors.EndOfLine);
+    me.next();
+    return token;
+  }
+
+  requireToken(selector: Selector): Token | null {
+    const me = this;
+    const token = me.token;
+
+    if (!selector.is(me.token)) {
+      me.raise(`got ${me.token.value} where ${selector.value} is required`, me.token);
+      return null;
+    }
+
+    me.next();
+    return token;
+  }
+
+  requireTokenOfAny(...selectors: Selector[]): Token | null {
+    const me = this;
+    const token = me.token;
+
+    for (let index = 0; index < selectors.length; index++) {
+      const selector = selectors[index];
+
+      if (selector.is(token)) {
+        me.next();
+        return token;
+      }
+    }
+
+    me.raise(`got ${me.token.type} where any of ${selectors.map((selector: Selector) => selector.value).join(', ')} is required`, me.token);
+
+    return null;
   }
 
   fetch(): Token {
@@ -210,7 +213,7 @@ export default class Parser {
 
   skipNewlines() {
     const me = this;
-    while (me.consumeEOL());
+    while (me.consumeMany(Selectors.EndOfLine, Selectors.Comment));
   }
 
   pushScope(scope: ASTBaseBlockWithScope) {
@@ -229,146 +232,1146 @@ export default class Parser {
     me.currentScope = me.outerScopes.pop();
   }
 
-  parseExpr(): ASTBase {
+  parseBlock(...endSelector: Selector[]): ASTBase[] {
     const me = this;
+    const block: ASTBase[] = [];
 
-    if (me.is(Selectors.Function)) {
-      me.next();
-      return me.parseFunctionDeclaration();
+    while (!me.isOneOf(Selectors.EndOfFile, ...endSelector)) {
+      me.skipNewlines();
+
+      if (me.isOneOf(Selectors.EndOfFile, ...endSelector)) break;
+
+      const statement = me.parseStatement();
+
+      if (statement) {
+        me.addLine(statement);
+        block.push(statement);
+      }
     }
 
-    return me.parseSubExpr();
+    return block;
   }
 
-  parsePrimary(): ASTBase | null {
-    const me = this;
-    const { type } = me.token;
-
-    if (me.validator.isLiteral(<TokenType>type)) {
-      return me.parseLiteral();
-    } else if (me.isType(TokenType.Identifier)) {
-      return me.parseIdentifier();
-    } else if (me.is(Selectors.LParenthesis)) {
-      return me.parseParenthesis();
-    } else if (me.is(Selectors.SLBracket)) {
-      return me.parseListConstructor();
-    } else if (me.is(Selectors.CLBracket)) {
-      return me.parseMapConstructor();
-    } else if (me.is(Selectors.NumberSeperator) && me.prefetch().type === TokenType.NumericLiteral) {
-      return me.parseFloatExpression(0);
-    }
-
-    return null;
-  }
-
-  parseUnary(): ASTBase | null {
+  parseChunk(): ASTChunk | ASTBase {
     const me = this;
 
-    if (me.is(Selectors.Not)) {
-      return me.parseUnaryExpression();
-    } else if (me.is(Selectors.New)) {
-      return me.parseUnaryExpression();
-    } else if (me.is(Selectors.Minus)) {
-      return me.parseUnaryExpression();
-    } else if (me.is(Selectors.Plus)) {
-      return me.parseUnaryExpression();
-    } else if (me.is(Selectors.Reference)) {
-      return me.parseUnaryExpression();
+    me.next();
+
+    const start = me.token.getStart();
+    const chunk = me.astProvider.chunk({ start, end: null });
+    const block: ASTBase[] = [];
+
+    me.pushScope(chunk);
+
+    while (me.token.type !== TokenType.EOF) {
+      me.skipNewlines();
+
+      if (me.is(Selectors.EndOfFile)) break;
+
+      const statement = me.parseStatement();
+
+      if (statement) {
+        me.addLine(statement);
+        block.push(statement);
+      }
     }
 
-    return null;
+    me.popScope();
+
+    chunk.body = block;
+    chunk.nativeImports = me.nativeImports;
+    chunk.literals = me.literals;
+    chunk.scopes = me.scopes;
+    chunk.lines = me.lines;
+    chunk.end = me.token.getEnd();
+
+    return chunk;
   }
 
-  parseSubExpr(minPrecedence?: number): ASTBase {
+  parseStatement() {
     const me = this;
-    const { value, type } = me.token;
-    let base: ASTBase | null = me.parseUnary() || me.parsePrimary();
 
-    if (base) {
-      base = me.parseRightExpr(base);
-      base = me.parseBinaryExpression(base, minPrecedence);
+    if (
+      TokenType.Keyword === me.token.type &&
+      Keyword.Not !== me.token.value
+    ) {
+      const value = me.token.value;
+
+      switch (value) {
+        case Keyword.Return:
+          me.next();
+          return me.parseReturnStatement();
+        case Keyword.If:
+          me.next();
+          return me.parseIfStatement();
+        case Keyword.While:
+          me.next();
+          return me.parseWhileStatement();
+        case Keyword.For:
+          me.next();
+          return me.parseForStatement();
+        case Keyword.Continue:
+          me.next();
+          return me.astProvider.continueStatement({
+            start: me.previousToken.getStart(),
+            end: me.previousToken.getEnd(),
+            scope: me.currentScope
+          });
+        case Keyword.Break:
+          me.next();
+          return me.astProvider.breakStatement({
+            start: me.previousToken.getStart(),
+            end: me.previousToken.getEnd(),
+            scope: me.currentScope
+          });
+        case Keyword.ImportCode:
+          me.next();
+          return me.parseNativeImportCodeStatement();
+        default:
+          return me.raise(`unexpected keyword ${me.token.value} at start of line`, me.token);
+      }
+    } else {
+      return me.parseAssignment();
     }
-
-    return base;
   }
 
-  parseRightExpr(base: ASTBase): ASTBase {
+  parseAssignment(): ASTBase {
     const me = this;
     const start = me.token.getStart();
+    const expr = me.parseExpr();
 
-    if (me.is(Selectors.SLBracket)) {
-      const nextBase = me.parseIndexExpression(base);
-      return me.parseRightExpr(nextBase);
-    } else if (me.is(Selectors.MemberSeperator)) {
+    if (me.isOneOf(Selectors.EndOfFile, Selectors.EndOfLine, Selectors.Comment, Selectors.Else)) {
+      return expr;
+    }
+
+    if (me.is(Selectors.Assign)) {
       me.next();
-      me.consumeEOL();
-      const identifier = me.parseIdentifier();
-      const nextBase = me.astProvider.memberExpression({
-        base,
-        indexer: Operator.Member,
-        identifier,
+
+      const init = me.parseExpr();
+
+      const assignmentStatement = me.astProvider.assignmentStatement({
+        variable: expr,
+        init,
         start,
         end: me.previousToken.getEnd(),
         scope: me.currentScope
       });
-      return me.parseRightExpr(nextBase);
-    } else if (me.is(Selectors.LParenthesis)) {
-      const nextBase = me.parseCallExpression(base);
-      return me.parseRightExpr(nextBase);
+
+      me.currentScope.assignments.push(assignmentStatement);
+
+      return assignmentStatement;
+    } else if (me.isOneOf(Selectors.AddShorthand, Selectors.SubtractShorthand, Selectors.MultiplyShorthand, Selectors.DivideShorthand)) {
+      const op = me.token;
+
+      me.next();
+
+      const binaryExpressionStart = me.token.getStart();
+      const operator = <Operator>op.value.charAt(0);
+      const right = me.parseExpr();
+      const binaryExpression = me.astProvider.binaryExpression({
+        operator,
+        left: expr,
+        right,
+        start: binaryExpressionStart,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+      const assignmentStatement = me.astProvider.assignmentStatement({
+        variable: expr,
+        init: binaryExpression,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+
+      me.currentScope.assignments.push(assignmentStatement);
+
+      return assignmentStatement;
+    }
+
+    const expressions = [];
+
+    while (true) {
+      const arg = me.parseExpr();
+      expressions.push(arg);
+
+      if (me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) break;
+      if (me.is(Selectors.Else)) break;
+      if (me.is(Selectors.ArgumentSeperator)) {
+        me.next();
+        me.skipNewlines();
+        continue;
+      }
+
+      const requiredToken = me.requireTokenOfAny(Selectors.ArgumentSeperator, Selectors.EndOfLine);
+
+      if (Selectors.EndOfLine.is(requiredToken)) break;
+    }
+
+    if (expressions.length === 0) {
+      return me.astProvider.callStatement({
+        expression: expr,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return me.astProvider.callExpression({
+      base: expr,
+      arguments: expressions,
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseReturnStatement(): ASTReturnStatement {
+    const me = this;
+    const start = me.previousToken.getStart();
+    let expression = null;
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      expression = me.parseExpr();
+    }
+
+    return me.astProvider.returnStatement({
+      argument: expression,
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseIfStatement(): ASTBase {
+    const me = this;
+    const clauses: ASTClause[] = [];
+    const start = me.previousToken.getStart();
+    const ifStatement = me.astProvider.ifStatement({
+      clauses,
+      start,
+      end: null,
+      scope: me.currentScope
+    });
+    const ifStatementStart = start;
+    const ifCondition = me.parseExpr();
+
+    me.addLine(ifCondition);
+    me.requireToken(Selectors.Then);
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      return me.parseIfShortcutStatement(ifCondition, start);
+    }
+
+    me.skipNewlines();
+
+    const ifBody: ASTBase[] = me.parseBlock(Selectors.ElseIf, Selectors.Else, Selectors.EndIf);
+
+    clauses.push(
+      me.astProvider.ifClause({
+        condition: ifCondition,
+        body: ifBody,
+        start: ifStatementStart,
+        end: me.token.getEnd(),
+        scope: me.currentScope
+      })
+    );
+
+    while (me.consume(Selectors.ElseIf)) {
+      const elseIfStatementStart = me.token.getStart();
+      const elseIfCondition = me.parseExpr();
+
+      me.addLine(elseIfCondition);
+      me.requireToken(Selectors.Then);
+
+      const elseIfBody: ASTBase[] = me.parseBlock(Selectors.ElseIf, Selectors.Else, Selectors.EndIf);
+
+      clauses.push(
+        me.astProvider.elseifClause({
+          condition: elseIfCondition,
+          body: elseIfBody,
+          start: elseIfStatementStart,
+          end: me.token.getEnd(),
+          scope: me.currentScope
+        })
+      );
+    }
+
+    me.skipNewlines();
+
+    if (me.consume(Selectors.Else)) {
+      const elseStatementStart = me.token.getStart();
+      const elseBody: ASTBase[] = me.parseBlock(Selectors.EndIf);
+
+      clauses.push(
+        me.astProvider.elseClause({
+          body: elseBody,
+          start: elseStatementStart,
+          end: me.token.getEnd(),
+          scope: me.currentScope
+        })
+      );
+    }
+
+    me.skipNewlines();
+
+    me.requireToken(Selectors.EndIf);
+
+    ifStatement.end = me.previousToken.getEnd();
+
+    return ifStatement;
+  }
+
+  parseIfShortcutStatement(
+    condition: ASTBase,
+    start: ASTPosition
+  ): ASTIfStatement | ASTBase {
+    const me = this;
+    const clauses: ASTClause[] = [];
+    const ifStatement = me.astProvider.ifShortcutStatement({
+      clauses,
+      start,
+      end: null,
+      scope: me.currentScope
+    });
+    const statement = me.parseStatement();
+
+    me.addLine(statement);
+
+    clauses.push(
+      me.astProvider.ifShortcutClause({
+        condition,
+        body: [statement],
+        start,
+        end: me.token.getEnd(),
+        scope: me.currentScope
+      })
+    );
+
+    if (me.is(Selectors.Else)) {
+      me.next();
+
+      const elseStatementStart = me.token.getStart();
+      const elseStatement = me.parseStatement();
+
+      me.addLine(elseStatement);
+
+      clauses.push(
+        me.astProvider.elseShortcutClause({
+          body: [elseStatement],
+          start: elseStatementStart,
+          end: me.token.getEnd(),
+          scope: me.currentScope
+        })
+      );
+    }
+  
+    ifStatement.end = me.token.getEnd();
+
+    return ifStatement;
+  }
+
+  parseWhileStatement(): ASTWhileStatement | ASTBase {
+    const me = this;
+    const start = me.previousToken.getStart();
+    const condition = me.parseExpr();
+
+    if (!condition) {
+      return me.raise(`while requires a condition at line`, me.token);
+    }
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      return me.parseWhileShortcutStatement(condition, start);
+    }
+
+    const body: ASTBase[] = me.parseBlock(Selectors.EndWhile);
+
+    me.requireToken(Selectors.EndWhile);
+
+    return me.astProvider.whileStatement({
+      condition,
+      body,
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseWhileShortcutStatement(
+    condition: ASTBase,
+    start: ASTPosition
+  ): ASTBase {
+    const me = this;
+    const statement = me.parseStatement();
+
+    me.addLine(statement);
+
+    return me.astProvider.whileStatement({
+      condition,
+      body: [statement],
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseForStatement(): ASTForGenericStatement | ASTBase {
+    const me = this;
+    const start = me.previousToken.getStart();
+    const variable = me.parseIdentifier();
+
+    me.requireToken(Selectors.In);
+
+    const iterator = me.parseExpr();
+
+    if (!iterator) {
+      return me.raise(`sequence expression expected for 'for' loop`, me.token);
+    }
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      return me.parseForShortcutStatement(variable, iterator, start);
+    }
+
+    const body: ASTBase[] = me.parseBlock(Selectors.EndFor);
+
+    me.requireToken(Selectors.EndFor);
+
+    return me.astProvider.forGenericStatement({
+      variable,
+      iterator,
+      body,
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseForShortcutStatement(
+    variable: ASTBase,
+    iterator: ASTBase,
+    start: ASTPosition
+  ): ASTBase {
+    const me = this;
+    const statement = me.parseStatement();
+
+    me.addLine(statement);
+
+    return me.astProvider.forGenericStatement({
+      variable,
+      iterator,
+      body: [statement],
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseExpr(): ASTBase {
+    const me = this;
+    return me.parseFunctionDeclaration();
+  }
+
+  parseFunctionDeclaration(): ASTFunctionStatement | ASTBase {
+    const me = this;
+
+    if (!me.is(Selectors.Function)) return me.parseOr();
+
+    me.next();
+
+    const functionStart = me.previousToken.getStart();
+    const functionStatement = me.astProvider.functionStatement({
+      start: functionStart,
+      end: null,
+      scope: me.currentScope
+    });
+    const parameters = [];
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      me.requireToken(Selectors.LParenthesis);
+
+      while (!me.is(Selectors.RParenthesis)) {
+        const parameter = me.parseIdentifier();
+        const parameterStart = parameter.start;
+
+        if (me.consume(Selectors.Assign)) {
+          const defaultValue = me.parseExpr();
+
+          if (!(defaultValue instanceof ASTLiteral)) {
+            parameters.push(me.raise(`parameter default value must be a literal value`, me.token));
+          } else {
+            const assign = me.astProvider.assignmentStatement({
+              variable: parameter,
+              init: defaultValue,
+              start: parameterStart,
+              end: me.previousToken.getEnd(),
+              scope: me.currentScope
+            });
+
+            me.currentScope.assignments.push(assign);
+            parameters.push(assign);
+          }
+        } else {
+          parameters.push(parameter);
+        }
+
+        if (me.is(Selectors.RParenthesis)) break;
+        me.requireToken(Selectors.ArgumentSeperator);
+      }
+
+      me.requireToken(Selectors.RParenthesis);
+    }
+
+    me.pushScope(functionStatement);
+
+    let body: ASTBase[] = [];
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      const statement = me.parseStatement();
+      me.addLine(statement);
+      body.push(statement);
+    } else {
+      body = me.parseBlock(Selectors.EndFunction);
+      me.requireToken(Selectors.EndFunction);
+    }
+
+    me.popScope();
+
+    functionStatement.parameters = parameters;
+    functionStatement.body = body;
+    functionStatement.end = me.previousToken.getEnd();
+
+    return functionStatement;
+  }
+
+  parseOr(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseAnd();
+
+    if (me.is(Selectors.Or)) {
+      me.next();
+
+      const opB = me.parseOr();
+
+      const newExpression = me.astProvider.binaryExpression({
+        operator: Operator.Or,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+
+      return newExpression;
+    }
+
+    return val;
+  }
+
+  parseAnd(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseNot();
+
+    if (me.is(Selectors.And)) {
+      me.next();
+
+      const opB = me.parseOr();
+
+      const newExpression = me.astProvider.binaryExpression({
+        operator: Operator.And,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+
+      return newExpression;
+    }
+
+    return val;
+  }
+
+  parseNot(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+
+    if (me.is(Selectors.Not)) {
+      me.next();
+
+      me.skipNewlines();
+
+      const val = me.parseIsa();
+
+      return me.astProvider.unaryExpression({
+        operator: Operator.Not,
+        argument: val,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return me.parseIsa();
+  }
+
+  parseIsa(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseBitwiseOr();
+
+    if (me.is(Selectors.Isa)) {
+      me.next();
+
+      me.skipNewlines();
+
+      const opB = me.parseComparisons();
+
+      return me.astProvider.binaryExpression({
+        operator: Operator.Isa,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return val;
+  }
+
+  parseBitwiseOr(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseBitwiseAnd();
+
+    if (me.is(Selectors.BitwiseOr)) {
+      me.next();
+
+      const opB = me.parseBitwiseOr();
+
+      const newExpression = me.astProvider.binaryExpression({
+        operator: Operator.BitwiseOr,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+
+      return newExpression;
+    }
+
+    return val;
+  }
+
+  parseBitwiseAnd(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseComparisons();
+
+    if (me.is(Selectors.BitwiseAnd)) {
+      me.next();
+
+      const opB = me.parseBitwiseAnd();
+
+      const newExpression = me.astProvider.binaryExpression({
+        operator: Operator.BitwiseAnd,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+
+      return newExpression;
+    }
+
+    return val;
+  }
+
+  parseComparisons(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseAddSub();
+
+    if (me.isOneOf(
+      Selectors.Equal,
+      Selectors.NotEqual,
+      Selectors.Greater,
+      Selectors.GreaterEqual,
+      Selectors.Lesser,
+      Selectors.LessEqual
+    )) {
+      const token = me.token;
+
+      me.next();
+      me.skipNewlines();
+
+      const opB = me.parseComparisons();
+
+      return me.astProvider.binaryExpression({
+        operator: <Operator>token.value,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return val;
+  }
+
+  parseAddSub(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseBitwise();
+
+    if (me.isOneOf(Selectors.Plus, Selectors.Minus)) {
+      const token = me.token;
+
+      me.next();
+      me.skipNewlines();
+
+      const opB = me.parseAddSub();
+
+      return me.astProvider.binaryExpression({
+        operator: <Operator>token.value,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return val;
+  }
+
+  parseBitwise(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseMultDiv();
+
+    if (me.isOneOf(Selectors.LeftShift, Selectors.RightShift, Selectors.UnsignedRightShift)) {
+      const token = me.token;
+
+      me.next();
+      me.skipNewlines();
+
+      const opB = me.parseBitwise();
+
+      return me.astProvider.binaryExpression({
+        operator: <Operator>token.value,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return val;
+  }
+
+  parseMultDiv(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseUnaryMinus();
+
+    if (me.isOneOf(Selectors.Times, Selectors.Divide, Selectors.Mod)) {
+      const token = me.token;
+
+      me.next();
+      me.skipNewlines();
+
+      const opB = me.parseMultDiv();
+
+      return me.astProvider.binaryExpression({
+        operator: <Operator>token.value,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return val;
+  }
+
+  parseUnaryMinus(): ASTBase {
+    const me = this;
+
+    if (!me.is(Selectors.Minus)) {
+      return me.parseNew();
+    }
+
+    const start = me.token.getStart();
+    
+    me.next();
+    me.skipNewlines();
+
+    const val = me.parseNew();
+
+    return me.astProvider.unaryExpression({
+      operator: Operator.Minus,
+      argument: val,
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseNew(): ASTBase {
+    const me = this;
+
+    if (!me.is(Selectors.New)) {
+      return me.parseAddressOf();
+    }
+
+    const start = me.token.getStart();
+    
+    me.next();
+    me.skipNewlines();
+
+    const val = me.parseNew();
+
+    return me.astProvider.unaryExpression({
+      operator: Operator.New,
+      argument: val,
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parseAddressOf(): ASTBase {
+    const me = this;
+
+    if (!me.is(Selectors.Reference)) {
+      return me.parsePower();
+    }
+
+    const start = me.token.getStart();
+    
+    me.next();
+    me.skipNewlines();
+
+    const val = me.parsePower();
+
+    return me.astProvider.unaryExpression({
+      operator: Operator.Reference,
+      argument: val,
+      start,
+      end: me.previousToken.getEnd(),
+      scope: me.currentScope
+    });
+  }
+
+  parsePower(): ASTBase {
+    const me = this;
+    const start = me.token.getStart();
+    const val = me.parseCallExpr();
+
+    if (me.isOneOf(Selectors.Power)) {
+      me.next();
+      me.skipNewlines();
+
+      const opB = me.parseCallExpr();
+
+      return me.astProvider.binaryExpression({
+        operator: Operator.Power,
+        left: val,
+        right: opB,
+        start,
+        end: me.previousToken.getEnd(),
+        scope: me.currentScope
+      });
+    }
+
+    return val;
+  }
+
+  parseCallExpr(): ASTBase {
+    const me = this;
+    let base = me.parseMap(); 
+
+    while (true) {
+      const start = me.token.getStart();
+
+      if (me.is(Selectors.MemberSeperator)) {
+        me.next();
+        me.skipNewlines();
+
+        const identifier = me.parseIdentifier();
+
+        base = me.astProvider.memberExpression({
+          base,
+          indexer: Operator.Member,
+          identifier,
+          start,
+          end: me.previousToken.getEnd(),
+          scope: me.currentScope
+        });
+      } else if (me.is(Selectors.SLBracket)) {
+        me.next();
+        me.skipNewlines();
+
+        if (me.is(Selectors.SliceSeperator)) {
+          const left = me.astProvider.emptyExpression({
+            start: me.previousToken.getStart(),
+            end: me.previousToken.getEnd(),
+            scope: me.currentScope
+          });
+
+          me.next();
+          me.skipNewlines();
+
+          const right = me.is(Selectors.SRBracket)
+            ? me.astProvider.emptyExpression({
+              start: me.previousToken.getStart(),
+              end: me.previousToken.getEnd(),
+              scope: me.currentScope
+            })
+            : me.parseExpr();
+
+          const sliceExpression = me.astProvider.sliceExpression({
+            left,
+            right,
+            start,
+            end: me.token.getEnd(),
+            scope: me.currentScope
+          });
+
+          base = me.astProvider.indexExpression({
+            base,
+            index: sliceExpression,
+            start,
+            end: me.token.getEnd(),
+            scope: me.currentScope
+          });
+        } else {
+          const index = me.parseExpr();
+
+          if (me.is(Selectors.SliceSeperator)) {
+            me.next();
+            me.skipNewlines();
+
+            const right = me.is(Selectors.SRBracket)
+              ? me.astProvider.emptyExpression({
+                start: me.previousToken.getStart(),
+                end: me.previousToken.getEnd(),
+                scope: me.currentScope
+              })
+              : me.parseExpr();
+
+            const sliceExpression = me.astProvider.sliceExpression({
+              left: index,
+              right,
+              start,
+              end: me.token.getEnd(),
+              scope: me.currentScope
+            });
+
+            base = me.astProvider.indexExpression({
+              base,
+              index: sliceExpression,
+              start,
+              end: me.token.getEnd(),
+              scope: me.currentScope
+            });
+          } else {
+            base = me.astProvider.indexExpression({
+              base,
+              index,
+              start,
+              end: me.token.getEnd(),
+              scope: me.currentScope
+            });
+          }
+        }
+
+        me.requireToken(Selectors.SRBracket);
+      } else if (me.is(Selectors.LParenthesis)) {
+        const expressions = me.parseCallArgs();
+
+        base = me.astProvider.callExpression({
+          base,
+          arguments: expressions,
+          start,
+          end: me.previousToken.getEnd(),
+          scope: me.currentScope
+        });
+      } else {
+        break;
+      }
     }
 
     return base;
   }
 
-  parseUnaryExpression(): ASTBase {
+  parseCallArgs(): ASTBase[] {
     const me = this;
+    const expressions = [];
+
+    if (me.is(Selectors.LParenthesis)) {
+      me.next();
+
+      if (me.is(Selectors.RParenthesis)) {
+        me.next();
+      } else {
+        while (true) {
+          me.skipNewlines();
+          const arg = me.parseExpr();
+          expressions.push(arg);
+          me.skipNewlines();
+          if (Selectors.RParenthesis.is(me.requireTokenOfAny(Selectors.ArgumentSeperator, Selectors.RParenthesis))) break;
+        }
+      }
+    }
+
+    return expressions;
+  }
+
+  parseMap(): ASTBase {
+    const me = this;
+
+    if (!me.is(Selectors.CLBracket)) {
+      return me.parseList();
+    }
+
     const start = me.token.getStart();
-    const currentToken = me.token;
+    const fields = [];
 
     me.next();
 
-    let argument = me.parseUnary() || me.parsePrimary();
+    if (me.is(Selectors.CRBracket)) {
+      me.next();
+    } else {
+      while (true) {
+        me.skipNewlines();
 
-    if (argument) {
-      argument = me.parseRightExpr(argument);
+        if (me.is(Selectors.CRBracket)) {
+          me.next();
+          break;
+        }
+
+        const key = me.parseExpr();
+
+        me.requireToken(Selectors.MapKeyValueSeperator);
+        me.skipNewlines();
+
+        const value = me.parseExpr();
+
+        fields.push(
+          me.astProvider.mapKeyString({
+            key,
+            value,
+            start: key.start,
+            end: value.end,
+            scope: me.currentScope
+          })
+        );
+
+        me.skipNewlines();
+
+        if (Selectors.CRBracket.is(me.requireTokenOfAny(Selectors.MapSeperator, Selectors.CRBracket))) break;
+      }
     }
 
-    if (argument == null) {
-      return me.raise(`Unexpected argument for "${currentToken.value}" at line ${currentToken.line}.`, currentToken);
-    }
-
-    const expr = me.astProvider.unaryExpression({
-      operator: <Operator>currentToken.value,
-      argument,
+    return me.astProvider.mapConstructorExpression({
+      fields,
       start,
-      end: me.previousToken.getEnd(),
+      end: me.token.getStart(),
       scope: me.currentScope
     });
-
-    return expr;
   }
 
-  parseParenthesis(): ASTBase {
+  parseList(): ASTBase {
     const me = this;
+
+    if (!me.is(Selectors.SLBracket)) {
+      return me.parseQuantity();
+    }
+
     const start = me.token.getStart();
-    let base;
+    const fields = [];
 
-    if (!me.consume(Selectors.LParenthesis)) {
-      return me.raise(`Requires opening parenthesis at line ${me.token.line}.`, me.token);
+    me.next();
+
+    if (me.is(Selectors.SRBracket)) {
+      me.next();
+    } else {
+      while (true) {
+        me.skipNewlines();
+
+        if (me.is(Selectors.SRBracket)) {
+          me.next();
+          break;
+        }
+
+        const value = me.parseExpr();
+
+        fields.push(
+          me.astProvider.listValue({
+            value,
+            start: value.start,
+            end: value.end,
+            scope: me.currentScope
+          })
+        );
+
+        me.skipNewlines();
+
+        if (Selectors.SRBracket.is(me.requireTokenOfAny(Selectors.ListSeperator, Selectors.SRBracket))) break;
+      }
     }
 
-    base = me.parseExpr();
+    return me.astProvider.listConstructorExpression({
+      fields,
+      start,
+      end: me.token.getStart(),
+      scope: me.currentScope
+    });
+  }
 
-    if (!me.consume(Selectors.RParenthesis)) {
-      return me.raise(`Requires closing parenthesis at line ${me.token.line}.`, me.token);
+  parseQuantity(): ASTBase {
+    const me = this;
+
+    if (!me.is(Selectors.LParenthesis)) {
+      return me.parseAtom();
     }
+
+    const start = me.token.getStart();
+
+    me.next();
+    me.skipNewlines();
+
+    const val = me.parseExpr();
+
+    me.requireToken(Selectors.RParenthesis);
 
     return me.astProvider.parenthesisExpression({
-      expression: base,
+      expression: val,
       start,
       end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
+  }
+
+  parseAtom(): ASTBase {
+    const me = this;
+
+    if (me.validator.isLiteral(<TokenType>me.token.type)) {
+      return me.parseLiteral();
+    } else if (me.isType(TokenType.Identifier)) {
+      return me.parseIdentifier();
+    }
+
+    me.raise(`got ${me.token.type} where number, string, or identifier is required`, me.token);
   }
 
   parseLiteral(): ASTLiteral {
@@ -408,351 +1411,6 @@ export default class Parser {
     return base;
   }
 
-  parseIdentifier(): ASTIdentifier | ASTBase {
-    const me = this;
-    const start = me.token.getStart();
-    const end = me.token.getEnd();
-    const identifier = me.token.value;
-
-    if (!me.isType(TokenType.Identifier)) {
-      return me.raise(`Unexpected identifier "${me.token.value}" at line ${me.token.line}.`, me.token);
-    }
-
-    if (!me.validator.isNative(identifier)) {
-      me.currentScope.namespaces.add(identifier);
-    }
-
-    me.next();
-
-    return me.astProvider.identifier({
-      name: identifier,
-      start,
-      end,
-      scope: me.currentScope
-    });
-  }
-
-  parseMapConstructor(): ASTMapConstructorExpression | ASTBase {
-    const me = this;
-    const start = me.token.getStart();
-    const fields = [];
-    let lastToken = me.token;
-
-    if (!me.consume(Selectors.CLBracket)) {
-      return me.raise(`Map requires opening bracket at line ${me.token.line}.`, me.token);
-    }
-
-    me.skipNewlines();
-
-    while (!me.is(Selectors.CRBracket)) {
-      lastToken = me.token;
-      const key = me.parseExpr();
-
-      if (key == null) {
-        return me.raise(`Missing key value in map at line ${me.token.line}.`, me.token);
-      }
-
-      me.skipNewlines();
-
-      if (!me.consume(Selectors.MapKeyValueSeperator)) {
-        return me.raise(`Map constructor requires seperator at line ${me.token.line}.`, me.token);
-      }
-
-      me.skipNewlines();
-      lastToken = me.token;
-      const value = me.parseExpr();
-
-      if (value == null) {
-        me.raise(`Missing value in map at line ${me.token.line}.`, me.token);
-      }
-
-      me.skipNewlines();
-
-      fields.push(
-        me.astProvider.mapKeyString({
-          key,
-          value,
-          start: key.start,
-          end: value.end,
-          scope: me.currentScope
-        })
-      );
-
-      if (!me.consume(Selectors.MapSeperator)) break;
-      me.skipNewlines();
-    }
-
-    if (!me.consume(Selectors.CRBracket)) {
-      return me.raise(`Map requires closing bracket at line ${lastToken.line}.`, lastToken);
-    }
-
-    return me.astProvider.mapConstructorExpression({
-      fields,
-      start,
-      end: me.token.getStart(),
-      scope: me.currentScope
-    });
-  }
-
-  parseListConstructor(): ASTListConstructorExpression |ASTBase {
-    const me = this;
-    const start = me.token.getStart();
-    const fields = [];
-    let value;
-    let lastToken = me.token;
-
-    if (!me.consume(Selectors.SLBracket)) {
-      return me.raise(`List requires opening bracket at line ${me.token.line}.`, me.token);
-    }
-
-    me.skipNewlines();
-
-    while (!me.is(Selectors.SRBracket)) {
-      lastToken = me.token;
-      value = me.parseExpr();
-
-      if (value == null) {
-        return me.raise(`Expect value in list at line ${me.token.line}.`, me.token);
-      }
-
-      fields.push(
-        me.astProvider.listValue({
-          value,
-          start: value.start,
-          end: value.end,
-          scope: me.currentScope
-        })
-      );
-
-      me.skipNewlines();
-      
-      if (!me.consume(Selectors.ListSeperator)) break;
-      me.skipNewlines();
-    }
-
-    if (!me.consume(Selectors.SRBracket)) {
-      return me.raise(`List requires closing bracket at line ${lastToken.line}.`, lastToken);
-    }
-
-    return me.astProvider.listConstructorExpression({
-      fields,
-      start,
-      end: me.token.getStart(),
-      scope: me.currentScope
-    });
-  }
-
-  parseAssignmentShorthandOperator(base: ASTBase): ASTAssignmentStatement {
-    const me = this;
-    const assignmentStart = base.start;
-    const binaryExpressionStart = me.token.getStart();
-    const operator = <Operator>me.previousToken.value.charAt(0);
-    const value = me.parseSubExpr();
-    const end = me.token.getEnd();
-    const expression = me.astProvider.binaryExpression({
-      operator,
-      left: base,
-      right: value,
-      start: binaryExpressionStart,
-      end,
-      scope: me.currentScope
-    });
-    const assignmentStatement = me.astProvider.assignmentStatement({
-      variable: base,
-      init: expression,
-      start: assignmentStart,
-      end,
-      scope: me.currentScope
-    });
-
-    me.currentScope.assignments.push(assignmentStatement);
-
-    return assignmentStatement;
-  }
-
-  parseIndexExpression(base: ASTBase): ASTIndexExpression | ASTBase {
-    const me = this;
-    const start = me.token.getStart();
-
-    me.consume(Selectors.SLBracket);
-
-    //right side slice
-    if (me.consume(Selectors.SliceSeperator)) {
-      const left = me.astProvider.emptyExpression({
-        start: me.previousToken.getStart(),
-        end: me.previousToken.getEnd(),
-        scope: me.currentScope
-      });
-      let right = me.parseExpr();
-
-      if (!right) {
-        right = me.astProvider.emptyExpression({
-          start: me.previousToken.getStart(),
-          end: me.previousToken.getEnd(),
-          scope: me.currentScope
-        });
-      }
-
-      if (!me.consume(Selectors.SRBracket)) {
-        return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
-      }
-
-      const end = me.previousToken.getEnd();
-      const sliceExpression = me.astProvider.sliceExpression({
-        left,
-        right,
-        start,
-        end,
-        scope: me.currentScope
-      });
-
-      return me.astProvider.indexExpression({
-        base,
-        index: sliceExpression,
-        start,
-        end,
-        scope: me.currentScope
-      });
-    }
-
-    let expression = me.parseExpr();
-
-    //slice
-    if (me.consume(Selectors.SliceSeperator)) {
-      let right;
-
-      if (!expression) {
-        expression = me.astProvider.emptyExpression({
-          start: me.token.getStart(),
-          end: me.token.getEnd(),
-          scope: me.currentScope
-        });
-      }
-
-      if (!me.is(Selectors.SRBracket)) {
-        right = me.parseExpr();
-
-        if (!right) {
-          right = me.astProvider.emptyExpression({
-            start: me.token.getStart(),
-            end: me.token.getEnd(),
-            scope: me.currentScope
-          });
-        }
-      } else {
-        //left slice
-        right = me.astProvider.emptyExpression({
-          start: me.token.getStart(),
-          end: me.token.getEnd(),
-          scope: me.currentScope
-        });
-      }
-
-      if (!me.consume(Selectors.SRBracket)) {
-        return me.raise(`Expected slice to be closed at line ${me.token.line}`, me.token);
-      }
-
-      const end = me.previousToken.getEnd();
-      const sliceExpression = me.astProvider.sliceExpression({
-        left: expression,
-        right,
-        start,
-        end,
-        scope: me.currentScope
-      });
-
-      return me.astProvider.indexExpression({
-        base,
-        index: sliceExpression,
-        start,
-        end,
-        scope: me.currentScope
-      });
-    }
-
-    if (!expression) {
-      return me.raise(`Expected expression inside of brackets at line ${me.token.line}`, me.token);
-    }
-
-    if (!me.consume(Selectors.SRBracket)) {
-      return me.raise(`Expected index expression to be closed at line ${me.token.line}`, me.token);
-     }
-
-    return me.astProvider.indexExpression({
-      base,
-      index: expression,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-  }
-
-  parseCallExpression(base: ASTBase): ASTCallExpression | ASTBase {
-    const me = this;
-    const start = me.token.getStart();
-    const usesWhitespace = me.token.afterSpace;
-
-    if (!me.consume(Selectors.LParenthesis)) {
-      return me.raise(`Expected call expression to be opened after line ${me.token.line}.`, me.token);
-    }
-
-    const expressions = me.parseCallExpressionArgs();
-
-    if (!me.consume(Selectors.RParenthesis)) {
-      return me.raise(`Expected call expression to be closed after line ${me.token.line}.`, me.token);
-    }
-
-    return me.astProvider.callExpression({
-      base,
-      arguments: expressions,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-  }
-
-  parseCallStatement(base: ASTBase): ASTCallExpression | ASTBase {
-    const me = this;
-    const start = me.token.getStart();
-    const expressions = me.parseCallExpressionArgs(false);
-
-    if (!me.consumeEOL() && !me.consume(Selectors.EndOfFile)) {
-      return null;
-    }
-
-    return me.astProvider.callExpression({
-      base,
-      arguments: expressions,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-  }
-
-  parseCallExpressionArgs(skip: boolean = true): ASTBase[] {
-    const me = this;
-
-    me.skipNewlines();
-
-    const expressions = [];
-    let expression;
-    let lastToken = me.token;
-
-    while (expression = me.parseExpr()) {
-      lastToken = me.token;
-      expressions.push(expression);
-      if (skip) me.skipNewlines();
-
-      if (!me.consume(Selectors.CallSeperator)) {
-        break;
-      }
-
-      if (skip) me.skipNewlines();
-    }
-
-    return expressions;
-  }
-
   parseFloatExpression(baseValue?: number): ASTLiteral {
     const me = this;
     const start = me.token.getStart();
@@ -775,52 +1433,22 @@ export default class Parser {
     return base;
   }
 
-  parseBinaryExpression(
-    expression: ASTBase,
-    minPrecedence: number = 0
-  ): ASTBase {
+  parseIdentifier(): ASTIdentifier | ASTBase {
     const me = this;
     const start = me.token.getStart();
-    let precedence;
+    const end = me.token.getEnd();
+    const identifier = me.requireType(TokenType.Identifier);
 
-    while (true) {
-      const operator = <Operator>me.token.value;
-      const type = <TokenType>me.token.type;
-
-      if (me.validator.isExpressionOperator(new Selector({
-        type,
-        value: operator
-      }))) {
-        precedence = getPrecedence(operator);
-      } else {
-        precedence = 0;
-      }
-
-      if (precedence === 0 || precedence <= minPrecedence) break;
-      if (operator === '^') --precedence;
-      me.next();
-
-      let right = me.parseSubExpr(precedence);
-
-      if (right == null) {
-        right = me.astProvider.emptyExpression({
-          start,
-          end: me.token.getEnd(),
-          scope: me.currentScope
-        });
-      }
-
-      expression = me.astProvider.binaryExpression({
-        operator,
-        left: expression,
-        right,
-        start,
-        end: me.previousToken.getEnd(),
-        scope: me.currentScope
-      });
+    if (!me.validator.isNative(identifier.value)) {
+      me.currentScope.namespaces.add(identifier.value);
     }
 
-    return expression;
+    return me.astProvider.identifier({
+      name: identifier.value,
+      start,
+      end,
+      scope: me.currentScope
+    });
   }
 
   parseNativeImportCodeStatement(): ASTImportCodeExpression | ASTBase {
@@ -828,7 +1456,7 @@ export default class Parser {
     const start = me.previousToken.getStart();
 
     if (!me.consume(Selectors.LParenthesis)) {
-      return me.raise(`Expected import call to have opening operator at line ${me.token.line}.`, me.token);
+      return me.raise(`Expected import call to have opening operator`, me.token);
     }
 
     let gameDirectory;
@@ -838,12 +1466,12 @@ export default class Parser {
       gameDirectory = me.token.value;
       me.next();
     } else {
-      return me.raise(`Unexpected import path at ${me.token.line}. Import code only allows a hardcoded import path.`, me.token);
+      return me.raise(`Import code only allows a hardcoded import path`, me.token);
     }
 
     if (me.consume(Selectors.ImportCodeSeperator)) {
       if (!me.isType(TokenType.StringLiteral)) {
-        return me.raise(`Unexpected import path at ${me.token.line}. Import code only allows a hardcoded import path.`, me.token);
+        return me.raise(`Import code only allows a hardcoded import path`, me.token);
       }
 
       fileSystemDirectory = me.token.value;
@@ -852,7 +1480,7 @@ export default class Parser {
     }
 
     if (!me.consume(Selectors.RParenthesis)) {
-      return me.raise(`Expected import call to have closing operator at line ${me.token.line}.`, me.token);
+      return me.raise(`Expected import call to have closing operator`, me.token);
     }
 
     const base = me.astProvider.importCodeExpression({
@@ -866,505 +1494,6 @@ export default class Parser {
     me.nativeImports.push(base);
 
     return base;
-  }
-
-  parseWhileStatement(): ASTWhileStatement | ASTBase {
-    const me = this;
-    const start = me.previousToken.getStart();
-    const condition = me.parseExpr();
-
-    if (!condition) {
-      return me.raise(`While requires a condition at line ${me.token.line}.`, me.token);
-    }
-
-    let body;
-
-    if (me.isEOL()) {
-      body = me.parseBlock([Keyword.EndWhile]);
-
-      if (!me.consume(Selectors.EndWhile)) {
-        return me.raise(`Expected 'end while' for while statement at line ${me.token.line}.`, me.token);
-      }
-    } else {
-      body = me.parseBlockShortcut();
-    }
-
-    return me.astProvider.whileStatement({
-      condition,
-      body,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-  }
-
-  parseIfShortcutStatement(
-    condition: ASTBase,
-    start: ASTPosition
-  ): ASTIfStatement | ASTBase {
-    const me = this;
-    const clauses: ASTClause[] = [];
-    const ifStatement = me.astProvider.ifShortcutStatement({
-      clauses,
-      start,
-      end: null,
-      scope: me.currentScope
-    });
-    let statementStart = start;
-    let body = [];
-
-    body = me.parseBlockShortcut();
-
-    clauses.push(
-      me.astProvider.ifShortcutClause({
-        condition,
-        body,
-        start,
-        end: me.token.getEnd(),
-        scope: me.currentScope
-      })
-    );
-
-    me.consumeEOL();
-
-    while (me.consume(Selectors.ElseIf)) {
-      statementStart = me.token.getStart();
-      condition = me.parseExpr();
-
-      me.addLine(condition);
-
-      if (!condition) {
-        return me.raise(`Else if requires a condition at line ${me.token.line}.`, me.token);
-      }
-      
-      if (!me.consume(Selectors.Then)) {
-        return me.raise(`Else if requires 'then' keyword at line ${me.token.line}.`, me.token);
-      }
-
-      body = me.parseBlockShortcut();
-
-      clauses.push(
-        me.astProvider.elseifShortcutClause({
-          condition,
-          body,
-          start: statementStart,
-          end: me.token.getEnd(),
-          scope: me.currentScope
-        })
-      );
-
-      me.consumeEOL();
-    }
-
-    if (me.consume(Selectors.Else)) {
-      statementStart = me.token.getStart();
-      body = me.parseBlockShortcut();
-
-      clauses.push(
-        me.astProvider.elseShortcutClause({
-          body,
-          start: statementStart,
-          end: me.token.getEnd(),
-          scope: me.currentScope
-        })
-      );
-
-      me.consumeEOL();
-    }
-
-    ifStatement.end = me.token.getEnd();
-
-    return ifStatement;
-  }
-
-  parseIfStatement(): ASTBase {
-    const me = this;
-    const clauses: ASTClause[] = [];
-    const start = me.previousToken.getStart();
-    const ifStatement = me.astProvider.ifStatement({
-      clauses,
-      start,
-      end: null,
-      scope: me.currentScope
-    });
-    let statementStart = start;
-    let condition;
-    let body;
-
-    condition = me.parseExpr();
-
-    if (!condition) {
-      return me.raise(`If statement requires a condition at line ${me.token.line}.`, me.token);
-    }
-
-    if (!me.consume(Selectors.Then)) {
-      return me.raise(`If requires 'then' keyword at line ${me.token.line}.`, me.token);
-    }
-
-    if (!me.isEOL()) {
-      return me.parseIfShortcutStatement(condition, start);
-    }
-
-    body = me.parseBlock([Keyword.Else, Keyword.EndIf]);
-    clauses.push(
-      me.astProvider.ifClause({
-        condition,
-        body,
-        start: statementStart,
-        end: me.token.getEnd(),
-        scope: me.currentScope
-      })
-    );
-
-    while (me.consume(Selectors.ElseIf)) {
-      statementStart = me.token.getStart();
-      condition = me.parseExpr();
-
-      me.addLine(condition);
-
-      if (!me.consume(Selectors.Then)) {
-        return me.raise(`Else if requires 'then' keyword at line ${me.token.line}.`, me.token);
-      }
-
-      body = me.parseBlock([Keyword.Else, Keyword.EndIf]);
-      clauses.push(
-        me.astProvider.elseifClause({
-          condition,
-          body,
-          start: statementStart,
-          end: me.token.getEnd(),
-          scope: me.currentScope
-        })
-      );
-    }
-
-    if (me.consume(Selectors.Else)) {
-      statementStart = me.token.getStart();
-      body = me.parseBlock([Keyword.Else, Keyword.EndIf]);
-      clauses.push(
-        me.astProvider.elseClause({
-          body,
-          start: statementStart,
-          end: me.token.getEnd(),
-          scope: me.currentScope
-        })
-      );
-    }
-
-    if (!me.consume(Selectors.EndIf)) {
-      return me.raise(`Unexpected end of if statement "${me.token.value}" at line ${me.token.line}.`, me.token); 
-    }
-
-    ifStatement.end = me.previousToken.getEnd();
-
-    return ifStatement;
-  }
-
-  parseReturnStatement(): ASTReturnStatement {
-    const me = this;
-    const start = me.previousToken.getStart();
-    const expression = me.parseExpr();
-
-    return me.astProvider.returnStatement({
-      argument: expression,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-  }
-
-  parseAssignmentOrCallStatement(): ASTBase {
-    const me = this;
-    const start = me.token.getStart();
-    let base = me.parseExpr();
-
-    if (!base) {
-      return me.raise(`Unexpected expression at line ${me.token.line}.`, me.token);
-    }
-
-    if (me.consumeMany(Selectors.AddShorthand, Selectors.SubtractShorthand, Selectors.MultiplyShorthand, Selectors.DivideShorthand)) {
-      return me.parseAssignmentShorthandOperator(base);
-    } else if (me.consume(Selectors.Assign)) {
-      const value = me.parseExpr();
-      const assignmentStatement = me.astProvider.assignmentStatement({
-        variable: base,
-        init: value,
-        start,
-        end: me.previousToken.getEnd(),
-        scope: me.currentScope
-      });
-
-      me.currentScope.assignments.push(assignmentStatement);
-
-      return assignmentStatement;
-    } else if (
-      me.isEOL() ||
-      me.isType(TokenType.EOF) ||
-      me.isType(TokenType.Keyword)
-    ) {
-      return me.astProvider.callStatement({
-        expression: base,
-        start,
-        end: me.previousToken.getEnd(),
-        scope: me.currentScope
-      });
-    }
-
-    base = me.parseCallStatement(base);
-
-    if (base) {
-      return base;
-    }
-
-    return me.raise(`Unexpected assignment or call at line ${me.token.line}.`, me.token);
-  }
-
-  parseForStatement(): ASTForGenericStatement | ASTBase {
-    const me = this;
-    const start = me.previousToken.getStart();
-
-    me.consume(Selectors.LParenthesis);
-
-    const variable = me.parseIdentifier();
-
-    if (!me.consume(Selectors.In)) {
-      return me.raise(`Missing in keyword in for statement at line ${me.token.line}`, me.token);
-    }
-
-    const iterator = me.parseExpr();
-
-    if (!iterator) {
-      return me.raise(`For requires an iterator at line ${me.token.line}.`, me.token);
-    }
-
-    me.consume(Selectors.RParenthesis);
-
-    let body;
-
-    if (me.isEOL()) {
-      body = me.parseBlock([Keyword.EndFor]);
-
-      if (!me.consume(Selectors.EndFor)) {
-        return me.raise(`Expected 'end for' in for statement at line ${me.token.line}.`, me.token);
-      }
-    } else {
-      body = me.parseBlockShortcut();
-    }
-
-    return me.astProvider.forGenericStatement({
-      variable,
-      iterator,
-      body,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-  }
-
-  parseFunctionDeclaration(): ASTFunctionStatement | ASTBase {
-    const me = this;
-    const start = me.previousToken.getStart();
-    const functionStatement = me.astProvider.functionStatement({
-      start,
-      end: null,
-      scope: me.currentScope
-    });
-    const parameters = [];
-
-    me.pushScope(functionStatement);
-
-    if (me.consume(Selectors.LParenthesis)) {
-      if (!me.consume(Selectors.RParenthesis)) {
-        while (true) {
-          if (TokenType.Identifier === me.token.type) {
-            let parameter: ASTBase = me.parseIdentifier();
-            const parameterStart = parameter.start;
-  
-            if (me.consume(Selectors.Assign)) {
-              const value = me.parseExpr();
-  
-              if (!value) {
-                return me.raise(`Default in function declaration requires value at line ${me.token.line}`, me.token);
-              }
-  
-              parameter = me.astProvider.assignmentStatement({
-                variable: parameter,
-                init: value,
-                start: parameterStart,
-                end: me.previousToken.getEnd(),
-                scope: me.currentScope
-              });
-  
-              me.currentScope.assignments.push(parameter);
-            }
-  
-            parameters.push(parameter);
-            if (me.consume(Selectors.ArgumentSeperator)) continue;
-          } else {
-            return me.raise(`Unexpected parameter in function declaration at line ${me.token.line}.`, me.token);
-          }
-  
-          if (!me.consume(Selectors.RParenthesis)) {
-            return me.raise(`Missing right parenthesis in function declaration at line ${me.token.line}`, me.token);
-          }
-          break;
-        }
-      }
-    }
-
-    let body;
-
-    if (me.isEOL()) {
-      body = me.parseBlock([Keyword.EndFunction]);
-
-      if (!me.consume(Selectors.EndFunction)) {
-        return me.raise(`Expected 'end function' in function declaration at line ${me.token.line}.`, me.token);
-      }
-    } else {
-      body = me.parseBlockShortcut();
-    }
-
-    me.popScope();
-
-    functionStatement.parameters = parameters;
-    functionStatement.body = body;
-    functionStatement.end = me.previousToken.getEnd();
-
-    return functionStatement;
-  }
-
-  parseStatement(): ASTBase | null {
-    const me = this;
-
-    if (TokenType.Keyword === me.token.type) {
-      const value = me.token.value;
-
-      switch (value) {
-        case Keyword.If:
-          me.next();
-          return me.parseIfStatement();
-        case Keyword.Return:
-          me.next();
-          return me.parseReturnStatement();
-        case Keyword.Function:
-          me.next();
-          return me.parseFunctionDeclaration();
-        case Keyword.While:
-          me.next();
-          return me.parseWhileStatement();
-        case Keyword.For:
-          me.next();
-          return me.parseForStatement();
-        case Keyword.Continue:
-          me.next();
-          return me.astProvider.continueStatement({
-            start: me.previousToken.getStart(),
-            end: me.previousToken.getEnd(),
-            scope: me.currentScope
-          });
-        case Keyword.Break:
-          me.next();
-          return me.astProvider.breakStatement({
-            start: me.previousToken.getStart(),
-            end: me.previousToken.getEnd(),
-            scope: me.currentScope
-          });
-        case Keyword.ImportCode:
-          me.next();
-          return me.parseNativeImportCodeStatement();
-        default:
-          break;
-      }
-    } else if (me.isType(TokenType.Comment)) {
-      me.next();
-      return me.astProvider.comment({
-        value: me.previousToken.value,
-        start: me.previousToken.getStart(),
-        end: me.previousToken.getEnd(),
-        scope: me.currentScope
-      });
-    } else if (me.isType(TokenType.EOL)) {
-      me.next();
-      return null;
-    }
-
-    return me.parseAssignmentOrCallStatement();
-  }
-
-  parseBlockShortcut(): ASTBase[] {
-    const me = this;
-    const block: ASTBase[] = [];
-    const previousBlock = me.currentBlock;
-    let statement;
-    let value = me.token.value;
-
-    me.currentBlock = block;
-
-    while (
-      !me.isEOL() &&
-      !me.validator.isBreakingBlockShortcutKeyword(value)
-    ) {
-      statement = me.parseStatement();
-      if (statement) {
-        me.addLine(statement);
-        block.push(statement);
-      }
-      value = me.token.value;
-    }
-
-    me.currentBlock = previousBlock;
-
-    return block;
-  }
-
-  parseBlock(endBlocks?: string[]): ASTBase[] {
-    const me = this;
-    const block: ASTBase[] = [];
-    const previousBlock = me.currentBlock;
-    let statement;
-
-    me.currentBlock = block;
-
-    while (!me.isBlockEnd(me.token, endBlocks)) {
-      statement = me.parseStatement();
-      me.consumeEOL();
-      if (statement) {
-        me.addLine(statement);
-        block.push(statement);
-      }
-    }
-
-    me.currentBlock = previousBlock;
-
-    return block;
-  }
-
-  parseChunk(): ASTChunk | ASTBase {
-    const me = this;
-
-    me.next();
-
-    const start = me.token.getStart();
-    const chunk = me.astProvider.chunk({ start, end: null });
-
-    me.pushScope(chunk);
-
-    const body = me.parseBlock();
-
-    me.popScope();
-
-    if (TokenType.EOF !== me.token.type) {
-      return me.raise(`Unexpected end of file at line ${me.token.line}.`, me.token);
-    }
-
-    chunk.body = body;
-    chunk.nativeImports = me.nativeImports;
-    chunk.literals = me.literals;
-    chunk.scopes = me.scopes;
-    chunk.lines = me.lines;
-    chunk.end = me.token.getEnd();
-
-    return chunk;
   }
 
   raise(message: string, token: Token): ASTBase {
