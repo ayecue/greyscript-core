@@ -16,7 +16,7 @@ export class ASTMapKeyString extends ASTBase {
   }
 
   toString(): string {
-    return `MapKeyString[${this.key.toString()}: ${this.value.toString()}]`;
+    return `MapKeyString[${this.start}-${this.end}][${this.key}: ${this.value}]`;
   }
 }
 
@@ -34,15 +34,15 @@ export class ASTMapConstructorExpression extends ASTBase {
 
   toString(): string {
     if (this.fields.length === 0) {
-      return `MapConstructor[]`;
+      return `MapConstructor[${this.start}-${this.end}][]`;
     }
 
-    const body = this.fields.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.fields.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `MapConstructor[\n${body}\n]`;
+    return `MapConstructor[${this.start}-${this.end}][\n${body}\n]`;
   }
 }

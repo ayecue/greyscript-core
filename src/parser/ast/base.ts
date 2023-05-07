@@ -66,7 +66,7 @@ export class ASTBase {
   }
 
   toString(): string {
-    return `${this.type}[]`;
+    return `${this.type}[${this.start}-${this.end}][]`;
   }
 }
 
@@ -83,13 +83,13 @@ export class ASTBaseBlock extends ASTBase {
   }
 
   toString(): string {
-    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.body.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `${this.type}[${body.length > 0 ? `\n${body}\n` : ''}]`;
+    return `${this.type}[${this.start}-${this.end}][${body.length > 0 ? `\n${body}\n` : ''}]`;
   }
 }
 
@@ -124,6 +124,6 @@ export class ASTComment extends ASTBase {
   }
 
   toString(): string {
-    return `Comment[${this.value}]`;
+    return `Comment[${this.start}-${this.end}][${this.value}]`;
   }
 }

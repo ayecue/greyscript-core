@@ -16,6 +16,6 @@ export class ASTImportCodeExpression extends ASTBase {
   }
 
   toString(): string {
-    return `ImportCode[${this.gameDirectory}]`;
+    return `ImportCode[${this.start}-${this.end}][${this.gameDirectory}]`;
   }
 }

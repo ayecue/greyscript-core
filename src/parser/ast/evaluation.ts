@@ -36,6 +36,6 @@ export class ASTEvaluationExpression extends ASTBase {
   }
 
   toString(): string {
-    return `${this.type}[${this.left.toString()} ${this.operator} ${this.right.toString()}]`;
+    return `${this.type}[${this.start}-${this.end}][${this.left} ${this.operator} ${this.right}]`;
   }
 }

@@ -19,18 +19,18 @@ export class ASTFunctionStatement extends ASTBaseBlockWithScope {
   }
 
   toString(): string {
-    const args = this.parameters.map((item) => item.toString()).join(', ');
+    const args = this.parameters.map((item) => item).join(', ');
 
     if (this.body.length === 0) {
-      return `${this.type}[${args}]`;
+      return `${this.type}[${this.start}-${this.end}][${args}]`;
     }
 
-    const body = this.body.map((item) => `${item.start.line}: ${item.toString()}`)
+    const body = this.body.map((item) => `${item}`)
       .join('\n')
       .split('\n')
       .map((item) => `\t${item}`)
       .join('\n');
 
-    return `Function[${args} =>\n${body}\n]`;
+    return `Function[${this.start}-${this.end}][${args} =>\n${body}\n]`;
   }
 }

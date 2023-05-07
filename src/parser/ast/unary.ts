@@ -37,6 +37,6 @@ export class ASTUnaryExpression extends ASTBase {
   }
 
   toString(): string {
-    return `${this.type}[${this.operator} ${this.argument.toString()}]`;
+    return `${this.type}[${this.start}-${this.end}][${this.operator} ${this.argument}]`;
   }
 }

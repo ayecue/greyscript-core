@@ -17,6 +17,7 @@ export class Selector {
   }
 
   is(token: Token) {
+    if (token == null) return false;
     return this.type === token.type && this.value === token.value;
   }
 }
@@ -27,6 +28,7 @@ export class SelectorOfType extends Selector {
   }
 
   is(token: Token) {
+    if (token == null) return false;
     return this.type === token.type;
   }
 }
@@ -37,50 +39,71 @@ export class SelectorOfValue extends Selector {
   }
 
   is(token: Token) {
+    if (token == null) return false;
     return this.value === token.value;
   }
 }
 
-export const Selectors: {
-  EndOfLine: Selector;
-  EndOfFile: Selector;
-  LParenthesis: Selector;
-  RParenthesis: Selector;
-  CLBracket: Selector;
-  CRBracket: Selector;
-  SLBracket: Selector;
-  SRBracket: Selector;
-  Assign: Selector;
-  AddShorthand: Selector;
-  SubtractShorthand: Selector;
-  MultiplyShorthand: Selector;
-  DivideShorthand: Selector;
-  Seperator: Selector;
-  Function: Selector;
-  EndFunction: Selector;
-  EndWhile: Selector;
-  EndFor: Selector;
-  EndIf: Selector;
-  SliceSeperator: Selector;
-  MapKeyValueSeperator: Selector;
-  MapSeperator: Selector;
-  ListSeperator: Selector;
-  CallSeperator: Selector;
-  ArgumentSeperator: Selector;
-  ImportCodeSeperator: Selector;
-  ElseIf: Selector;
-  Else: Selector;
-  Then: Selector;
-  In: Selector;
-  MemberSeperator: Selector;
-  NumberSeperator: Selector;
-  Reference: Selector;
-  Minus: Selector;
-  Plus: Selector;
-  New: Selector;
-  Not: Selector;
-  Comment: Selector;
-} = {
+export enum SelectorTypes {
+  EndOfLine = 'EndOfLine',
+  EndOfFile = 'EndOfFile',
+  LParenthesis = 'LParenthesis',
+  RParenthesis = 'RParenthesis',
+  CLBracket = 'CLBracket',
+  CRBracket = 'CRBracket',
+  SLBracket = 'SLBracket',
+  SRBracket = 'SRBracket',
+  Assign = 'Assign',
+  AddShorthand = 'AddShorthand',
+  SubtractShorthand = 'SubtractShorthand',
+  MultiplyShorthand = 'MultiplyShorthand',
+  DivideShorthand = 'DivideShorthand',
+  Seperator = 'Seperator',
+  Function = 'Function',
+  EndFunction = 'EndFunction',
+  EndWhile = 'EndWhile',
+  EndFor = 'EndFor',
+  EndIf = 'EndIf',
+  SliceSeperator = 'SliceSeperator',
+  MapKeyValueSeperator = 'MapKeyValueSeperator',
+  MapSeperator = 'MapSeperator',
+  ListSeperator = 'ListSeperator',
+  CallSeperator = 'CallSeperator',
+  ArgumentSeperator = 'ArgumentSeperator',
+  ImportCodeSeperator = 'ImportCodeSeperator',
+  ElseIf = 'ElseIf',
+  Then = 'Then',
+  Else = 'Else',
+  In = 'In',
+  MemberSeperator = 'MemberSeperator',
+  NumberSeperator = 'NumberSeperator',
+  Reference = 'Reference',
+  Isa = 'Isa',
+  Or = 'Or',
+  And = 'And',
+  Minus = 'Minus',
+  Plus = 'Plus',
+  Times = 'Times',
+  Divide = 'Divide',
+  Power = 'Power',
+  Mod = 'Mod',
+  Equal = 'Equal',
+  NotEqual = 'NotEqual',
+  Greater = 'Greater',
+  GreaterEqual = 'GreaterEqual',
+  Lesser = 'Lesser',
+  LessEqual = 'LessEqual',
+  New = 'New',
+  Not = 'Not',
+  Comment = 'Comment',
+  LeftShift = 'LeftShift',
+  RightShift = 'RightShift',
+  UnsignedRightShift = 'UnsignedRightShift',
+  BitwiseOr = 'BitwiseOr',
+  BitwiseAnd = 'BitwiseAnd'
+}
+
+export const Selectors: Record<SelectorTypes, Selector> = {
   EndOfLine: new Selector({
     type: TokenType.EOL,
     value: Operator.EndOfLine
@@ -135,7 +158,7 @@ export const Selectors: {
   }),
   Seperator: new Selector({
     type: TokenType.Punctuator,
-    value: Operator.ListSeperator
+    value: Operator.Comma
   }),
   Function: new Selector({
     type: TokenType.Keyword,
@@ -167,19 +190,19 @@ export const Selectors: {
   }),
   MapSeperator: new Selector({
     type: TokenType.Punctuator,
-    value: Operator.ListSeperator
+    value: Operator.Comma
   }),
   ListSeperator: new Selector({
     type: TokenType.Punctuator,
-    value: Operator.ListSeperator
+    value: Operator.Comma
   }),
   CallSeperator: new Selector({
     type: TokenType.Punctuator,
-    value: Operator.ListSeperator
+    value: Operator.Comma
   }),
   ArgumentSeperator: new Selector({
     type: TokenType.Punctuator,
-    value: Operator.ListSeperator
+    value: Operator.Comma
   }),
   ImportCodeSeperator: new Selector({
     type: TokenType.SliceOperator,
@@ -213,6 +236,18 @@ export const Selectors: {
     type: TokenType.Punctuator,
     value: Operator.Reference
   }),
+  Isa: new Selector({
+    type: TokenType.Keyword,
+    value: Operator.Isa
+  }),
+  Or: new Selector({
+    type: TokenType.Keyword,
+    value: Operator.Or
+  }),
+  And: new Selector({
+    type: TokenType.Keyword,
+    value: Operator.And
+  }),
   Minus: new Selector({
     type: TokenType.Punctuator,
     value: Operator.Minus
@@ -220,6 +255,46 @@ export const Selectors: {
   Plus: new Selector({
     type: TokenType.Punctuator,
     value: Operator.Plus
+  }),
+  Times: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Asterik
+  }),
+  Power: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Power
+  }),
+  Divide: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Slash
+  }),
+  Mod: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.PercentSign
+  }),
+  Equal: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.Equal
+  }),
+  NotEqual: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.NotEqual
+  }),
+  Greater: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.GreaterThan
+  }),
+  GreaterEqual: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.GreaterThanOrEqual
+  }),
+  Lesser: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.LessThan
+  }),
+  LessEqual: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.LessThanOrEqual
   }),
   New: new Selector({
     type: TokenType.Keyword,
@@ -231,5 +306,25 @@ export const Selectors: {
   }),
   Comment: new SelectorOfType({
     type: TokenType.Comment
+  }),
+  LeftShift: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.LeftShift
+  }),
+  RightShift: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.RightShift
+  }),
+  UnsignedRightShift: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.UnsignedRightShift
+  }),
+  BitwiseOr: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.BitwiseOr
+  }),
+  BitwiseAnd: new Selector({
+    type: TokenType.Punctuator,
+    value: Operator.BitwiseAnd
   })
 };

@@ -13,8 +13,8 @@ else
 	if (false) then print("true") else print("true")
 end if
 
-for (i in []) print(i)
-for (b in [])
+for i in [] print(i)
+for b in []
 	print(b)
 end for
 while (i < b) i += 1
@@ -24,13 +24,6 @@ end while
 myFunction = function(v) print(v)
 otherFunction = function(n)
 	print(n)
-end function
-
-function(m) return "was"
-
-
-function(b)
-	if (a) then return "foo"
 end function
 
 if not @ref then

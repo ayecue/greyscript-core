@@ -66,9 +66,9 @@ export class Token {
   toString(): string {
     const startLine = this.line;
     const endLine = this.lastLine !== undefined ? this.lastLine : this.line;
-    const [columLeft, columRight] = this.range;
+    const [columLeft, columRight] = this.lineRange;
     const location = `${startLine}:${columLeft} - ${endLine}:${columRight}`;
 
-    return `${this.type}[${location}: value = '${this.value}', isAfterSpace = ${this.afterSpace}]`;
+    return `${this.type}[${location}: value = '${this.value}']`;
   }
 }

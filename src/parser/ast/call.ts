@@ -13,7 +13,7 @@ export class ASTCallStatement extends ASTBase {
   }
 
   toString(): string {
-    return `CallStatment[${this.expression.toString()}]`;
+    return `CallStatment[${this.start}-${this.end}][${this.expression}]`;
   }
 }
 
@@ -33,6 +33,6 @@ export class ASTCallExpression extends ASTBase {
   }
 
   toString(): string {
-    return `CallExpression[${this.base.toString()}(${this.arguments.map((item) => item.toString()).join(', ')})]`;
+    return `CallExpression[${this.start}-${this.end}][${this.base}(${this.arguments.map((item) => item.toString()).join(', ')})]`;
   }
 }
