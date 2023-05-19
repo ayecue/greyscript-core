@@ -1533,21 +1533,20 @@ export default class Parser {
 
     if (!me.consume(Selectors.LParenthesis)) {
       return me.raise(
-        `Expected import call to have opening operator`,
+        `expected import_code to have opening parenthesis`,
         me.token,
         false
       );
     }
 
-    let gameDirectory;
-    let fileSystemDirectory = null;
+    let directory;
 
     if (TokenType.StringLiteral === me.token.type) {
-      gameDirectory = me.token.value;
+      directory = me.token.value;
       me.next();
     } else {
       return me.raise(
-        `Import code only allows a hardcoded import path`,
+        `expected import_code argument to be string literal`,
         me.token,
         false
       );
@@ -1556,28 +1555,30 @@ export default class Parser {
     if (me.consume(Selectors.ImportCodeSeperator)) {
       if (!me.isType(TokenType.StringLiteral)) {
         return me.raise(
-          `Import code only allows a hardcoded import path`,
+          `expected import_code argument to be string literal`,
           me.token,
           false
         );
       }
 
-      fileSystemDirectory = me.token.value;
+      directory = me.token.value;
+      console.warn(
+        `Warning: Second import_code argument is deprecated. Use the first argument for the file system path instead.`
+      );
 
       me.next();
     }
 
     if (!me.consume(Selectors.RParenthesis)) {
       return me.raise(
-        `Expected import call to have closing operator`,
+        `expected import_code to have closing parenthesis`,
         me.token,
         false
       );
     }
 
     const base = me.astProvider.importCodeExpression({
-      gameDirectory,
-      fileSystemDirectory,
+      directory,
       start,
       end: me.previousToken.getEnd(),
       scope: me.currentScope

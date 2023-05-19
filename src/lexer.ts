@@ -431,7 +431,7 @@ export default class Lexer {
 
     const afterSpace = oldPosition < me.index;
 
-    while (validator.isComment(me.codeAt(), me.codeAt(1))) {
+    if (validator.isComment(me.codeAt(), me.codeAt(1))) {
       me.tokenStart = me.index;
       return me.scanComment(afterSpace);
     }
