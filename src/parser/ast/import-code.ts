@@ -1,21 +1,21 @@
 import { ASTBase, ASTBaseOptions, ASTType } from './base';
 
 export interface ASTImportCodeExpressionOptions extends ASTBaseOptions {
-  gameDirectory: string;
-  fileSystemDirectory: string;
+  directory: string;
 }
 
 export class ASTImportCodeExpression extends ASTBase {
-  gameDirectory: string;
+  directory: string;
+
+  /** @deprecated use gameDirectory for file system directory instead */
   fileSystemDirectory: string;
 
   constructor(options: ASTImportCodeExpressionOptions) {
     super(ASTType.ImportCodeExpression, options);
-    this.gameDirectory = options.gameDirectory;
-    this.fileSystemDirectory = options.fileSystemDirectory;
+    this.directory = options.directory;
   }
 
   toString(): string {
-    return `ImportCode[${this.start}-${this.end}][${this.gameDirectory}]`;
+    return `ImportCode[${this.start}-${this.end}][${this.directory}]`;
   }
 }

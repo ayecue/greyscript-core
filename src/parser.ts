@@ -1461,12 +1461,7 @@ export default class Parser {
   parseAtom(): ASTBase {
     const me = this;
 
-    if (
-      me.is(Selectors.NumberSeperator) &&
-      me.prefetch().type === TokenType.NumericLiteral
-    ) {
-      return me.parseFloatExpression(0);
-    } else if (me.validator.isLiteral(<TokenType>me.token.type)) {
+    if (me.validator.isLiteral(<TokenType>me.token.type)) {
       return me.parseLiteral();
     } else if (me.isType(TokenType.Identifier)) {
       return me.parseIdentifier();
@@ -1502,40 +1497,7 @@ export default class Parser {
 
     me.literals.push(<ASTLiteral>base);
 
-    const nextToken = me.prefetch();
-    const afterNextToken = me.prefetch(1);
-
-    if (
-      Selectors.NumberSeperator.is(nextToken) &&
-      afterNextToken?.type === TokenType.NumericLiteral
-    ) {
-      me.next();
-      return me.parseFloatExpression(parseInt(value));
-    } else {
-      me.next();
-    }
-
-    return base;
-  }
-
-  parseFloatExpression(baseValue?: number): ASTLiteral {
-    const me = this;
-    const start = me.token.getStart();
-
     me.next();
-
-    const floatValue = [baseValue || '', me.token.value].join('.');
-    me.next();
-
-    const base = me.astProvider.literal(TokenType.NumericLiteral, {
-      value: floatValue,
-      raw: floatValue,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-
-    me.literals.push(base);
 
     return base;
   }
@@ -1571,21 +1533,20 @@ export default class Parser {
 
     if (!me.consume(Selectors.LParenthesis)) {
       return me.raise(
-        `Expected import call to have opening operator`,
+        `expected import_code to have opening parenthesis`,
         me.token,
         false
       );
     }
 
-    let gameDirectory;
-    let fileSystemDirectory = null;
+    let directory;
 
     if (TokenType.StringLiteral === me.token.type) {
-      gameDirectory = me.token.value;
+      directory = me.token.value;
       me.next();
     } else {
       return me.raise(
-        `Import code only allows a hardcoded import path`,
+        `expected import_code argument to be string literal`,
         me.token,
         false
       );
@@ -1594,28 +1555,30 @@ export default class Parser {
     if (me.consume(Selectors.ImportCodeSeperator)) {
       if (!me.isType(TokenType.StringLiteral)) {
         return me.raise(
-          `Import code only allows a hardcoded import path`,
+          `expected import_code argument to be string literal`,
           me.token,
           false
         );
       }
 
-      fileSystemDirectory = me.token.value;
+      directory = me.token.value;
+      console.warn(
+        `Warning: Second import_code argument is deprecated. Use the first argument for the file system path instead.`
+      );
 
       me.next();
     }
 
     if (!me.consume(Selectors.RParenthesis)) {
       return me.raise(
-        `Expected import call to have closing operator`,
+        `expected import_code to have closing parenthesis`,
         me.token,
         false
       );
     }
 
     const base = me.astProvider.importCodeExpression({
-      gameDirectory,
-      fileSystemDirectory,
+      directory,
       start,
       end: me.previousToken.getEnd(),
       scope: me.currentScope

@@ -55,7 +55,7 @@ export default class Lexer {
       case CharacterCode.QUOTE:
         return me.scanStringLiteral(afterSpace);
       case CharacterCode.DOT:
-        if (validator.isDecDigit(code))
+        if (validator.isDecDigit(nextCode))
           return me.scanNumericLiteral(afterSpace);
         return me.scanPunctuator(Operator.Member, afterSpace);
       case CharacterCode.EQUAL:
@@ -431,7 +431,7 @@ export default class Lexer {
 
     const afterSpace = oldPosition < me.index;
 
-    while (validator.isComment(me.codeAt(), me.codeAt(1))) {
+    if (validator.isComment(me.codeAt(), me.codeAt(1))) {
       me.tokenStart = me.index;
       return me.scanComment(afterSpace);
     }
