@@ -1461,12 +1461,7 @@ export default class Parser {
   parseAtom(): ASTBase {
     const me = this;
 
-    if (
-      me.is(Selectors.NumberSeperator) &&
-      me.prefetch().type === TokenType.NumericLiteral
-    ) {
-      return me.parseFloatExpression(0);
-    } else if (me.validator.isLiteral(<TokenType>me.token.type)) {
+    if (me.validator.isLiteral(<TokenType>me.token.type)) {
       return me.parseLiteral();
     } else if (me.isType(TokenType.Identifier)) {
       return me.parseIdentifier();
@@ -1502,40 +1497,7 @@ export default class Parser {
 
     me.literals.push(<ASTLiteral>base);
 
-    const nextToken = me.prefetch();
-    const afterNextToken = me.prefetch(1);
-
-    if (
-      Selectors.NumberSeperator.is(nextToken) &&
-      afterNextToken?.type === TokenType.NumericLiteral
-    ) {
-      me.next();
-      return me.parseFloatExpression(parseInt(value));
-    } else {
-      me.next();
-    }
-
-    return base;
-  }
-
-  parseFloatExpression(baseValue?: number): ASTLiteral {
-    const me = this;
-    const start = me.token.getStart();
-
     me.next();
-
-    const floatValue = [baseValue || '', me.token.value].join('.');
-    me.next();
-
-    const base = me.astProvider.literal(TokenType.NumericLiteral, {
-      value: floatValue,
-      raw: floatValue,
-      start,
-      end: me.previousToken.getEnd(),
-      scope: me.currentScope
-    });
-
-    me.literals.push(base);
 
     return base;
   }

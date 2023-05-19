@@ -55,7 +55,7 @@ export default class Lexer {
       case CharacterCode.QUOTE:
         return me.scanStringLiteral(afterSpace);
       case CharacterCode.DOT:
-        if (validator.isDecDigit(code))
+        if (validator.isDecDigit(nextCode))
           return me.scanNumericLiteral(afterSpace);
         return me.scanPunctuator(Operator.Member, afterSpace);
       case CharacterCode.EQUAL:
