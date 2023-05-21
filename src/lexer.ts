@@ -1,4 +1,4 @@
-import { Token, TokenType } from './lexer/token';
+import { BaseToken, LiteralToken, Token, TokenType } from './lexer/token';
 import Validator from './lexer/validator';
 import { CharacterCode } from './types/codes';
 import { LexerException } from './types/errors';
@@ -47,7 +47,7 @@ export default class Lexer {
     nextCode: CharacterCode | undefined,
     lastCode: CharacterCode | undefined,
     afterSpace: boolean
-  ): Token | null {
+  ): BaseToken<any> | null {
     const me = this;
     const validator = me.validator;
 
@@ -171,12 +171,11 @@ export default class Lexer {
     });
   }
 
-  scanStringLiteral(afterSpace: boolean): Token {
+  scanStringLiteral(afterSpace: boolean): LiteralToken {
     const me = this;
     const beginLine = me.line;
     const beginLineStart = me.lineStart;
     const stringStart = me.index + 1;
-    let string = '';
     let tempOffset = 0;
     let endOffset = me.offset;
 
@@ -203,13 +202,15 @@ export default class Lexer {
     }
 
     me.nextIndex();
-    string = me.content
+    const string = me.content
       .slice(stringStart, me.index - 1)
       .replace(/""/g, Operator.Escape);
-
-    const token = new Token({
+    const rawString = me.content.slice(me.tokenStart, me.index);
+    
+    const token = new LiteralToken({
       type: TokenType.StringLiteral,
       value: string,
+      raw: rawString,
       line: beginLine,
       lineStart: beginLineStart,
       range: [me.tokenStart, me.index - tempOffset],
@@ -243,7 +244,7 @@ export default class Lexer {
 
     return new Token({
       type: TokenType.Comment,
-      value,
+      value: value,
       line: beginLine,
       lineStart: beginLineStart,
       range: [me.tokenStart, me.index],
@@ -254,6 +255,7 @@ export default class Lexer {
 
   readDecLiteral(): {
     value: number;
+    raw: string;
     hasFractionPart: boolean;
   } {
     const me = this;
@@ -280,19 +282,23 @@ export default class Lexer {
       while (validator.isDecDigit(me.codeAt())) me.nextIndex();
     }
 
+    const raw = me.content.slice(me.tokenStart, me.index);
+
     return {
-      value: parseFloat(me.content.slice(me.tokenStart, me.index)),
+      value: parseFloat(raw),
+      raw,
       hasFractionPart: foundFraction
     };
   }
 
-  scanNumericLiteral(afterSpace: boolean): Token {
+  scanNumericLiteral(afterSpace: boolean): LiteralToken {
     const me = this;
     const literal = me.readDecLiteral();
 
-    return new Token({
+    return new LiteralToken({
       type: TokenType.NumericLiteral,
       value: literal.value,
+      raw: literal.raw,
       line: me.line,
       lineStart: me.lineStart,
       range: [me.tokenStart, me.index],
@@ -379,7 +385,7 @@ export default class Lexer {
     }
   }
 
-  scanIdentifierOrKeyword(afterSpace: boolean): Token {
+  scanIdentifierOrKeyword(afterSpace: boolean): BaseToken<any> {
     const me = this;
     const validator = me.validator;
 
@@ -390,11 +396,8 @@ export default class Lexer {
     }
 
     let value: any = me.content.slice(me.tokenStart, me.index);
-    let type: TokenType;
 
     if (validator.isKeyword(value)) {
-      type = TokenType.Keyword;
-
       if (value === Keyword.End) {
         me.nextIndex();
 
@@ -409,18 +412,42 @@ export default class Lexer {
           value = elseIfStatement;
         }
       }
+
+      return new Token({
+        type: TokenType.Keyword,
+        value,
+        line: me.line,
+        lineStart: me.lineStart,
+        range: [me.tokenStart, me.index],
+        offset: me.offset,
+        afterSpace
+      });
     } else if (value === Literal.True || value === Literal.False) {
-      type = TokenType.BooleanLiteral;
-      value = value === Literal.True;
+      return new LiteralToken({
+        type: TokenType.BooleanLiteral,
+        value: value === Literal.True,
+        raw: value,
+        line: me.line,
+        lineStart: me.lineStart,
+        range: [me.tokenStart, me.index],
+        offset: me.offset,
+        afterSpace
+      });
     } else if (value === Literal.Null) {
-      type = TokenType.NilLiteral;
-      value = null;
-    } else {
-      type = TokenType.Identifier;
+      return new LiteralToken({
+        type: TokenType.NilLiteral,
+        value: null,
+        raw: value,
+        line: me.line,
+        lineStart: me.lineStart,
+        range: [me.tokenStart, me.index],
+        offset: me.offset,
+        afterSpace
+      });
     }
 
     return new Token({
-      type,
+      type: TokenType.Identifier,
       value,
       line: me.line,
       lineStart: me.lineStart,
@@ -430,7 +457,7 @@ export default class Lexer {
     });
   }
 
-  next(): Token {
+  next(): BaseToken<any> {
     const me = this;
     const validator = me.validator;
 

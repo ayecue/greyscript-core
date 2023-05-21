@@ -3,10 +3,12 @@ import { ASTBase, ASTBaseOptions, ASTType } from './base';
 
 export interface ASTLiteralOptions extends ASTBaseOptions {
   value: string | number | boolean;
+  raw: string;
 }
 
 export class ASTLiteral extends ASTBase {
   value: string | number | boolean;
+  raw: string;
 
   static getLiteralType(type: TokenType): ASTType {
     switch (type) {
@@ -33,6 +35,7 @@ export class ASTLiteral extends ASTBase {
   ) {
     super(ASTLiteral.getLiteralType(type), options);
     this.value = options.value;
+    this.raw = options.raw;
   }
 
   toString(): string {

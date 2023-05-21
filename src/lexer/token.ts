@@ -14,9 +14,9 @@ export enum TokenType {
   Comment = 'Comment'
 }
 
-export class TokenOptions {
+export class BaseTokenOptions<T> {
   type: string;
-  value: any;
+  value: T;
   line: number;
   lineStart: number;
   range: [number, number];
@@ -26,9 +26,10 @@ export class TokenOptions {
   lastLineStart?: number;
 }
 
-export class Token {
+export class BaseToken<T> {
   type: string;
-  value: string;
+  value: T;
+  raw: string;
   line: number;
   lineStart: number;
   range: [number, number];
@@ -39,7 +40,7 @@ export class Token {
   lastLine?: number;
   lastLineStart?: number;
 
-  constructor(options: TokenOptions) {
+  constructor(options: BaseTokenOptions<T>) {
     this.type = options.type;
     this.value = options.value;
     this.line = options.line;
@@ -70,5 +71,28 @@ export class Token {
     const location = `${startLine}:${columLeft} - ${endLine}:${columRight}`;
 
     return `${this.type}[${location}: value = '${this.value}']`;
+  }
+}
+
+export class Token extends BaseToken<string> {
+}
+
+export interface TokenLiteralOptions extends BaseTokenOptions<string | number | boolean> {
+  raw: string;
+}
+
+export class LiteralToken extends BaseToken<string | number | boolean> {
+  constructor(options: TokenLiteralOptions) {
+    super(options);
+    this.raw = options.raw;
+  }
+
+  toString(): string {
+    const startLine = this.line;
+    const endLine = this.lastLine !== undefined ? this.lastLine : this.line;
+    const [columLeft, columRight] = this.lineRange;
+    const location = `${startLine}:${columLeft} - ${endLine}:${columRight}`;
+
+    return `${this.type}[${location}: value = ${this.raw}]`;
   }
 }
