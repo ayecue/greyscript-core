@@ -210,14 +210,17 @@ export default class Parser {
 
   addLine(item: ASTBase) {
     const me = this;
-    const line = item.start.line;
+    const startLine = item.start.line;
+    const endLine = item.end.line;
 
-    if (!me.lines.has(line)) {
-      me.lines.set(line, []);
+    for (let line = startLine; line <= endLine; line++) {
+      if (!me.lines.has(line)) {
+        me.lines.set(line, []);
+      }
+  
+      const statements = me.lines.get(line);
+      statements.push(item);
     }
-
-    const statements = me.lines.get(line);
-    statements.push(item);
   }
 
   skipNewlines() {
