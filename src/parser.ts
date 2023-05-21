@@ -1481,7 +1481,6 @@ export default class Parser {
     const start = me.token.getStart();
     const value = me.token.value;
     const type = <TokenType>me.token.type;
-    const raw = me.content.slice(...me.token.range);
     const base: ASTLiteral = me.astProvider.literal(
       <
         | TokenType.StringLiteral
@@ -1491,7 +1490,6 @@ export default class Parser {
       >type,
       {
         value,
-        raw,
         start,
         end: me.token.getEnd(),
         scope: me.currentScope
