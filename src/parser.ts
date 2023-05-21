@@ -217,7 +217,7 @@ export default class Parser {
       if (!me.lines.has(line)) {
         me.lines.set(line, []);
       }
-  
+
       const statements = me.lines.get(line);
       statements.push(item);
     }

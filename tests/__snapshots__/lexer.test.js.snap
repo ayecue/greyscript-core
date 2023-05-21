@@ -1310,41 +1310,70 @@ Identifier[4:1 - 4:5: value = 'test']"
 exports[`parse default scripts multiline.src 1`] = `
 "Identifier[1:1 - 1:6: value = 'print']
 Punctuator[1:6 - 1:7: value = '(']
-StringLiteral[1:7 - 6:49: value = '
+StringLiteral[1:7 - 6:2: value = '
 
 was
 print(\\"was\\")
 foo[\\"xxxx\\"].test
 ']
-Punctuator[6:49 - 6:50: value = ')']
-EOL[6:50 - 6:50: value = ';']
+Punctuator[6:2 - 6:3: value = ')']
+EOL[6:3 - 6:3: value = ';']
 EOL[7:1 - 7:1: value = ';']
 Identifier[8:1 - 8:6: value = 'print']
 Punctuator[8:6 - 8:7: value = '(']
-StringLiteral[8:7 - 9:25: value = '
+StringLiteral[8:7 - 9:17: value = '
 print(\\"was\\") ']
-Punctuator[9:26 - 9:27: value = '+']
-StringLiteral[9:28 - 11:50: value = '
+Punctuator[9:18 - 9:19: value = '+']
+StringLiteral[9:20 - 11:2: value = '
 foo[\\"xxxx\\"].test
 ']
-Punctuator[11:51 - 11:52: value = '+']
-StringLiteral[11:53 - 15:62: value = '
+Punctuator[11:3 - 11:4: value = '+']
+StringLiteral[11:5 - 15:2: value = '
 
 
 was
 ']
-Punctuator[15:62 - 15:63: value = ')']
-EOL[15:63 - 15:63: value = ';']
+Punctuator[15:2 - 15:3: value = ')']
+EOL[15:3 - 15:3: value = ';']
 EOL[16:1 - 16:1: value = ';']
 Identifier[17:1 - 17:6: value = 'print']
 Punctuator[17:6 - 17:7: value = '(']
-StringLiteral[17:7 - 22:73: value = '
+StringLiteral[17:7 - 22:2: value = '
 
     if (typeof(@item.value) == \\"function\\") then
 
     end if
 ']
-Punctuator[22:73 - 22:74: value = ')']"
+Punctuator[22:2 - 22:3: value = ')']
+EOL[22:3 - 22:3: value = ';']
+EOL[23:1 - 23:1: value = ';']
+Identifier[24:1 - 24:6: value = 'print']
+Punctuator[24:6 - 24:7: value = '(']
+StringLiteral[24:7 - 25:5: value = '
+   ']
+Punctuator[25:6 - 25:7: value = '+']
+Identifier[25:8 - 25:12: value = 'test']
+Punctuator[25:13 - 25:14: value = '+']
+StringLiteral[25:15 - 26:5: value = '
+   ']
+Punctuator[26:6 - 26:7: value = '+']
+Identifier[26:8 - 26:12: value = 'test']
+Punctuator[26:13 - 26:14: value = '+']
+StringLiteral[26:15 - 27:5: value = '
+   ']
+Punctuator[27:6 - 27:7: value = '+']
+Identifier[27:8 - 27:12: value = 'test']
+Punctuator[27:13 - 27:14: value = '+']
+StringLiteral[27:15 - 28:5: value = '
+   ']
+Punctuator[28:6 - 28:7: value = '+']
+Identifier[28:8 - 28:12: value = 'test']
+Punctuator[28:13 - 28:14: value = '+']
+StringLiteral[28:15 - 29:5: value = '
+   ']
+Punctuator[29:5 - 29:6: value = ',']
+BooleanLiteral[29:7 - 29:11: value = 'true']
+Punctuator[29:11 - 29:12: value = ')']"
 `;
 
 exports[`parse default scripts negation.src 1`] = `

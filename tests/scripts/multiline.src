@@ -20,3 +20,10 @@ print("
 
     end if
 ")
+
+print("
+   " + test + "
+   " + test + "
+   " + test + "
+   " + test + "
+   ", true)

@@ -177,6 +177,8 @@ export default class Lexer {
     const beginLineStart = me.lineStart;
     const stringStart = me.index + 1;
     let string = '';
+    let tempOffset = 0;
+    let endOffset = me.offset;
 
     while (true) {
       me.nextIndex();
@@ -186,6 +188,8 @@ export default class Lexer {
       if (me.validator.isEndOfLine(code)) {
         if (me.isWinNewline()) me.nextIndex();
         me.nextLine();
+        tempOffset = me.index + 1 - me.offset;
+        endOffset = me.index + 1;
       } else if (CharacterCode.QUOTE === code) {
         if (me.isStringEscaped()) {
           me.nextIndex();
@@ -203,17 +207,21 @@ export default class Lexer {
       .slice(stringStart, me.index - 1)
       .replace(/""/g, Operator.Escape);
 
-    return new Token({
+    const token = new Token({
       type: TokenType.StringLiteral,
       value: string,
       line: beginLine,
       lineStart: beginLineStart,
-      range: [me.tokenStart, me.index],
+      range: [me.tokenStart, me.index - tempOffset],
       offset: me.offset,
       afterSpace,
       lastLine: me.line,
       lastLineStart: me.lineStart
     });
+
+    me.offset = endOffset;
+
+    return token;
   }
 
   scanComment(afterSpace: boolean): Token {

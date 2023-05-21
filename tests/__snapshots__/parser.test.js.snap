@@ -951,60 +951,72 @@ exports[`parse default scripts member-with-nl.src unsafe 1`] = `
 `;
 
 exports[`parse default scripts multiline.src 1`] = `
-"Chunk[1:1-22:74][
-	CallExpression[1:6-6:50][Identifier[1:1-1:6][print](Literal[1:7-6:49][
+"Chunk[1:1-29:12][
+	CallExpression[1:6-6:3][Identifier[1:1-1:6][print](Literal[1:7-6:2][
 	
 	was
 	print(\\"was\\")
 	foo[\\"xxxx\\"].test
 	])]
-	CallExpression[8:6-15:63][Identifier[8:1-8:6][print](BinaryExpression[8:7-15:62][Literal[8:7-9:25][
-	print(\\"was\\") ] + BinaryExpression[9:28-15:62][Literal[9:28-11:50][
+	CallExpression[8:6-15:3][Identifier[8:1-8:6][print](BinaryExpression[8:7-15:2][Literal[8:7-9:17][
+	print(\\"was\\") ] + BinaryExpression[9:20-15:2][Literal[9:20-11:2][
 	foo[\\"xxxx\\"].test
-	] + Literal[11:53-15:62][
+	] + Literal[11:5-15:2][
 	
 	
 	was
 	]]])]
-	CallExpression[17:6-22:74][Identifier[17:1-17:6][print](Literal[17:7-22:73][
+	CallExpression[17:6-22:3][Identifier[17:1-17:6][print](Literal[17:7-22:2][
 	
 	    if (typeof(@item.value) == \\"function\\") then
 	
 	    end if
 	])]
+	CallExpression[24:6-29:12][Identifier[24:1-24:6][print](BinaryExpression[24:7-29:5][Literal[24:7-25:5][
+	   ] + BinaryExpression[25:8-29:5][Identifier[25:8-25:12][test] + BinaryExpression[25:15-29:5][Literal[25:15-26:5][
+	   ] + BinaryExpression[26:8-29:5][Identifier[26:8-26:12][test] + BinaryExpression[26:15-29:5][Literal[26:15-27:5][
+	   ] + BinaryExpression[27:8-29:5][Identifier[27:8-27:12][test] + BinaryExpression[27:15-29:5][Literal[27:15-28:5][
+	   ] + BinaryExpression[28:8-29:5][Identifier[28:8-28:12][test] + Literal[28:15-29:5][
+	   ]]]]]]]]], Literal[29:7-29:11][true])]
 ]"
 `;
 
 exports[`parse default scripts multiline.src 2`] = `undefined`;
 
-exports[`parse default scripts multiline.src 3`] = `5`;
+exports[`parse default scripts multiline.src 3`] = `11`;
 
 exports[`parse default scripts multiline.src 4`] = `0`;
 
 exports[`parse default scripts multiline.src 5`] = `0`;
 
 exports[`parse default scripts multiline.src unsafe 1`] = `
-"Chunk[1:1-22:74][
-	CallExpression[1:6-6:50][Identifier[1:1-1:6][print](Literal[1:7-6:49][
+"Chunk[1:1-29:12][
+	CallExpression[1:6-6:3][Identifier[1:1-1:6][print](Literal[1:7-6:2][
 	
 	was
 	print(\\"was\\")
 	foo[\\"xxxx\\"].test
 	])]
-	CallExpression[8:6-15:63][Identifier[8:1-8:6][print](BinaryExpression[8:7-15:62][Literal[8:7-9:25][
-	print(\\"was\\") ] + BinaryExpression[9:28-15:62][Literal[9:28-11:50][
+	CallExpression[8:6-15:3][Identifier[8:1-8:6][print](BinaryExpression[8:7-15:2][Literal[8:7-9:17][
+	print(\\"was\\") ] + BinaryExpression[9:20-15:2][Literal[9:20-11:2][
 	foo[\\"xxxx\\"].test
-	] + Literal[11:53-15:62][
+	] + Literal[11:5-15:2][
 	
 	
 	was
 	]]])]
-	CallExpression[17:6-22:74][Identifier[17:1-17:6][print](Literal[17:7-22:73][
+	CallExpression[17:6-22:3][Identifier[17:1-17:6][print](Literal[17:7-22:2][
 	
 	    if (typeof(@item.value) == \\"function\\") then
 	
 	    end if
 	])]
+	CallExpression[24:6-29:12][Identifier[24:1-24:6][print](BinaryExpression[24:7-29:5][Literal[24:7-25:5][
+	   ] + BinaryExpression[25:8-29:5][Identifier[25:8-25:12][test] + BinaryExpression[25:15-29:5][Literal[25:15-26:5][
+	   ] + BinaryExpression[26:8-29:5][Identifier[26:8-26:12][test] + BinaryExpression[26:15-29:5][Literal[26:15-27:5][
+	   ] + BinaryExpression[27:8-29:5][Identifier[27:8-27:12][test] + BinaryExpression[27:15-29:5][Literal[27:15-28:5][
+	   ] + BinaryExpression[28:8-29:5][Identifier[28:8-28:12][test] + Literal[28:15-29:5][
+	   ]]]]]]]]], Literal[29:7-29:11][true])]
 ]"
 `;
 
