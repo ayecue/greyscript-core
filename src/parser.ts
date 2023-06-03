@@ -1178,11 +1178,10 @@ export default class Parser {
 
   parseCallExpr(): ASTBase {
     const me = this;
+    const start = me.token.getStart();
     let base = me.parseMap();
 
     while (!me.is(Selectors.EndOfFile)) {
-      const start = me.token.getStart();
-
       if (me.is(Selectors.MemberSeperator)) {
         me.next();
         me.skipNewlines();
