@@ -1020,6 +1020,40 @@ exports[`parse default scripts multiline.src unsafe 1`] = `
 ]"
 `;
 
+exports[`parse default scripts multiline-binary-expression.src 1`] = `
+"Chunk[1:1-8:7][
+	IfStatement[1:1-8:7][
+		IfClause[1:1-8:7][BinaryExpression[1:5-6:21][CallExpression[1:5-6:13][MemberExpression[1:5-6:10][ListConstructor[1:5-6:2][
+			ListValue[2:3-2:4][Literal[2:3-2:4][1]]
+			ListValue[3:3-3:4][Literal[3:3-3:4][2]]
+			ListValue[4:3-4:4][Literal[4:3-4:4][3]]
+			ListValue[5:3-5:4][Literal[5:3-5:4][4]]
+		].Identifier[6:3-6:10][indexOf]](Literal[6:11-6:12][2])] != Literal[6:17-6:21][null]]]
+	]
+]"
+`;
+
+exports[`parse default scripts multiline-binary-expression.src 2`] = `undefined`;
+
+exports[`parse default scripts multiline-binary-expression.src 3`] = `6`;
+
+exports[`parse default scripts multiline-binary-expression.src 4`] = `0`;
+
+exports[`parse default scripts multiline-binary-expression.src 5`] = `0`;
+
+exports[`parse default scripts multiline-binary-expression.src unsafe 1`] = `
+"Chunk[1:1-8:7][
+	IfStatement[1:1-8:7][
+		IfClause[1:1-8:7][BinaryExpression[1:5-6:21][CallExpression[1:5-6:13][MemberExpression[1:5-6:10][ListConstructor[1:5-6:2][
+			ListValue[2:3-2:4][Literal[2:3-2:4][1]]
+			ListValue[3:3-3:4][Literal[3:3-3:4][2]]
+			ListValue[4:3-4:4][Literal[4:3-4:4][3]]
+			ListValue[5:3-5:4][Literal[5:3-5:4][4]]
+		].Identifier[6:3-6:10][indexOf]](Literal[6:11-6:12][2])] != Literal[6:17-6:21][null]]]
+	]
+]"
+`;
+
 exports[`parse default scripts negation.src 1`] = `
 "Chunk[1:1-5:11][
 	AssignmentStatement[1:1-1:23][Identifier[1:1-1:5][test] = BinaryExpression[1:8-1:23][BinaryNegatedExpression[1:8-1:10][- Literal[1:9-1:10][1]] + BinaryExpression[1:13-1:23][Literal[1:13-1:14][2] + BinaryExpression[1:17-1:23][BinaryNegatedExpression[1:17-1:19][- Literal[1:18-1:19][2]] + Literal[1:22-1:23][3]]]]]
