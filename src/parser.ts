@@ -680,7 +680,7 @@ export default class Parser {
   parseForStatement(): ASTForGenericStatement | ASTBase {
     const me = this;
     const start = me.previousToken.getStart();
-    const variable = me.parseIdentifier();
+    const variable = me.parseIdentifier() as ASTIdentifier;
     const variableAssign = me.astProvider.assignmentStatement({
       variable,
       init: me.astProvider.literal(TokenType.NilLiteral, {
@@ -696,7 +696,7 @@ export default class Parser {
     });
     const indexAssign = me.astProvider.assignmentStatement({
       variable: me.astProvider.identifier({
-        name: `__${(variable as ASTIdentifier).name}_idx`,
+        name: `__${variable.name}_idx`,
         start: variable.start,
         end: variable.end,
         scope: me.currentScope
