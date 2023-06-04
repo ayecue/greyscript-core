@@ -1426,11 +1426,28 @@ export default class Parser {
         }
 
         const key = me.parseExpr();
+        const assign = me.astProvider.assignmentStatement({
+          variable: me.astProvider.indexExpression({
+            index: key,
+            base: me.currentAssignment ? me.currentAssignment.variable : mapConstructorExpr,
+            start: key.start,
+            end: key.end,
+            scope: me.currentScope
+          }),
+          init: null,
+          start: key.start,
+          end: null
+        });
+        const previousAssignment = me.currentAssignment;
 
         me.requireToken(Selectors.MapKeyValueSeperator);
         me.skipNewlines();
 
+        me.currentAssignment = assign;
+
         const value = me.parseExpr();
+
+        me.currentAssignment = previousAssignment
 
         fields.push(
           me.astProvider.mapKeyString({
@@ -1442,22 +1459,10 @@ export default class Parser {
           })
         );
 
-        if (me.currentAssignment !== null) {
-          const assign = me.astProvider.assignmentStatement({
-            variable: me.astProvider.indexExpression({
-              index: key,
-              base: me.currentAssignment.variable,
-              start: key.start,
-              end: key.end,
-              scope: me.currentScope
-            }),
-            init: value,
-            start: key.start,
-            end: value.end
-          });
+        assign.init = value;
+        assign.end = value.end;
 
-          me.currentScope.assignments.push(assign);
-        }
+        me.currentScope.assignments.push(assign);
 
         me.skipNewlines();
 
@@ -1504,7 +1509,31 @@ export default class Parser {
           break;
         }
 
+        const assign = me.astProvider.assignmentStatement({
+          variable: me.astProvider.indexExpression({
+            index: me.astProvider.literal(TokenType.NumericLiteral, {
+              value: fields.length,
+              raw: `${fields.length}`,
+              start,
+              end: me.token.getEnd(),
+              scope: me.currentScope
+            }),
+            base: me.currentAssignment ? me.currentAssignment.variable : listConstructorExpr,
+            start: null,
+            end: null,
+            scope: me.currentScope
+          }),
+          init: null,
+          start: null,
+          end: null
+        });
+        const previousAssignment = me.currentAssignment;
+
+        me.currentAssignment = previousAssignment
+
         const value = me.parseExpr();
+
+        me.currentAssignment = previousAssignment
 
         fields.push(
           me.astProvider.listValue({
@@ -1515,28 +1544,13 @@ export default class Parser {
           })
         );
 
-        if (me.currentAssignment !== null) {
-          const assign = me.astProvider.assignmentStatement({
-            variable: me.astProvider.indexExpression({
-              index: me.astProvider.literal(TokenType.NumericLiteral, {
-                value: fields.length - 1,
-                raw: `${fields.length - 1}`,
-                start,
-                end: me.token.getEnd(),
-                scope: me.currentScope
-              }),
-              base: me.currentAssignment.variable,
-              start: value.start,
-              end: value.end,
-              scope: me.currentScope
-            }),
-            init: value,
-            start: value.start,
-            end: value.end
-          });
+        assign.variable.start = value.start;
+        assign.variable.end = value.end;
+        assign.init = value;
+        assign.start = value.start;
+        assign.end = value.end;
 
-          me.currentScope.assignments.push(assign);
-        }
+        me.currentScope.assignments.push(assign);
 
         me.skipNewlines();
 
