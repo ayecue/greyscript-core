@@ -681,7 +681,7 @@ export default class Parser {
     const me = this;
     const start = me.previousToken.getStart();
     const variable = me.parseIdentifier();
-    const assign = me.astProvider.assignmentStatement({
+    const variableAssign = me.astProvider.assignmentStatement({
       variable,
       init: me.astProvider.literal(TokenType.NilLiteral, {
         value: null,
@@ -694,8 +694,26 @@ export default class Parser {
       end: variable.end,
       scope: me.currentScope
     });
+    const indexAssign = me.astProvider.assignmentStatement({
+      variable: me.astProvider.identifier({
+        name: `__${(variable as ASTIdentifier).name}_idx`,
+        start: variable.start,
+        end: variable.end,
+        scope: me.currentScope
+      }),
+      init: me.astProvider.literal(TokenType.NumericLiteral, {
+        value: 0,
+        raw: '0',
+        start: variable.start,
+        end: variable.end,
+        scope: me.currentScope
+      }),
+      start: variable.start,
+      end: variable.end,
+      scope: me.currentScope
+    });
 
-    me.currentScope.assignments.push(assign);
+    me.currentScope.assignments.push(variableAssign, indexAssign);
 
     me.requireToken(Selectors.In);
 
