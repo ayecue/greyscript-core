@@ -10,7 +10,9 @@ import {
   ASTIdentifier,
   ASTIfStatement,
   ASTImportCodeExpression,
+  ASTListValue,
   ASTLiteral,
+  ASTMapKeyString,
   ASTProvider,
   ASTReturnStatement,
   ASTUnaryExpression,
@@ -486,12 +488,16 @@ export default class Parser {
       expression = me.parseExpr();
     }
 
-    return me.astProvider.returnStatement({
+    const returnStatement = me.astProvider.returnStatement({
       argument: expression,
       start,
       end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
+
+    me.currentScope.returns.push(returnStatement);
+
+    return returnStatement;
   }
 
   parseIfStatement(): ASTBase {
@@ -674,7 +680,40 @@ export default class Parser {
   parseForStatement(): ASTForGenericStatement | ASTBase {
     const me = this;
     const start = me.previousToken.getStart();
-    const variable = me.parseIdentifier();
+    const variable = me.parseIdentifier() as ASTIdentifier;
+    const variableAssign = me.astProvider.assignmentStatement({
+      variable,
+      init: me.astProvider.literal(TokenType.NilLiteral, {
+        value: null,
+        raw: 'null',
+        start: variable.start,
+        end: variable.end,
+        scope: me.currentScope
+      }),
+      start: variable.start,
+      end: variable.end,
+      scope: me.currentScope
+    });
+    const indexAssign = me.astProvider.assignmentStatement({
+      variable: me.astProvider.identifier({
+        name: `__${variable.name}_idx`,
+        start: variable.start,
+        end: variable.end,
+        scope: me.currentScope
+      }),
+      init: me.astProvider.literal(TokenType.NumericLiteral, {
+        value: 0,
+        raw: '0',
+        start: variable.start,
+        end: variable.end,
+        scope: me.currentScope
+      }),
+      start: variable.start,
+      end: variable.end,
+      scope: me.currentScope
+    });
+
+    me.currentScope.assignments.push(variableAssign, indexAssign);
 
     me.requireToken(Selectors.In);
 
@@ -747,6 +786,8 @@ export default class Parser {
     });
     const parameters = [];
 
+    me.pushScope(functionStatement);
+
     if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
       me.requireToken(Selectors.LParenthesis);
 
@@ -784,6 +825,21 @@ export default class Parser {
             parameters.push(assign);
           }
         } else {
+          const assign = me.astProvider.assignmentStatement({
+            variable: parameter,
+            init: me.astProvider.literal(TokenType.NilLiteral, {
+              value: null,
+              raw: 'null',
+              start: parameterStart,
+              end: me.previousToken.getEnd(),
+              scope: me.currentScope
+            }),
+            start: parameterStart,
+            end: me.previousToken.getEnd(),
+            scope: me.currentScope
+          });
+
+          me.currentScope.assignments.push(assign);
           parameters.push(parameter);
         }
 
@@ -793,8 +849,6 @@ export default class Parser {
 
       me.requireToken(Selectors.RParenthesis);
     }
-
-    me.pushScope(functionStatement);
 
     let body: ASTBase[] = [];
 
@@ -1332,7 +1386,13 @@ export default class Parser {
     }
 
     const start = me.token.getStart();
-    const fields = [];
+    const fields: ASTMapKeyString[] = [];
+    const mapConstructorExpr = me.astProvider.mapConstructorExpression({
+      fields,
+      start,
+      end: null,
+      scope: me.currentScope
+    });
 
     me.next();
 
@@ -1364,6 +1424,21 @@ export default class Parser {
           })
         );
 
+        const assign = me.astProvider.assignmentStatement({
+          variable: me.astProvider.indexExpression({
+            index: key,
+            base: mapConstructorExpr,
+            start: key.start,
+            end: key.end,
+            scope: me.currentScope
+          }),
+          init: value,
+          start: key.start,
+          end: value.end
+        });
+
+        me.currentScope.assignments.push(assign);
+
         me.skipNewlines();
 
         if (
@@ -1375,12 +1450,9 @@ export default class Parser {
       }
     }
 
-    return me.astProvider.mapConstructorExpression({
-      fields,
-      start,
-      end: me.token.getStart(),
-      scope: me.currentScope
-    });
+    mapConstructorExpr.end = me.token.getStart();
+
+    return mapConstructorExpr;
   }
 
   parseList(): ASTBase {
@@ -1391,7 +1463,13 @@ export default class Parser {
     }
 
     const start = me.token.getStart();
-    const fields = [];
+    const fields: ASTListValue[] = [];
+    const listConstructorExpr = me.astProvider.listConstructorExpression({
+      fields,
+      start,
+      end: null,
+      scope: me.currentScope
+    });
 
     me.next();
 
@@ -1417,6 +1495,27 @@ export default class Parser {
           })
         );
 
+        const assign = me.astProvider.assignmentStatement({
+          variable: me.astProvider.indexExpression({
+            index: me.astProvider.literal(TokenType.NumericLiteral, {
+              value: fields.length - 1,
+              raw: `${fields.length - 1}`,
+              start,
+              end: me.token.getEnd(),
+              scope: me.currentScope
+            }),
+            base: listConstructorExpr,
+            start: value.start,
+            end: value.end,
+            scope: me.currentScope
+          }),
+          init: value,
+          start: value.start,
+          end: value.end
+        });
+
+        me.currentScope.assignments.push(assign);
+
         me.skipNewlines();
 
         if (
@@ -1428,12 +1527,9 @@ export default class Parser {
       }
     }
 
-    return me.astProvider.listConstructorExpression({
-      fields,
-      start,
-      end: me.token.getStart(),
-      scope: me.currentScope
-    });
+    listConstructorExpr.end = me.token.getStart();
+
+    return listConstructorExpr;
   }
 
   parseQuantity(): ASTBase {

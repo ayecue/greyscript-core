@@ -74,10 +74,10 @@ export class BaseToken<T> {
   }
 }
 
-export class Token extends BaseToken<string> {
-}
+export class Token extends BaseToken<string> {}
 
-export interface TokenLiteralOptions extends BaseTokenOptions<string | number | boolean> {
+export interface TokenLiteralOptions
+  extends BaseTokenOptions<string | number | boolean> {
   raw: string;
 }
 

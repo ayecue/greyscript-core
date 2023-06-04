@@ -98,12 +98,14 @@ export class ASTBaseBlock extends ASTBase {
 
 export interface ASTBaseBlockWithScopeOptions extends ASTBaseBlockOptions {
   assignments?: ASTBase[];
+  returns?: ASTBase[];
   namespaces?: Set<string>;
   parent?: ASTBaseBlockWithScope;
 }
 
 export class ASTBaseBlockWithScope extends ASTBaseBlock {
   assignments: ASTBase[];
+  returns: ASTBase[];
   namespaces: Set<string>;
 
   constructor(type: string, options: ASTBaseBlockWithScopeOptions) {
@@ -111,6 +113,7 @@ export class ASTBaseBlockWithScope extends ASTBaseBlock {
     this.body = options.body;
     this.namespaces = options.namespaces || new Set<string>();
     this.assignments = options.assignments || [];
+    this.returns = options.returns || [];
   }
 }
 

@@ -206,7 +206,7 @@ export default class Lexer {
       .slice(stringStart, me.index - 1)
       .replace(/""/g, Operator.Escape);
     const rawString = me.content.slice(me.tokenStart, me.index);
-    
+
     const token = new LiteralToken({
       type: TokenType.StringLiteral,
       value: string,
@@ -244,7 +244,7 @@ export default class Lexer {
 
     return new Token({
       type: TokenType.Comment,
-      value: value,
+      value,
       line: beginLine,
       lineStart: beginLineStart,
       range: [me.tokenStart, me.index],
