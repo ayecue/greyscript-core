@@ -120,14 +120,17 @@ export class ASTBaseBlockWithScope extends ASTBaseBlock {
 
 export interface ASTCommentOptions extends ASTBaseOptions {
   value: string;
+  isMultiline?: boolean;
 }
 
 export class ASTComment extends ASTBase {
   value: string;
+  isMultiline: boolean;
 
   constructor(options: ASTCommentOptions) {
     super(ASTType.Comment, options);
     this.value = options.value;
+    this.isMultiline = options.isMultiline || false;
   }
 
   toString(): string {
