@@ -488,12 +488,16 @@ export default class Parser {
       expression = me.parseExpr();
     }
 
-    return me.astProvider.returnStatement({
+    const returnStatement = me.astProvider.returnStatement({
       argument: expression,
       start,
       end: me.previousToken.getEnd(),
       scope: me.currentScope
     });
+
+    me.currentScope.returns.push(returnStatement);
+
+    return returnStatement;
   }
 
   parseIfStatement(): ASTBase {
@@ -678,17 +682,14 @@ export default class Parser {
     const start = me.previousToken.getStart();
     const variable = me.parseIdentifier();
     const assign = me.astProvider.assignmentStatement({
-      variable: variable,
-      init: me.astProvider.literal(
-        TokenType.NilLiteral,
-        {
-          value: null,
-          raw: 'null',
-          start: variable.start,
-          end: variable.end,
-          scope: me.currentScope
-        }
-      ),
+      variable,
+      init: me.astProvider.literal(TokenType.NilLiteral, {
+        value: null,
+        raw: 'null',
+        start: variable.start,
+        end: variable.end,
+        scope: me.currentScope
+      }),
       start: variable.start,
       end: variable.end,
       scope: me.currentScope
@@ -808,21 +809,18 @@ export default class Parser {
         } else {
           const assign = me.astProvider.assignmentStatement({
             variable: parameter,
-            init: me.astProvider.literal(
-              TokenType.NilLiteral,
-              {
-                value: null,
-                raw: 'null',
-                start: parameterStart,
-                end: me.previousToken.getEnd(),
-                scope: me.currentScope
-              }
-            ),
+            init: me.astProvider.literal(TokenType.NilLiteral, {
+              value: null,
+              raw: 'null',
+              start: parameterStart,
+              end: me.previousToken.getEnd(),
+              scope: me.currentScope
+            }),
             start: parameterStart,
             end: me.previousToken.getEnd(),
             scope: me.currentScope
           });
-  
+
           me.currentScope.assignments.push(assign);
           parameters.push(parameter);
         }
@@ -1481,16 +1479,13 @@ export default class Parser {
 
         const assign = me.astProvider.assignmentStatement({
           variable: me.astProvider.indexExpression({
-            index: me.astProvider.literal(
-              TokenType.NumericLiteral,
-              {
-                value: fields.length - 1,
-                raw: `${fields.length - 1}`,
-                start,
-                end: me.token.getEnd(),
-                scope: me.currentScope
-              }
-            ),
+            index: me.astProvider.literal(TokenType.NumericLiteral, {
+              value: fields.length - 1,
+              raw: `${fields.length - 1}`,
+              start,
+              end: me.token.getEnd(),
+              scope: me.currentScope
+            }),
             base: listConstructorExpr,
             start: value.start,
             end: value.end,
