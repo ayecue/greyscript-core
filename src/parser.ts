@@ -1,6 +1,7 @@
 import Lexer from './lexer';
 import { Token, TokenType } from './lexer/token';
 import {
+  ASTAssignmentStatement,
   ASTBase,
   ASTBaseBlockWithScope,
   ASTChunk,
@@ -42,6 +43,7 @@ export default class Parser {
   currentBlock: ASTBase[];
   currentScope: ASTBaseBlockWithScope;
   outerScopes: ASTBaseBlockWithScope[];
+  currentAssignment: ASTAssignmentStatement;
 
   // helper
   nativeImports: ASTImportCodeExpression[];
@@ -76,6 +78,7 @@ export default class Parser {
     me.scopes = [];
     me.currentBlock = null;
     me.currentScope = null;
+    me.currentAssignment = null;
     me.outerScopes = [];
     me.literals = [];
     me.validator = options.validator || new Validator();
@@ -390,15 +393,21 @@ export default class Parser {
     if (me.is(Selectors.Assign)) {
       me.next();
 
-      const init = me.parseExpr();
-
       const assignmentStatement = me.astProvider.assignmentStatement({
         variable: expr,
-        init,
+        init : null,
         start,
-        end: me.previousToken.getEnd(),
+        end: null,
         scope: me.currentScope
       });
+      const previousAssignment = me.currentAssignment;
+
+      me.currentAssignment = assignmentStatement;
+
+      assignmentStatement.init = me.parseExpr();
+      assignmentStatement.end = me.previousToken.getEnd();
+
+      me.currentAssignment = previousAssignment;
 
       me.currentScope.assignments.push(assignmentStatement);
 
@@ -415,10 +424,22 @@ export default class Parser {
 
       me.next();
 
+      const assignmentStatement = me.astProvider.assignmentStatement({
+        variable: expr,
+        init : null,
+        start,
+        end: null,
+        scope: me.currentScope
+      });
+      const previousAssignment = me.currentAssignment;
+
+      me.currentAssignment = assignmentStatement;
+
       const binaryExpressionStart = me.token.getStart();
       const operator = <Operator>op.value.charAt(0);
       const right = me.parseExpr();
-      const binaryExpression = me.astProvider.binaryExpression({
+
+      assignmentStatement.init = me.astProvider.binaryExpression({
         operator,
         left: expr,
         right,
@@ -426,13 +447,9 @@ export default class Parser {
         end: me.previousToken.getEnd(),
         scope: me.currentScope
       });
-      const assignmentStatement = me.astProvider.assignmentStatement({
-        variable: expr,
-        init: binaryExpression,
-        start,
-        end: me.previousToken.getEnd(),
-        scope: me.currentScope
-      });
+      assignmentStatement.end = me.previousToken.getEnd();
+
+      me.currentAssignment = previousAssignment;
 
       me.currentScope.assignments.push(assignmentStatement);
 
@@ -782,7 +799,8 @@ export default class Parser {
       start: functionStart,
       end: null,
       scope: me.currentScope,
-      parent: me.outerScopes[me.outerScopes.length - 1]
+      parent: me.outerScopes[me.outerScopes.length - 1],
+      assignment: me.currentAssignment
     });
     const parameters = [];
 
@@ -1424,20 +1442,22 @@ export default class Parser {
           })
         );
 
-        const assign = me.astProvider.assignmentStatement({
-          variable: me.astProvider.indexExpression({
-            index: key,
-            base: mapConstructorExpr,
+        if (me.currentAssignment !== null) {
+          const assign = me.astProvider.assignmentStatement({
+            variable: me.astProvider.indexExpression({
+              index: key,
+              base: me.currentAssignment.variable,
+              start: key.start,
+              end: key.end,
+              scope: me.currentScope
+            }),
+            init: value,
             start: key.start,
-            end: key.end,
-            scope: me.currentScope
-          }),
-          init: value,
-          start: key.start,
-          end: value.end
-        });
+            end: value.end
+          });
 
-        me.currentScope.assignments.push(assign);
+          me.currentScope.assignments.push(assign);
+        }
 
         me.skipNewlines();
 
@@ -1495,26 +1515,28 @@ export default class Parser {
           })
         );
 
-        const assign = me.astProvider.assignmentStatement({
-          variable: me.astProvider.indexExpression({
-            index: me.astProvider.literal(TokenType.NumericLiteral, {
-              value: fields.length - 1,
-              raw: `${fields.length - 1}`,
-              start,
-              end: me.token.getEnd(),
+        if (me.currentAssignment !== null) {
+          const assign = me.astProvider.assignmentStatement({
+            variable: me.astProvider.indexExpression({
+              index: me.astProvider.literal(TokenType.NumericLiteral, {
+                value: fields.length - 1,
+                raw: `${fields.length - 1}`,
+                start,
+                end: me.token.getEnd(),
+                scope: me.currentScope
+              }),
+              base: me.currentAssignment.variable,
+              start: value.start,
+              end: value.end,
               scope: me.currentScope
             }),
-            base: listConstructorExpr,
+            init: value,
             start: value.start,
-            end: value.end,
-            scope: me.currentScope
-          }),
-          init: value,
-          start: value.start,
-          end: value.end
-        });
+            end: value.end
+          });
 
-        me.currentScope.assignments.push(assign);
+          me.currentScope.assignments.push(assign);
+        }
 
         me.skipNewlines();
 

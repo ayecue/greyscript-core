@@ -8,14 +8,17 @@ import {
 export interface ASTFunctionStatementOptions
   extends ASTBaseBlockWithScopeOptions {
   parameters?: ASTBase[];
+  assignment: ASTBase;
 }
 
 export class ASTFunctionStatement extends ASTBaseBlockWithScope {
   parameters: ASTBase[];
+  assignment: ASTBase;
 
   constructor(options: ASTFunctionStatementOptions) {
     super(ASTType.FunctionDeclaration, options);
     this.parameters = options.parameters || [];
+    this.assignment = options.assignment;
   }
 
   toString(): string {
