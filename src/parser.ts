@@ -700,9 +700,7 @@ export default class Parser {
     const variable = me.parseIdentifier() as ASTIdentifier;
     const variableAssign = me.astProvider.assignmentStatement({
       variable,
-      init: me.astProvider.literal(TokenType.NilLiteral, {
-        value: null,
-        raw: 'null',
+      init: me.astProvider.unknown({
         start: variable.start,
         end: variable.end,
         scope: me.currentScope
@@ -845,9 +843,7 @@ export default class Parser {
         } else {
           const assign = me.astProvider.assignmentStatement({
             variable: parameter,
-            init: me.astProvider.literal(TokenType.NilLiteral, {
-              value: null,
-              raw: 'null',
+            init: me.astProvider.unknown({
               start: parameterStart,
               end: me.previousToken.getEnd(),
               scope: me.currentScope

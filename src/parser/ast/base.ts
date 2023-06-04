@@ -23,6 +23,7 @@ export enum ASTType {
   NumericLiteral = 'NumericLiteral',
   BooleanLiteral = 'BooleanLiteral',
   NilLiteral = 'NilLiteral',
+  Unknown = 'Unknown',
   MemberExpression = 'MemberExpression',
   CallExpression = 'CallExpression',
   Comment = 'Comment',

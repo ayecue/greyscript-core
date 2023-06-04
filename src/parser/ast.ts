@@ -197,6 +197,10 @@ export class ASTProvider {
     return new ASTListConstructorExpression(options);
   }
 
+  unknown(options: ASTBaseOptions): ASTBase {
+    return new ASTBase(ASTType.Unknown, options);
+  }
+
   emptyExpression(options: ASTBaseOptions): ASTBase {
     return new ASTBase(ASTType.EmptyExpression, options);
   }
