@@ -72,7 +72,7 @@ describe('parse', function() {
 
 				if (false) print("false")
 			`;
-			const lexer = new Lexer(content, { unsafe: true });
+			const lexer = new Lexer(content, { unsafe: true, tabWidth: 2 });
 			const parser = new Parser(content, {
 				unsafe: true,
 				lexer
