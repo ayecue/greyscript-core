@@ -688,7 +688,7 @@ export default class Parser {
       return me.raise(
         `while requires a condition`,
         new Range(
-          new Position(start.line, start.character),
+          start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
@@ -774,7 +774,7 @@ export default class Parser {
       return me.raise(
         `sequence expression expected for 'for' loop`,
         new Range(
-          new Position(start.line, start.character),
+          start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
@@ -867,7 +867,7 @@ export default class Parser {
               me.raise(
                 `parameter default value must be a literal value`,
                 new Range(
-                  new Position(parameterStart.line, parameterStart.character),
+                  parameterStart,
                   new Position(
                     me.token.lastLine ?? me.token.line,
                     me.token.lineRange[1]
@@ -1730,7 +1730,7 @@ export default class Parser {
       return me.raise(
         `expected import_code to have opening parenthesis`,
         new Range(
-          new Position(start.line, start.character),
+          start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
@@ -1749,7 +1749,7 @@ export default class Parser {
       return me.raise(
         `expected import_code argument to be string literal`,
         new Range(
-          new Position(start.line, start.character),
+          start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
@@ -1764,7 +1764,7 @@ export default class Parser {
         return me.raise(
           `expected import_code argument to be string literal`,
           new Range(
-            new Position(start.line, start.character),
+            start,
             new Position(
               me.token.lastLine ?? me.token.line,
               me.token.lineRange[1]
@@ -1786,7 +1786,7 @@ export default class Parser {
       return me.raise(
         `expected import_code to have closing parenthesis`,
         new Range(
-          new Position(start.line, start.character),
+          start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
