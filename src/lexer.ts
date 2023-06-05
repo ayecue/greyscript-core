@@ -5,6 +5,8 @@ import { LexerException } from './types/errors';
 import { Keyword } from './types/keywords';
 import { Literal } from './types/literals';
 import { Operator } from './types/operators';
+import { Position } from './types/position';
+import { Range } from './types/range';
 
 export interface LexerOptions {
   validator?: Validator;
@@ -197,7 +199,13 @@ export default class Lexer {
         }
       } else if (!me.isNotEOF()) {
         const line = beginLine;
-        return me.raise(`Unexpected string ending at line ${line}.`, line);
+        return me.raise(
+          `Unexpected string ending at line ${line}.`,
+          new Range(
+            new Position(beginLine, beginLineStart),
+            new Position(me.line, me.index)
+          )
+        );
       }
     }
 
@@ -509,16 +517,17 @@ export default class Lexer {
     if (item) return item;
 
     return me.raise(
-      `Invalid character ${code} (Code: ${String.fromCharCode(code)}) at line ${
-        me.line
-      }.`,
-      me.line
+      `Invalid character ${code} (Code: ${String.fromCharCode(code)})`,
+      new Range(
+        new Position(me.lineStart, me.tokenStart),
+        new Position(me.line, me.index)
+      )
     );
   }
 
-  raise(message: string, line: number): Token {
+  raise(message: string, range: Range): Token {
     const me = this;
-    const err = new LexerException(message, line);
+    const err = new LexerException(message, range);
 
     me.errors.push(err);
 

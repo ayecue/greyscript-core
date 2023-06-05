@@ -1,19 +1,19 @@
-import { Token } from '../lexer/token';
+import { Range } from './range';
 
 export class LexerException extends Error {
-  line: number;
+  range: Range;
 
-  constructor(message: string, line: number) {
-    super(`${message} at line ${line}`);
-    this.line = line;
+  constructor(message: string, range: Range) {
+    super(`${message} at ${range}`);
+    this.range = range;
   }
 }
 
 export class ParserException extends Error {
-  token: Token;
+  range: Range;
 
-  constructor(message: string, token: Token) {
-    super(`${message} at line ${token.line}:${token.lineRange[0]}`);
-    this.token = token;
+  constructor(message: string, range: Range) {
+    super(`${message} at ${range}`);
+    this.range = range;
   }
 }
