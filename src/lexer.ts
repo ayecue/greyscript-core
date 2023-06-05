@@ -202,8 +202,8 @@ export default class Lexer {
         return me.raise(
           `Unexpected string ending at line ${line}.`,
           new Range(
-            new Position(beginLine, beginLineStart),
-            new Position(me.line, me.index)
+            new Position(beginLine, beginLineStart - endOffset),
+            new Position(me.line, me.index - endOffset)
           )
         );
       }
@@ -519,8 +519,8 @@ export default class Lexer {
     return me.raise(
       `Invalid character ${code} (Code: ${String.fromCharCode(code)})`,
       new Range(
-        new Position(me.lineStart, me.tokenStart),
-        new Position(me.line, me.index)
+        new Position(me.lineStart, me.tokenStart - me.offset),
+        new Position(me.line, me.index - me.offset)
       )
     );
   }

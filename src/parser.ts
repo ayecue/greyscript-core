@@ -143,7 +143,7 @@ export default class Parser {
     return false;
   }
 
-  requireType(type: TokenType): Token | null {
+  requireType(type: TokenType, from?: ASTPosition): Token | null {
     const me = this;
     const token = me.token;
 
@@ -151,8 +151,11 @@ export default class Parser {
       me.raise(
         `got ${me.token} where ${type} is required`,
         new Range(
-          new Position(me.token.line, me.token.range[0]),
-          new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+          from || new Position(me.token.line, me.token.lineRange[0]),
+          new Position(
+            me.token.lastLine ?? me.token.line,
+            me.token.lineRange[1]
+          )
         )
       );
       return null;
@@ -162,7 +165,7 @@ export default class Parser {
     return token;
   }
 
-  requireToken(selector: Selector): Token | null {
+  requireToken(selector: Selector, from?: ASTPosition): Token | null {
     const me = this;
     const token = me.token;
 
@@ -170,8 +173,11 @@ export default class Parser {
       me.raise(
         `got ${me.token} where "${selector.value}" is required`,
         new Range(
-          new Position(me.token.line, me.token.range[0]),
-          new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+          from || new Position(me.token.line, me.token.lineRange[0]),
+          new Position(
+            me.token.lastLine ?? me.token.line,
+            me.token.lineRange[1]
+          )
         )
       );
       return null;
@@ -181,7 +187,7 @@ export default class Parser {
     return token;
   }
 
-  requireTokenOfAny(...selectors: Selector[]): Token | null {
+  requireTokenOfAny(selectors: Selector[], from?: ASTPosition): Token | null {
     const me = this;
     const token = me.token;
 
@@ -199,8 +205,8 @@ export default class Parser {
         .map((selector: Selector) => `"${selector.value}"`)
         .join(', ')} is required`,
       new Range(
-        new Position(me.token.line, me.token.range[0]),
-        new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+        from || new Position(me.token.line, me.token.lineRange[0]),
+        new Position(me.token.lastLine ?? me.token.line, me.token.lineRange[1])
       )
     );
 
@@ -381,10 +387,10 @@ export default class Parser {
           return me.raise(
             `unexpected keyword ${me.token} at start of line`,
             new Range(
-              new Position(me.token.line, me.token.range[0]),
+              new Position(me.token.line, me.token.lineRange[0]),
               new Position(
                 me.token.lastLine ?? me.token.line,
-                me.token.range[1]
+                me.token.lineRange[1]
               )
             )
           );
@@ -491,8 +497,8 @@ export default class Parser {
       }
 
       const requiredToken = me.requireTokenOfAny(
-        Selectors.ArgumentSeperator,
-        Selectors.EndOfLine
+        [Selectors.ArgumentSeperator, Selectors.EndOfLine],
+        start
       );
 
       if (Selectors.EndOfLine.is(requiredToken)) break;
@@ -551,7 +557,7 @@ export default class Parser {
     const ifCondition = me.parseExpr();
 
     me.addLine(ifCondition);
-    me.requireToken(Selectors.Then);
+    me.requireToken(Selectors.Then, start);
 
     if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
       return me.parseIfShortcutStatement(ifCondition, start);
@@ -580,7 +586,7 @@ export default class Parser {
       const elseIfCondition = me.parseExpr();
 
       me.addLine(elseIfCondition);
-      me.requireToken(Selectors.Then);
+      me.requireToken(Selectors.Then, elseIfStatementStart);
 
       const elseIfBody: ASTBase[] = me.parseBlock(
         Selectors.ElseIf,
@@ -617,7 +623,7 @@ export default class Parser {
 
     me.skipNewlines();
 
-    me.requireToken(Selectors.EndIf);
+    me.requireToken(Selectors.EndIf, start);
 
     ifStatement.end = me.previousToken.getEnd();
 
@@ -683,7 +689,10 @@ export default class Parser {
         `while requires a condition`,
         new Range(
           new Position(start.line, start.character),
-          new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+          new Position(
+            me.token.lastLine ?? me.token.line,
+            me.token.lineRange[1]
+          )
         ),
         false
       );
@@ -695,7 +704,7 @@ export default class Parser {
 
     const body: ASTBase[] = me.parseBlock(Selectors.EndWhile);
 
-    me.requireToken(Selectors.EndWhile);
+    me.requireToken(Selectors.EndWhile, start);
 
     return me.astProvider.whileStatement({
       condition,
@@ -757,7 +766,7 @@ export default class Parser {
 
     me.currentScope.assignments.push(variableAssign, indexAssign);
 
-    me.requireToken(Selectors.In);
+    me.requireToken(Selectors.In, start);
 
     const iterator = me.parseExpr();
 
@@ -766,7 +775,10 @@ export default class Parser {
         `sequence expression expected for 'for' loop`,
         new Range(
           new Position(start.line, start.character),
-          new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+          new Position(
+            me.token.lastLine ?? me.token.line,
+            me.token.lineRange[1]
+          )
         ),
         false
       );
@@ -778,7 +790,7 @@ export default class Parser {
 
     const body: ASTBase[] = me.parseBlock(Selectors.EndFor);
 
-    me.requireToken(Selectors.EndFor);
+    me.requireToken(Selectors.EndFor, start);
 
     return me.astProvider.forGenericStatement({
       variable,
@@ -835,7 +847,7 @@ export default class Parser {
     me.pushScope(functionStatement);
 
     if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
-      me.requireToken(Selectors.LParenthesis);
+      me.requireToken(Selectors.LParenthesis, functionStart);
 
       while (!me.isOneOf(Selectors.RParenthesis, Selectors.EndOfFile)) {
         const parameter = me.parseIdentifier();
@@ -855,10 +867,10 @@ export default class Parser {
               me.raise(
                 `parameter default value must be a literal value`,
                 new Range(
-                  new Position(parameterStart.line, parameterStart.range[0]),
+                  new Position(parameterStart.line, parameterStart.character),
                   new Position(
                     me.token.lastLine ?? me.token.line,
-                    me.token.range[1]
+                    me.token.lineRange[1]
                   )
                 ),
                 false
@@ -894,10 +906,10 @@ export default class Parser {
         }
 
         if (me.is(Selectors.RParenthesis)) break;
-        me.requireToken(Selectors.ArgumentSeperator);
+        me.requireToken(Selectors.ArgumentSeperator, functionStart);
       }
 
-      me.requireToken(Selectors.RParenthesis);
+      me.requireToken(Selectors.RParenthesis, functionStart);
     }
 
     let body: ASTBase[] = [];
@@ -908,7 +920,7 @@ export default class Parser {
       body.push(statement);
     } else {
       body = me.parseBlock(Selectors.EndFunction);
-      me.requireToken(Selectors.EndFunction);
+      me.requireToken(Selectors.EndFunction, functionStart);
     }
 
     me.popScope();
@@ -1378,7 +1390,7 @@ export default class Parser {
           }
         }
 
-        me.requireToken(Selectors.SRBracket);
+        me.requireToken(Selectors.SRBracket, start);
       } else if (me.is(Selectors.LParenthesis)) {
         const expressions = me.parseCallArgs();
 
@@ -1415,8 +1427,8 @@ export default class Parser {
           if (
             Selectors.RParenthesis.is(
               me.requireTokenOfAny(
-                Selectors.ArgumentSeperator,
-                Selectors.RParenthesis
+                [Selectors.ArgumentSeperator, Selectors.RParenthesis],
+                arg.start
               )
             )
           )
@@ -1460,6 +1472,9 @@ export default class Parser {
         const key = me.parseExpr();
         let value: ASTBase = null;
 
+        me.requireToken(Selectors.MapKeyValueSeperator);
+        me.skipNewlines();
+
         if (me.currentAssignment) {
           const assign = me.astProvider.assignmentStatement({
             variable: me.astProvider.indexExpression({
@@ -1474,9 +1489,6 @@ export default class Parser {
             end: null
           });
           const previousAssignment = me.currentAssignment;
-
-          me.requireToken(Selectors.MapKeyValueSeperator);
-          me.skipNewlines();
 
           me.currentAssignment = assign;
           value = me.parseExpr();
@@ -1504,7 +1516,10 @@ export default class Parser {
 
         if (
           Selectors.CRBracket.is(
-            me.requireTokenOfAny(Selectors.MapSeperator, Selectors.CRBracket)
+            me.requireTokenOfAny(
+              [Selectors.MapSeperator, Selectors.CRBracket],
+              start
+            )
           )
         )
           break;
@@ -1598,7 +1613,10 @@ export default class Parser {
 
         if (
           Selectors.SRBracket.is(
-            me.requireTokenOfAny(Selectors.ListSeperator, Selectors.SRBracket)
+            me.requireTokenOfAny(
+              [Selectors.ListSeperator, Selectors.SRBracket],
+              start
+            )
           )
         )
           break;
@@ -1624,7 +1642,7 @@ export default class Parser {
 
     const val = me.parseExpr();
 
-    me.requireToken(Selectors.RParenthesis);
+    me.requireToken(Selectors.RParenthesis, start);
 
     return me.astProvider.parenthesisExpression({
       expression: val,
@@ -1646,8 +1664,8 @@ export default class Parser {
     return me.raise(
       `got ${me.token} where number, string, or identifier is required`,
       new Range(
-        new Position(me.token.line, me.token.range[0]),
-        new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+        new Position(me.token.line, me.token.lineRange[0]),
+        new Position(me.token.lastLine ?? me.token.line, me.token.lineRange[1])
       )
     );
   }
@@ -1713,7 +1731,10 @@ export default class Parser {
         `expected import_code to have opening parenthesis`,
         new Range(
           new Position(start.line, start.character),
-          new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+          new Position(
+            me.token.lastLine ?? me.token.line,
+            me.token.lineRange[1]
+          )
         ),
         false
       );
@@ -1729,7 +1750,10 @@ export default class Parser {
         `expected import_code argument to be string literal`,
         new Range(
           new Position(start.line, start.character),
-          new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+          new Position(
+            me.token.lastLine ?? me.token.line,
+            me.token.lineRange[1]
+          )
         ),
         false
       );
@@ -1741,7 +1765,10 @@ export default class Parser {
           `expected import_code argument to be string literal`,
           new Range(
             new Position(start.line, start.character),
-            new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+            new Position(
+              me.token.lastLine ?? me.token.line,
+              me.token.lineRange[1]
+            )
           ),
           false
         );
@@ -1760,7 +1787,10 @@ export default class Parser {
         `expected import_code to have closing parenthesis`,
         new Range(
           new Position(start.line, start.character),
-          new Position(me.token.lastLine ?? me.token.line, me.token.range[1])
+          new Position(
+            me.token.lastLine ?? me.token.line,
+            me.token.lineRange[1]
+          )
         ),
         false
       );

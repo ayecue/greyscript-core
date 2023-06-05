@@ -9,5 +9,6 @@ export * from './types/errors';
 export * from './types/keywords';
 export * from './types/literals';
 export * from './types/operators';
-export { default as ASTPosition } from './types/position';
+export { Position as ASTPosition } from './types/position';
+export { Range as ASTRange } from './types/range';
 export * from './types/selector';
