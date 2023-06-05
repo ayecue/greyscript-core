@@ -808,17 +808,17 @@ exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts invalid code 2`] = `
 Array [
-  [Error: got Identifier[4:9 - 4:14: value = 'print'] where any of ",", ")" is required at 2:15 - 4:14],
-  [Error: got Punctuator[4:15 - 4:16: value = ')'] where number, string, or identifier is required at 4:15 - 4:16],
-  [Error: got Identifier[8:23 - 8:25: value = 'wa'] where any of ",", ";" is required at 8:15 - 8:25],
-  [Error: got EOL[8:25 - 8:25: value = ';'] where number, string, or identifier is required at 8:25 - 8:25],
-  [Error: got Punctuator[11:13 - 11:14: value = '+'] where number, string, or identifier is required at 11:13 - 11:14],
-  [Error: got Keyword[13:13 - 13:16: value = 'not'] where number, string, or identifier is required at 13:13 - 13:16],
-  [Error: unexpected keyword Keyword[17:9 - 17:17: value = 'function'] at start of line at 17:9 - 17:17],
-  [Error: got Punctuator[17:19 - 17:20: value = ')'] where number, string, or identifier is required at 17:19 - 17:20],
-  [Error: got Keyword[18:9 - 18:17: value = 'end func'] where Identifier is required at 18:9 - 18:17],
-  [Error: got Identifier[28:20 - 28:25: value = 'print'] where "then" is required at 28:9 - 28:25],
-  [Error: got Punctuator[28:33 - 28:34: value = ')'] where number, string, or identifier is required at 28:33 - 28:34],
+  [Error: got Identifier[4:9 - 4:14: value = 'print'] where any of ",", ")" is required],
+  [Error: got Punctuator[4:15 - 4:16: value = ')'] where number, string, or identifier is required],
+  [Error: got Identifier[8:23 - 8:25: value = 'wa'] where any of ",", ";" is required],
+  [Error: got EOL[8:25 - 8:25: value = ';'] where number, string, or identifier is required],
+  [Error: got Punctuator[11:13 - 11:14: value = '+'] where number, string, or identifier is required],
+  [Error: got Keyword[13:13 - 13:16: value = 'not'] where number, string, or identifier is required],
+  [Error: unexpected keyword Keyword[17:9 - 17:17: value = 'function'] at start of line],
+  [Error: got Punctuator[17:19 - 17:20: value = ')'] where number, string, or identifier is required],
+  [Error: got Keyword[18:9 - 18:17: value = 'end func'] where Identifier is required],
+  [Error: got Identifier[28:20 - 28:25: value = 'print'] where "then" is required],
+  [Error: got Punctuator[28:33 - 28:34: value = ')'] where number, string, or identifier is required],
 ]
 `;
 
