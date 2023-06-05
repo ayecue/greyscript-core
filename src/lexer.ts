@@ -198,9 +198,8 @@ export default class Lexer {
           break;
         }
       } else if (!me.isNotEOF()) {
-        const line = beginLine;
         return me.raise(
-          `Unexpected string ending at line ${line}.`,
+          `Unexpected string end of file.`,
           new Range(
             new Position(beginLine, beginLineStart - endOffset),
             new Position(me.line, me.index - endOffset)
