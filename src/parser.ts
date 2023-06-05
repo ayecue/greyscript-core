@@ -240,6 +240,7 @@ export default class Parser {
         });
 
         me.currentBlock.push(comment);
+        me.addLine(comment);
       }
 
       me.next();
@@ -395,7 +396,7 @@ export default class Parser {
 
       const assignmentStatement = me.astProvider.assignmentStatement({
         variable: expr,
-        init : null,
+        init: null,
         start,
         end: null,
         scope: me.currentScope
@@ -426,7 +427,7 @@ export default class Parser {
 
       const assignmentStatement = me.astProvider.assignmentStatement({
         variable: expr,
-        init : null,
+        init: null,
         start,
         end: null,
         scope: me.currentScope
@@ -1425,7 +1426,9 @@ export default class Parser {
         const assign = me.astProvider.assignmentStatement({
           variable: me.astProvider.indexExpression({
             index: key,
-            base: me.currentAssignment ? me.currentAssignment.variable : mapConstructorExpr,
+            base: me.currentAssignment
+              ? me.currentAssignment.variable
+              : mapConstructorExpr,
             start: key.start,
             end: key.end,
             scope: me.currentScope
@@ -1443,7 +1446,7 @@ export default class Parser {
 
         const value = me.parseExpr();
 
-        me.currentAssignment = previousAssignment
+        me.currentAssignment = previousAssignment;
 
         fields.push(
           me.astProvider.mapKeyString({
@@ -1514,7 +1517,9 @@ export default class Parser {
               end: me.token.getEnd(),
               scope: me.currentScope
             }),
-            base: me.currentAssignment ? me.currentAssignment.variable : listConstructorExpr,
+            base: me.currentAssignment
+              ? me.currentAssignment.variable
+              : listConstructorExpr,
             start: null,
             end: null,
             scope: me.currentScope
@@ -1525,11 +1530,11 @@ export default class Parser {
         });
         const previousAssignment = me.currentAssignment;
 
-        me.currentAssignment = previousAssignment
+        me.currentAssignment = previousAssignment;
 
         const value = me.parseExpr();
 
-        me.currentAssignment = previousAssignment
+        me.currentAssignment = previousAssignment;
 
         fields.push(
           me.astProvider.listValue({
