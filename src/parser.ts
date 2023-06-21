@@ -939,6 +939,7 @@ export default class Parser {
 
     if (me.is(Selectors.Or)) {
       me.next();
+      me.skipNewlines();
 
       const opB = me.parseOr();
 
@@ -964,6 +965,7 @@ export default class Parser {
 
     if (me.is(Selectors.And)) {
       me.next();
+      me.skipNewlines();
 
       const opB = me.parseOr();
 
@@ -1334,17 +1336,10 @@ export default class Parser {
               })
             : me.parseExpr();
 
-          const sliceExpression = me.astProvider.sliceExpression({
+          base = me.astProvider.sliceExpression({
+            base,
             left,
             right,
-            start,
-            end: me.token.getEnd(),
-            scope: me.currentScope
-          });
-
-          base = me.astProvider.indexExpression({
-            base,
-            index: sliceExpression,
             start,
             end: me.token.getEnd(),
             scope: me.currentScope
@@ -1364,17 +1359,10 @@ export default class Parser {
                 })
               : me.parseExpr();
 
-            const sliceExpression = me.astProvider.sliceExpression({
+            base = me.astProvider.sliceExpression({
+              base,
               left: index,
               right,
-              start,
-              end: me.token.getEnd(),
-              scope: me.currentScope
-            });
-
-            base = me.astProvider.indexExpression({
-              base,
-              index: sliceExpression,
               start,
               end: me.token.getEnd(),
               scope: me.currentScope

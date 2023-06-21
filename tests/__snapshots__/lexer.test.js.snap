@@ -1407,6 +1407,29 @@ EOL[7:1 - 7:1: value = ';']
 Keyword[8:1 - 8:7: value = 'end if']"
 `;
 
+exports[`parse default scripts multiline-condition.src 1`] = `
+"Keyword[1:1 - 1:3: value = 'if']
+BooleanLiteral[1:4 - 1:8: value = true]
+Keyword[1:9 - 1:11: value = 'or']
+EOL[1:11 - 1:11: value = ';']
+BooleanLiteral[2:1 - 2:5: value = true]
+Keyword[2:6 - 2:8: value = 'or']
+EOL[2:8 - 2:8: value = ';']
+BooleanLiteral[3:1 - 3:6: value = false]
+Keyword[3:7 - 3:10: value = 'and']
+EOL[3:10 - 3:10: value = ';']
+Keyword[4:1 - 4:4: value = 'not']
+BooleanLiteral[4:5 - 4:10: value = false]
+Keyword[4:11 - 4:15: value = 'then']
+EOL[4:15 - 4:15: value = ';']
+Identifier[5:3 - 5:8: value = 'print']
+Punctuator[5:8 - 5:9: value = '(']
+StringLiteral[5:9 - 5:15: value = \\"test\\"]
+Punctuator[5:15 - 5:16: value = ')']
+EOL[5:16 - 5:16: value = ';']
+Keyword[6:1 - 6:7: value = 'end if']"
+`;
+
 exports[`parse default scripts negation.src 1`] = `
 "Identifier[1:1 - 1:5: value = 'test']
 Punctuator[1:6 - 1:7: value = '=']
