@@ -939,6 +939,7 @@ export default class Parser {
 
     if (me.is(Selectors.Or)) {
       me.next();
+      me.skipNewlines();
 
       const opB = me.parseOr();
 
@@ -964,6 +965,7 @@ export default class Parser {
 
     if (me.is(Selectors.And)) {
       me.next();
+      me.skipNewlines();
 
       const opB = me.parseOr();
 
