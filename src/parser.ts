@@ -497,11 +497,11 @@ export default class Parser {
       }
 
       const requiredToken = me.requireTokenOfAny(
-        [Selectors.ArgumentSeperator, Selectors.EndOfLine],
+        [Selectors.ArgumentSeperator, Selectors.EndOfLine, Selectors.EndOfFile],
         start
       );
 
-      if (Selectors.EndOfLine.is(requiredToken)) break;
+      if (Selectors.EndOfLine.is(requiredToken) || Selectors.EndOfFile.is(requiredToken)) break;
     }
 
     if (expressions.length === 0) {
