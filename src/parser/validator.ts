@@ -15,6 +15,7 @@ export default class Validator {
       'list',
       'map',
       'number',
+      'funcRef',
       ...Object.keys(general).map((name: string) => {
         return name;
       })
