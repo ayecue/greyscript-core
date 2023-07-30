@@ -1,3 +1,4 @@
+import exp from 'constants';
 import Lexer from './lexer';
 import { Token, TokenType } from './lexer/token';
 import {
@@ -855,39 +856,16 @@ export default class Parser {
 
         if (me.consume(Selectors.Assign)) {
           const defaultValue = me.parseExpr();
+          const assign = me.astProvider.assignmentStatement({
+            variable: parameter,
+            init: defaultValue,
+            start: parameterStart,
+            end: me.previousToken.getEnd(),
+            scope: me.currentScope
+          });
 
-          if (
-            !(defaultValue instanceof ASTLiteral) &&
-            !(
-              defaultValue instanceof ASTUnaryExpression &&
-              defaultValue.operator === Operator.Minus
-            )
-          ) {
-            parameters.push(
-              me.raise(
-                `parameter default value must be a literal value`,
-                new Range(
-                  parameterStart,
-                  new Position(
-                    me.token.lastLine ?? me.token.line,
-                    me.token.lineRange[1]
-                  )
-                ),
-                false
-              )
-            );
-          } else {
-            const assign = me.astProvider.assignmentStatement({
-              variable: parameter,
-              init: defaultValue,
-              start: parameterStart,
-              end: me.previousToken.getEnd(),
-              scope: me.currentScope
-            });
-
-            me.currentScope.assignments.push(assign);
-            parameters.push(assign);
-          }
+          me.currentScope.assignments.push(assign);
+          parameters.push(assign);
         } else {
           const assign = me.astProvider.assignmentStatement({
             variable: parameter,
@@ -1378,7 +1356,7 @@ export default class Parser {
         }
 
         me.requireToken(Selectors.SRBracket, start);
-      } else if (me.is(Selectors.LParenthesis)) {
+      } else if (me.is(Selectors.LParenthesis) && !me.token.afterSpace) {
         const expressions = me.parseCallArgs();
 
         base = me.astProvider.callExpression({
