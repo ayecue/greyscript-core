@@ -925,7 +925,13 @@ Punctuator[5:7 - 5:8: value = '(']
 NumericLiteral[5:8 - 5:11: value = 123]
 Punctuator[5:11 - 5:12: value = ')']
 Punctuator[5:12 - 5:13: value = ',']
-NumericLiteral[5:13 - 5:14: value = 1]"
+NumericLiteral[5:13 - 5:14: value = 1]
+EOL[5:14 - 5:14: value = ';']
+Identifier[6:1 - 6:6: value = 'print']
+Identifier[6:7 - 6:11: value = 'test']
+Punctuator[6:12 - 6:13: value = '(']
+StringLiteral[6:13 - 6:46: value = \\"Press any button to continue...\\"]
+Punctuator[6:46 - 6:47: value = ')']"
 `;
 
 exports[`parse default scripts callexpr-with-nl.src 1`] = `

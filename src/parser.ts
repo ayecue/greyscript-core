@@ -1,4 +1,3 @@
-import exp from 'constants';
 import Lexer from './lexer';
 import { Token, TokenType } from './lexer/token';
 import {
@@ -17,7 +16,6 @@ import {
   ASTMapKeyString,
   ASTProvider,
   ASTReturnStatement,
-  ASTUnaryExpression,
   ASTWhileStatement
 } from './parser/ast';
 import Validator from './parser/validator';
@@ -404,7 +402,7 @@ export default class Parser {
   parseAssignment(): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const expr = me.parseExpr();
+    const expr = me.parseExpr(true, true);
 
     if (
       me.isOneOf(
@@ -502,7 +500,11 @@ export default class Parser {
         start
       );
 
-      if (Selectors.EndOfLine.is(requiredToken) || Selectors.EndOfFile.is(requiredToken)) break;
+      if (
+        Selectors.EndOfLine.is(requiredToken) ||
+        Selectors.EndOfFile.is(requiredToken)
+      )
+        break;
     }
 
     if (expressions.length === 0) {
@@ -823,15 +825,18 @@ export default class Parser {
     });
   }
 
-  parseExpr(): ASTBase {
+  parseExpr(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
-    return me.parseFunctionDeclaration();
+    return me.parseFunctionDeclaration(asLval, statementStart);
   }
 
-  parseFunctionDeclaration(): ASTFunctionStatement | ASTBase {
+  parseFunctionDeclaration(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTFunctionStatement | ASTBase {
     const me = this;
 
-    if (!me.is(Selectors.Function)) return me.parseOr();
+    if (!me.is(Selectors.Function)) return me.parseOr(asLval, statementStart);
 
     me.next();
 
@@ -910,10 +915,10 @@ export default class Parser {
     return functionStatement;
   }
 
-  parseOr(): ASTBase {
+  parseOr(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseAnd();
+    const val = me.parseAnd(asLval, statementStart);
     let base = val;
 
     while (me.is(Selectors.Or)) {
@@ -935,10 +940,10 @@ export default class Parser {
     return base;
   }
 
-  parseAnd(): ASTBase {
+  parseAnd(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseNot();
+    const val = me.parseNot(asLval, statementStart);
     let base = val;
 
     while (me.is(Selectors.And)) {
@@ -960,7 +965,7 @@ export default class Parser {
     return base;
   }
 
-  parseNot(): ASTBase {
+  parseNot(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
     const start = me.token.getStart();
 
@@ -980,13 +985,13 @@ export default class Parser {
       });
     }
 
-    return me.parseIsa();
+    return me.parseIsa(asLval, statementStart);
   }
 
-  parseIsa(): ASTBase {
+  parseIsa(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseBitwiseOr();
+    const val = me.parseBitwiseOr(asLval, statementStart);
 
     if (me.is(Selectors.Isa)) {
       me.next();
@@ -1008,10 +1013,13 @@ export default class Parser {
     return val;
   }
 
-  parseBitwiseOr(): ASTBase {
+  parseBitwiseOr(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseBitwiseAnd();
+    const val = me.parseBitwiseAnd(asLval, statementStart);
     let base = val;
 
     while (me.is(Selectors.BitwiseOr)) {
@@ -1032,10 +1040,13 @@ export default class Parser {
     return base;
   }
 
-  parseBitwiseAnd(): ASTBase {
+  parseBitwiseAnd(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseComparisons();
+    const val = me.parseComparisons(asLval, statementStart);
     let base = val;
 
     while (me.is(Selectors.BitwiseAnd)) {
@@ -1056,10 +1067,13 @@ export default class Parser {
     return base;
   }
 
-  parseComparisons(): ASTBase {
+  parseComparisons(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseAddSub();
+    const val = me.parseAddSub(asLval, statementStart);
     let base = val;
 
     while (
@@ -1091,10 +1105,13 @@ export default class Parser {
     return base;
   }
 
-  parseAddSub(): ASTBase {
+  parseAddSub(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseBitwise();
+    const val = me.parseBitwise(asLval, statementStart);
     let base = val;
 
     while (me.isOneOf(Selectors.Plus, Selectors.Minus)) {
@@ -1118,10 +1135,13 @@ export default class Parser {
     return base;
   }
 
-  parseBitwise(): ASTBase {
+  parseBitwise(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseMultDiv();
+    const val = me.parseMultDiv(asLval, statementStart);
     let base = val;
 
     while (
@@ -1151,10 +1171,13 @@ export default class Parser {
     return base;
   }
 
-  parseMultDiv(): ASTBase {
+  parseMultDiv(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseUnaryMinus();
+    const val = me.parseUnaryMinus(asLval, statementStart);
     let base = val;
 
     while (me.isOneOf(Selectors.Times, Selectors.Divide, Selectors.Mod)) {
@@ -1178,11 +1201,14 @@ export default class Parser {
     return base;
   }
 
-  parseUnaryMinus(): ASTBase {
+  parseUnaryMinus(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
 
     if (!me.is(Selectors.Minus)) {
-      return me.parseNew();
+      return me.parseNew(asLval, statementStart);
     }
 
     const start = me.token.getStart();
@@ -1201,11 +1227,11 @@ export default class Parser {
     });
   }
 
-  parseNew(): ASTBase {
+  parseNew(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
 
     if (!me.is(Selectors.New)) {
-      return me.parseAddressOf();
+      return me.parseAddressOf(asLval, statementStart);
     }
 
     const start = me.token.getStart();
@@ -1224,11 +1250,14 @@ export default class Parser {
     });
   }
 
-  parseAddressOf(): ASTBase {
+  parseAddressOf(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
 
     if (!me.is(Selectors.Reference)) {
-      return me.parsePower();
+      return me.parsePower(asLval, statementStart);
     }
 
     const start = me.token.getStart();
@@ -1247,10 +1276,13 @@ export default class Parser {
     });
   }
 
-  parsePower(): ASTBase {
+  parsePower(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    const val = me.parseCallExpr();
+    const val = me.parseCallExpr(asLval, statementStart);
 
     if (me.isOneOf(Selectors.Power)) {
       me.next();
@@ -1271,10 +1303,13 @@ export default class Parser {
     return val;
   }
 
-  parseCallExpr(): ASTBase {
+  parseCallExpr(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
     const start = me.token.getStart();
-    let base = me.parseMap();
+    let base = me.parseMap(asLval, statementStart);
 
     while (!me.is(Selectors.EndOfFile)) {
       if (me.is(Selectors.MemberSeperator)) {
@@ -1356,7 +1391,10 @@ export default class Parser {
         }
 
         me.requireToken(Selectors.SRBracket, start);
-      } else if (me.is(Selectors.LParenthesis) && !me.token.afterSpace) {
+      } else if (
+        me.is(Selectors.LParenthesis) &&
+        (!asLval || !me.token.afterSpace)
+      ) {
         const expressions = me.parseCallArgs();
 
         base = me.astProvider.callExpression({
@@ -1405,11 +1443,11 @@ export default class Parser {
     return expressions;
   }
 
-  parseMap(): ASTBase {
+  parseMap(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
 
     if (!me.is(Selectors.CLBracket)) {
-      return me.parseList();
+      return me.parseList(asLval, statementStart);
     }
 
     const start = me.token.getStart();
@@ -1496,11 +1534,11 @@ export default class Parser {
     return mapConstructorExpr;
   }
 
-  parseList(): ASTBase {
+  parseList(asLval: boolean = false, statementStart: boolean = false): ASTBase {
     const me = this;
 
     if (!me.is(Selectors.SLBracket)) {
-      return me.parseQuantity();
+      return me.parseQuantity(asLval, statementStart);
     }
 
     const start = me.token.getStart();
@@ -1593,11 +1631,14 @@ export default class Parser {
     return listConstructorExpr;
   }
 
-  parseQuantity(): ASTBase {
+  parseQuantity(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTBase {
     const me = this;
 
     if (!me.is(Selectors.LParenthesis)) {
-      return me.parseAtom();
+      return me.parseAtom(asLval, statementStart);
     }
 
     const start = me.token.getStart();
@@ -1617,7 +1658,10 @@ export default class Parser {
     });
   }
 
-  parseAtom(): ASTBase {
+  parseAtom(
+    _asLval: boolean = false,
+    _statementStart: boolean = false
+  ): ASTBase {
     const me = this;
 
     if (me.validator.isLiteral(<TokenType>me.token.type)) {
