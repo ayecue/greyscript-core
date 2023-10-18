@@ -1,24 +1,8 @@
-export enum Keyword {
-  If = 'if',
-  In = 'in',
-  Or = 'or',
-  And = 'and',
-  Isa = 'isa',
-  For = 'for',
-  Not = 'not',
-  New = 'new',
-  End = 'end',
-  EndFor = 'end for',
-  EndWhile = 'end while',
-  EndFunction = 'end function',
-  EndIf = 'end if',
-  Then = 'then',
-  Else = 'else',
-  Break = 'break',
-  While = 'while',
-  ElseIf = 'else if',
-  Return = 'return',
-  Function = 'function',
-  Continue = 'continue',
+import { GreybelKeyword } from 'greybel-core';
+import { Keyword as CoreKeyword } from 'miniscript-core';
+
+export enum GreyScriptKeyword {
   ImportCode = 'import_code'
 }
+
+export type Keyword = CoreKeyword | GreybelKeyword | GreyScriptKeyword;
