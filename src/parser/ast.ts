@@ -18,6 +18,7 @@ export class ASTProvider extends BaseAstProvider {
   }
 }
 
+export { ASTType } from './ast/base';
 export { ASTChunkGreyScript, ASTChunkGreyScriptOptions } from './ast/chunk';
 export {
   ASTImportCodeExpression,

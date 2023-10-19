@@ -1,4 +1,6 @@
-import { ASTBase, ASTBaseOptions, ASTType } from 'miniscript-core';
+import { ASTBase, ASTBaseOptions } from 'miniscript-core';
+
+import { ASTType } from './base';
 
 export interface ASTImportCodeExpressionOptions extends ASTBaseOptions {
   directory: string;
