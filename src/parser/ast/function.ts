@@ -37,4 +37,14 @@ export class ASTFunctionStatement extends ASTBaseBlockWithScope {
 
     return `Function[${this.start}-${this.end}][${args} =>\n${body}\n]`;
   }
+
+  clone(): ASTFunctionStatement {
+    return new ASTFunctionStatement({
+      parameters: this.parameters,
+      assignment: this.assignment,
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
+  }
 }

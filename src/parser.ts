@@ -466,7 +466,7 @@ export default class Parser {
 
       assignmentStatement.init = me.astProvider.binaryExpression({
         operator,
-        left: expr,
+        left: expr.clone(),
         right,
         start: binaryExpressionStart,
         end: me.previousToken.getEnd(),

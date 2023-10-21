@@ -69,6 +69,14 @@ export class ASTBase {
   toString(): string {
     return `${this.type}[${this.start}-${this.end}][]`;
   }
+
+  clone(): ASTBase {
+    return new ASTBase(this.type, {
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
+  }
 }
 
 export interface ASTBaseBlockOptions extends ASTBaseOptions {
@@ -95,6 +103,15 @@ export class ASTBaseBlock extends ASTBase {
       body.length > 0 ? `\n${body}\n` : ''
     }]`;
   }
+
+  clone(): ASTBaseBlock {
+    return new ASTBaseBlock(this.type, {
+      body: this.body,
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
+  }
 }
 
 export interface ASTBaseBlockWithScopeOptions extends ASTBaseBlockOptions {
@@ -116,6 +133,18 @@ export class ASTBaseBlockWithScope extends ASTBaseBlock {
     this.assignments = options.assignments || [];
     this.returns = options.returns || [];
   }
+
+  clone(): ASTBaseBlockWithScope {
+    return new ASTBaseBlockWithScope(this.type, {
+      namespaces: this.namespaces,
+      assignments: this.assignments,
+      returns: this.returns,
+      body: this.body,
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
+  }
 }
 
 export interface ASTCommentOptions extends ASTBaseOptions {
@@ -135,5 +164,15 @@ export class ASTComment extends ASTBase {
 
   toString(): string {
     return `Comment[${this.start}-${this.end}][${this.value}]`;
+  }
+
+  clone(): ASTComment {
+    return new ASTComment({
+      value: this.value,
+      isMultiline: this.isMultiline,
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
   }
 }

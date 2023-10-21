@@ -18,4 +18,13 @@ export class ASTImportCodeExpression extends ASTBase {
   toString(): string {
     return `ImportCode[${this.start}-${this.end}][${this.directory}]`;
   }
+
+  clone(): ASTImportCodeExpression {
+    return new ASTImportCodeExpression({
+      directory: this.directory,
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
+  }
 }

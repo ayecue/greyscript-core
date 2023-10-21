@@ -41,4 +41,15 @@ export class ASTEvaluationExpression extends ASTBase {
   toString(): string {
     return `${this.type}[${this.start}-${this.end}][${this.left} ${this.operator} ${this.right}]`;
   }
+
+  clone(): ASTEvaluationExpression {
+    return new ASTEvaluationExpression({
+      operator: this.operator,
+      left: this.left,
+      right: this.right,
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
+  }
 }

@@ -41,4 +41,16 @@ export class ASTChunk extends ASTBaseBlockWithScope {
 
     return `Chunk[${this.start}-${this.end}][\n${body}\n]`;
   }
+
+  clone(): ASTChunk {
+    return new ASTChunk({
+      nativeImports: this.nativeImports,
+      literals: this.literals,
+      scopes: this.scopes,
+      lines: this.lines,
+      start: this.start,
+      end: this.end,
+      scope: this.scope
+    });
+  }
 }
