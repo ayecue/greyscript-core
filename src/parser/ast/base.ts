@@ -106,7 +106,7 @@ export class ASTBaseBlock extends ASTBase {
 
   clone(): ASTBaseBlock {
     return new ASTBaseBlock(this.type, {
-      body: this.body,
+      body: this.body.map((it) => it.clone()),
       start: this.start,
       end: this.end,
       scope: this.scope
@@ -137,9 +137,9 @@ export class ASTBaseBlockWithScope extends ASTBaseBlock {
   clone(): ASTBaseBlockWithScope {
     return new ASTBaseBlockWithScope(this.type, {
       namespaces: this.namespaces,
-      assignments: this.assignments,
-      returns: this.returns,
-      body: this.body,
+      assignments: this.assignments.map((it) => it.clone()),
+      returns: this.returns.map((it) => it.clone()),
+      body: this.body.map((it) => it.clone()),
       start: this.start,
       end: this.end,
       scope: this.scope

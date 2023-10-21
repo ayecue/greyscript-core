@@ -51,7 +51,7 @@ export class ASTMemberExpression extends ASTBase {
   clone(): ASTMemberExpression {
     return new ASTMemberExpression({
       indexer: this.indexer,
-      identifier: this.identifier,
+      identifier: this.identifier.clone(),
       base: this.base,
       start: this.start,
       end: this.end,
@@ -81,8 +81,8 @@ export class ASTIndexExpression extends ASTBase {
 
   clone(): ASTIndexExpression {
     return new ASTIndexExpression({
-      base: this.base,
-      index: this.index,
+      base: this.base.clone(),
+      index: this.index.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

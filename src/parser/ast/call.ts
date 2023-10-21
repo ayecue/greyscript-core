@@ -49,8 +49,8 @@ export class ASTCallExpression extends ASTBase {
 
   clone(): ASTCallExpression {
     return new ASTCallExpression({
-      base: this.base,
-      arguments: this.arguments,
+      base: this.base.clone(),
+      arguments: this.arguments.map((it) => it.clone()),
       start: this.start,
       end: this.end,
       scope: this.scope

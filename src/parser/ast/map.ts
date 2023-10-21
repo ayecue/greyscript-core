@@ -21,8 +21,8 @@ export class ASTMapKeyString extends ASTBase {
 
   clone(): ASTMapKeyString {
     return new ASTMapKeyString({
-      key: this.key,
-      value: this.value,
+      key: this.key.clone(),
+      value: this.value.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

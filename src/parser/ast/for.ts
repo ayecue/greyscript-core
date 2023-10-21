@@ -32,8 +32,8 @@ export class ASTForGenericStatement extends ASTBaseBlock {
 
   clone(): ASTForGenericStatement {
     return new ASTForGenericStatement({
-      variable: this.variable,
-      iterator: this.iterator,
+      variable: this.variable.clone(),
+      iterator: this.iterator.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

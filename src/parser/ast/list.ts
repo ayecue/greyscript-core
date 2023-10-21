@@ -18,7 +18,7 @@ export class ASTListValue extends ASTBase {
 
   clone(): ASTListValue {
     return new ASTListValue({
-      value: this.value,
+      value: this.value.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

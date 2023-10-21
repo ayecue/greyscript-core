@@ -40,8 +40,8 @@ export class ASTFunctionStatement extends ASTBaseBlockWithScope {
 
   clone(): ASTFunctionStatement {
     return new ASTFunctionStatement({
-      parameters: this.parameters,
-      assignment: this.assignment,
+      parameters: this.parameters.map((it) => it.clone()),
+      assignment: this.assignment.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

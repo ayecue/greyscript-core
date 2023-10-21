@@ -45,8 +45,8 @@ export class ASTEvaluationExpression extends ASTBase {
   clone(): ASTEvaluationExpression {
     return new ASTEvaluationExpression({
       operator: this.operator,
-      left: this.left,
-      right: this.right,
+      left: this.left.clone(),
+      right: this.right.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

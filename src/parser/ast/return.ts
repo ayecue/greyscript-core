@@ -18,7 +18,7 @@ export class ASTReturnStatement extends ASTBase {
 
   clone(): ASTReturnStatement {
     return new ASTReturnStatement({
-      argument: this.argument,
+      argument: this.argument.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

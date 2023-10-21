@@ -40,7 +40,7 @@ export class ASTIfStatement extends ASTBase {
 
   clone(): ASTIfStatement {
     return new ASTIfStatement(this.type as ASTType.IfShortcutStatement | ASTType.IfStatement, {
-      clauses: this.clauses,
+      clauses: this.clauses.map((it) => it.clone()),
       start: this.start,
       end: this.end,
       scope: this.scope
@@ -87,7 +87,7 @@ export class ASTIfClause extends ASTClause {
       | ASTType.ElseifShortcutClause
       | ASTType.IfClause
       | ASTType.ElseifClause, {
-      condition: this.condition,
+      condition: this.condition.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

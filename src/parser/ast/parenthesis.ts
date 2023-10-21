@@ -18,7 +18,7 @@ export class ASTParenthesisExpression extends ASTBase {
 
   clone(): ASTParenthesisExpression {
     return new ASTParenthesisExpression({
-      expression: this.expression,
+      expression: this.expression.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

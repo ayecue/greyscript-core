@@ -24,9 +24,9 @@ export class ASTSliceExpression extends ASTBase {
 
   clone(): ASTSliceExpression {
     return new ASTSliceExpression({
-      base: this.base,
-      left: this.left,
-      right: this.right,
+      base: this.base.clone(),
+      left: this.left.clone(),
+      right: this.right.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

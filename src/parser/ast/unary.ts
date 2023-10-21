@@ -42,7 +42,7 @@ export class ASTUnaryExpression extends ASTBase {
 
   clone(): ASTUnaryExpression {
     return new ASTUnaryExpression({
-      argument: this.argument,
+      argument: this.argument.clone(),
       operator: this.operator,
       start: this.start,
       end: this.end,

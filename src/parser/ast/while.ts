@@ -29,7 +29,7 @@ export class ASTWhileStatement extends ASTBaseBlock {
 
   clone(): ASTWhileStatement {
     return new ASTWhileStatement({
-      condition: this.condition,
+      condition: this.condition.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope

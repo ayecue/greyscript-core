@@ -21,8 +21,8 @@ export class ASTAssignmentStatement extends ASTBase {
 
   clone(): ASTAssignmentStatement {
     return new ASTAssignmentStatement({
-      variable: this.variable,
-      init: this.init,
+      variable: this.variable.clone(),
+      init: this.init.clone(),
       start: this.start,
       end: this.end,
       scope: this.scope
