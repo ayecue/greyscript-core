@@ -1,6 +1,7 @@
 import {
   ASTBase,
-  TokenType
+  TokenType,
+  ASTFunctionStatement
 } from 'miniscript-core';
 import {
   Parser as ParserBase,
@@ -53,6 +54,91 @@ export default class Parser extends ParserBase {
     }
 
     return super.parseStatement();
+  }
+
+  parseFunctionDeclaration(
+    asLval: boolean = false,
+    statementStart: boolean = false
+  ): ASTFunctionStatement | ASTBase {
+    const me = this;
+
+    if (!me.is(Selectors.Function)) return me.parseOr(asLval, statementStart);
+
+    me.next();
+
+    const functionStart = me.previousToken.getStart();
+    const functionStatement = me.astProvider.functionStatement({
+      start: functionStart,
+      end: null,
+      scope: me.currentScope,
+      parent: me.outerScopes[me.outerScopes.length - 1],
+      assignment: me.currentAssignment
+    });
+    const parameters = [];
+
+    me.pushScope(functionStatement);
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      me.requireToken(Selectors.LParenthesis, functionStart);
+
+      while (!me.isOneOf(Selectors.RParenthesis, Selectors.EndOfFile)) {
+        const parameter = me.parseIdentifier();
+        const parameterStart = parameter.start;
+
+        if (me.consume(Selectors.Assign)) {
+          const defaultValue = me.parseExpr();
+          const assign = me.astProvider.assignmentStatement({
+            variable: parameter,
+            init: defaultValue,
+            start: parameterStart,
+            end: me.previousToken.getEnd(),
+            scope: me.currentScope
+          });
+
+          me.currentScope.assignments.push(assign);
+          parameters.push(assign);
+        } else {
+          const assign = me.astProvider.assignmentStatement({
+            variable: parameter,
+            init: me.astProvider.unknown({
+              start: parameterStart,
+              end: me.previousToken.getEnd(),
+              scope: me.currentScope
+            }),
+            start: parameterStart,
+            end: me.previousToken.getEnd(),
+            scope: me.currentScope
+          });
+
+          me.currentScope.assignments.push(assign);
+          parameters.push(parameter);
+        }
+
+        if (me.is(Selectors.RParenthesis)) break;
+        me.requireToken(Selectors.ArgumentSeperator, functionStart);
+      }
+
+      me.requireToken(Selectors.RParenthesis, functionStart);
+    }
+
+    let body: ASTBase[] = [];
+
+    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+      const statement = me.parseStatement();
+      me.addLine(statement);
+      body.push(statement);
+    } else {
+      body = me.parseBlock(Selectors.EndFunction);
+      me.requireToken(Selectors.EndFunction, functionStart);
+    }
+
+    me.popScope();
+
+    functionStatement.parameters = parameters;
+    functionStatement.body = body;
+    functionStatement.end = me.previousToken.getEnd();
+
+    return functionStatement;
   }
 
   parseNativeImportCodeStatement(): ASTImportCodeExpression | ASTBase {
