@@ -13,9 +13,11 @@ export class ASTChunkGreyScript extends ASTChunkAdvanced {
     this.nativeImports = options.nativeImports || [];
   }
 
-  clone(): ASTChunk {
-    return new ASTChunk({
+  clone(): ASTChunkGreyScript {
+    return new ASTChunkGreyScript({
       nativeImports: this.nativeImports.map((it) => it.clone()),
+      imports: this.imports.map((it) => it.clone()),
+      includes: this.includes.map((it) => it.clone()),
       literals: this.literals.map((it) => it.clone()),
       scopes: this.scopes.map((it) => it.clone()),
       lines: this.lines,
