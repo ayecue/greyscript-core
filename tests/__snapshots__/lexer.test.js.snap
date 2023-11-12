@@ -1236,6 +1236,13 @@ EOL[7:13 - 7:13: value = ';']
 Keyword[8:1 - 8:13: value = 'end function']"
 `;
 
+exports[`parse default scripts import-code.src 1`] = `
+"Keyword[1:1 - 1:12: value = 'import_code']
+Punctuator[1:12 - 1:13: value = '(']
+StringLiteral[1:13 - 1:19: value = \\"test\\"]
+Punctuator[1:19 - 1:20: value = ')']"
+`;
+
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts list.src 1`] = `

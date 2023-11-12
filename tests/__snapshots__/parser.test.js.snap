@@ -830,6 +830,26 @@ exports[`parse default scripts function.src unsafe 1`] = `
 ]"
 `;
 
+exports[`parse default scripts import-code.src 1`] = `
+"Chunk[1:1-1:20][
+	ImportCode[1:1-1:20][test]
+]"
+`;
+
+exports[`parse default scripts import-code.src 2`] = `undefined`;
+
+exports[`parse default scripts import-code.src 3`] = `0`;
+
+exports[`parse default scripts import-code.src 4`] = `1`;
+
+exports[`parse default scripts import-code.src 5`] = `0`;
+
+exports[`parse default scripts import-code.src unsafe 1`] = `
+"Chunk[1:1-1:20][
+	ImportCode[1:1-1:20][test]
+]"
+`;
+
 exports[`parse default scripts invalid code 1`] = `Array []`;
 
 exports[`parse default scripts invalid code 2`] = `
