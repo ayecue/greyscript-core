@@ -530,9 +530,9 @@ exports[`parse default scripts binary-expressions.src 1`] = `
 	LogicalExpression[12:1-12:7][Identifier[12:1-12:2][a] or Identifier[12:6-12:7][b]]
 	IsaExpression[13:1-13:8][Identifier[13:1-13:2][a] isa Identifier[13:7-13:8][b]]
 	LogicalExpression[14:1-14:20][IsaExpression[14:1-14:8][Identifier[14:1-14:2][a] isa Identifier[14:7-14:8][b]] and IsaExpression[14:13-14:20][Identifier[14:13-14:14][a] isa Identifier[14:19-14:20][b]]]
-	BinaryExpression[17:1-17:13][MemberExpression[17:1-17:9][Identifier[17:1-17:5][test].Identifier[17:6-17:9][len]] / Literal[17:12-17:13][2]]
-	BinaryExpression[18:1-18:13][MemberExpression[18:1-18:9][Identifier[18:1-18:5][test].Identifier[18:6-18:9][len]] + Literal[18:12-18:13][2]]
-	BinaryExpression[19:1-19:13][MemberExpression[19:1-19:9][Identifier[19:1-19:5][test].Identifier[19:6-19:9][len]] - Literal[19:12-19:13][2]]
+	AssignmentStatement[17:1-17:17][Identifier[17:1-17:2][a] = BinaryExpression[17:5-17:17][MemberExpression[17:5-17:13][Identifier[17:5-17:9][test].Identifier[17:10-17:13][len]] / Literal[17:16-17:17][2]]]
+	AssignmentStatement[18:1-18:17][Identifier[18:1-18:2][b] = BinaryExpression[18:5-18:17][MemberExpression[18:5-18:13][Identifier[18:5-18:9][test].Identifier[18:10-18:13][len]] + Literal[18:16-18:17][2]]]
+	AssignmentStatement[19:1-19:17][Identifier[19:1-19:2][c] = BinaryExpression[19:5-19:17][MemberExpression[19:5-19:13][Identifier[19:5-19:9][test].Identifier[19:10-19:13][len]] - Literal[19:16-19:17][2]]]
 	AssignmentStatement[21:1-21:9][Identifier[21:1-21:4][bar] = Literal[21:7-21:9][0.1]]
 ]"
 `;
@@ -543,7 +543,7 @@ exports[`parse default scripts binary-expressions.src 3`] = `4`;
 
 exports[`parse default scripts binary-expressions.src 4`] = `0`;
 
-exports[`parse default scripts binary-expressions.src 5`] = `6`;
+exports[`parse default scripts binary-expressions.src 5`] = `9`;
 
 exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 "Chunk[1:1-21:9][
@@ -561,9 +561,9 @@ exports[`parse default scripts binary-expressions.src unsafe 1`] = `
 	LogicalExpression[12:1-12:7][Identifier[12:1-12:2][a] or Identifier[12:6-12:7][b]]
 	IsaExpression[13:1-13:8][Identifier[13:1-13:2][a] isa Identifier[13:7-13:8][b]]
 	LogicalExpression[14:1-14:20][IsaExpression[14:1-14:8][Identifier[14:1-14:2][a] isa Identifier[14:7-14:8][b]] and IsaExpression[14:13-14:20][Identifier[14:13-14:14][a] isa Identifier[14:19-14:20][b]]]
-	BinaryExpression[17:1-17:13][MemberExpression[17:1-17:9][Identifier[17:1-17:5][test].Identifier[17:6-17:9][len]] / Literal[17:12-17:13][2]]
-	BinaryExpression[18:1-18:13][MemberExpression[18:1-18:9][Identifier[18:1-18:5][test].Identifier[18:6-18:9][len]] + Literal[18:12-18:13][2]]
-	BinaryExpression[19:1-19:13][MemberExpression[19:1-19:9][Identifier[19:1-19:5][test].Identifier[19:6-19:9][len]] - Literal[19:12-19:13][2]]
+	AssignmentStatement[17:1-17:17][Identifier[17:1-17:2][a] = BinaryExpression[17:5-17:17][MemberExpression[17:5-17:13][Identifier[17:5-17:9][test].Identifier[17:10-17:13][len]] / Literal[17:16-17:17][2]]]
+	AssignmentStatement[18:1-18:17][Identifier[18:1-18:2][b] = BinaryExpression[18:5-18:17][MemberExpression[18:5-18:13][Identifier[18:5-18:9][test].Identifier[18:10-18:13][len]] + Literal[18:16-18:17][2]]]
+	AssignmentStatement[19:1-19:17][Identifier[19:1-19:2][c] = BinaryExpression[19:5-19:17][MemberExpression[19:5-19:13][Identifier[19:5-19:9][test].Identifier[19:10-19:13][len]] - Literal[19:16-19:17][2]]]
 	AssignmentStatement[21:1-21:9][Identifier[21:1-21:4][bar] = Literal[21:7-21:9][0.1]]
 ]"
 `;
