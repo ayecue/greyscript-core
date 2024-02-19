@@ -248,7 +248,7 @@ export default class Parser extends ParserBase {
       me.parseStatement();
 
       if (me.statementErrors.length > 0) {
-        me.errors.push(...me.statementErrors);
+        me.errors.push(me.statementErrors[0]);
 
         if (!me.unsafe) {
           me.lexer.clearSnapshot();
