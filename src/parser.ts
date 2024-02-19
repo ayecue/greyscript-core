@@ -63,6 +63,7 @@ export default class Parser extends ParserBase {
   }
 
   parseFunctionDeclaration(
+    base: ASTBase,
     asLval: boolean = false,
     statementStart: boolean = false
   ): ASTFunctionStatement | ASTBase {
@@ -92,7 +93,7 @@ export default class Parser extends ParserBase {
         const parameterStart = parameter.start;
 
         if (me.consume(Selectors.Assign)) {
-          const defaultValue = me.parseExpr();
+          const defaultValue = me.parseExpr(null);
           const assign = me.astProvider.assignmentStatement({
             variable: parameter,
             init: defaultValue,
@@ -131,6 +132,14 @@ export default class Parser extends ParserBase {
 
     const pendingBlock = new PendingFunction(functionStatement);
     me.backpatches.push(pendingBlock);
+    pendingBlock.onComplete = (it) => {
+      if (base !== null) {
+        base.end = it.block.end;
+        me.addLine(base);
+      } else {
+        me.addLine(it.block);
+      }
+    };
 
     return functionStatement;
   }
