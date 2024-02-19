@@ -21,10 +21,6 @@ while (i < b) i += 1
 while (b < i)
 	b += 1
 end while
-myFunction = function(v) print(v)
-otherFunction = function(n)
-	print(n)
-end function
 
 if not @ref then
 end if

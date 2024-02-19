@@ -1,7 +1,10 @@
 import {
   ASTBase,
   TokenType,
-  ASTFunctionStatement
+  ASTFunctionStatement,
+  isPendingChunk,
+  PendingChunk,
+  PendingFunction
 } from 'miniscript-core';
 import {
   Parser as ParserBase,
@@ -38,7 +41,7 @@ export default class Parser extends ParserBase {
     me.nativeImports = [];
   }
 
-  parseStatement(): ASTBase | null {
+  parseStatement(): void {
     const me = this;
 
     if (me.isType(TokenType.Keyword)) {
@@ -47,7 +50,10 @@ export default class Parser extends ParserBase {
       switch (value) {
         case GreyScriptKeyword.ImportCode:
           me.next();
-          return me.parseNativeImportCodeStatement();
+          const item = me.parseNativeImportCodeStatement();
+          me.addLine(item);
+          me.backpatches.peek().body.push(item);
+          return;
         default:
           break;
       }
@@ -121,22 +127,10 @@ export default class Parser extends ParserBase {
       me.requireToken(Selectors.RParenthesis, functionStart);
     }
 
-    let body: ASTBase[] = [];
-
-    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
-      const statement = me.parseStatement();
-      me.addLine(statement);
-      body.push(statement);
-    } else {
-      body = me.parseBlock(Selectors.EndFunction);
-      me.requireToken(Selectors.EndFunction, functionStart);
-    }
-
-    me.popScope();
-
     functionStatement.parameters = parameters;
-    functionStatement.body = body;
-    functionStatement.end = me.previousToken.getEnd();
+
+    const pendingBlock = new PendingFunction(functionStatement);
+    me.backpatches.push(pendingBlock);
 
     return functionStatement;
   }
@@ -146,7 +140,7 @@ export default class Parser extends ParserBase {
     const start = me.previousToken.getStart();
 
     if (!me.consume(Selectors.LParenthesis)) {
-      return me.raise(
+      me.raise(
         `expected import_code to have opening parenthesis`,
         new Range(
           start,
@@ -154,9 +148,10 @@ export default class Parser extends ParserBase {
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
           )
-        ),
-        false
+        )
       );
+
+      return me.parseInvalidCode();
     }
 
     let directory;
@@ -165,7 +160,7 @@ export default class Parser extends ParserBase {
       directory = me.token.value;
       me.next();
     } else {
-      return me.raise(
+      me.raise(
         `expected import_code argument to be string literal`,
         new Range(
           start,
@@ -173,14 +168,15 @@ export default class Parser extends ParserBase {
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
           )
-        ),
-        false
+        )
       );
+
+      return me.parseInvalidCode();
     }
 
     if (me.consume(Selectors.ImportCodeSeperator)) {
       if (!me.isType(TokenType.StringLiteral)) {
-        return me.raise(
+        me.raise(
           `expected import_code argument to be string literal`,
           new Range(
             start,
@@ -188,9 +184,10 @@ export default class Parser extends ParserBase {
               me.token.lastLine ?? me.token.line,
               me.token.lineRange[1]
             )
-          ),
-          false
+          )
         );
+
+        return me.parseInvalidCode();
       }
 
       directory = me.token.value;
@@ -202,7 +199,7 @@ export default class Parser extends ParserBase {
     }
 
     if (!me.consume(Selectors.RParenthesis)) {
-      return me.raise(
+      me.raise(
         `expected import_code to have closing parenthesis`,
         new Range(
           start,
@@ -210,9 +207,10 @@ export default class Parser extends ParserBase {
             me.token.lastLine ?? me.token.line,
             me.token.lineRange[1]
           )
-        ),
-        false
+        )
       );
+
+      return me.parseInvalidCode();
     }
 
     const base = me.astProvider.importCodeExpression({
@@ -234,10 +232,9 @@ export default class Parser extends ParserBase {
 
     const start = me.token.getStart();
     const chunk = me.astProvider.chunkAdvanced({ start, end: null });
-    const block: ASTBase[] = [];
+    const pending = new PendingChunk(chunk);
 
-    me.currentBlock = block;
-
+    me.backpatches.push(pending);
     me.pushScope(chunk);
 
     while (!me.is(Selectors.EndOfFile)) {
@@ -245,17 +242,54 @@ export default class Parser extends ParserBase {
 
       if (me.is(Selectors.EndOfFile)) break;
 
-      const statement = me.parseStatement();
+      me.lexer.recordSnapshot();
+      me.statementErrors = [];
 
-      if (statement) {
-        me.addLine(statement);
-        block.push(statement);
+      me.parseStatement();
+
+      if (me.statementErrors.length > 0) {
+        me.errors.push(...me.statementErrors);
+
+        if (!me.unsafe) {
+          me.lexer.clearSnapshot();
+          throw me.statementErrors[0];
+        }
+
+        me.lexer.recoverFromSnapshot();
+
+        me.next();
+
+        while (
+          me.token.type !== TokenType.EOL &&
+          me.token.type !== TokenType.EOF
+        ) {
+          me.next();
+        }
       }
+    }
+
+    let last = me.backpatches.pop();
+
+    while (!isPendingChunk(last)) {
+      const exception = me.raise(
+        `found open block ${last.block.type}`,
+        new Range(last.block.start, last.block.start)
+      );
+
+      last.complete(me.previousToken);
+
+      me.errors.push(exception);
+
+      if (!me.unsafe) {
+        throw exception;
+      }
+
+      last = me.backpatches.pop();
     }
 
     me.popScope();
 
-    chunk.body = block;
+    chunk.body = last.body;
     chunk.literals = me.literals;
     chunk.scopes = me.scopes;
     chunk.lines = me.lines;
@@ -264,7 +298,7 @@ export default class Parser extends ParserBase {
     chunk.imports = me.imports;
     chunk.includes = me.includes;
 
-    me.currentBlock = null;
+    me.backpatches.pop();
 
     return chunk;
   }
