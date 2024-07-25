@@ -313,6 +313,7 @@ export default class Parser extends ParserBase {
     chunk.nativeImports = me.nativeImports;
     chunk.imports = me.imports;
     chunk.includes = me.includes;
+    chunk.injects = me.injects;
 
     return chunk;
   }
