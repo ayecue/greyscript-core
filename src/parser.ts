@@ -9,6 +9,7 @@ import {
 import {
   Parser as ParserBase,
   ParserOptions as ParserOptionsBase,
+  SelectorGroups,
   Selectors
 } from 'greybel-core';
 import { Position } from 'miniscript-core/dist/types/position';
@@ -51,7 +52,7 @@ export default class Parser extends ParserBase {
         case GreyScriptKeyword.ImportCode:
           me.next();
           const item = me.parseNativeImportCodeStatement();
-          me.addLine(item);
+          me.addItemToLines(item);
           me.backpatches.peek().body.push(item);
           return;
         default:
@@ -69,11 +70,11 @@ export default class Parser extends ParserBase {
   ): ASTFunctionStatement | ASTBase {
     const me = this;
 
-    if (!me.is(Selectors.Function)) return me.parseOr(asLval, statementStart);
+    if (!Selectors.Function(me.token)) return me.parseOr(asLval, statementStart);
 
     me.next();
 
-    const functionStart = me.previousToken.getStart();
+    const functionStart = me.previousToken.start;
     const functionStatement = me.astProvider.functionStatement({
       start: functionStart,
       end: null,
@@ -85,10 +86,10 @@ export default class Parser extends ParserBase {
 
     me.pushScope(functionStatement);
 
-    if (!me.isOneOf(Selectors.EndOfLine, Selectors.Comment)) {
+    if (!SelectorGroups.BlockEndOfLine(me.token)) {
       me.requireToken(Selectors.LParenthesis, functionStart);
 
-      while (!me.isOneOf(Selectors.RParenthesis, Selectors.EndOfFile)) {
+      while (!SelectorGroups.FunctionDeclarationArgEnd(me.token)) {
         const parameter = me.parseIdentifier();
         const parameterStart = parameter.start;
 
@@ -98,7 +99,7 @@ export default class Parser extends ParserBase {
             variable: parameter,
             init: defaultValue,
             start: parameterStart,
-            end: me.previousToken.getEnd(),
+            end: me.previousToken.end,
             scope: me.currentScope
           });
 
@@ -109,11 +110,11 @@ export default class Parser extends ParserBase {
             variable: parameter,
             init: me.astProvider.unknown({
               start: parameterStart,
-              end: me.previousToken.getEnd(),
+              end: me.previousToken.end,
               scope: me.currentScope
             }),
             start: parameterStart,
-            end: me.previousToken.getEnd(),
+            end: me.previousToken.end,
             scope: me.currentScope
           });
 
@@ -121,12 +122,12 @@ export default class Parser extends ParserBase {
           parameters.push(parameter);
         }
 
-        if (me.is(Selectors.RParenthesis)) break;
+        if (Selectors.RParenthesis(me.token)) break;
         me.requireToken(Selectors.ArgumentSeperator, functionStart);
-        if (me.is(Selectors.RParenthesis)) {
+        if (Selectors.RParenthesis(me.token)) {
           me.raise('expected argument instead received right parenthesis', new Range(
-            me.previousToken.getEnd(),
-            me.previousToken.getEnd()
+            me.previousToken.end,
+            me.previousToken.end
           ));
           break;
         }
@@ -142,9 +143,9 @@ export default class Parser extends ParserBase {
     pendingBlock.onComplete = (it) => {
       if (base !== null) {
         base.end = it.block.end;
-        me.addLine(base);
+        me.addItemToLines(base);
       } else {
-        me.addLine(it.block);
+        me.addItemToLines(it.block);
       }
     };
 
@@ -153,7 +154,7 @@ export default class Parser extends ParserBase {
 
   parseNativeImportCodeStatement(): ASTImportCodeExpression | ASTBase {
     const me = this;
-    const start = me.previousToken.getStart();
+    const start = me.previousToken.start;
 
     if (!me.consume(Selectors.LParenthesis)) {
       me.raise(
@@ -162,7 +163,7 @@ export default class Parser extends ParserBase {
           start,
           new Position(
             me.token.lastLine ?? me.token.line,
-            me.token.lineRange[1]
+            me.token.end.character
           )
         )
       );
@@ -182,7 +183,7 @@ export default class Parser extends ParserBase {
           start,
           new Position(
             me.token.lastLine ?? me.token.line,
-            me.token.lineRange[1]
+            me.token.end.character
           )
         )
       );
@@ -198,7 +199,7 @@ export default class Parser extends ParserBase {
             start,
             new Position(
               me.token.lastLine ?? me.token.line,
-              me.token.lineRange[1]
+              me.token.end.character
             )
           )
         );
@@ -221,7 +222,7 @@ export default class Parser extends ParserBase {
           start,
           new Position(
             me.token.lastLine ?? me.token.line,
-            me.token.lineRange[1]
+            me.token.end.character
           )
         )
       );
@@ -232,7 +233,7 @@ export default class Parser extends ParserBase {
     const base = me.astProvider.importCodeExpression({
       directory,
       start,
-      end: me.previousToken.getEnd(),
+      end: me.previousToken.end,
       scope: me.currentScope
     });
 
@@ -246,17 +247,17 @@ export default class Parser extends ParserBase {
 
     me.next();
 
-    const start = me.token.getStart();
+    const start = me.token.start;
     const chunk = me.astProvider.chunkAdvanced({ start, end: null });
     const pending = new PendingChunk(chunk);
 
     me.backpatches.setDefault(pending);
     me.pushScope(chunk);
 
-    while (!me.is(Selectors.EndOfFile)) {
+    while (!Selectors.EndOfFile(me.token)) {
       me.skipNewlines();
 
-      if (me.is(Selectors.EndOfFile)) break;
+      if (Selectors.EndOfFile(me.token)) break;
 
       me.lexer.recordSnapshot();
       me.statementErrors = [];
@@ -264,23 +265,7 @@ export default class Parser extends ParserBase {
       me.parseStatement();
 
       if (me.statementErrors.length > 0) {
-        me.errors.push(me.statementErrors[0]);
-
-        if (!me.unsafe) {
-          me.lexer.clearSnapshot();
-          throw me.statementErrors[0];
-        }
-
-        me.lexer.recoverFromSnapshot();
-
-        me.next();
-
-        while (
-          me.token.type !== TokenType.EOL &&
-          me.token.type !== TokenType.EOF
-        ) {
-          me.next();
-        }
+        me.tryToRecover();
       }
     }
 
@@ -303,13 +288,13 @@ export default class Parser extends ParserBase {
       last = me.backpatches.pop();
     }
 
+    me.finishRemaingScopes();
     me.popScope();
+    pending.complete(me.token);
 
-    chunk.body = last.body;
     chunk.literals = me.literals;
     chunk.scopes = me.scopes;
     chunk.lines = me.lines;
-    chunk.end = me.token.getEnd();
     chunk.nativeImports = me.nativeImports;
     chunk.imports = me.imports;
     chunk.includes = me.includes;
