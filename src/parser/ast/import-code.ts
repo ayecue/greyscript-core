@@ -26,6 +26,7 @@ export class ASTImportCodeExpression extends ASTBase {
       directory: this.directory,
       start: this.start,
       end: this.end,
+      range: this.range,
       scope: this.scope
     });
   }

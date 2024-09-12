@@ -74,10 +74,11 @@ export default class Parser extends ParserBase {
 
     me.next();
 
-    const functionStart = me.previousToken.start;
+    const functionStartToken = me.previousToken;
     const functionStatement = me.astProvider.functionStatement({
-      start: functionStart,
+      start: functionStartToken.start,
       end: null,
+      range: [functionStartToken.range[0], null],
       scope: me.currentScope,
       parent: me.outerScopes[me.outerScopes.length - 1],
       assignment: me.currentAssignment
@@ -87,19 +88,20 @@ export default class Parser extends ParserBase {
     me.pushScope(functionStatement);
 
     if (!SelectorGroups.BlockEndOfLine(me.token)) {
-      me.requireToken(Selectors.LParenthesis, functionStart);
+      me.requireToken(Selectors.LParenthesis, functionStartToken.start);
 
       while (!SelectorGroups.FunctionDeclarationArgEnd(me.token)) {
         const parameter = me.parseIdentifier();
-        const parameterStart = parameter.start;
+        const parameterStartToken = parameter;
 
         if (me.consume(Selectors.Assign)) {
           const defaultValue = me.parseExpr(null);
           const assign = me.astProvider.assignmentStatement({
             variable: parameter,
             init: defaultValue,
-            start: parameterStart,
+            start: parameterStartToken.start,
             end: me.previousToken.end,
+            range: [parameterStartToken.range[0], me.previousToken.range[1]],
             scope: me.currentScope
           });
 
@@ -109,12 +111,14 @@ export default class Parser extends ParserBase {
           const assign = me.astProvider.assignmentStatement({
             variable: parameter,
             init: me.astProvider.unknown({
-              start: parameterStart,
+              start: parameterStartToken.start,
               end: me.previousToken.end,
+              range: [parameterStartToken.range[0], me.previousToken.range[1]],
               scope: me.currentScope
             }),
-            start: parameterStart,
+            start: parameterStartToken.start,
             end: me.previousToken.end,
+            range: [parameterStartToken.range[0], me.previousToken.range[1]],
             scope: me.currentScope
           });
 
@@ -123,7 +127,7 @@ export default class Parser extends ParserBase {
         }
 
         if (Selectors.RParenthesis(me.token)) break;
-        me.requireToken(Selectors.ArgumentSeperator, functionStart);
+        me.requireToken(Selectors.ArgumentSeperator, functionStartToken.start);
         if (Selectors.RParenthesis(me.token)) {
           me.raise('expected argument instead received right parenthesis', new Range(
             me.previousToken.end,
@@ -133,7 +137,7 @@ export default class Parser extends ParserBase {
         }
       }
 
-      me.requireToken(Selectors.RParenthesis, functionStart);
+      me.requireToken(Selectors.RParenthesis, functionStartToken.start);
     }
 
     functionStatement.parameters = parameters;
@@ -143,6 +147,7 @@ export default class Parser extends ParserBase {
     pendingBlock.onComplete = (it) => {
       if (base !== null) {
         base.end = it.block.end;
+        base.range[1] = it.block.range[1];
         me.addItemToLines(base);
       } else {
         me.addItemToLines(it.block);
@@ -154,13 +159,13 @@ export default class Parser extends ParserBase {
 
   parseNativeImportCodeStatement(): ASTImportCodeExpression | ASTBase {
     const me = this;
-    const start = me.previousToken.start;
+    const startToken = me.previousToken;
 
     if (!me.consume(Selectors.LParenthesis)) {
       me.raise(
         `expected import_code to have opening parenthesis`,
         new Range(
-          start,
+          startToken.start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.end.character
@@ -180,7 +185,7 @@ export default class Parser extends ParserBase {
       me.raise(
         `expected import_code argument to be string literal`,
         new Range(
-          start,
+          startToken.start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.end.character
@@ -196,7 +201,7 @@ export default class Parser extends ParserBase {
         me.raise(
           `expected import_code argument to be string literal`,
           new Range(
-            start,
+            startToken.start,
             new Position(
               me.token.lastLine ?? me.token.line,
               me.token.end.character
@@ -219,7 +224,7 @@ export default class Parser extends ParserBase {
       me.raise(
         `expected import_code to have closing parenthesis`,
         new Range(
-          start,
+          startToken.start,
           new Position(
             me.token.lastLine ?? me.token.line,
             me.token.end.character
@@ -232,8 +237,9 @@ export default class Parser extends ParserBase {
 
     const base = me.astProvider.importCodeExpression({
       directory,
-      start,
+      start: startToken.start,
       end: me.previousToken.end,
+      range: [startToken.range[0], me.previousToken.range[1]],
       scope: me.currentScope
     });
 
@@ -247,8 +253,12 @@ export default class Parser extends ParserBase {
 
     me.next();
 
-    const start = me.token.start;
-    const chunk = me.astProvider.chunkAdvanced({ start, end: null });
+    const startToken = me.token;
+    const chunk = me.astProvider.chunkAdvanced({
+      start: startToken.start,
+      end: null,
+      range: [startToken.range[0], null]
+    });
     const pending = new PendingChunk(chunk);
 
     me.backpatches.setDefault(pending);

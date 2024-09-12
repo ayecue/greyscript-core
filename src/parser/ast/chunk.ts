@@ -23,6 +23,7 @@ export class ASTChunkGreyScript extends ASTChunkAdvanced {
       lines: this.lines,
       start: this.start,
       end: this.end,
+      range: this.range,
       scope: this.scope
     });
   }
