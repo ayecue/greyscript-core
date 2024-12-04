@@ -4,7 +4,8 @@ import {
   ASTFunctionStatement,
   isPendingChunk,
   PendingChunk,
-  PendingFunction
+  PendingFunction,
+  ASTIdentifierKind
 } from 'miniscript-core';
 import {
   Parser as ParserBase,
@@ -91,7 +92,7 @@ export default class Parser extends ParserBase {
       me.requireToken(Selectors.LParenthesis, functionStartToken.start);
 
       while (!SelectorGroups.FunctionDeclarationArgEnd(me.token)) {
-        const parameter = me.parseIdentifier();
+        const parameter = me.parseIdentifier(ASTIdentifierKind.Argument);
         const parameterStartToken = parameter;
 
         if (me.consume(Selectors.Assign)) {

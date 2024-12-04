@@ -253,13 +253,18 @@ exports[`parse default scripts ascii.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts ascii.src 2`] = `undefined`;
+exports[`parse default scripts ascii.src 2`] = `
+Object {
+  "property": 29,
+  "variable": 44,
+}
+`;
 
 exports[`parse default scripts ascii.src 3`] = `171`;
 
 exports[`parse default scripts ascii.src 4`] = `0`;
 
-exports[`parse default scripts ascii.src 5`] = `152`;
+exports[`parse default scripts ascii.src 5`] = `41`;
 
 exports[`parse default scripts ascii.src unsafe 1`] = `
 "Chunk[1:1-71:29][
@@ -537,7 +542,12 @@ exports[`parse default scripts binary-expressions.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts binary-expressions.src 2`] = `undefined`;
+exports[`parse default scripts binary-expressions.src 2`] = `
+Object {
+  "property": 3,
+  "variable": 40,
+}
+`;
 
 exports[`parse default scripts binary-expressions.src 3`] = `4`;
 
@@ -587,7 +597,11 @@ exports[`parse default scripts call-with-spaces.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts call-with-spaces.src 2`] = `undefined`;
+exports[`parse default scripts call-with-spaces.src 2`] = `
+Object {
+  "variable": 10,
+}
+`;
 
 exports[`parse default scripts call-with-spaces.src 3`] = `13`;
 
@@ -620,7 +634,11 @@ exports[`parse default scripts callexpr-with-nl.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts callexpr-with-nl.src 2`] = `undefined`;
+exports[`parse default scripts callexpr-with-nl.src 2`] = `
+Object {
+  "variable": 1,
+}
+`;
 
 exports[`parse default scripts callexpr-with-nl.src 3`] = `5`;
 
@@ -644,7 +662,11 @@ exports[`parse default scripts comments.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts comments.src 2`] = `undefined`;
+exports[`parse default scripts comments.src 2`] = `
+Object {
+  "variable": 2,
+}
+`;
 
 exports[`parse default scripts comments.src 3`] = `1`;
 
@@ -681,7 +703,11 @@ exports[`parse default scripts default-args.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts default-args.src 2`] = `undefined`;
+exports[`parse default scripts default-args.src 2`] = `
+Object {
+  "variable": 5,
+}
+`;
 
 exports[`parse default scripts default-args.src 3`] = `6`;
 
@@ -727,7 +753,12 @@ exports[`parse default scripts eol.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts eol.src 2`] = `undefined`;
+exports[`parse default scripts eol.src 2`] = `
+Object {
+  "for-in-variable": 1,
+  "variable": 4,
+}
+`;
 
 exports[`parse default scripts eol.src 3`] = `6`;
 
@@ -776,7 +807,11 @@ exports[`parse default scripts float.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts float.src 2`] = `undefined`;
+exports[`parse default scripts float.src 2`] = `
+Object {
+  "variable": 17,
+}
+`;
 
 exports[`parse default scripts float.src 3`] = `17`;
 
@@ -814,7 +849,11 @@ exports[`parse default scripts function.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts function.src 2`] = `undefined`;
+exports[`parse default scripts function.src 2`] = `
+Object {
+  "variable": 3,
+}
+`;
 
 exports[`parse default scripts function.src 3`] = `1`;
 
@@ -836,7 +875,7 @@ exports[`parse default scripts import-code.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts import-code.src 2`] = `undefined`;
+exports[`parse default scripts import-code.src 2`] = `Object {}`;
 
 exports[`parse default scripts import-code.src 3`] = `0`;
 
@@ -881,13 +920,17 @@ exports[`parse default scripts list.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts list.src 2`] = `undefined`;
+exports[`parse default scripts list.src 2`] = `
+Object {
+  "variable": 3,
+}
+`;
 
 exports[`parse default scripts list.src 3`] = `5`;
 
 exports[`parse default scripts list.src 4`] = `0`;
 
-exports[`parse default scripts list.src 5`] = `8`;
+exports[`parse default scripts list.src 5`] = `3`;
 
 exports[`parse default scripts list.src unsafe 1`] = `
 "Chunk[1:1-9:2][
@@ -935,13 +978,17 @@ exports[`parse default scripts map.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts map.src 2`] = `undefined`;
+exports[`parse default scripts map.src 2`] = `
+Object {
+  "variable": 7,
+}
+`;
 
 exports[`parse default scripts map.src 3`] = `17`;
 
 exports[`parse default scripts map.src 4`] = `0`;
 
-exports[`parse default scripts map.src 5`] = `17`;
+exports[`parse default scripts map.src 5`] = `6`;
 
 exports[`parse default scripts map.src unsafe 1`] = `
 "Chunk[1:1-19:2][
@@ -979,7 +1026,12 @@ exports[`parse default scripts member-with-nl.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts member-with-nl.src 2`] = `undefined`;
+exports[`parse default scripts member-with-nl.src 2`] = `
+Object {
+  "property": 3,
+  "variable": 1,
+}
+`;
 
 exports[`parse default scripts member-with-nl.src 3`] = `0`;
 
@@ -1024,7 +1076,11 @@ exports[`parse default scripts multiline.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts multiline.src 2`] = `undefined`;
+exports[`parse default scripts multiline.src 2`] = `
+Object {
+  "variable": 8,
+}
+`;
 
 exports[`parse default scripts multiline.src 3`] = `11`;
 
@@ -1076,7 +1132,11 @@ exports[`parse default scripts multiline-binary-expression.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts multiline-binary-expression.src 2`] = `undefined`;
+exports[`parse default scripts multiline-binary-expression.src 2`] = `
+Object {
+  "property": 1,
+}
+`;
 
 exports[`parse default scripts multiline-binary-expression.src 3`] = `6`;
 
@@ -1108,7 +1168,11 @@ exports[`parse default scripts multiline-condition.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts multiline-condition.src 2`] = `undefined`;
+exports[`parse default scripts multiline-condition.src 2`] = `
+Object {
+  "variable": 9,
+}
+`;
 
 exports[`parse default scripts multiline-condition.src 3`] = `19`;
 
@@ -1140,13 +1204,17 @@ exports[`parse default scripts negation.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts negation.src 2`] = `undefined`;
+exports[`parse default scripts negation.src 2`] = `
+Object {
+  "variable": 6,
+}
+`;
 
 exports[`parse default scripts negation.src 3`] = `10`;
 
 exports[`parse default scripts negation.src 4`] = `0`;
 
-exports[`parse default scripts negation.src 5`] = `5`;
+exports[`parse default scripts negation.src 5`] = `2`;
 
 exports[`parse default scripts negation.src unsafe 1`] = `
 "Chunk[1:1-5:11][
@@ -1187,13 +1255,18 @@ exports[`parse default scripts obj-init.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts obj-init.src 2`] = `undefined`;
+exports[`parse default scripts obj-init.src 2`] = `
+Object {
+  "property": 4,
+  "variable": 11,
+}
+`;
 
 exports[`parse default scripts obj-init.src 3`] = `10`;
 
 exports[`parse default scripts obj-init.src 4`] = `0`;
 
-exports[`parse default scripts obj-init.src 5`] = `11`;
+exports[`parse default scripts obj-init.src 5`] = `3`;
 
 exports[`parse default scripts obj-init.src unsafe 1`] = `
 "Chunk[1:1-21:14][
@@ -1241,13 +1314,18 @@ exports[`parse default scripts parentheses.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts parentheses.src 2`] = `undefined`;
+exports[`parse default scripts parentheses.src 2`] = `
+Object {
+  "property": 2,
+  "variable": 9,
+}
+`;
 
 exports[`parse default scripts parentheses.src 3`] = `12`;
 
 exports[`parse default scripts parentheses.src 4`] = `0`;
 
-exports[`parse default scripts parentheses.src 5`] = `3`;
+exports[`parse default scripts parentheses.src 5`] = `1`;
 
 exports[`parse default scripts parentheses.src unsafe 1`] = `
 "Chunk[1:1-4:75][
@@ -1336,7 +1414,12 @@ exports[`parse default scripts password-generator.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts password-generator.src 2`] = `undefined`;
+exports[`parse default scripts password-generator.src 2`] = `
+Object {
+  "property": 14,
+  "variable": 24,
+}
+`;
 
 exports[`parse default scripts password-generator.src 3`] = `19`;
 
@@ -1656,7 +1739,12 @@ exports[`parse default scripts pseudo-crypto.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts pseudo-crypto.src 2`] = `undefined`;
+exports[`parse default scripts pseudo-crypto.src 2`] = `
+Object {
+  "property": 25,
+  "variable": 40,
+}
+`;
 
 exports[`parse default scripts pseudo-crypto.src 3`] = `76`;
 
@@ -1977,7 +2065,12 @@ exports[`parse default scripts random.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts random.src 2`] = `undefined`;
+exports[`parse default scripts random.src 2`] = `
+Object {
+  "property": 9,
+  "variable": 12,
+}
+`;
 
 exports[`parse default scripts random.src 3`] = `20`;
 
@@ -2140,7 +2233,12 @@ exports[`parse default scripts shorthand.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts shorthand.src 2`] = `undefined`;
+exports[`parse default scripts shorthand.src 2`] = `
+Object {
+  "for-in-variable": 3,
+  "variable": 26,
+}
+`;
 
 exports[`parse default scripts shorthand.src 3`] = `24`;
 
@@ -2237,7 +2335,12 @@ exports[`parse default scripts simple-object.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts simple-object.src 2`] = `undefined`;
+exports[`parse default scripts simple-object.src 2`] = `
+Object {
+  "property": 3,
+  "variable": 5,
+}
+`;
 
 exports[`parse default scripts simple-object.src 3`] = `1`;
 
@@ -2291,13 +2394,19 @@ exports[`parse default scripts slice.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts slice.src 2`] = `undefined`;
+exports[`parse default scripts slice.src 2`] = `
+Object {
+  "for-in-variable": 1,
+  "property": 10,
+  "variable": 31,
+}
+`;
 
 exports[`parse default scripts slice.src 3`] = `21`;
 
 exports[`parse default scripts slice.src 4`] = `0`;
 
-exports[`parse default scripts slice.src 5`] = `7`;
+exports[`parse default scripts slice.src 5`] = `6`;
 
 exports[`parse default scripts slice.src unsafe 1`] = `
 "Chunk[1:1-27:21][
@@ -2348,7 +2457,12 @@ exports[`parse default scripts unary.src 1`] = `
 ]"
 `;
 
-exports[`parse default scripts unary.src 2`] = `undefined`;
+exports[`parse default scripts unary.src 2`] = `
+Object {
+  "property": 4,
+  "variable": 7,
+}
+`;
 
 exports[`parse default scripts unary.src 3`] = `17`;
 
