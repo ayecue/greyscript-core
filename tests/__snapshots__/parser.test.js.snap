@@ -656,9 +656,7 @@ exports[`parse default scripts comments.src 1`] = `
 "Chunk[1:1-3:20][
 	Comment[1:1-1:10][comment]
 	Identifier[2:1-2:11][myVariable]
-	Comment[2:12-2:22][comment2]
 	AssignmentStatement[3:1-3:9][Identifier[3:1-3:5][test] = Literal[3:8-3:9][2]]
-	Comment[3:10-3:20][comment3]
 ]"
 `;
 
@@ -678,9 +676,7 @@ exports[`parse default scripts comments.src unsafe 1`] = `
 "Chunk[1:1-3:20][
 	Comment[1:1-1:10][comment]
 	Identifier[2:1-2:11][myVariable]
-	Comment[2:12-2:22][comment2]
 	AssignmentStatement[3:1-3:9][Identifier[3:1-3:5][test] = Literal[3:8-3:9][2]]
-	Comment[3:10-3:20][comment3]
 ]"
 `;
 
@@ -2217,16 +2213,13 @@ exports[`parse default scripts shorthand.src 1`] = `
 		ElseClause[]
 	]
 	For[33:1-35:8][Identifier[33:5-33:6][c] in Identifier[33:10-33:15][clist]
-		Comment[33:16-33:19][x]
 		CallExpression[34:3-34:15][Identifier[34:3-34:8][print](Literal[34:9-34:14][moo])]
 	]
 	WhileStatement[37:1-39:10][Literal[37:7-37:11][true]
-		Comment[37:12-37:15][x]
 		CallExpression[38:3-38:15][Identifier[38:3-38:8][print](Literal[38:9-38:14][moo])]
 	]
 	IfStatement[41:1-43:7][
 		IfClause[41:1-43:7][Literal[41:4-41:8][true]
-			Comment[41:14-41:17][x]
 			CallExpression[42:3-42:15][Identifier[42:3-42:8][print](Literal[42:9-42:14][moo])]
 		]
 	]
@@ -2308,16 +2301,13 @@ exports[`parse default scripts shorthand.src unsafe 1`] = `
 		ElseClause[]
 	]
 	For[33:1-35:8][Identifier[33:5-33:6][c] in Identifier[33:10-33:15][clist]
-		Comment[33:16-33:19][x]
 		CallExpression[34:3-34:15][Identifier[34:3-34:8][print](Literal[34:9-34:14][moo])]
 	]
 	WhileStatement[37:1-39:10][Literal[37:7-37:11][true]
-		Comment[37:12-37:15][x]
 		CallExpression[38:3-38:15][Identifier[38:3-38:8][print](Literal[38:9-38:14][moo])]
 	]
 	IfStatement[41:1-43:7][
 		IfClause[41:1-43:7][Literal[41:4-41:8][true]
-			Comment[41:14-41:17][x]
 			CallExpression[42:3-42:15][Identifier[42:3-42:8][print](Literal[42:9-42:14][moo])]
 		]
 	]
