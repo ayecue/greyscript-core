@@ -53,7 +53,7 @@ export default class Parser extends ParserBase {
         case GreyScriptKeyword.ImportCode:
           me.next();
           const item = me.parseNativeImportCodeStatement();
-          me.addItemToLines(item);
+          me.lineRegistry.addItemToLines(item);
           me.backpatches.peek().body.push(item);
           return;
         default:
@@ -143,17 +143,8 @@ export default class Parser extends ParserBase {
 
     functionStatement.parameters = parameters;
 
-    const pendingBlock = new PendingFunction(functionStatement);
+    const pendingBlock = new PendingFunction(functionStatement, base, me.lineRegistry);
     me.backpatches.push(pendingBlock);
-    pendingBlock.onComplete = (it) => {
-      if (base !== null) {
-        base.end = it.block.end;
-        base.range[1] = it.block.range[1];
-        me.addItemToLines(base);
-      } else {
-        me.addItemToLines(it.block);
-      }
-    };
 
     return functionStatement;
   }
@@ -260,7 +251,7 @@ export default class Parser extends ParserBase {
       end: null,
       range: [startToken.range[0], null]
     });
-    const pending = new PendingChunk(chunk);
+    const pending = new PendingChunk(chunk, me.lineRegistry);
 
     me.backpatches.setDefault(pending);
     me.pushScope(chunk);
@@ -305,7 +296,7 @@ export default class Parser extends ParserBase {
 
     chunk.literals = me.literals;
     chunk.scopes = me.scopes;
-    chunk.lines = me.lines;
+    chunk.lines = me.lineRegistry.lines;
     chunk.nativeImports = me.nativeImports;
     chunk.imports = me.imports;
     chunk.includes = me.includes;
