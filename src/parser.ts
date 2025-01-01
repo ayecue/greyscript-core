@@ -106,7 +106,7 @@ export default class Parser extends ParserBase {
             scope: me.currentScope
           });
 
-          me.currentScope.assignments.push(assign);
+          me.currentScope.definitions.push(assign);
           parameters.push(assign);
         } else {
           const assign = me.astProvider.assignmentStatement({
@@ -123,7 +123,7 @@ export default class Parser extends ParserBase {
             scope: me.currentScope
           });
 
-          me.currentScope.assignments.push(assign);
+          me.currentScope.definitions.push(assign);
           parameters.push(parameter);
         }
 
@@ -246,7 +246,7 @@ export default class Parser extends ParserBase {
     me.next();
 
     const startToken = me.token;
-    const chunk = me.astProvider.chunkAdvanced({
+    const chunk = me.astProvider.chunk({
       start: startToken.start,
       end: null,
       range: [startToken.range[0], null]

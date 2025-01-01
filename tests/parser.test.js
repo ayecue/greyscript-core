@@ -30,7 +30,7 @@ describe('parse', function () {
           }, {})).toMatchSnapshot();
           expect(payload.literals.length).toMatchSnapshot();
           expect(payload.nativeImports.length).toMatchSnapshot();
-          expect(payload.assignments.length).toMatchSnapshot();
+          expect(payload.definitions.length).toMatchSnapshot();
         });
       });
 

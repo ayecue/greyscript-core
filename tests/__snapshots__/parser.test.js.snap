@@ -758,7 +758,7 @@ exports[`parse default scripts eol.src 3`] = `6`;
 
 exports[`parse default scripts eol.src 4`] = `0`;
 
-exports[`parse default scripts eol.src 5`] = `2`;
+exports[`parse default scripts eol.src 5`] = `1`;
 
 exports[`parse default scripts eol.src unsafe 1`] = `
 "Chunk[1:1-13:9][
@@ -2235,7 +2235,7 @@ exports[`parse default scripts shorthand.src 3`] = `24`;
 
 exports[`parse default scripts shorthand.src 4`] = `0`;
 
-exports[`parse default scripts shorthand.src 5`] = `9`;
+exports[`parse default scripts shorthand.src 5`] = `6`;
 
 exports[`parse default scripts shorthand.src unsafe 1`] = `
 "Chunk[1:1-43:7][
@@ -2394,7 +2394,7 @@ exports[`parse default scripts slice.src 3`] = `21`;
 
 exports[`parse default scripts slice.src 4`] = `0`;
 
-exports[`parse default scripts slice.src 5`] = `6`;
+exports[`parse default scripts slice.src 5`] = `5`;
 
 exports[`parse default scripts slice.src unsafe 1`] = `
 "Chunk[1:1-27:21][

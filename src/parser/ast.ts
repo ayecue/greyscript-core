@@ -7,7 +7,7 @@ import {
 } from './ast/import-code';
 
 export class ASTProvider extends BaseAstProvider {
-  chunkAdvanced(options: ASTChunkGreyScriptOptions): ASTChunkGreyScript {
+  chunk(options: ASTChunkGreyScriptOptions): ASTChunkGreyScript {
     return new ASTChunkGreyScript(options);
   }
 

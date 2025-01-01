@@ -1,11 +1,11 @@
-import { ASTChunkAdvanced, ASTChunkAdvancedOptions } from 'greybel-core';
+import { ASTChunkGreybel, ASTChunkGreybelOptions } from 'greybel-core';
 import { ASTImportCodeExpression } from './import-code';
 
-export interface ASTChunkGreyScriptOptions extends ASTChunkAdvancedOptions {
+export interface ASTChunkGreyScriptOptions extends ASTChunkGreybelOptions {
   nativeImports?: ASTImportCodeExpression[];
 }
 
-export class ASTChunkGreyScript extends ASTChunkAdvanced {
+export class ASTChunkGreyScript extends ASTChunkGreybel {
   nativeImports: ASTImportCodeExpression[];
 
   constructor(options: ASTChunkGreyScriptOptions) {
