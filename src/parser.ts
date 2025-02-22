@@ -229,14 +229,14 @@ export default class Parser extends ParserBase {
 
     const endToken = me.previousToken;
     let currentDirectory = directory;
-    let emit = true;
-    let ignore = false;
+    let shouldEmit = true;
+    let shouldEval = true;
 
     if (me.isType(TokenType.Comment)) {
       const options = ASTImportCodeExpression.parseMetaOptions(me.token.value);
 
-      emit = options.emit;
-      ignore = options.ignore;
+      shouldEmit = options.emit;
+      shouldEval = options.eval;
 
       if (options.directory) {
         currentDirectory = options.directory;
@@ -246,8 +246,8 @@ export default class Parser extends ParserBase {
     const base = me.astProvider.importCodeExpression({
       originalDirectory: directory,
       directory: currentDirectory,
-      emit,
-      ignore,
+      emit: shouldEmit,
+      eval: shouldEval,
       start: startToken.start,
       end: endToken.end,
       range: [startToken.range[0], endToken.range[1]],

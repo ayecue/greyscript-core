@@ -864,10 +864,10 @@ exports[`parse default scripts function.src unsafe 1`] = `
 `;
 
 exports[`parse default scripts import-code.src 1`] = `
-"Chunk[1:1-3:70][
-	ImportCode[1:1-1:24][test.src;true;false]
-	ImportCode[2:1-2:24][test.src;false;true]
-	ImportCode[3:1-3:24][somewhereElse.src;true;false]
+"Chunk[1:1-3:71][
+	ImportCode[1:1-1:24][test.src;false;false]
+	ImportCode[2:1-2:24][test.src;true;true]
+	ImportCode[3:1-3:24][somewhereElse.src;false;false]
 ]"
 `;
 
@@ -880,10 +880,10 @@ exports[`parse default scripts import-code.src 4`] = `3`;
 exports[`parse default scripts import-code.src 5`] = `0`;
 
 exports[`parse default scripts import-code.src unsafe 1`] = `
-"Chunk[1:1-3:70][
-	ImportCode[1:1-1:24][test.src;true;false]
-	ImportCode[2:1-2:24][test.src;false;true]
-	ImportCode[3:1-3:24][somewhereElse.src;true;false]
+"Chunk[1:1-3:71][
+	ImportCode[1:1-1:24][test.src;false;false]
+	ImportCode[2:1-2:24][test.src;true;true]
+	ImportCode[3:1-3:24][somewhereElse.src;false;false]
 ]"
 `;
 
