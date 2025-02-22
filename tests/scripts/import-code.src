@@ -1,1 +1,3 @@
-import_code("test")
+import_code("test.src") // no-emit;ignore;
+import_code("test.src")
+import_code("test.src") // no-emit;ignore;override=somewhereElse.src;

@@ -170,7 +170,7 @@ export default class Parser extends ParserBase {
 
     let directory;
 
-    if (TokenType.StringLiteral === me.token.type) {
+    if (me.isType(TokenType.StringLiteral)) {
       directory = me.token.value;
       me.next();
     } else {
@@ -227,11 +227,28 @@ export default class Parser extends ParserBase {
       return me.parseInvalidCode();
     }
 
+    const endToken = me.previousToken;
+    let emit = true;
+    let ignore = false;
+
+    if (me.isType(TokenType.Comment)) {
+      const options = ASTImportCodeExpression.parseMetaOptions(me.token.value);
+
+      emit = options.emit;
+      ignore = options.ignore;
+
+      if (options.directory) {
+        directory = options.directory;
+      }
+    }
+
     const base = me.astProvider.importCodeExpression({
       directory,
+      emit,
+      ignore,
       start: startToken.start,
-      end: me.previousToken.end,
-      range: [startToken.range[0], me.previousToken.range[1]],
+      end: endToken.end,
+      range: [startToken.range[0], endToken.range[1]],
       scope: me.currentScope
     });
 
