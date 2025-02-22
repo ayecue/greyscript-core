@@ -228,6 +228,7 @@ export default class Parser extends ParserBase {
     }
 
     const endToken = me.previousToken;
+    let currentDirectory = directory;
     let emit = true;
     let ignore = false;
 
@@ -238,12 +239,13 @@ export default class Parser extends ParserBase {
       ignore = options.ignore;
 
       if (options.directory) {
-        directory = options.directory;
+        currentDirectory = options.directory;
       }
     }
 
     const base = me.astProvider.importCodeExpression({
-      directory,
+      originalDirectory: directory,
+      directory: currentDirectory,
       emit,
       ignore,
       start: startToken.start,

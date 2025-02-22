@@ -3,12 +3,14 @@ import { ASTBase, ASTBaseOptions } from 'miniscript-core';
 import { ASTType } from './base';
 
 export interface ASTImportCodeExpressionOptions extends ASTBaseOptions {
+  originalDirectory: string;
   directory: string;
   ignore: boolean;
   emit: boolean;
 }
 
 export class ASTImportCodeExpression extends ASTBase {
+  originalDirectory: string;
   directory: string;
   ignore: boolean;
   emit: boolean;
@@ -41,6 +43,7 @@ export class ASTImportCodeExpression extends ASTBase {
 
   constructor(options: ASTImportCodeExpressionOptions) {
     super(ASTType.ImportCodeExpression, options);
+    this.originalDirectory = options.originalDirectory;
     this.directory = options.directory;
     this.ignore = options.ignore;
     this.emit = options.emit;
@@ -52,6 +55,7 @@ export class ASTImportCodeExpression extends ASTBase {
 
   clone(): ASTImportCodeExpression {
     return new ASTImportCodeExpression({
+      originalDirectory: this.originalDirectory,
       directory: this.directory,
       ignore: this.ignore,
       emit: this.emit,
