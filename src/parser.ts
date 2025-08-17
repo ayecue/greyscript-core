@@ -314,6 +314,7 @@ export default class Parser extends ParserBase {
     pending.complete(me.token);
 
     chunk.literals = me.literals;
+    chunk.comments = me.comments;
     chunk.scopes = me.scopes;
     chunk.lines = me.lineRegistry.lines;
     chunk.nativeImports = me.nativeImports;
