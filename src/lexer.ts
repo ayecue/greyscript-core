@@ -1,4 +1,5 @@
-import { Lexer as LexerBase, LexerOptions as LexerOptionsBase } from 'greybel-core';
+import LexerBase, { LexerOptions as LexerOptionsBase } from 'greybel-core/dist/lexer';
+import UnsafeLexerMixin from 'miniscript-core/dist/mixins/unsafe-lexer-mixin';
 import Validator from './lexer/validator';
 
 export interface LexerOptions extends LexerOptionsBase {
@@ -11,3 +12,6 @@ export default class Lexer extends LexerBase {
     super(content, options);
   }
 }
+
+export const UnsafeLexer = UnsafeLexerMixin(Lexer);
+export type UnsafeLexer = InstanceType<typeof UnsafeLexer>;

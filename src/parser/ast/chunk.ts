@@ -1,4 +1,4 @@
-import { ASTChunkGreybel, ASTChunkGreybelOptions } from 'greybel-core';
+import { ASTChunkGreybel, ASTChunkGreybelOptions } from 'greybel-core/dist/parser/ast';
 import { ASTImportCodeExpression } from './import-code';
 
 export interface ASTChunkGreyScriptOptions extends ASTChunkGreybelOptions {
@@ -20,10 +20,13 @@ export class ASTChunkGreyScript extends ASTChunkGreybel {
       includes: this.includes.map((it) => it.clone()),
       literals: this.literals.map((it) => it.clone()),
       scopes: this.scopes.map((it) => it.clone()),
-      lines: this.lines,
-      start: this.start,
-      end: this.end,
-      range: this.range,
+      registry: this._reg,
+      startLine: this.startLine,
+      startChar: this.startChar,
+      endLine: this.endLine,
+      endChar: this.endChar,
+      rangeStart: this.rangeStart,
+      rangeEnd: this.rangeEnd,
       scope: this.scope
     });
   }

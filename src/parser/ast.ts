@@ -1,4 +1,4 @@
-import { ASTProvider as BaseAstProvider } from 'greybel-core';
+import { ASTProvider as BaseAstProvider } from 'greybel-core/dist/parser/ast';
 
 import { ASTChunkGreyScript, ASTChunkGreyScriptOptions } from './ast/chunk';
 import {

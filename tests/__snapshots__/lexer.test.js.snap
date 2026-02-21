@@ -968,8 +968,7 @@ NumericLiteral[5:5 - 5:6: value = 4]
 Punctuator[5:6 - 5:7: value = ',']
 EOL[5:7 - 5:7: value = ';']
 NumericLiteral[6:5 - 6:6: value = 5]
-EOL[6:6 - 6:6: value = ';']
-Punctuator[7:1 - 7:2: value = ')']"
+Punctuator[6:6 - 6:7: value = ')']"
 `;
 
 exports[`parse default scripts comments.src 1`] = `
@@ -1262,7 +1261,25 @@ Punctuator[3:23 - 3:24: value = ')']
 Comment[3:25 - 3:71: value = ' no-emit;no-eval;override=somewhereElse.src;']"
 `;
 
-exports[`parse default scripts invalid code 1`] = `Array []`;
+exports[`parse default scripts invalid code 1`] = `
+Array [
+  Object {
+    "code": 1004,
+    "hint": null,
+    "message": "'end' without following keyword ('if', 'function', etc.)",
+    "range": Object {
+      "end": Array [
+        9,
+        13,
+      ],
+      "start": Array [
+        9,
+        5,
+      ],
+    },
+  },
+]
+`;
 
 exports[`parse default scripts list.src 1`] = `
 "Identifier[1:1 - 1:5: value = 'test']

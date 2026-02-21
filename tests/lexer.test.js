@@ -1,7 +1,16 @@
-const { Lexer } = require('../dist');
+const { Lexer, UnsafeLexer } = require('../dist');
 const fs = require('fs');
 const path = require('path');
 const testFolder = path.resolve(__dirname, 'scripts');
+
+function describeErrors(errors) {
+  return errors.map((e) => ({
+    message: e.message,
+    range: e.range ? { start: e.range.start, end: e.range.end } : null,
+    code: e.code,
+    hint: e.hint ?? null
+  }));
+}
 
 describe('parse', function() {
 	describe('default scripts', function() {
@@ -41,11 +50,11 @@ describe('parse', function() {
 
 				print("wo")
 			`;
-			const lexer = new Lexer(content, { unsafe: true });
+			const lexer = new UnsafeLexer(content);
 
 			while (lexer.next().value !== '<eof>') {}
 
-			expect(lexer.errors).toMatchSnapshot();
+			expect(describeErrors(lexer.errors)).toMatchSnapshot();
 		});
 	});
 });
