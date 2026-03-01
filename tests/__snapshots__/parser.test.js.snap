@@ -912,7 +912,7 @@ Array [
   Object {
     "code": 3001,
     "hint": null,
-    "message": "got Identifier('print') where one of Punctuator(',') or Punctuator(')') is required",
+    "message": "got Identifier('print') in call arguments where one of Punctuator(',') or Punctuator(')') is required",
     "range": Object {
       "end": Array [
         4,
@@ -942,7 +942,7 @@ Array [
   Object {
     "code": 3001,
     "hint": null,
-    "message": "got Identifier('wa') where one of Punctuator(','), EOL('end of line') or EOF('end of file') is required",
+    "message": "got Identifier('wa') in command arguments where one of Punctuator(','), EOL('end of line') or EOF('end of file') is required",
     "range": Object {
       "end": Array [
         8,
@@ -1017,7 +1017,7 @@ Array [
   Object {
     "code": 3001,
     "hint": null,
-    "message": "got Identifier('print') where Keyword('then') is required",
+    "message": "got Identifier('print') in if statement where Keyword('then') is required",
     "range": Object {
       "end": Array [
         28,

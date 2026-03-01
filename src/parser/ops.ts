@@ -121,7 +121,7 @@ function handleImportCode(parser: MiniscriptParser): void {
     scope: me.currentScope
   });
 
-  me.nativeImports.push(item);
+  me.getState().nativeImports.push(item);
   me.lineRegistry.register(item);
   me.attachPendingComments(item);
   me.backpatches.peek().body.push(item);

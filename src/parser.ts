@@ -5,7 +5,8 @@ import { Precedence } from 'miniscript-core/dist/types/precedence';
 import ParserBase, { ParserOptions as ParserOptionsBase } from 'greybel-core/dist/parser';
 import UnsafeParserMixin from 'miniscript-core/dist/mixins/unsafe-parser-mixin';
 import { SelectorGroups, Selectors } from 'greybel-core/dist/types/selector';
-import { ASTChunkGreyScript, ASTImportCodeExpression, ASTProvider } from './parser/ast';
+import { ASTChunkGreyScript, ASTProvider } from './parser/ast';
+import { GreyscriptParserState } from './parser/state';
 import Lexer from './lexer';
 import { UnsafeLexer } from './lexer';
 import {
@@ -18,7 +19,7 @@ export interface ParserOptions extends ParserOptionsBase {
 }
 
 export default class Parser extends ParserBase {
-  nativeImports: ASTImportCodeExpression[];
+  declare state: GreyscriptParserState;
   astProvider: ASTProvider;
 
   constructor(content: string, options: ParserOptions = {}) {
@@ -36,7 +37,12 @@ export default class Parser extends ParserBase {
 
     const me = this;
 
-    me.nativeImports = [];
+    me.state = new GreyscriptParserState();
+    me._stateStack.setDefault(me.state);
+  }
+
+  getState(): GreyscriptParserState {
+    return super.getState() as GreyscriptParserState;
   }
 
   parseFunctionDeclaration(base: ASTBase, asLval: boolean, statementStart: boolean): ASTBase {
@@ -135,7 +141,7 @@ export default class Parser extends ParserBase {
   parseChunk(): ASTChunkGreyScript | ASTBase {
     const chunk = super.parseChunk();
     const c = chunk as ASTChunkGreyScript;
-    c.nativeImports = this.nativeImports;
+    c.nativeImports = this.state.nativeImports;
     return c;
   }
 }
