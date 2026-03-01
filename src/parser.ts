@@ -32,13 +32,9 @@ export default class Parser extends ParserBase {
 
     // Use prebuilt op index
     options.keywordOps = options.keywordOps || greyscriptKeywordOps;
+    options.state = options.state || new GreyscriptParserState();
 
     super(content, options);
-
-    const me = this;
-
-    me.state = new GreyscriptParserState();
-    me._stateStack.setDefault(me.state);
   }
 
   getState(): GreyscriptParserState {
