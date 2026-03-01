@@ -912,11 +912,11 @@ Array [
   Object {
     "code": 3001,
     "hint": null,
-    "message": "got EOL('end of line') where one of Punctuator(',') or Punctuator(')') is required",
+    "message": "got Identifier('print') where one of Punctuator(',') or Punctuator(')') is required",
     "range": Object {
       "end": Array [
-        2,
-        20,
+        4,
+        14,
       ],
       "start": Array [
         2,
