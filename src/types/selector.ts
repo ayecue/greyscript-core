@@ -5,6 +5,7 @@ import {
 } from 'greybel-core/dist/types/selector';
 import { TokenType } from 'miniscript-core/dist/lexer/token';
 import { createSelector } from 'miniscript-core/dist/types/selector';
+import { compile } from 'miniscript-core/dist/utils/selector-registry';
 
 import { GreyScriptKeyword } from './keywords';
 
@@ -23,3 +24,5 @@ export const Selectors: typeof GreybelSelectors &
 
 export { GreybelSelectorGroups as SelectorGroups };
 export type { GreybelSelectorGroupType as SelectorGroupType };
+
+compile();
