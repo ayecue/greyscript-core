@@ -1,4 +1,4 @@
-import { ASTBase, ASTBaseOptions } from 'miniscript-core';
+import { ASTBase, ASTBaseOptions } from 'miniscript-core/dist/parser/ast';
 
 import { ASTType } from './base';
 
@@ -50,7 +50,7 @@ export class ASTImportCodeExpression extends ASTBase {
   }
 
   toString(): string {
-    return `ImportCode[${this.start}-${this.end}][${this.directory};${this.eval};${this.emit}]`;
+    return `ImportCode[${this.startLine}:${this.startChar}-${this.endLine}:${this.endChar}][${this.directory};${this.eval};${this.emit}]`;
   }
 
   clone(): ASTImportCodeExpression {
@@ -59,9 +59,12 @@ export class ASTImportCodeExpression extends ASTBase {
       directory: this.directory,
       eval: this.eval,
       emit: this.emit,
-      start: this.start,
-      end: this.end,
-      range: this.range,
+      startLine: this.startLine,
+      startChar: this.startChar,
+      endLine: this.endLine,
+      endChar: this.endChar,
+      rangeStart: this.rangeStart,
+      rangeEnd: this.rangeEnd,
       scope: this.scope
     });
   }

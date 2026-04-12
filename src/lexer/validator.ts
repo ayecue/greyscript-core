@@ -1,5 +1,6 @@
-import { GreybelKeyword, LexerValidator } from 'greybel-core';
-import { Keyword } from 'miniscript-core';
+import LexerValidator from 'greybel-core/dist/lexer/validator';
+import { GreybelKeyword } from 'greybel-core/dist/types/keywords';
+import { Keyword } from 'miniscript-core/dist/types/keywords';
 
 import { GreyScriptKeyword } from '../types/keywords';
 

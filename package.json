@@ -1,12 +1,12 @@
 {
   "name": "greyscript-core",
-  "version": "2.6.0",
+  "version": "3.0.1",
   "description": "Core lexer/parser for GreyScript",
   "main": "dist/index",
   "typings": "dist/index",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "npm run clean && tsc -p .",
+    "build": "npm run clean && tspc -p .",
     "watch": "tsc -w -p .",
     "clean": "rm -rf dist",
     "test": "jest ./tests",
@@ -44,13 +44,15 @@
     "jest": "^27.4.5",
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.4"
+    "ts-patch": "^3.3.0",
+    "ts-transform-args": "^0.1.2",
+    "typescript": "~5.9.0"
   },
   "keywords": [
     "greyscript",
     "greyhack"
   ],
   "dependencies": {
-    "greybel-core": "~2.6.0"
+    "greybel-core": "~3.0.1"
   }
 }

@@ -1,8 +1,8 @@
-const { Parser, Lexer, ASTBase } = require('../dist');
+const { Parser, Lexer, ASTBase, UnsafeParser, UnsafeLexer } = require('../dist');
 const { ASTType } = require('miniscript-core');
 const fs = require('fs');
 const path = require('path');
-const testFolder = path.resolve(__dirname, 'scripts');
+const { testFolder, describeErrors } = require('./test-utils');
 
 describe('parse', function () {
   describe('default scripts', function () {
@@ -41,9 +41,8 @@ describe('parse', function () {
 
         test(path.basename(filepath) + ' unsafe', () => {
           const content = fs.readFileSync(filepath, 'utf-8');
-          const parser = new Parser(content, {
-            tabWidth: 2,
-            unsafe: true
+          const parser = new UnsafeParser(content, {
+            tabWidth: 2
           });
           const payload = parser.parseChunk().toString();
 
@@ -81,16 +80,15 @@ describe('parse', function () {
 
 				if (false) print("false")
 			`;
-      const lexer = new Lexer(content, { unsafe: true, tabWidth: 2 });
-      const parser = new Parser(content, {
-        unsafe: true,
+      const lexer = new UnsafeLexer(content, { tabWidth: 2 });
+      const parser = new UnsafeParser(content, {
         lexer
       });
 
       parser.parseChunk();
 
-      expect(lexer.errors).toMatchSnapshot();
-      expect(parser.errors).toMatchSnapshot();
+      expect(describeErrors(lexer.errors)).toMatchSnapshot();
+      expect(describeErrors(parser.errors)).toMatchSnapshot();
     });
 
     test('open block', () => {
@@ -137,16 +135,15 @@ describe('parse', function () {
 
         print allFiles.len
       `;
-      const lexer = new Lexer(content, { unsafe: true, tabWidth: 2 });
-      const parser = new Parser(content, {
-        unsafe: true,
+      const lexer = new UnsafeLexer(content, { tabWidth: 2 });
+      const parser = new UnsafeParser(content, {
         lexer
       });
 
       parser.parseChunk();
 
-      expect(lexer.errors).toMatchSnapshot();
-      expect(parser.errors).toMatchSnapshot();
+      expect(describeErrors(lexer.errors)).toMatchSnapshot();
+      expect(describeErrors(parser.errors)).toMatchSnapshot();
     });
 
     test('using repeat keyword', () => {
@@ -155,16 +152,15 @@ describe('parse', function () {
           print(foo)
         end function
 			`;
-      const lexer = new Lexer(content, { unsafe: true, tabWidth: 2 });
-      const parser = new Parser(content, {
-        unsafe: true,
+      const lexer = new UnsafeLexer(content, { tabWidth: 2 });
+      const parser = new UnsafeParser(content, {
         lexer
       });
 
       parser.parseChunk();
 
-      expect(lexer.errors).toMatchSnapshot();
-      expect(parser.errors).toMatchSnapshot();
+      expect(describeErrors(lexer.errors)).toMatchSnapshot();
+      expect(describeErrors(parser.errors)).toMatchSnapshot();
     });
   });
 });

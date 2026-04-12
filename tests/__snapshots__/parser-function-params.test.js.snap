@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`greyscript function parameters call expression as default value 1`] = `
+"Chunk[1:1-2:13][
+	AssignmentStatement[1:1-2:13][Identifier[1:1-1:2][f] = FunctionDeclaration[1:5-2:13][AssignmentStatement[1:14-1:30][Identifier[1:14-1:15][x] = CallExpression[1:18-1:30][Identifier[1:18-1:28][getDefault]()]]]]
+]"
+`;
+
+exports[`greyscript function parameters expression default values are allowed 1`] = `
+"Chunk[1:1-2:13][
+	AssignmentStatement[1:1-2:13][Identifier[1:1-1:2][f] = FunctionDeclaration[1:5-2:13][AssignmentStatement[1:14-1:27][Identifier[1:14-1:15][x] = BinaryExpression[1:18-1:27][Identifier[1:18-1:21][foo] + Identifier[1:24-1:27][bar]]]]]
+]"
+`;
+
+exports[`greyscript function parameters literal default values still work 1`] = `
+"Chunk[1:1-2:13][
+	AssignmentStatement[1:1-2:13][Identifier[1:1-1:2][f] = FunctionDeclaration[1:5-2:13][AssignmentStatement[1:14-1:20][Identifier[1:14-1:15][x] = Literal[1:18-1:20][42]], AssignmentStatement[1:22-1:33][Identifier[1:22-1:23][y] = Literal[1:26-1:33][hello]]]]
+]"
+`;
+
+exports[`greyscript function parameters member expression as default value 1`] = `
+"Chunk[1:1-2:13][
+	AssignmentStatement[1:1-2:13][Identifier[1:1-1:2][f] = FunctionDeclaration[1:5-2:13][AssignmentStatement[1:14-1:26][Identifier[1:14-1:15][x] = MemberExpression[1:18-1:26][Identifier[1:18-1:21][obj].Identifier[1:22-1:26][prop]]]]]
+]"
+`;
+
+exports[`greyscript function parameters multiple params with mixed defaults 1`] = `
+"Chunk[1:1-2:13][
+	AssignmentStatement[1:1-2:13][Identifier[1:1-1:2][f] = FunctionDeclaration[1:5-2:13][Identifier[1:14-1:15][a], AssignmentStatement[1:17-1:22][Identifier[1:17-1:18][b] = Literal[1:21-1:22][1]], AssignmentStatement[1:24-1:33][Identifier[1:24-1:25][c] = CallExpression[1:28-1:33][Identifier[1:28-1:31][foo]()]]]]
+]"
+`;

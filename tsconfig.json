@@ -1,16 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ESNext",
     "module": "commonjs",
     "lib": [
-      "es6"
+      "ESNext"
     ],
+    "useDefineForClassFields": false,
     "allowJs": true,
     "outDir": "dist",
     "noImplicitAny": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "declaration": true
+    "declaration": true,
+    "skipLibCheck": true,
+    "types": [
+      "ts-transform-args",
+      "@types/node",
+      "@types/jest"
+    ],
+    "plugins": [
+      { "transform": "ts-transform-args" }
+    ]
   },
   "include": [
     "src/**/*"
